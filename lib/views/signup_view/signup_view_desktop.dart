@@ -277,7 +277,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                                       fontWeight: FontWeight.w400,
                                       fontsize: 14,
                                       fontfamily: "Inter",
-                                      text: "Password must be at least 8 charecter with letter,number and special cherecter",
+                                      text: "Password must be at least 8 charecter with letter,number and special charecter",
 
                                     ),
                             ),
