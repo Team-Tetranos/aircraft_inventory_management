@@ -1,5 +1,7 @@
 
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
+import 'package:aircraft_inventory_management/views/login_view/login_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/signup_view/signup_view_desktop.dart';
 import 'package:flutter/material.dart';
 
 import '../../views/Blank_Page/blank_page.dart';
@@ -10,6 +12,10 @@ class Routes{
     switch(routeSettings.name){
       case RouteNames.blank:
         return MaterialPageRoute(builder: (_)=> BlankPage());
+      case RouteNames.login:
+        return MaterialPageRoute(builder: (_)=>MyLogInView());
+      case RouteNames.signup:
+        return MaterialPageRoute(builder: (_)=>MySignUpView());
       default:
         return MaterialPageRoute(builder: (_)=>const Scaffold(
           body: Center(
