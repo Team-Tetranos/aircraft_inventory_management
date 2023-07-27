@@ -1,3 +1,4 @@
+import 'package:aircraft_inventory_management/res/custom_scroll_behavior.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/utils/routes/routes.dart';
 import 'package:aircraft_inventory_management/view_models/blank_view_model.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
 
       ],
       child: MaterialApp(
+        scrollBehavior: MyCustomScrollBehavior(),
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
