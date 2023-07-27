@@ -188,8 +188,8 @@ class _MybaseViewState extends State<MybaseView> {
                             ),
 
                           ),
-                          SizedBox(width: 40,),
-                          MyInventoryView()
+                          //SizedBox(width: 40,),
+                          MyDashBoardView(),
                         ],
                       )
                     ],

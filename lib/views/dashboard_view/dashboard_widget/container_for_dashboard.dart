@@ -8,8 +8,9 @@ class MyDashBoardContainer extends StatelessWidget {
   double xCoordinate;
   double yCoordinate;
   double radius;
-  Color shadowcolor;
-   MyDashBoardContainer({Key? key,required this.width,required this.height,required this.color,required this.blur,required this.xCoordinate,required this.yCoordinate,required this.radius,required this.shadowcolor}) : super(key: key);
+  Widget mywidget;
+  final shadowcolor;
+   MyDashBoardContainer({Key? key,required this.width,required this.height,required this.color,required this.blur,required this.xCoordinate,required this.yCoordinate,required this.radius,required this.shadowcolor,required this.mywidget}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class MyDashBoardContainer extends StatelessWidget {
           ),
         ],
       ),
+      child: mywidget,
     );
   }
 }

@@ -12,23 +12,55 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 865,
-      color: Colors.purple,
-      child: Column(
+        height: 865,
+        color: Colors.purple,
+        child: Column(
 
-        children: [
-          Container(
-            height: 100,
-            width: MediaQuery.of(context).size.width*.774,
-            color: Colors.orange,
-            child: Stack(
-              children: [
-                //MyDashBoardContainer(width: .1, height: 79, color: Color(0xFF3079DE), blur: 0, xCoordinate: 0, yCoordinate:0, radius: 10, shadowcolor: );
-              ],
-            ),
-          )
-        ],
-      ),
+            children: [
+              Container(
+                height: 100,
+                width: MediaQuery
+                    .of(context)
+                    .size
+                    .width * .774,
+                color: Colors.orange,
+                child:
+
+                    Container(
+                      height: 80,
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * .774,
+
+                      child: ListView.builder(
+
+                        //shrinkWrap: true,
+
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 30,
+
+                        itemBuilder: (context, index) {
+                          return MyDashBoardContainer(
+                              width: .1,
+                              height: 79,
+                              color: Color(0xFF3079DE),
+                              blur: 0,
+                              xCoordinate: 0,
+                              yCoordinate: 0,
+                              radius: 10,
+                              shadowcolor: null,
+                              mywidget: Text(index.toString())
+                          );
+                        },
+
+                      ),
+                    ),
+
+
+              )
+            ]
+        )
     );
   }
 }
