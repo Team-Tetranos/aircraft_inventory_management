@@ -1,6 +1,6 @@
 import 'dart:ffi';
 
-import 'package:aircraft_inventory_management/views/login_signup_widget.dart';
+import 'package:aircraft_inventory_management/res/common_widget/login_signup_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -24,7 +24,7 @@ class _MyLogInViewState extends State<MyLogInView> {
               Center(child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MyLogInContainer(
+                  MyLogIn_SignUp_Container(
                     bordercolor: null,
                     border: 0,
                     height: 229,
@@ -43,7 +43,7 @@ class _MyLogInViewState extends State<MyLogInView> {
                       child: Column(
                           children: [
                             SizedBox(height: 27,),
-                            MyLogInContainer(
+                            MyLogIn_SignUp_Container(
                               bordercolor: null,
                               border: 0,
                               height: 74,
@@ -58,7 +58,7 @@ class _MyLogInViewState extends State<MyLogInView> {
 
                             SizedBox(height: 39,),
 
-                            MyLogInText(fontWeight: FontWeight.w600,
+                            MyLogIn_SignUpText(fontWeight: FontWeight.w600,
                                 text: "Log in to your account",
                                 color: Color(0xFF1366D9),
                                 fontsize: 30,
@@ -66,13 +66,13 @@ class _MyLogInViewState extends State<MyLogInView> {
 
                             SizedBox(height: 19,),
 
-                            MyLogInText(fontWeight: FontWeight.w400,
+                            MyLogIn_SignUpText(fontWeight: FontWeight.w400,
                                 text: "Welcome back! Please enter your details",
                                 color: Color(0xFFBCBFC5),
                                 fontsize: 16,
                                 fontfamily: "Inter"),
                             SizedBox(height: 40,),
-                            MyLogInContainer(
+                            MyLogIn_SignUp_Container(
                               bordercolor: null,
                               border: 0,
                               blurRadius: 4,
@@ -89,7 +89,7 @@ class _MyLogInViewState extends State<MyLogInView> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
 
-                                    MyLogInText(fontWeight: FontWeight.w500,
+                                    MyLogIn_SignUpText(fontWeight: FontWeight.w500,
                                         text: "Email",
                                         color: Color(0xFF48505E),
                                         fontsize: 16,
@@ -134,7 +134,7 @@ class _MyLogInViewState extends State<MyLogInView> {
                                 ),
                               ),),
                             SizedBox(height: 40,),
-                            MyLogInContainer(
+                            MyLogIn_SignUp_Container(
                               bordercolor: null,
                               border: 0,
                               blurRadius: 4,
@@ -151,7 +151,7 @@ class _MyLogInViewState extends State<MyLogInView> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
 
-                                    MyLogInText(fontWeight: FontWeight.w500,
+                                    MyLogIn_SignUpText(fontWeight: FontWeight.w500,
                                         text: "Password",
                                         color: Color(0xFF48505E),
                                         fontsize: 16,
@@ -209,7 +209,7 @@ class _MyLogInViewState extends State<MyLogInView> {
                                   Container(
                                     child: Row(
                                       children: [
-                                        MyLogInContainer(
+                                        MyLogIn_SignUp_Container(
                                             bordercolor: Colors.black,
                                             border: 1,
                                             blurRadius: 0,
@@ -222,7 +222,7 @@ class _MyLogInViewState extends State<MyLogInView> {
                                             radius: 4,
                                             mywidget: null),
                                         SizedBox(width: 8,),
-                                        MyLogInText(fontWeight: FontWeight.w500,
+                                        MyLogIn_SignUpText(fontWeight: FontWeight.w500,
                                             text: "Remember at Free",
                                             color: Color(0xFFBCBFC5),
                                             fontsize: 14,
@@ -231,7 +231,7 @@ class _MyLogInViewState extends State<MyLogInView> {
                                     ),
                                   ),
                                   SizedBox(width: 100,),
-                                  MyLogInText(fontWeight: FontWeight.w500,
+                                  MyLogIn_SignUpText(fontWeight: FontWeight.w500,
                                       text: "Forgot Password",
                                       color: Color(0xFF1366D9),
                                       fontsize: 14,
@@ -240,7 +240,7 @@ class _MyLogInViewState extends State<MyLogInView> {
                                 ],),
                             ),
                             SizedBox(height: 32,),
-                            MyLogInContainer(
+                            MyLogIn_SignUp_Container(
                                 bordercolor: null,
                                 border: 0,
                                 blurRadius: 0,
@@ -251,7 +251,7 @@ class _MyLogInViewState extends State<MyLogInView> {
                                 color: Color(0xFF1366D9),
                                 width: .25,
                                 radius: 5,
-                                mywidget: Center(child: MyLogInText(
+                                mywidget: Center(child: MyLogIn_SignUpText(
                                   text: "Sign In",
                                   fontsize: 16,
                                   fontWeight: FontWeight.w600,
@@ -259,7 +259,7 @@ class _MyLogInViewState extends State<MyLogInView> {
 
                                 ),)),
                             SizedBox(height: 18,),
-                            MyLogInContainer(
+                            MyLogIn_SignUp_Container(
                               bordercolor: Color(0xFF1366D9),
                               border: 1,
                               blurRadius: 0,
@@ -276,7 +276,7 @@ class _MyLogInViewState extends State<MyLogInView> {
                                       FontAwesomeIcons.google // Use Google Icons with Google Fonts
                                   ),
                                   SizedBox(width: 12,),
-                                  MyLogInText(fontWeight: FontWeight.w600,
+                                  MyLogIn_SignUpText(fontWeight: FontWeight.w600,
                                       text: "Continue with google",
                                       color: Color(0xFF383E49),
                                       fontsize: 16,
@@ -287,12 +287,12 @@ class _MyLogInViewState extends State<MyLogInView> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                MyLogInText(fontWeight: FontWeight.w400,
+                                MyLogIn_SignUpText(fontWeight: FontWeight.w400,
                                     text: "Don't have an Account? ",
                                     color: Color(0xFF667085),
                                     fontsize: 14,
                                     fontfamily: "Inter"),
-                                MyLogInText(fontWeight: FontWeight.w500,
+                                MyLogIn_SignUpText(fontWeight: FontWeight.w500,
                                     text: "Sign Up",
                                     color: Color(0xFF1366D9),
                                     fontsize: 14,

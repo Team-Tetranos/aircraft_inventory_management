@@ -21,7 +21,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_)=>BlankViewModel())
+        ChangeNotifierProvider(create: (_)=>BlankViewModel()),
+        ChangeNotifierProvider(create: (_)=>MyProviderForInventoryView())
+
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -31,7 +33,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: RouteNames.login,
+        initialRoute: RouteNames.baseview,
         onGenerateRoute: Routes.generateRoute,
       ),
     );
