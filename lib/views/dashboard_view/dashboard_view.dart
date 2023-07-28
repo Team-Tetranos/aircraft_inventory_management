@@ -117,7 +117,7 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                 ),
 
               Padding(
-                padding: const EdgeInsets.only(left: 40,right: 40),
+                padding: const EdgeInsets.only(),
                 child: Row(
                   children: [
                     MyDashBoardContainer(width: .35,
@@ -129,7 +129,7 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                         radius: 10,
                         shadowcolor: null,
                         mywidget: Padding(
-                          padding: const EdgeInsets.only(left: 40,right: 40),
+                          padding: const EdgeInsets.only(left: 40,),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -145,7 +145,8 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                                 children: [
                                   Container(
                                     height: 47,
-                                    width: MediaQuery.of(context).size.width*.11,
+                                    width: MediaQuery.of(context).size.width*.35*.35,
+
 
                                     child:
                                     Row(
@@ -184,10 +185,11 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(width: 134,),
+                                  SizedBox(width: 50,),
                                   Container(
                                     height: 47,
-                                    width: MediaQuery.of(context).size.width*.09,
+                                    width: MediaQuery.of(context).size.width*.35*.35,
+
 
                                     child:
                                     Row(
@@ -233,7 +235,8 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                                 children: [
                                   Container(
                                     height: 47,
-                                    width: MediaQuery.of(context).size.width*.11,
+                                    width: MediaQuery.of(context).size.width*.35*.35,
+
 
                                     child:
                                     Row(
@@ -274,10 +277,11 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(width: 134,),
+                                  SizedBox(width: 50,),
                                   Container(
                                     height: 47,
-                                    width: MediaQuery.of(context).size.width*.09,
+                                    width: MediaQuery.of(context).size.width*.35*.35,
+
 
                                     child:
                                     Row(
@@ -335,7 +339,7 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                         radius: 10,
                         shadowcolor: null,
                         mywidget: Padding(
-                          padding: const EdgeInsets.only(left: 40,right: 40),
+                          padding: const EdgeInsets.only(left: 40,),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -351,7 +355,8 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                                 children: [
                                   Container(
                                     height: 47,
-                                    width: MediaQuery.of(context).size.width*.11,
+                                    width: MediaQuery.of(context).size.width*.35*.35,
+
 
                                     child:
                                     Row(
@@ -390,10 +395,11 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(width: 134,),
+                                  SizedBox(width: 50,),
                                   Container(
                                     height: 47,
-                                    width: MediaQuery.of(context).size.width*.09,
+                                    width: MediaQuery.of(context).size.width*.35*.35,
+
 
                                     child:
                                     Row(
@@ -439,7 +445,8 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                                 children: [
                                   Container(
                                     height: 47,
-                                    width: MediaQuery.of(context).size.width*.11,
+                                    width: MediaQuery.of(context).size.width*.35*.35,
+
 
                                     child:
                                     Row(
@@ -480,10 +487,10 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
                                       ],
                                     ),
                                   ),
-                                  SizedBox(width: 134,),
+                                  SizedBox(width: 50,),
                                   Container(
                                     height: 47,
-                                    width: MediaQuery.of(context).size.width*.09,
+                                    width: MediaQuery.of(context).size.width*.35*.35,
 
                                     child:
                                     Row(

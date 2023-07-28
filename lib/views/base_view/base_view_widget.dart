@@ -4,7 +4,9 @@ class MyBaseViewContainer extends StatelessWidget {
 
   String text;
   IconData icon;
-   MyBaseViewContainer({Key? key,required this.text,required this.icon}) : super(key: key);
+  Color textcolor;
+  Color iconcolor;
+   MyBaseViewContainer({Key? key,required this.text,required this.icon, required this.iconcolor,required this.textcolor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,8 @@ class MyBaseViewContainer extends StatelessWidget {
             children: [
               Icon(icon,
                 size: 21,
-                color: Color(0xFF797979),
+                color: iconcolor,
+
               ),
               SizedBox(width: 14,),
               Text(text,
@@ -24,7 +27,7 @@ class MyBaseViewContainer extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
                 fontFamily: "Inter",
-                color: Color(0xFF797979)
+                color: textcolor
               ),)
             ],
           ),

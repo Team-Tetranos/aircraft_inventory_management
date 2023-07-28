@@ -175,30 +175,92 @@ class _MybaseViewState extends State<MybaseView> {
                                     mp.ChangingOptions(0);
 
                                   },
-                                    child: MyBaseViewContainer(text: "Dashboard", icon: Icons.home)),
+                                    child: MyBaseViewContainer(text: "Dashboard",
+                                        icon: Icons.home,
+                                        textcolor: mp.baseviewIndex==0?Color(0xFF0B6CF3):Color(0xFF797979),
+                                        iconcolor: mp.baseviewIndex==0?Color(0xFF0B6CF3):Color(0xFF797979))),
+
                                 SizedBox(height: 40,),
                                 GestureDetector(
                                   onTap: (){
                                     mp.ChangingOptions(1);
 
                                   },
-                                    child: MyBaseViewContainer(text: "inventory", icon: Icons.add_shopping_cart_outlined)),
+                                    child: MyBaseViewContainer(text: "inventory",
+                                        icon: Icons.add_shopping_cart_outlined,
+                                    textcolor: mp.baseviewIndex==1?Color(0xFF0B6CF3):Color(0xFF797979),
+                                    iconcolor: mp.baseviewIndex==1?Color(0xFF0B6CF3):Color(0xFF797979))),
+
                                 SizedBox(height: 40,),
-                                MyBaseViewContainer(text: "Product Overview", icon: Icons.event_note_sharp),
+
+                                GestureDetector(
+                                  onTap: (){
+                                    mp.ChangingOptions(2);
+                                  },
+                                    child: MyBaseViewContainer(text: "Product Overview",
+                                        icon: Icons.event_note_sharp,
+                                        textcolor: mp.baseviewIndex==2?Color(0xFF0B6CF3):Color(0xFF797979),
+                                        iconcolor: mp.baseviewIndex==2?Color(0xFF0B6CF3):Color(0xFF797979))),
+
+
                                 SizedBox(height: 40,),
-                                MyBaseViewContainer(text: "Manage Store", icon: Icons.storefront),
+                                GestureDetector(
+                                  onTap: (){
+                                    mp.ChangingOptions(3);
+                                  },
+                                    child: MyBaseViewContainer(text: "Manage Store",
+                                        icon: Icons.storefront,
+                                        textcolor: mp.baseviewIndex==3?Color(0xFF0B6CF3):Color(0xFF797979),
+                                        iconcolor: mp.baseviewIndex==3?Color(0xFF0B6CF3):Color(0xFF797979))),
+
                                 SizedBox(height: 40,),
-                                MyBaseViewContainer(text: "Suppliers", icon: Icons.account_circle_outlined),
+
+                                GestureDetector(
+                                    onTap: (){
+                                      mp.ChangingOptions(4);
+                                    },
+                                    child: MyBaseViewContainer(text: "Suppliers",
+                                        icon: Icons.account_circle_outlined,
+                                        textcolor: mp.baseviewIndex==4?Color(0xFF0B6CF3):Color(0xFF797979),
+                                        iconcolor: mp.baseviewIndex==4?Color(0xFF0B6CF3):Color(0xFF797979))),
+
                                 SizedBox(height: 40,),
-                                MyBaseViewContainer(text: "Settings", icon: Icons.settings),
+
+                                GestureDetector(
+                                  onTap: (){
+                                    mp.ChangingOptions(5);
+                                  },
+                                    child: MyBaseViewContainer(text: "Settings",
+                                        icon: Icons.settings,
+                                        textcolor: mp.baseviewIndex==5?Color(0xFF0B6CF3):Color(0xFF797979),
+                                        iconcolor: mp.baseviewIndex==5?Color(0xFF0B6CF3):Color(0xFF797979))),
+
                                 SizedBox(height: 40,),
-                                MyBaseViewContainer(text: "Log Out", icon: Icons.logout),
+
+                                GestureDetector(
+                                  onTap: (){
+                                    mp.ChangingOptions(6);
+                                  },
+                                    child: MyBaseViewContainer(text: "Log Out",
+                                        icon: Icons.logout,
+                                        textcolor: mp.baseviewIndex==6?Color(0xFF0B6CF3):Color(0xFF797979),
+                                        iconcolor: mp.baseviewIndex==6?Color(0xFF0B6CF3):Color(0xFF797979))),
+
                                 SizedBox(height: 40,),
-                                MyBaseViewContainer(text: "help", icon: Icons.question_mark)
+
+                                GestureDetector(
+                                  onTap: (){
+                                    mp.ChangingOptions(7);
+                                  },
+                                    child: MyBaseViewContainer(text: "help",
+                                        icon: Icons.question_mark,
+                                        textcolor: mp.baseviewIndex==7?Color(0xFF0B6CF3):Color(0xFF797979),
+                                        iconcolor: mp.baseviewIndex==7?Color(0xFF0B6CF3):Color(0xFF797979))),
                               ],
                             ),
-
                           ),
+
+
                           //SizedBox(width: 40,),
                          mp.baseviewIndex==0?MyDashBoardView():MyInventoryView()
                         ],
@@ -209,6 +271,9 @@ class _MybaseViewState extends State<MybaseView> {
               );
             }
         )
+
+
+
     );
   }
 }
