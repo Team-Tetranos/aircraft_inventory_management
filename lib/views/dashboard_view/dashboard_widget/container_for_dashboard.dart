@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class MyDashBoardContainer extends StatelessWidget {
-  double height;
-  double width;
-  Color color;
-  double blur;
-  double xCoordinate;
-  double yCoordinate;
-  double radius;
-  Widget mywidget;
+  final double height;
+ final  double width;
+ final  Color color;
+ final  double blur;
+ final  double xCoordinate;
+ final  double yCoordinate;
+ final  double radius;
+  final Widget mywidget;
   final shadowcolor;
-   MyDashBoardContainer({Key? key,required this.width,required this.height,required this.color,required this.blur,required this.xCoordinate,required this.yCoordinate,required this.radius,required this.shadowcolor,required this.mywidget}) : super(key: key);
+  final bordercolor;
+  double border;
+   MyDashBoardContainer({Key? key,required this.width,required this.height,required this.color,required this.blur,required this.xCoordinate,required this.yCoordinate,required this.radius,required this.shadowcolor,required this.mywidget,required this.border,required this.bordercolor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class MyDashBoardContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.all(Radius.circular(radius)),
+        border: Border.all(width: border,color: bordercolor==null?Colors.transparent:bordercolor),
         boxShadow: [
           BoxShadow(
             color: shadowcolor==null?Colors.transparent:shadowcolor,

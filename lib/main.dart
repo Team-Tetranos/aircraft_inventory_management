@@ -2,6 +2,7 @@ import 'package:aircraft_inventory_management/res/custom_scroll_behavior.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/utils/routes/routes.dart';
 import 'package:aircraft_inventory_management/view_models/blank_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_)=>BlankViewModel()),
-        ChangeNotifierProvider(create: (_)=>MyProviderForInventoryView())
+        ChangeNotifierProvider(create: (_)=>MyProviderForInventoryView()),
+        ChangeNotifierProvider(create: (_)=>MyProviderForBaseView())
 
       ],
       child: MaterialApp(
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: RouteNames.baseview,
+        initialRoute: RouteNames.login,
         onGenerateRoute: Routes.generateRoute,
       ),
     );

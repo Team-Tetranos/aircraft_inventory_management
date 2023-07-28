@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:aircraft_inventory_management/res/common_widget/login_signup_widget.dart';
+import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -240,24 +241,29 @@ class _MyLogInViewState extends State<MyLogInView> {
                                 ],),
                             ),
                             SizedBox(height: 32,),
-                            MyLogIn_SignUp_Container(
-                                bordercolor: null,
-                                border: 0,
-                                blurRadius: 0,
-                                spreadRadius: 0,
-                                boxshadowopacity: 0,
-                                offset: 0,
-                                height: 44,
-                                color: Color(0xFF1366D9),
-                                width: .25,
-                                radius: 5,
-                                mywidget: Center(child: MyLogIn_SignUpText(
-                                  text: "Sign In",
-                                  fontsize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  fontfamily:"inter", color: Color(0xFFFFFFFF),
+                            InkWell(
+                              onTap: (){
+                                Navigator.pushNamed(context, RouteNames.baseview);
+                              },
+                              child: MyLogIn_SignUp_Container(
+                                  bordercolor: null,
+                                  border: 0,
+                                  blurRadius: 0,
+                                  spreadRadius: 0,
+                                  boxshadowopacity: 0,
+                                  offset: 0,
+                                  height: 44,
+                                  color: Color(0xFF1366D9),
+                                  width: .25,
+                                  radius: 5,
+                                  mywidget: Center(child: MyLogIn_SignUpText(
+                                    text: "Sign In",
+                                    fontsize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    fontfamily:"inter", color: Color(0xFFFFFFFF),
 
-                                ),)),
+                                  ),)),
+                            ),
                             SizedBox(height: 18,),
                             MyLogIn_SignUp_Container(
                               bordercolor: Color(0xFF1366D9),
@@ -292,11 +298,16 @@ class _MyLogInViewState extends State<MyLogInView> {
                                     color: Color(0xFF667085),
                                     fontsize: 14,
                                     fontfamily: "Inter"),
-                                MyLogIn_SignUpText(fontWeight: FontWeight.w500,
-                                    text: "Sign Up",
-                                    color: Color(0xFF1366D9),
-                                    fontsize: 14,
-                                    fontfamily: "Inter")
+                                InkWell(
+                                  onTap: (){
+                                    Navigator.pushNamed(context, RouteNames.signup);
+                                  },
+                                  child: MyLogIn_SignUpText(fontWeight: FontWeight.w500,
+                                      text: "Sign Up",
+                                      color: Color(0xFF1366D9),
+                                      fontsize: 14,
+                                      fontfamily: "Inter"),
+                                )
                               ],
                             )
 
