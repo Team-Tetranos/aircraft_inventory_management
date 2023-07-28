@@ -1,6 +1,7 @@
 
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/views/base_view/base_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/inventory_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/login_view/login_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/signup_view/signup_view_desktop.dart';

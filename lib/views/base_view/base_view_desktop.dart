@@ -1,5 +1,5 @@
-import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
+import 'package:aircraft_inventory_management/views/inventory_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,7 +19,7 @@ class _MybaseViewState extends State<MybaseView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Consumer<MyProviderForBaseView>(
+        child: Consumer<MyProviderForInventoryView>(
             builder: (context,mp,_) {
               return Scaffold(
                 backgroundColor: Color(0xFFD9D9D9),
@@ -170,19 +170,9 @@ class _MybaseViewState extends State<MybaseView> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(height: 62),
-                                GestureDetector(
-                                  onTap: (){
-                                    mp.ChangingOptions(0);
-
-                                  },
-                                    child: MyBaseViewContainer(text: "Dashboard", icon: Icons.home)),
+                                MyBaseViewContainer(text: "Dashboard", icon: Icons.home),
                                 SizedBox(height: 40,),
-                                GestureDetector(
-                                  onTap: (){
-                                    mp.ChangingOptions(1);
-
-                                  },
-                                    child: MyBaseViewContainer(text: "inventory", icon: Icons.add_shopping_cart_outlined)),
+                                MyBaseViewContainer(text: "inventory", icon: Icons.add_shopping_cart_outlined),
                                 SizedBox(height: 40,),
                                 MyBaseViewContainer(text: "Product Overview", icon: Icons.event_note_sharp),
                                 SizedBox(height: 40,),
@@ -199,8 +189,11 @@ class _MybaseViewState extends State<MybaseView> {
                             ),
 
                           ),
-                          //SizedBox(width: 40,),
-                         mp.baseviewIndex==0?MyDashBoardView():MyInventoryView()
+
+                          SizedBox(width: 40,),
+                          //MyInventoryView(),
+                          AddInventoryView(),
+
                         ],
                       )
                     ],

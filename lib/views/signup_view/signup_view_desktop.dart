@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:aircraft_inventory_management/res/common_widget/login_signup_widget.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
