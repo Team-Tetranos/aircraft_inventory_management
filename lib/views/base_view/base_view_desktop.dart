@@ -1,5 +1,6 @@
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
+import 'package:aircraft_inventory_management/views/inventory_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,7 +20,7 @@ class _MybaseViewState extends State<MybaseView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Consumer<MyProviderForBaseView>(
+        child: Consumer<BaseViewModel>(
             builder: (context,mp,_) {
               return Scaffold(
                 backgroundColor: Color(0xFFD9D9D9),
@@ -172,7 +173,7 @@ class _MybaseViewState extends State<MybaseView> {
                                 SizedBox(height: 62),
                                 GestureDetector(
                                   onTap: (){
-                                    mp.ChangingOptions(0);
+                                    mp.changingOptions(0);
 
                                   },
                                     child: MyBaseViewContainer(text: "Dashboard",
@@ -183,7 +184,7 @@ class _MybaseViewState extends State<MybaseView> {
                                 SizedBox(height: 40,),
                                 GestureDetector(
                                   onTap: (){
-                                    mp.ChangingOptions(1);
+                                    mp.changingOptions(1);
 
                                   },
                                     child: MyBaseViewContainer(text: "inventory",
@@ -195,7 +196,7 @@ class _MybaseViewState extends State<MybaseView> {
 
                                 GestureDetector(
                                   onTap: (){
-                                    mp.ChangingOptions(2);
+                                    mp.changingOptions(2);
                                   },
                                     child: MyBaseViewContainer(text: "Product Overview",
                                         icon: Icons.event_note_sharp,
@@ -206,7 +207,7 @@ class _MybaseViewState extends State<MybaseView> {
                                 SizedBox(height: 40,),
                                 GestureDetector(
                                   onTap: (){
-                                    mp.ChangingOptions(3);
+                                    mp.changingOptions(3);
                                   },
                                     child: MyBaseViewContainer(text: "Manage Store",
                                         icon: Icons.storefront,
@@ -217,7 +218,7 @@ class _MybaseViewState extends State<MybaseView> {
 
                                 GestureDetector(
                                     onTap: (){
-                                      mp.ChangingOptions(4);
+                                      mp.changingOptions(4);
                                     },
                                     child: MyBaseViewContainer(text: "Suppliers",
                                         icon: Icons.account_circle_outlined,
@@ -228,7 +229,7 @@ class _MybaseViewState extends State<MybaseView> {
 
                                 GestureDetector(
                                   onTap: (){
-                                    mp.ChangingOptions(5);
+                                    mp.changingOptions(5);
                                   },
                                     child: MyBaseViewContainer(text: "Settings",
                                         icon: Icons.settings,
@@ -239,7 +240,7 @@ class _MybaseViewState extends State<MybaseView> {
 
                                 GestureDetector(
                                   onTap: (){
-                                    mp.ChangingOptions(6);
+                                    mp.changingOptions(6);
                                   },
                                     child: MyBaseViewContainer(text: "Log Out",
                                         icon: Icons.logout,
@@ -250,7 +251,7 @@ class _MybaseViewState extends State<MybaseView> {
 
                                 GestureDetector(
                                   onTap: (){
-                                    mp.ChangingOptions(7);
+                                    mp.changingOptions(7);
                                   },
                                     child: MyBaseViewContainer(text: "help",
                                         icon: Icons.question_mark,
@@ -260,9 +261,8 @@ class _MybaseViewState extends State<MybaseView> {
                             ),
                           ),
 
-
                           //SizedBox(width: 40,),
-                         mp.baseviewIndex==0?MyDashBoardView():MyInventoryView()
+                         mp.baseviewIndex==0?MyDashBoardView():mp.baseviewIndex==10?AddInventoryView():MyInventoryView()
                         ],
                       )
                     ],

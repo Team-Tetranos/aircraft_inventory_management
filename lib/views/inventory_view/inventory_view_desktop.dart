@@ -1,9 +1,10 @@
-import 'package:aircraft_inventory_management/view_models/blank_view_model.dart';
-import 'package:aircraft_inventory_management/views/base_view/base_view_widget.dart';
+
+import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/pagination_class.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
+import '../../view_models/inventory_view_model.dart';
 
 //import 'inventory_widget/pagination_class.dart';
 
@@ -184,26 +185,38 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                     Row(
                       children: [
                         SizedBox(width: 43,),
-                        Container(
-                          height: 47.55,
-                          width: MediaQuery.of(context).size.width*.084,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF1366D9),
-                              borderRadius: BorderRadius.all(Radius.circular(5))
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(Icons.add,color: Colors.white,size: 16,),
-                              SizedBox(width: 10,),
-                              Text("Add",
-                                style: TextStyle(
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.white
-                                ),)
-                            ],
+                        GestureDetector(
+                          onTap: (){
+
+                            try{
+                              Provider.of<BaseViewModel>(context, listen: false).changingOptions(10);
+                            }catch(e){
+                              print(e);
+
+                            }
+
+                          },
+                          child: Container(
+                            height: 47.55,
+                            width: MediaQuery.of(context).size.width*.084,
+                            decoration: BoxDecoration(
+                                color: Color(0xFF1366D9),
+                                borderRadius: BorderRadius.all(Radius.circular(5))
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.add,color: Colors.white,size: 16,),
+                                SizedBox(width: 10,),
+                                Text("Add",
+                                  style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      color: Colors.white
+                                  ),)
+                              ],
+                            ),
                           ),
                         ),
 

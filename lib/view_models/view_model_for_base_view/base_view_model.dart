@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class MyProviderForBaseView extends ChangeNotifier{
+class BaseViewModel extends ChangeNotifier{
   int baseviewIndex=0;
-  ChangingOptions(int myIndex){
+
+  changingOptions(int myIndex){
     baseviewIndex=myIndex;
     notifyListeners();
   }

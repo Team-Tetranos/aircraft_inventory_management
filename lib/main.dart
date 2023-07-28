@@ -2,6 +2,7 @@ import 'package:aircraft_inventory_management/res/custom_scroll_behavior.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/utils/routes/routes.dart';
 import 'package:aircraft_inventory_management/view_models/blank_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/inventory_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_)=>BlankViewModel()),
         ChangeNotifierProvider(create: (_)=>MyProviderForInventoryView()),
-        ChangeNotifierProvider(create: (_)=>MyProviderForBaseView())
+        ChangeNotifierProvider(create: (_)=>BaseViewModel())
 
       ],
       child: MaterialApp(
