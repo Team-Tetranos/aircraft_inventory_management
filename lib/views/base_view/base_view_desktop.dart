@@ -1,4 +1,5 @@
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
+import 'package:aircraft_inventory_management/views/inventory_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -188,8 +189,11 @@ class _MybaseViewState extends State<MybaseView> {
                             ),
 
                           ),
+
                           SizedBox(width: 40,),
-                          MyInventoryView()
+                          //MyInventoryView(),
+                          AddInventoryView(),
+
                         ],
                       )
                     ],
