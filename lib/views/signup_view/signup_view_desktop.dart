@@ -1,5 +1,5 @@
 
-import 'package:aircraft_inventory_management/res/common_widget/login_signup_widget.dart';
+import 'package:aircraft_inventory_management/res/common_widget/common_widget.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -33,7 +33,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                 Center(child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    MyLogIn_SignUp_Container(
+                    Common_Container(
                       bordercolor: null,
                       border: 0,
                         blurRadius: 0,
@@ -52,7 +52,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                         child:Column(
                             children: [
                               //SizedBox(height: 27,),
-                              MyLogIn_SignUp_Container(
+                              Common_Container(
                                 bordercolor: null,
                                 border: 0,
                                   blurRadius: 0,
@@ -63,7 +63,7 @@ class _MySignUpViewState extends State<MySignUpView> {
 
                               SizedBox(height: 39,),
 
-                              MyLogIn_SignUpText(fontWeight: FontWeight.w600,
+                              Common_Text(fontWeight: FontWeight.w600,
                                   text: "Creat an account",
                                   color: Color(0xFF1366D9),
                                   fontsize: 30,
@@ -71,13 +71,13 @@ class _MySignUpViewState extends State<MySignUpView> {
 
                               SizedBox(height: 19,),
 
-                              MyLogIn_SignUpText(fontWeight: FontWeight.w400,
+                              Common_Text(fontWeight: FontWeight.w400,
                                   text: "Welcome back! Please enter your details",
                                   color: Color(0xFF667085),
                                   fontsize: 16,
                                   fontfamily: "Inter"),
                               SizedBox(height: 40,),
-                              MyLogIn_SignUp_Container(
+                              Common_Container(
                                 bordercolor: null,
                                 border: 0,
                                 blurRadius: 4,
@@ -94,7 +94,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
 
-                                      MyLogIn_SignUpText(fontWeight: FontWeight.w500,
+                                      Common_Text(fontWeight: FontWeight.w500,
                                           text: "Name",
                                           color: Color(0xFF48505E),
                                           fontsize: 16,
@@ -139,7 +139,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                                   ),
                                 ),),
                               SizedBox(height: 40,),
-                              MyLogIn_SignUp_Container(
+                              Common_Container(
                                 bordercolor: null,
                                 border: 0,
                                 blurRadius: 4,
@@ -156,7 +156,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
 
-                                      MyLogIn_SignUpText(fontWeight: FontWeight.w500,
+                                      Common_Text(fontWeight: FontWeight.w500,
                                           text: "Email",
                                           color: Color(0xFF48505E),
                                           fontsize: 16,
@@ -201,7 +201,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                                   ),
                                 ),),
                               SizedBox(height: 40,),
-                              MyLogIn_SignUp_Container(
+                              Common_Container(
                                 bordercolor: null,
                                 border: 0,
                                 blurRadius: 4,
@@ -218,7 +218,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
 
-                                      MyLogIn_SignUpText(fontWeight: FontWeight.w500,
+                                      Common_Text(fontWeight: FontWeight.w500,
                                           text: "Password",
                                           color: Color(0xFF48505E),
                                           fontsize: 16,
@@ -272,7 +272,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                             Container(
                               height: 80,
                               width: MediaQuery.of(context).size.width*.25,
-                              child: MyLogIn_SignUpText(
+                              child: Common_Text(
                                       color: Color(0xFF667085),
                                       fontWeight: FontWeight.w400,
                                       fontsize: 14,
@@ -288,7 +288,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                                 onTap: (){
                                   Navigator.pushNamed(context, RouteNames.baseview);
                                 },
-                                child: MyLogIn_SignUp_Container(
+                                child: Common_Container(
                                   bordercolor: null,
                                   border: 0,
                                     blurRadius: 0,
@@ -299,7 +299,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                                     color: Color(0xFF1366D9),
                                     width: .25,
                                     radius: 5,
-                                    mywidget: Center(child: MyLogIn_SignUpText(
+                                    mywidget: Center(child: Common_Text(
                                       text: "Sign In",
                                       fontsize: 16,
                                       fontWeight: FontWeight.w600,
@@ -308,7 +308,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                                     ),)),
                               ),
                               SizedBox(height: 29,),
-                              MyLogIn_SignUp_Container(
+                              Common_Container(
                                 bordercolor: Color(0xFF1366D9),
                                 border: 1,
                                 blurRadius: 0,
@@ -325,7 +325,7 @@ class _MySignUpViewState extends State<MySignUpView> {
                                         FontAwesomeIcons.google // Use Google Icons with Google Fonts
                                     ),
                                     SizedBox(width: 12,),
-                                    MyLogIn_SignUpText(fontWeight: FontWeight.w600,
+                                    Common_Text(fontWeight: FontWeight.w600,
                                         text: "Continue with google",
                                         color: Color(0xFF383E49),
                                         fontsize: 16,
@@ -336,13 +336,13 @@ class _MySignUpViewState extends State<MySignUpView> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  MyLogIn_SignUpText(fontWeight: FontWeight.w400,
-                                      text: "Don't have an Account? ",
+                                  Common_Text(fontWeight: FontWeight.w400,
+                                      text: "Already have an Account? ",
                                       color: Color(0xFF667085),
                                       fontsize: 14,
                                       fontfamily: "Inter"),
-                                  MyLogIn_SignUpText(fontWeight: FontWeight.w500,
-                                      text: "Sign Up",
+                                  Common_Text(fontWeight: FontWeight.w500,
+                                      text: "Go to Log In",
                                       color: Color(0xFF1366D9),
                                       fontsize: 14,
                                       fontfamily: "Inter")

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MyLogIn_SignUpText extends StatelessWidget {
+class Common_Text extends StatelessWidget {
   double fontsize;
   FontWeight fontWeight;
   String text;
   Color color;
   String fontfamily;
-   MyLogIn_SignUpText({Key? key,required this.fontWeight,required this.text,required this.color,required this.fontsize,required this.fontfamily}) : super(key: key);
+   Common_Text({Key? key,required this.fontWeight,required this.text,required this.color,required this.fontsize,required this.fontfamily}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class MyLogIn_SignUpText extends StatelessWidget {
     ),);
   }
 }
-class MyLogIn_SignUp_Container extends StatelessWidget {
+class Common_Container extends StatelessWidget {
   double height;
   double width;
   double radius;
@@ -34,7 +34,7 @@ class MyLogIn_SignUp_Container extends StatelessWidget {
   double border;
   final bordercolor;
 
-   MyLogIn_SignUp_Container({Key? key,
+   Common_Container({Key? key,
      required this.bordercolor,
      required this.border,
      required this.height,
