@@ -8,4 +8,5 @@ class RouteNames{
   static const String resetview = "ResetView";
   static const String otpview = "OTPView";
   static const String creatnewpasword = "CreatNewPassword";
+  static const String productoverview = "product_overview";
 }
