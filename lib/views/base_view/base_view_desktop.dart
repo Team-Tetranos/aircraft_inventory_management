@@ -9,14 +9,14 @@ import 'package:provider/provider.dart';
 import '../../view_models/blank_view_model.dart';
 import 'base_view_widget.dart';
 
-class MybaseView extends StatefulWidget {
-  const MybaseView({Key? key}) : super(key: key);
+class MybaseViewDesktop extends StatefulWidget {
+  const MybaseViewDesktop({Key? key}) : super(key: key);
 
   @override
-  State<MybaseView> createState() => _MybaseViewState();
+  State<MybaseViewDesktop> createState() => _MybaseViewDesktopState();
 }
 
-class _MybaseViewState extends State<MybaseView> {
+class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -239,8 +239,8 @@ class _MybaseViewState extends State<MybaseView> {
                                 SizedBox(height: 40,),
 
                                 GestureDetector(
-                                  onTap: (){
-                                    mp.changingOptions(6);
+                                  onTap: ()async{
+                                    await mp.logout(context);
                                   },
                                     child: MyBaseViewContainer(text: "Log Out",
                                         icon: Icons.logout,

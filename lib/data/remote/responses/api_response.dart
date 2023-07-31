@@ -1,21 +1,16 @@
 
 import '../../../res/request_status.dart';
 
-class ApiResponse<T>{
-  Status? status;
-  T? data;
-  String? message;
+class Success{
+ int code;
+ Object data;
+ String key;
+ Success({required this.code, required this.data, required this.key});
+}
 
-  ApiResponse(this.status, this.data, this.message);
-
-  ApiResponse.loading() : status = Status.LOADING;
-  ApiResponse.completed() : status = Status.COMPLETED;
-  ApiResponse.error() : status = Status.ERROR;
-
-  @override
-  String toString() {
-    // TODO: implement toString
-    return '$status _ $message _ $data';
-  }
-
+class Failure{
+  int code;
+  Object error;
+  String key;
+  Failure({required this.code, required this.error, required this.key});
 }
