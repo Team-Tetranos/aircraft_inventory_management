@@ -2,6 +2,7 @@ import 'package:aircraft_inventory_management/view_models/view_model_for_base_vi
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/product_overview_view/product_overview.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -262,7 +263,8 @@ class _MybaseViewState extends State<MybaseView> {
                           ),
 
                           //SizedBox(width: 40,),
-                         mp.baseviewIndex==0?MyDashBoardView():mp.baseviewIndex==10?AddInventoryView():MyInventoryView()
+                         //mp.baseviewIndex==0?MyDashBoardView():mp.baseviewIndex==10?AddInventoryView():MyInventoryView()
+                          Product_Overview_View()
                         ],
                       )
                     ],

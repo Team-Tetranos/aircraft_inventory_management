@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: RouteNames.creatnewpasword,
+        initialRoute: RouteNames.baseview,
         onGenerateRoute: Routes.generateRoute,
       ),
     );
