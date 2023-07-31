@@ -16,8 +16,6 @@ class Common_Text extends StatelessWidget {
       fontSize: fontsize,
       fontWeight: fontWeight,
       fontFamily: fontfamily
-
-
     ),);
   }
 }

@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:aircraft_inventory_management/data/remote/responses/api_response.dart';
+import 'package:dartz/dartz.dart';
 import 'package:http/http.dart';
 import 'package:http_parser/http_parser.dart';
 import 'package:mime/mime.dart';
@@ -30,19 +32,32 @@ class ApiService extends BaseApiService{
         'Authorization':"Bearer ${sharedPreferenceManager.getAccessToken()}"
       };
       final response = await get(Uri.parse(url), headers: headers);
-      responseJson = returnResponse(response);
+      if(response.statusCode==200||response.statusCode==201){
+        responseJson = Success(code: response.statusCode, data: returnResponse(response)['data'], key: returnResponse(response)['key']);
+      }else{
+        responseJson = Failure(code: response.statusCode, error: returnResponse(response)['data'], key: returnResponse(response)['key']);
+      }
+      // responseJson = returnResponse(response);
     }on SocketException{
-      throw FetchDataExceptions(message: 'No Internet Connection');
+      return Failure(code: 500, error: {
+        'error':'No Internet Connection'
+      }, key: 'No Internet Connection');
+    }
+    on FormatException{
+      return Failure(code: 500, error: {
+        'error':'Format Exception'
+      }, key: 'Format Exception');
     }
     catch(e){
-      print(e);
-      throw FetchDataExceptions(message: 'Error During Communication');
+      return Failure(code: 500, error: {
+        'error':e.toString()
+      }, key: 'Server Error');
     }
     return responseJson;
   }
 
   @override
-  Future postApiResponse(String url, dynamic data, {bool? token}) async{
+  Future <Object> postApiResponse(String url, dynamic data, {bool? token}) async{
 
     dynamic responseJson;
 
@@ -57,18 +72,28 @@ class ApiService extends BaseApiService{
         'Authorization':"Bearer ${sharedPreferenceManager.getAccessToken()}"
       };
 
-      final response = await post(Uri.parse(url), body: data, headers: headers).timeout(const Duration(seconds: 30));
-      print(response.body);
-      responseJson = returnResponse(response);
+      final response = await post(Uri.parse(url), body: jsonEncode(data), headers: headers).timeout(const Duration(seconds: 30));
+      //print(response.body);
+      if(response.statusCode==200 || response.statusCode==201){
+        responseJson = Success(code: response.statusCode, data: returnResponse(response)['data'], key: returnResponse(response)['key']);
+      }else{
+        responseJson = Failure(code: response.statusCode, error: returnResponse(response)['data'], key: returnResponse(response)['key']);
+      }
+     // responseJson = returnResponse(response);
     }on SocketException{
-      throw FetchDataExceptions(message: 'No Internet Connection');
+      return Failure(code: 500, error: {
+        'error':'No Internet Connection'
+      }, key: 'No Internet Connection');
     }
     on FormatException{
-      throw FetchDataExceptions(message: 'Format Exception');
+      return Failure(code: 500, error: {
+        'error':'Format Exception'
+      }, key: 'Format Exception');
     }
     catch(e){
-      print(e);
-      throw e;
+      return Failure(code: 500, error: {
+        'error':e.toString()
+      }, key: 'Server Error');
     }
     return responseJson;
   }
@@ -116,11 +141,26 @@ class ApiService extends BaseApiService{
       var responseBody = await response.stream.bytesToString();
       var statusCode = response.statusCode;
 
-      responseJson = returnResponse(Response(responseBody, statusCode));
-    } on SocketException {
-      throw FetchDataExceptions(message: 'No Internet Connection');
-    } catch (e) {
-      throw FetchDataExceptions(message: 'Error During Communication');
+      if(statusCode==200||response.statusCode==201){
+        responseJson = Success(code: response.statusCode, data: returnResponse(Response(responseBody, statusCode))['data'], key: returnResponse(Response(responseBody, statusCode))['key']);
+      }else{
+        responseJson = Failure(code: response.statusCode, error: returnResponse(Response(responseBody, statusCode))['data'], key: returnResponse(Response(responseBody, statusCode))['key']);
+      }
+      // responseJson = returnResponse(response);
+    }on SocketException{
+      return Failure(code: 500, error: {
+        'error':'No Internet Connection'
+      }, key: 'No Internet Connection');
+    }
+    on FormatException{
+      return Failure(code: 500, error: {
+        'error':'Format Exception'
+      }, key: 'Format Exception');
+    }
+    catch(e){
+      return Failure(code: 500, error: {
+        'error':e.toString()
+      }, key: 'Server Error');
     }
     return responseJson;
   }
@@ -131,6 +171,9 @@ class ApiService extends BaseApiService{
         dynamic responseJson = jsonDecode(response.body);
         return responseJson;
       case 201:
+        dynamic responseJson = jsonDecode(response.body);
+        return responseJson;
+      case 400:
         dynamic responseJson = jsonDecode(response.body);
         return responseJson;
       default:
