@@ -39,7 +39,7 @@ class _SecondDashBoardState extends State<SecondDashBoard> {
               borderRadius: BorderRadius.all(Radius.circular(10)),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(10),
+                    color: Colors.black.withOpacity(1),
                     spreadRadius: 0,
                     blurRadius: 25,
                     offset: Offset(-2,4), // changes position of shadow

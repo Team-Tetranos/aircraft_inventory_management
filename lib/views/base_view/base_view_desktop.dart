@@ -4,6 +4,7 @@ import 'package:aircraft_inventory_management/views/deashboard_2/dashboard_2.dar
 import 'package:aircraft_inventory_management/views/inventory_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/product_overview_view/product_overview.dart';
+import 'package:aircraft_inventory_management/views/user_management/user_management.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -224,8 +225,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
 
                           //SizedBox(width: 40,),
                          //mp.baseviewIndex==0?MyDashBoardView():mp.baseviewIndex==10?AddInventoryView():MyInventoryView()
-                      SecondDashBoard()
-
+                         User_Management_View()
                         ],
                       )
                     ],
