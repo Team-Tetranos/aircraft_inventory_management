@@ -74,7 +74,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/image_files/image 8.png
-    - assets/image_files/Group 1289 (1).png
+    - assets/image_files/Group 1289 (2).png
+    - assets/image_files/Login Skin Backgroung-4 1.png
 
   fonts:
     - family: Inter
