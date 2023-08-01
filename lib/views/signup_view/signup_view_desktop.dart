@@ -1,7 +1,9 @@
 
 import 'package:aircraft_inventory_management/res/common_widget/common_widget.dart';
+import 'package:aircraft_inventory_management/res/common_widget/loading_widget.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +23,14 @@ class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
   @override
   Widget build(BuildContext context) {
     var svm = Provider.of<SignupViewModel>(context);
-    return Scaffold(
+    return svm.isloading==true?Center(
+      child: Loading_Animation(height: 800,
+        loadingWidget: SpinKitPouringHourGlass(
+          color: Colors.blue,
+          size: 60,
+        ), text: "Please Wait", ),
+    ):
+      Scaffold(
               backgroundColor: Colors.white,
               body: Container(
                 height: 960,
@@ -38,33 +47,32 @@ class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
                       Center(child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Common_Container(
-                            bordercolor: null,
-                            border: 0,
-                              blurRadius: 0,
-                              spreadRadius: 0,
-                              boxshadowopacity: 0,
-                              offset: 0,
-                              height: 229,
-                              color: Colors.black,
-                              width: .236,
-                              radius: 0,
-                              mywidget: null),
-
+                          Container(
+                            height: 351,
+                            width: MediaQuery.of(context).size.width*.244,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage("assets/image_files/Group 1289 (1).png"),
+                                    fit: BoxFit.cover
+                                )
+                            ),
+                          ),
 
                           Padding(
                               padding: const EdgeInsets.only(top: 20,),
                               child:Column(
                                   children: [
                                     //SizedBox(height: 27,),
-                                    Common_Container(
-                                      bordercolor: null,
-                                      border: 0,
-                                        blurRadius: 0,
-                                        spreadRadius: 0,
-                                        boxshadowopacity: 0,
-                                        offset: 0,
-                                        height: 74, color: Colors.black, width: 0.076, radius: 0, mywidget: null),
+                                    Container(
+                                      height: 115,
+                                      width: MediaQuery.of(context).size.width*.0805,
+                                      decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage("assets/image_files/Group 1289 (1).png"),
+                                              fit: BoxFit.cover
+                                          )
+                                      ),
+                                    ),
 
                                     SizedBox(height: 39,),
 

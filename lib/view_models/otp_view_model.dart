@@ -11,6 +11,8 @@ import '../utils/dialogs/error_dialog.dart';
 import '../utils/routes/route_names.dart';
 
 class OtpViewModel extends ChangeNotifier{
+  bool isloading=false;
+
 
   AuthRepository authRepository = sl.get<AuthRepository>();
   SharedPreferenceManager sharedPreferenceManager = sl.get<SharedPreferenceManager>();
@@ -39,28 +41,43 @@ class OtpViewModel extends ChangeNotifier{
 
 
   signUpSuccess(BuildContext context, Map data)async{
+    isloading=true;
+    notifyListeners();
     var result = await authRepository.signUp(data['email'], data['password'], otp_code);
     if(result is Failure){
       var error = result.error as Map;
       print(error);
+
       showSimpleErrorDialog(context, error['error']);
+      isloading=false;
+      notifyListeners();
     }else if (result is Success){
       User user = User.fromJson(result.data);
       await sharedPreferenceManager.setAccessToken(user.access!);
+
       Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.baseview, (route) => false);
+      isloading=false;
+      notifyListeners();
     }
   }
 
   forgotPasswordOtpVerify(BuildContext context, Map data) async{
+    isloading=true;
+    notifyListeners();
     var result = await authRepository.verifyOtp(data['email'], otp_code);
     if(result is Failure){
       var error = result.error as Map;
       print(error);
       showSimpleErrorDialog(context, error['error']);
+      isloading=false;
+      notifyListeners();
     }else if (result is Success){
+
       Navigator.of(context).pushReplacementNamed(RouteNames.creatnewpasword, arguments: {
         'email':data['email']
       });
+      isloading=false;
+      notifyListeners();
 
     }
   }

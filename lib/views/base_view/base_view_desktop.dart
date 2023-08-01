@@ -224,8 +224,9 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           ),
 
                           //SizedBox(width: 40,),
-                         //mp.baseviewIndex==0?MyDashBoardView():mp.baseviewIndex==10?AddInventoryView():MyInventoryView()
-                         User_Management_View()
+                        // mp.baseviewIndex==0?MyDashBoardView():mp.baseviewIndex==10?AddInventoryView():MyInventoryView()
+                        // User_Management_View()
+                          mp.baseviewIndex==0?MyDashBoardView():mp.baseviewIndex==2?User_Management_View():Container()
                         ],
                       )
                     ],

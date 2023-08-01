@@ -47,6 +47,7 @@ dependencies:
   font_awesome_flutter: ^10.5.0
   pin_code_fields: ^8.0.1
   dartz: ^0.10.1
+  flutter_spinkit: ^5.2.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/image_files/image 8.png
+    - assets/image_files/Group 1289 (1).png
 
   fonts:
     - family: Inter

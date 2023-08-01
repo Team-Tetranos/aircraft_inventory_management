@@ -1,7 +1,9 @@
 
 import 'package:aircraft_inventory_management/res/common_widget/common_widget.dart';
+import 'package:aircraft_inventory_management/res/common_widget/loading_widget.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +23,15 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
   Widget build(BuildContext context) {
     return Consumer<LoginViewModel>(
       builder: (context, lvm, _) {
-        return Scaffold(
+        return lvm.isloading==true?Loading_Animation(height: 800,
+            loadingWidget: Center(
+              child: SpinKitPouringHourGlass(
+                color: Colors.blue,
+                size: 60,
+
+              ),
+            ), text: 'Please wait',):
+          Scaffold(
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
 
@@ -30,18 +40,17 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                   Center(child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Common_Container(
-                        bordercolor: null,
-                        border: 0,
-                        height: 229,
-                        color: Colors.black,
-                        width: .236,
-                        radius: 0,
-                        mywidget: null,
-                        blurRadius: 0,
-                        spreadRadius: 0,
-                        boxshadowopacity: 0,
-                        offset: 0,),
+                     Container(
+                       height: 351,
+                       width: MediaQuery.of(context).size.width*.244,
+                       decoration: BoxDecoration(
+                         image: DecorationImage(
+                           image: AssetImage("assets/image_files/Group 1289 (1).png"),
+                           fit: BoxFit.cover
+                         )
+                       ),
+                     ),
+                      SizedBox(width: 201,),
 
 
                       Padding(
@@ -49,18 +58,16 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                           child: Column(
                               children: [
                                 SizedBox(height: 27,),
-                                Common_Container(
-                                  bordercolor: null,
-                                  border: 0,
-                                  height: 74,
-                                  color: Colors.black,
-                                  width: 0.076,
-                                  radius: 0,
-                                  mywidget: null,
-                                  blurRadius: 0,
-                                  offset: 0,
-                                  boxshadowopacity: 0,
-                                  spreadRadius: 0,),
+                                Container(
+                                  height: 115.04,
+                                  width: MediaQuery.of(context).size.width*.0805,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: AssetImage("assets/image_files/Group 1289 (1).png"),
+                                      fit: BoxFit.cover
+                                    )
+                                  ),
+                                ),
 
                                 SizedBox(height: 39,),
 

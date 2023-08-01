@@ -13,6 +13,7 @@ class SignupViewModel extends ChangeNotifier{
 
   AuthRepository authRepository = sl.get<AuthRepository>();
   bool isobsecured=true;
+  bool isloading = false;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -39,18 +40,25 @@ class SignupViewModel extends ChangeNotifier{
       showSimpleErrorDialog(context, 'Confirm password does not match');
       return;
     }
+    isloading=true;
+    notifyListeners();
 
     var result = await authRepository.send_otp(emailController.text.trim(), 'signup', 'FALSE');
 
     if(result is Success){
+
       Navigator.of(context).pushNamed(RouteNames.otpview,arguments: <String, dynamic>{
         'reason':'sign_up',
         'email':emailController.text.trim(),
         'password':passwordController.text.trim()
       });
+      isloading=false;
+      notifyListeners();
 
     }else if(result is Failure){
       var error = result.error as Map;
+      isloading=false;
+      notifyListeners();
       showSimpleErrorDialog(context, error['error']);
     }
 
