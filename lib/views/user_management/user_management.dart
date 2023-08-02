@@ -118,16 +118,21 @@ class _User_Management_ViewState extends State<User_Management_View> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Export",style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Inter",
-                                      color: Color(0xFF0268F4)
-                                  ),),
+                                  Flexible(
+                                    child: Text("Export",style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: "Inter",
+                                        color: Color(0xFF0268F4)
+                                    ),),
+                                  ),
                                   SizedBox(width: 2,),
-                                  Icon(Icons.arrow_drop_down_sharp,
-                                    size: 18,
-                                    color: Color(0xFF1366D9),)
+                                  Flexible(
+
+                                    child: Icon(Icons.arrow_drop_down_sharp,
+                                      size: 18,
+                                      color: Color(0xFF1366D9),),
+                                  )
                                 ],
                               ),
                             ),

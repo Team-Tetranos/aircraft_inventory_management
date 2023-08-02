@@ -6,14 +6,22 @@ class MyBaseViewContainer extends StatelessWidget {
   IconData icon;
   Color textcolor;
   Color iconcolor;
-   MyBaseViewContainer({Key? key,required this.text,required this.icon, required this.iconcolor,required this.textcolor}) : super(key: key);
+  Color containercolor;
+
+   MyBaseViewContainer({Key? key,required this.text,required this.icon, required this.iconcolor,required this.textcolor,required this.containercolor,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 39,
+        height: 54,
+        width: MediaQuery.of(context).size.width*.206,
+
+        decoration: BoxDecoration(
+          color: containercolor,
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(100),bottomLeft: Radius.circular(100))
+        ),
         child: Padding(
-          padding: const EdgeInsets.only(left: 60.5),
+          padding: const EdgeInsets.only(left: 35),
           child: Row(
             children: [
               Icon(icon,
@@ -22,13 +30,16 @@ class MyBaseViewContainer extends StatelessWidget {
 
               ),
               SizedBox(width: 14,),
-              Text(text,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                fontFamily: "Inter",
-                color: textcolor
-              ),)
+              Flexible(
+
+                child: Text(text,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: "Inter",
+                  color: textcolor
+                ),),
+              )
             ],
           ),
         ),

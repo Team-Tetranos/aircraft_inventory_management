@@ -81,16 +81,16 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                                     child: Row(
                                       children: [
                                         Container(
-                                          height: 50,
-                                          width: MediaQuery.of(context).size.width*.036,
+                                          height: 102,
+                                          width: MediaQuery.of(context).size.width*.07,
                                           decoration: BoxDecoration(
 
                                               image: DecorationImage(
                                                   image: NetworkImage("${EndPoints().image_base_url}${aircraft.image}"),
-                                                  fit: BoxFit.cover
+                                                  fit: BoxFit.fill
                                               ),
-                                            borderRadius: BorderRadius.circular(10),
-                                            border: Border.all(color: Colors.black)
+                                           // borderRadius: BorderRadius.circular(10),
+                                            border: Border.all(color: Colors.white,width: 10)
 
                                           ),
                                         ),
