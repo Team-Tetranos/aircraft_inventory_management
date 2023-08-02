@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        initialRoute: RouteNames.baseview,  /*sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,*/
+        initialRoute: RouteNames.login,  /*sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,*/
         onGenerateRoute: Routes.generateRoute,
       ),
     );

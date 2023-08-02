@@ -1,5 +1,7 @@
+import 'package:aircraft_inventory_management/res/common_widget/loading_widget.dart';
 import 'package:aircraft_inventory_management/view_models/otp_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +19,12 @@ class _OtpViewDesktopState extends State<OtpViewDesktop> {
   Widget build(BuildContext context) {
     return Consumer<OtpViewModel>(
       builder: (context, ovm, _) {
-        return Scaffold(
+        return ovm.isloading==true?Loading_Animation(height: 800,
+            loadingWidget: SpinKitPouringHourGlass(
+              color: Colors.blue,
+              size: 60,
+            ), text: "Verifyong OTP"):
+          Scaffold(
 
           backgroundColor: Colors.white,
           body:

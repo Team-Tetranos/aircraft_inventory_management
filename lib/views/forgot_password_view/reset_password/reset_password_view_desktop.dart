@@ -1,5 +1,7 @@
+import 'package:aircraft_inventory_management/res/common_widget/loading_widget.dart';
 import 'package:aircraft_inventory_management/view_models/reset_password_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +18,12 @@ class _ResetPasswordViewDesktopState extends State<ResetPasswordViewDesktop> {
   Widget build(BuildContext context) {
     return Consumer<ResetPasswordViewModel>(
       builder: (context, rpvm, _) {
-        return Scaffold(
+        return rpvm.isloading==true?Loading_Animation(height: 800,
+            loadingWidget: SpinKitPouringHourGlass(
+              size: 60,
+              color: Colors.blue,
+            ), text: "Sending OTP"):
+          Scaffold(
           backgroundColor: Colors.white,
           body: Padding(
             padding: const EdgeInsets.only(left: 204,right: 204),

@@ -13,6 +13,7 @@ class CreateNewPasswordViewModel extends ChangeNotifier{
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
   AuthRepository authRepository = sl.get<AuthRepository>();
+  bool isloading=false;
 
   changingboolforentry(){
 
@@ -35,14 +36,20 @@ class CreateNewPasswordViewModel extends ChangeNotifier{
       showSimpleErrorDialog(context, 'Confirm password does not match');
       return;
     }
+    isloading=true;
+    notifyListeners();
 
     var result = await authRepository.resetPassword(data['email'], password.text.trim());
 
     if(result is Success){
       Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.login, (route) => false);
+      isloading=false;
+      notifyListeners();
 
     }else if(result is Failure){
       var error = result.error as Map;
+      isloading=false;
+      notifyListeners();
       showSimpleErrorDialog(context, error['error']);
     }
   }

@@ -1,4 +1,6 @@
+import 'package:aircraft_inventory_management/res/common_widget/loading_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 import '../../../res/common_widget/common_widget.dart';
@@ -17,7 +19,12 @@ class _CreateNewPasswordViewDesktopState extends State<CreateNewPasswordViewDesk
   Widget build(BuildContext context) {
     return Consumer<CreateNewPasswordViewModel>(
         builder: (context,cnpvm,_) {
-          return Scaffold(
+          return cnpvm==true?Loading_Animation(height: 800,
+              loadingWidget: SpinKitPouringHourGlass(
+                color: Colors.blue,
+                size: 60,
+              ), text: "Creating new password"):
+            Scaffold(
             backgroundColor: Colors.white,
             body: Padding(
               padding: const EdgeInsets.only(left: 204,right: 204),

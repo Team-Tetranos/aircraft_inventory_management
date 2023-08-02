@@ -50,6 +50,7 @@ dependencies:
   desktop_drop: ^0.4.1
   image_picker: ^1.0.1
   intl: ^0.18.1
+  flutter_spinkit: ^5.2.0
 
 dev_dependencies:
   flutter_test:
@@ -76,6 +77,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/image_files/image 8.png
+    - assets/image_files/Group 1289 (2).png
+    - assets/image_files/Login Skin Backgroung-4 1.png
 
   fonts:
     - family: Inter

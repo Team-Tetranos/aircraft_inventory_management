@@ -10,6 +10,7 @@ import '../utils/email_validation.dart';
 import '../utils/routes/route_names.dart';
 
 class ResetPasswordViewModel extends ChangeNotifier{
+  bool isloading=false;
 
   AuthRepository authRepository = sl.get<AuthRepository>();
 
@@ -20,14 +21,20 @@ class ResetPasswordViewModel extends ChangeNotifier{
       showSimpleErrorDialog(context, 'Invalid Email Format');
       return;
     }
+    isloading=true;
+    notifyListeners();
     var result = await authRepository.send_otp(emailController.text.trim(), 'forgot_password', 'TRUE');
     if(result is Success){
       Navigator.of(context).pushNamed(RouteNames.otpview,arguments: <String, dynamic>{
         'reason':'forgot_password',
         'email':emailController.text.trim()
       });
+      isloading=false;
+      notifyListeners();
     }else if(result is Failure){
       var error = result.error as Map;
+      isloading=false;
+      notifyListeners();
       showSimpleErrorDialog(context, error['error']);
     }
 
