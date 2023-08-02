@@ -1,6 +1,5 @@
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
-import 'package:aircraft_inventory_management/views/deashboard_2/dashboard_2.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/product_overview_view/product_overview.dart';
@@ -10,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../view_models/blank_view_model.dart';
+import '../add_category_view/add_category_view.dart';
 import '../dashboard_2/dashboard_2.dart';
 import 'base_view_widget.dart';
 
@@ -285,8 +285,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           ),
 
                           //SizedBox(width: 40,),
-                         //mp.baseviewIndex==0?MyDashBoardView():mp.baseviewIndex==10?AddInventoryView():MyInventoryView()
-                         User_Management_View()
+
+                          mp.baseviewPage=='dashboard'?MyDashBoardView():mp.baseviewPage=='inventory'?MyInventoryView():mp.baseviewPage=='add_category'?AddCategoryView():mp.baseviewPage=='add_item'?AddInventoryView():mp.baseviewPage=='product_overview'?Product_Overview_View():mp.baseviewPage=='manage_store'?User_Management_View():MyDashBoardView()
                         ],
                       )
                     ],
