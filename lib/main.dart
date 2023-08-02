@@ -2,6 +2,7 @@ import 'package:aircraft_inventory_management/data/local/shared_preference_manag
 import 'package:aircraft_inventory_management/res/custom_scroll_behavior.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/utils/routes/routes.dart';
+import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/login_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/reset_password_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/sign_up_view_model.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=>SignupViewModel()),
         ChangeNotifierProvider(create: (_)=>OtpViewModel()),
         ChangeNotifierProvider(create: (_)=>ResetPasswordViewModel()),
-
+        ChangeNotifierProvider(create: (_)=>DashboardViewModel()),
       ],
       child: MaterialApp(
         scrollBehavior: MyCustomScrollBehavior(),

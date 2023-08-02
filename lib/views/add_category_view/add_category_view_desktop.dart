@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:flutter/material.dart';
@@ -77,6 +79,7 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                                   width: .27,
                                   radius: 5,
                                   mywidget:TextField(
+                                    controller: dvm.aircraft_name_controller,
                                     style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,
@@ -129,6 +132,7 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                                       width: .27,
                                       radius: 5,
                                       mywidget:TextField(
+                                        controller: dvm.aircraft_id_controller,
                                         style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
@@ -180,31 +184,43 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                                           color: dvm.dragEntered?Colors.green.withOpacity(0.3): Colors.white,
                                         borderRadius: BorderRadius.circular(10)
                                       ),
-                                      child: Column(
+                                      child: Stack(
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 15
-                                            ),
-                                            child: Icon(Icons.camera_rounded),
-                                          ),
-                                          Text("Drag Image here"),
-                                          Text("or"),
+                                          if(dvm.pickedImage!=null)
+                                            Center(child: Image.file(File(dvm.pickedImage!.path)))
+                                          else
+                                            SizedBox.shrink(),
+                                          Center(
+                                            child: Column(
 
-                                          GestureDetector(
-                                            onTap: (){
-                                              dvm.pickImage();
-                                            },
-                                            child: Text("Browse Image",style: TextStyle(
-                                                color: Color(0xff448DF2),
-                                              fontWeight: FontWeight.bold
-                                            ),),
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.symmetric(
+                                                      vertical: 15
+                                                  ),
+                                                  child: Icon(Icons.camera_rounded),
+                                                ),
+                                                Text("Drag Image here"),
+                                                Text("or"),
+
+                                                GestureDetector(
+                                                  onTap: (){
+                                                    dvm.pickImage();
+                                                  },
+                                                  child: Text("Browse Image",style: TextStyle(
+                                                      color: Color(0xff448DF2),
+                                                    fontWeight: FontWeight.bold
+                                                  ),),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ],
                                       ),
                                     ),
                                     onDragDone: (details){
                                       try{
+                                      print(details.files.length);
                                         dvm.updatePickedImage(details.files.first);
                                       }catch(e){
                                         print(e);
@@ -250,19 +266,24 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                                               dvm.navigateTosubPage(context, 'dashboard');
                                             },
                                           ),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                                color: Color(0xff1366D9),
-                                                borderRadius: BorderRadius.circular(5)
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 10,
-                                                  horizontal: 20
+                                          GestureDetector(
+                                            onTap: (){
+                                              dvm.addCategory(context);
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: Color(0xff1366D9),
+                                                  borderRadius: BorderRadius.circular(5)
                                               ),
-                                              child: Text('Add Item',style: TextStyle(
-                                                  color: Colors.white
-                                              ),),
+                                              child: Padding(
+                                                padding: const EdgeInsets.symmetric(
+                                                    vertical: 10,
+                                                    horizontal: 20
+                                                ),
+                                                child: Text('Add Item',style: TextStyle(
+                                                    color: Colors.white
+                                                ),),
+                                              ),
                                             ),
                                           ),
                                         ],

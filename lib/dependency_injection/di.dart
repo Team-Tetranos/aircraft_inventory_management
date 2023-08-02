@@ -1,3 +1,4 @@
+import 'package:aircraft_inventory_management/repositories/aircraft_repository.dart';
 import 'package:aircraft_inventory_management/repositories/auth_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,4 +23,5 @@ Future<void> setupDependency()async{
   sl.registerLazySingleton<EndPoints>(() => EndPoints());
   sl.registerLazySingleton<ApiService>(() => ApiService());
   sl.registerLazySingleton<AuthRepository>(() => AuthRepository());
+  sl.registerLazySingleton<AircraftRepository>(() => AircraftRepository());
 }

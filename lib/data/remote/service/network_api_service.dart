@@ -32,6 +32,7 @@ class ApiService extends BaseApiService{
         'Authorization':"Bearer ${sharedPreferenceManager.getAccessToken()}"
       };
       final response = await get(Uri.parse(url), headers: headers);
+      //print(response.body);
       if(response.statusCode==200||response.statusCode==201){
         responseJson = Success(code: response.statusCode, data: returnResponse(response)['data'], key: returnResponse(response)['key']);
       }else{
@@ -53,6 +54,7 @@ class ApiService extends BaseApiService{
         'error':e.toString()
       }, key: 'Server Error');
     }
+    print(responseJson.runtimeType);
     return responseJson;
   }
 
@@ -91,10 +93,12 @@ class ApiService extends BaseApiService{
       }, key: 'Format Exception');
     }
     catch(e){
+      print(e);
       return Failure(code: 500, error: {
         'error':e.toString()
       }, key: 'Server Error');
     }
+
     return responseJson;
   }
 
@@ -169,6 +173,7 @@ class ApiService extends BaseApiService{
     switch(response.statusCode){
       case 200:
         dynamic responseJson = jsonDecode(response.body);
+        print(responseJson);
         return responseJson;
       case 201:
         dynamic responseJson = jsonDecode(response.body);

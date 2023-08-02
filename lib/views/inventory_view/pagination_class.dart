@@ -1,25 +1,13 @@
+import 'package:aircraft_inventory_management/models/aircraftitem.dart';
 import 'package:flutter/material.dart';
 
 class myData extends DataTableSource{
 
   BuildContext mycontext;
+  List<Aircraftitem> items;
 
 
-  List<Map<String ,dynamic>> _data=List.generate(
-      155,
-          (index) => {
-        "Image":"MyImage",
-            "Name":"'mamun",
-            "Buying Price" : 340,
-            "Quantity" : 50,
-            "Delivered" : 25,
-            "Remaining" : 25,
-            "Expire Date" : "1 jul 3023",
-            "Status" : "Active"
-
-          });
-
-  myData({required this.mycontext});
+  myData({required this.mycontext, required this.items});
 
 
   @override
@@ -32,43 +20,67 @@ class myData extends DataTableSource{
           borderRadius: BorderRadius.all(Radius.circular(5)),
           color: Color(0xFFD9D9D9)
       ),),),
-      DataCell(Text(_data[index]["Image"].toString(),style: TextStyle(
+      DataCell(Text(items[index].partNo.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF797979)
       ),),),
-      DataCell(Text(_data[index]["Name"].toString(),style: TextStyle(
+      DataCell(Text(items[index].nomenclature.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF797979)
       ),),),
-      DataCell(Text(_data[index]["Buying Price"].toString(),style: TextStyle(
+      DataCell(Text(items[index].astronomicalUnit.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF797979)
       ),),),
-      DataCell(Text(_data[index]["Quantity"].toString(),style: TextStyle(
+      DataCell(Text(items[index].cardNo.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF797979)
       ),),),
-      DataCell(Text(_data[index]["Delivered"].toString(),style: TextStyle(
+      DataCell(Text(items[index].quantity.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF797979)
       ),),),
-      DataCell(Text(_data[index]["Remaining"].toString(),style: TextStyle(
+      DataCell(Text(items[index].receivedDiOrg.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF797979)
       ),),),
-      DataCell(Text(_data[index]["Expire Date"].toString(),style: TextStyle(
+      DataCell(Text(items[index].manufacturer.toString(),style: TextStyle(
+          fontFamily: "Inter",
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          color: Color(0xFF797979)
+      ),),),
+      DataCell(Text(items[index].expire.toString(),style: TextStyle(
+          fontFamily: "Inter",
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          color: Color(0xFF797979)
+      ),),),
+      DataCell(Text(items[index].expenditure.toString(),style: TextStyle(
+          fontFamily: "Inter",
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          color: Color(0xFF797979)
+      ),),),
+      DataCell(Text(items[index].rmk.toString(),style: TextStyle(
+          fontFamily: "Inter",
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          color: Color(0xFF797979)
+      ),),),
+      DataCell(Text(items[index].createdAt.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
@@ -82,7 +94,7 @@ class myData extends DataTableSource{
                 borderRadius: BorderRadius.all(Radius.circular(30)),
                 color: Color(0xFFC6D8F1)
             ),
-            child: Center(child: Text(_data[index]["Status"].toString(),
+            child: Center(child: Text('status'.toString(),
               style: TextStyle(color: Color(0xFF066FFF,),
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
@@ -97,7 +109,7 @@ class myData extends DataTableSource{
 
   @override
   // TODO: implement rowCount
-  int get rowCount => _data.length;
+  int get rowCount => items.length;
 
   @override
   // TODO: implement selectedRowCount

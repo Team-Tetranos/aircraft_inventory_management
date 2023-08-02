@@ -18,8 +18,15 @@ class MyInventoryView extends StatefulWidget {
 class _MyInventoryViewState extends State<MyInventoryView> {
 
   @override
+  void initState() {
+    // TODO: implement initState
+    Provider.of<MyProviderForInventoryView>(context, listen: false).updateAircraftItemsForInventory(context);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final DataTableSource _data=myData(mycontext: context);
+    //final DataTableSource _data=myData(mycontext: context);
     return Consumer<MyProviderForInventoryView>(
       builder: (context,mp,_) {
         return Padding(
@@ -189,7 +196,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                           onTap: (){
 
                             try{
-                              Provider.of<BaseViewModel>(context, listen: false).changingOptions(10);
+                             // Provider.of<BaseViewModel>(context, listen: false).changingOptions(10);
                             }catch(e){
                               print(e);
 
@@ -198,7 +205,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                           },
                           child: Container(
                             height: 47.55,
-                            width: MediaQuery.of(context).size.width*.084,
+                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                             decoration: BoxDecoration(
                                 color: Color(0xFF1366D9),
                                 borderRadius: BorderRadius.all(Radius.circular(5))
@@ -206,9 +213,8 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.add,color: Colors.white,size: 16,),
-                                SizedBox(width: 10,),
-                                Text("Add",
+
+                                Text("${mp.acft!.name}",
                                   style: TextStyle(
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w500,
@@ -220,11 +226,13 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                           ),
                         ),
 
+                        SizedBox(width: 15,),
+
                         Expanded(
                           child: Container(
 
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Container(
                                   height: 33.81,
@@ -235,10 +243,67 @@ class _MyInventoryViewState extends State<MyInventoryView> {
 
                                   ),
                                   child: TextField(
+                                    onChanged: (s){
+                                      mp.aircraftFiltering('part', s);
+                                    },
                                     decoration: InputDecoration(
                                         prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
                                         contentPadding: EdgeInsets.only(top: 3),
-                                        hintText: "Search",
+                                        hintText: "Part No",
+                                        hintStyle: TextStyle(
+                                            color: Color(0xFF858D9D)
+                                        ),
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide.none
+                                        )
+                                    ),
+
+
+                                  ),
+                                ),
+                                Container(
+                                  height: 33.81,
+                                  width: MediaQuery.of(context).size.width*.122,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                                      color: Color(0xFFEDEDED)
+
+                                  ),
+                                  child: TextField(
+                                    onChanged: (s){
+                                      mp.aircraftFiltering('card', s);
+                                    },
+                                    decoration: InputDecoration(
+                                        prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
+                                        contentPadding: EdgeInsets.only(top: 3),
+                                        hintText: "Card No",
+                                        hintStyle: TextStyle(
+                                            color: Color(0xFF858D9D)
+                                        ),
+                                        border: OutlineInputBorder(
+                                            borderSide: BorderSide.none
+                                        )
+                                    ),
+
+
+                                  ),
+                                ),
+                                Container(
+                                  height: 33.81,
+                                  width: MediaQuery.of(context).size.width*.122,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                                      color: Color(0xFFEDEDED)
+
+                                  ),
+                                  child: TextField(
+                                    onChanged: (s){
+                                      mp.aircraftFiltering('quantity', s);
+                                    },
+                                    decoration: InputDecoration(
+                                        prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
+                                        contentPadding: EdgeInsets.only(top: 3),
+                                        hintText: "Quantity",
                                         hintStyle: TextStyle(
                                             color: Color(0xFF858D9D)
                                         ),
@@ -309,19 +374,25 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                               borderRadius: BorderRadius.all(Radius.circular(5)),
                               color: Color(0xFFD9D9D9)
                           ),),),
-                        DataColumn(label: Text("Image",style: TextStyle(
+                        DataColumn(label: Text("Part No",style: TextStyle(
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                             color: Color(0xFF797979)
                         ),),),
-                        DataColumn(label: Text("Name",style: TextStyle(
+                        DataColumn(label: Text("Nomenclature",style: TextStyle(
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                             color: Color(0xFF797979)
                         ),),),
-                        DataColumn(label: Text("Buying Price ",style: TextStyle(
+                        DataColumn(label: Text("A/U",style: TextStyle(
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                            color: Color(0xFF797979)
+                        ),),),
+                        DataColumn(label: Text("Card No",style: TextStyle(
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
@@ -333,19 +404,37 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                             fontSize: 14,
                             color: Color(0xFF797979)
                         ),),),
-                        DataColumn(label: Text("Delivered",style: TextStyle(
+                        DataColumn(label: Text("Received\nDi/Org",style: TextStyle(
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                             color: Color(0xFF797979)
                         ),),),
-                        DataColumn(label: Text("Remaining",style: TextStyle(
+                        DataColumn(label: Text("Manufacturer",style: TextStyle(
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                             color: Color(0xFF797979)
                         ),),),
-                        DataColumn(label: Text("Expire Date",style: TextStyle(
+                        DataColumn(label: Text("Expire",style: TextStyle(
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                            color: Color(0xFF797979)
+                        ),),),
+                        DataColumn(label: Text("Expenditure",style: TextStyle(
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                            color: Color(0xFF797979)
+                        ),),),
+                        DataColumn(label: Text("RMK",style: TextStyle(
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 14,
+                            color: Color(0xFF797979)
+                        ),),),
+                        DataColumn(label: Text("Created",style: TextStyle(
                             fontFamily: "Inter",
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
@@ -359,7 +448,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                         ),),)
                       ]
 
-                      , source: _data,
+                      , source: myData(mycontext: context, items: mp.duplicateaircraftItemsForInventory),
                       rowsPerPage: 10,
                       columnSpacing: 60,)
                   ],),
