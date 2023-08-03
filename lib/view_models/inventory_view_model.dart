@@ -1,6 +1,7 @@
 import 'package:aircraft_inventory_management/models/aircraftitem.dart';
 import 'package:aircraft_inventory_management/models/category.dart' as ct;
 import 'package:aircraft_inventory_management/repositories/aircraft_repository.dart';
+import 'package:aircraft_inventory_management/utils/date_object_conversion.dart';
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -36,6 +37,7 @@ class MyProviderForInventoryView with ChangeNotifier {
   List<Aircraftitem> aircraftItemsForInventory = [];
   List<Aircraftitem> duplicateaircraftItemsForInventory = [];
 
+  DateTimeRange? pickedRange;
 
   updateAircraftItemsForInventory(BuildContext context){
     aircraftItemsForInventory = [];
@@ -125,16 +127,42 @@ class MyProviderForInventoryView with ChangeNotifier {
   }
 
   aircraftFiltering(String type, String s){
-
     if(type=='part'){
-      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.partNo!.contains(s)).toList();
+      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.partNo!.toLowerCase().contains(s.toLowerCase())).toList();
     }else if(type=='card'){
-      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.cardNo!.contains(s)).toList();
+      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.cardNo!.toLowerCase().contains(s.toLowerCase())).toList();
     }else if(type=='quantity'){
       duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.quantity==s).toList();
     }
     notifyListeners();
-
   }
+
+  void selectExpireDateRange(BuildContext context) async{
+    final DateTimeRange? picked = await showDateRangePicker(
+      initialDateRange: pickedRange,
+
+      context: context,
+      firstDate: DateTime(1970),
+      lastDate: DateTime(2070),
+    );
+
+    if(picked!=null){
+      pickedRange=picked;
+      DateTime first = picked.start;
+      DateTime last = picked.end;
+      String firstDate = dateToString(first);
+      String lastDate = dateToString(last);
+      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => stringToDate(element.expire).compareTo(firstDate)>=0 && stringToDate(element.expire).compareTo(lastDate)<=0).toList();
+      notifyListeners();
+    }
+  }
+
+  clearDateRange(){
+    pickedRange=null;
+    duplicateaircraftItemsForInventory = aircraftItemsForInventory;
+    notifyListeners();
+  }
+
+
 
 }

@@ -1,4 +1,5 @@
 
+import 'package:aircraft_inventory_management/utils/date_object_conversion.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/pagination_class.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
 
                             ),
                             child: Center(
-                              child: Text("150",
+                              child: Text("${mp.aircraftItemsForInventory.length}",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 10,
@@ -118,7 +119,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
 
                             ),
                             child: Center(
-                              child: Text("150",
+                              child: Text("",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 10,
@@ -132,54 +133,8 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 10,),
-                  GestureDetector(
-                    onTap: (){
-                      mp.ChangingBooleanValue(2);
 
-                    },
-                    child: Container(
-                      height: 65.51,
-                      width: MediaQuery.of(context).size.width*.143,
 
-                      decoration: BoxDecoration(
-                          color: mp.InventoryItemIndex==2?Colors.white:Color(0xFFD8E4F5),
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10))
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Sold Item",
-                            style: TextStyle(
-                                color: Color(0xFF797979),
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Inter"
-                            ),),
-                          SizedBox(width: 9,),
-                          Container(
-                            height: 21.13,
-                            width: MediaQuery.of(context).size.width*.0277,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
-                                color: Color(0xFF1366D9)
-
-                            ),
-                            child: Center(
-                              child: Text("150",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "Inter"
-                                ),),
-                            ),
-                          )
-
-                        ],
-                      ),
-                    ),
-                  )
                 ],
               ),
               Container(
@@ -205,8 +160,8 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                           },
                           child: Container(
                             height: 47.55,
-                            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                            decoration: BoxDecoration(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                            decoration: const BoxDecoration(
                                 color: Color(0xFF1366D9),
                                 borderRadius: BorderRadius.all(Radius.circular(5))
                             ),
@@ -215,7 +170,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                               children: [
 
                                 Text("${mp.acft!.name}",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontFamily: "Inter",
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16,
@@ -226,134 +181,169 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                           ),
                         ),
 
-                        SizedBox(width: 15,),
+                        const SizedBox(width: 15,),
 
                         Expanded(
-                          child: Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 33.81,
+                                width: MediaQuery.of(context).size.width*.06,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                                    color: Color(0xFFEDEDED)
 
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  height: 33.81,
-                                  width: MediaQuery.of(context).size.width*.122,
+                                ),
+                                child: TextField(
+                                  onChanged: (s){
+                                    mp.aircraftFiltering('part', s);
+                                  },
+                                  decoration: InputDecoration(
+                                      prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
+                                      contentPadding: EdgeInsets.only(top: 3),
+                                      hintText: "Part No",
+                                      hintStyle: TextStyle(
+                                          color: Color(0xFF858D9D)
+                                      ),
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none
+                                      )
+                                  ),
+
+
+                                ),
+                              ),
+                              Container(
+                                height: 33.81,
+                                width: MediaQuery.of(context).size.width*.06,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                                    color: Color(0xFFEDEDED)
+
+                                ),
+                                child: TextField(
+                                  onChanged: (s){
+                                    mp.aircraftFiltering('card', s);
+                                  },
+                                  decoration: InputDecoration(
+                                      prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
+                                      contentPadding: EdgeInsets.only(top: 3),
+                                      hintText: "Card No",
+                                      hintStyle: TextStyle(
+                                          color: Color(0xFF858D9D)
+                                      ),
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none
+                                      )
+                                  ),
+
+
+                                ),
+                              ),
+                              Container(
+                                height: 33.81,
+                                width: MediaQuery.of(context).size.width*.06,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                                    color: Color(0xFFEDEDED)
+
+                                ),
+                                child: TextField(
+                                  onChanged: (s){
+                                    mp.aircraftFiltering('quantity', s);
+                                  },
+                                  decoration: InputDecoration(
+                                      prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
+                                      contentPadding: EdgeInsets.only(top: 3),
+                                      hintText: "Quantity",
+                                      hintStyle: TextStyle(
+                                          color: Color(0xFF858D9D)
+                                      ),
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none
+                                      )
+                                  ),
+
+
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: (){
+                                  mp.selectExpireDateRange(context);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.all(Radius.circular(5)),
                                       color: Color(0xFFEDEDED)
 
-                                  ),
-                                  child: TextField(
-                                    onChanged: (s){
-                                      mp.aircraftFiltering('part', s);
-                                    },
-                                    decoration: InputDecoration(
-                                        prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
-                                        contentPadding: EdgeInsets.only(top: 3),
-                                        hintText: "Part No",
-                                        hintStyle: TextStyle(
-                                            color: Color(0xFF858D9D)
-                                        ),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none
-                                        )
-                                    ),
-
-
-                                  ),
-                                ),
-                                Container(
-                                  height: 33.81,
-                                  width: MediaQuery.of(context).size.width*.122,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                                      color: Color(0xFFEDEDED)
-
-                                  ),
-                                  child: TextField(
-                                    onChanged: (s){
-                                      mp.aircraftFiltering('card', s);
-                                    },
-                                    decoration: InputDecoration(
-                                        prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
-                                        contentPadding: EdgeInsets.only(top: 3),
-                                        hintText: "Card No",
-                                        hintStyle: TextStyle(
-                                            color: Color(0xFF858D9D)
-                                        ),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none
-                                        )
-                                    ),
-
-
-                                  ),
-                                ),
-                                Container(
-                                  height: 33.81,
-                                  width: MediaQuery.of(context).size.width*.122,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                                      color: Color(0xFFEDEDED)
-
-                                  ),
-                                  child: TextField(
-                                    onChanged: (s){
-                                      mp.aircraftFiltering('quantity', s);
-                                    },
-                                    decoration: InputDecoration(
-                                        prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
-                                        contentPadding: EdgeInsets.only(top: 3),
-                                        hintText: "Quantity",
-                                        hintStyle: TextStyle(
-                                            color: Color(0xFF858D9D)
-                                        ),
-                                        border: OutlineInputBorder(
-                                            borderSide: BorderSide.none
-                                        )
-                                    ),
-
-
-                                  ),
-                                ),
-                                SizedBox(width: 20,),
-                                Container(
-                                  height: 33.81,
-                                  width: MediaQuery.of(context).size.width*.029,
-                                  decoration: BoxDecoration(
-                                      color: Color(0xFFFFE7E7),
-                                      borderRadius: BorderRadius.all(Radius.circular(5))
-                                  ),
-                                  child: Center(
-                                    child: Icon(Icons.delete_outline_outlined,color: Color(0xFFE70707),size: 20,),
-                                  ),
-                                ),
-                                SizedBox(width: 20,),
-                                Container(
-                                  height: 33.81,
-                                  width: MediaQuery.of(context).size.width*.0569,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                                      color: Color(0xFFE5F0FF)
                                   ),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text("Export",style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: "Inter",
-                                          color: Color(0xFF0268F4)
-                                      ),),
-                                      SizedBox(width: 2,),
-                                      Icon(Icons.arrow_drop_down_sharp,
-                                        size: 18,
-                                        color: Color(0xFF1366D9),)
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text('Expire in '),
+                                          if(mp.pickedRange!=null)
+                                            Text('${dateToString(mp.pickedRange!.start)}-${dateToString(mp.pickedRange!.end)}')
+
+                                        ],
+                                      ),
+                                      if(mp.pickedRange!=null)
+                                        GestureDetector(
+
+                                            child: Icon(Icons.cancel_outlined),
+                                          onTap: (){
+                                              mp.clearDateRange();
+                                          },
+                                        )
+                                      else
+                                        Icon(Icons.calendar_month)
                                     ],
                                   ),
+
                                 ),
-                                SizedBox(width: 33,)
-                              ],
-                            ),
+                              ),
+                              SizedBox(width: 20,),
+                              Container(
+                                height: 33.81,
+                                width: MediaQuery.of(context).size.width*.029,
+                                decoration: BoxDecoration(
+                                    color: Color(0xFFFFE7E7),
+                                    borderRadius: BorderRadius.all(Radius.circular(5))
+                                ),
+                                child: Center(
+                                  child: Icon(Icons.delete_outline_outlined,color: Color(0xFFE70707),size: 20,),
+                                ),
+                              ),
+                              SizedBox(width: 20,),
+                              Container(
+                                height: 33.81,
+                                width: MediaQuery.of(context).size.width*.0569,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                                    color: Color(0xFFE5F0FF)
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Export",style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: "Inter",
+                                        color: Color(0xFF0268F4)
+                                    ),),
+                                    SizedBox(width: 2,),
+                                    Icon(Icons.arrow_drop_down_sharp,
+                                      size: 18,
+                                      color: Color(0xFF1366D9),)
+                                  ],
+                                ),
+                              ),
+                              SizedBox(width: 33,)
+                            ],
                           ),
                         )
 
@@ -362,95 +352,120 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                     SizedBox(height: 31.7,),
 
 
-                    PaginatedDataTable(
-                      //arrowHeadColor: Colors.blue,
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                        cardTheme: CardTheme(
+                          elevation: 0, // remove shadow
+                          margin: const EdgeInsets.all(0), // reset margin
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16), // Change radius
+                          ),
+                        ),
+                      ),
+                      child: PaginatedDataTable(
 
-                      columns:
-                      [
-                        DataColumn(label: Container(
-                          height: 27.47,
-                          width: MediaQuery.of(context).size.width*.018,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
-                              color: Color(0xFFD9D9D9)
+
+                        //arrowHeadColor: Colors.blue,
+
+                        columns:
+                        [
+                          DataColumn(label: Container(
+                            height: 27.47,
+                            width: MediaQuery.of(context).size.width*.018,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                                color: Color(0xFFD9D9D9)
+                            ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          const DataColumn(label: Text("Part No",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
                           ),),),
-                        DataColumn(label: Text("Part No",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Nomenclature",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("A/U",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Card No",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Quantity",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Received\nDi/Org",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Manufacturer",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Expire",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Expenditure",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("RMK",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Created",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Status",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),)
-                      ]
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("Nomenclature",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("A/U",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("Card No",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("Quantity",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("Received\nDi/Org",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("Manufacturer",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("Expire",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("Expenditure",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("RMK",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("Created",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("Status",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),)
+                        ],
+                        source: myData(mycontext: context, items: mp.duplicateaircraftItemsForInventory),
+                        rowsPerPage: 10,
 
-                      , source: myData(mycontext: context, items: mp.duplicateaircraftItemsForInventory),
-                      rowsPerPage: 10,
-                      columnSpacing: 60,)
+                        columnSpacing: 60,),
+                    )
                   ],),
 
               ),

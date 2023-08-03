@@ -45,11 +45,13 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         scrollBehavior: MyCustomScrollBehavior(),
+
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
 
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+
           useMaterial3: true,
         ),
         initialRoute: RouteNames.baseview,  /*sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,*/

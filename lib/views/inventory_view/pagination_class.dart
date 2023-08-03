@@ -1,4 +1,5 @@
 import 'package:aircraft_inventory_management/models/aircraftitem.dart';
+import 'package:aircraft_inventory_management/utils/date_object_conversion.dart';
 import 'package:flutter/material.dart';
 
 class myData extends DataTableSource{
@@ -20,72 +21,84 @@ class myData extends DataTableSource{
           borderRadius: BorderRadius.all(Radius.circular(5)),
           color: Color(0xFFD9D9D9)
       ),),),
+      DataCell(VerticalDivider()),
       DataCell(Text(items[index].partNo.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
+      DataCell(VerticalDivider()),
       DataCell(Text(items[index].nomenclature.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
+      DataCell(VerticalDivider()),
       DataCell(Text(items[index].astronomicalUnit.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
+      DataCell(VerticalDivider()),
       DataCell(Text(items[index].cardNo.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
+      DataCell(VerticalDivider()),
       DataCell(Text(items[index].quantity.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
+      DataCell(VerticalDivider()),
       DataCell(Text(items[index].receivedDiOrg.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
+      DataCell(VerticalDivider()),
       DataCell(Text(items[index].manufacturer.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
-      DataCell(Text(items[index].expire.toString(),style: TextStyle(
+      DataCell(VerticalDivider()),
+      DataCell(Text(stringToDate(items[index].expire),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
+      DataCell(VerticalDivider()),
       DataCell(Text(items[index].expenditure.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
+      DataCell(VerticalDivider()),
       DataCell(Text(items[index].rmk.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
-      DataCell(Text(items[index].createdAt.toString(),style: TextStyle(
+      DataCell(VerticalDivider()),
+      DataCell(Text(stringToDate(items[index].createdAt),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
-          color: Color(0xFF797979)
+          color: Color(0xFF484848)
       ),),),
+      DataCell(VerticalDivider()),
       DataCell(
           Container(
             height: 25.36,

@@ -27,7 +27,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
         child: Consumer<BaseViewModel>(
             builder: (context,mp,_) {
               return Scaffold(
-                backgroundColor: Color(0xFFD9D9D9),
+                backgroundColor: const Color(0xFFD9D9D9),
                 body: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -37,11 +37,11 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           Container(
                             height:94 ,
                             width: MediaQuery.of(context).size.width*.225,
-                            color: Color(0xFF052169),
+                            color: const Color(0xFF052169),
                             child: Container(
                               height: 10,
                               width: 10,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 image: DecorationImage(
                                   image: AssetImage("assets/image_files/Bangladesh Army Aviation.png"),
                                   //fit: BoxFit.cover
@@ -51,7 +51,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           ),
 
                           Padding(
-                            padding: const EdgeInsets.only(left: .5),
+                            padding: const EdgeInsets.only(left: 0),
                             child: Container(
                               height: 94,
                               width: MediaQuery.of(context).size.width*.774,
@@ -68,7 +68,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                           border: Border.all(width: 1,color: Color(0xFFECECEC)),
                                           borderRadius: BorderRadius.circular(35)
                                       ),
-                                      child: TextField(
+                                      child: const TextField(
                                         decoration: InputDecoration(
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide.none
@@ -93,7 +93,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                           Container(
                                             height: 36,
                                             width: MediaQuery.of(context).size.width*.0277,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                                 color: Color(0xFF569DFF),
                                                 borderRadius: BorderRadius.all(Radius.circular(5))
                                             ),
@@ -107,7 +107,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                           Container(
                                             height: 36,
                                             width: MediaQuery.of(context).size.width*.0277,
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                                 color: Color(0xFF569DFF),
                                                 borderRadius: BorderRadius.all(Radius.circular(5))
                                             ),
@@ -127,11 +127,11 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                                 border: Border.all(width: 1,color: Color(0xFFECECEC)),
                                                 borderRadius: BorderRadius.circular(35)
                                             ),
-                                            child: Row(
+                                            child: const Row(
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
                                                 Padding(
-                                                  padding: const EdgeInsets.only(top: 4,bottom: 5),
+                                                  padding: EdgeInsets.only(top: 4,bottom: 5),
                                                   child: CircleAvatar(
                                                     radius: 35,
                                                     backgroundColor: Colors.black,
@@ -141,7 +141,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
 
 
                                                 Padding(
-                                                  padding: const EdgeInsets.only(right: 7),
+                                                  padding: EdgeInsets.only(right: 7),
                                                   child: Text("james dane ",
                                                     style: TextStyle(
                                                         fontSize: 16,
@@ -193,8 +193,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                     child: MyBaseViewContainer(text: "Dashboard",
                                         containercolor: mp.baseviewPage=="dashboard"?Color(0xFFECECEC):Colors.transparent,
                                         icon: Icons.home,
-                                        textcolor: mp.baseviewPage=='dashboard'?Color(0xFF0B6CF3):Color(0xFF797979),
-                                        iconcolor: mp.baseviewPage=='dashboard'?Color(0xFF0B6CF3):Color(0xFF797979))),
+                                        textcolor: mp.baseviewPage=='dashboard'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                        iconcolor: mp.baseviewPage=='dashboard'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
                                 SizedBox(height: 40,),
                                 Visibility(
@@ -209,8 +209,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                           child: MyBaseViewContainer(text: "Add Item",
                                               containercolor: mp.baseviewPage=="add_item"?Color(0xFFECECEC):Colors.transparent,
                                               icon: Icons.add_shopping_cart_outlined,
-                                              textcolor: mp.baseviewPage=='add_item'?Color(0xFF0B6CF3):Color(0xFF797979),
-                                              iconcolor: mp.baseviewPage=='add_item'?Color(0xFF0B6CF3):Color(0xFF797979))),
+                                              textcolor: mp.baseviewPage=='add_item'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                              iconcolor: mp.baseviewPage=='add_item'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
                                       SizedBox(height: 40,),
                                       GestureDetector(
@@ -221,8 +221,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                           child: MyBaseViewContainer(text: "inventory",
                                               containercolor: mp.baseviewPage=="inventory"?Color(0xFFECECEC):Colors.transparent,
                                               icon: Icons.add_shopping_cart_outlined,
-                                              textcolor: mp.baseviewPage=='inventory'?Color(0xFF0B6CF3):Color(0xFF797979),
-                                              iconcolor: mp.baseviewPage=='inventory'?Color(0xFF0B6CF3):Color(0xFF797979))),
+                                              textcolor: mp.baseviewPage=='inventory'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                              iconcolor: mp.baseviewPage=='inventory'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
                                       SizedBox(height: 40,),
 
@@ -230,11 +230,11 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                           onTap: (){
                                             mp.changingOptions(context,'product_overview');
                                           },
-                                          child: MyBaseViewContainer(text: "Product Overview",
+                                          child: MyBaseViewContainer(text: "Parts Overview",
                                               containercolor: mp.baseviewPage=="product_overview"?Colors.white:Colors.transparent,
                                               icon: Icons.event_note_sharp,
-                                              textcolor: mp.baseviewPage=='product_overview'?Color(0xFF0B6CF3):Color(0xFF797979),
-                                              iconcolor: mp.baseviewPage=='product_overview'?Color(0xFF0B6CF3):Color(0xFF797979))),
+                                              textcolor: mp.baseviewPage=='product_overview'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                              iconcolor: mp.baseviewPage=='product_overview'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
 
                                       SizedBox(height: 40,),
@@ -249,8 +249,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                     child: MyBaseViewContainer(text: "Manage Store",
                                         containercolor: mp.baseviewPage=="manage_store"?Color(0xFFECECEC):Colors.transparent,
                                         icon: Icons.storefront,
-                                        textcolor: mp.baseviewPage=='manage_store'?Color(0xFF0B6CF3):Color(0xFF797979),
-                                        iconcolor: mp.baseviewPage=='manage_store'?Color(0xFF0B6CF3):Color(0xFF797979))),
+                                        textcolor: mp.baseviewPage=='manage_store'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                        iconcolor: mp.baseviewPage=='manage_store'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
                                 SizedBox(height: 40,),
 
@@ -272,8 +272,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                     child: MyBaseViewContainer(text: "Settings",
                                         containercolor: mp.baseviewPage=="settings"?Color(0xFFECECEC):Colors.transparent,
                                         icon: Icons.settings,
-                                        textcolor: mp.baseviewPage=='settings'?Color(0xFF0B6CF3):Color(0xFF797979),
-                                        iconcolor: mp.baseviewPage=='settings'?Color(0xFF0B6CF3):Color(0xFF797979))),
+                                        textcolor: mp.baseviewPage=='settings'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                        iconcolor: mp.baseviewPage=='settings'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
                                 SizedBox(height: 40,),
 
@@ -284,8 +284,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                     child: MyBaseViewContainer(text: "Log Out",
                                         containercolor: mp.baseviewPage=="log_out"?Color(0xFFECECEC):Colors.transparent,
                                         icon: Icons.logout,
-                                        textcolor: mp.baseviewPage=='log_out'?Color(0xFF0B6CF3):Color(0xFF797979),
-                                        iconcolor: mp.baseviewPage=='log_out'?Color(0xFF0B6CF3):Color(0xFF797979))),
+                                        textcolor: mp.baseviewPage=='log_out'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                        iconcolor: mp.baseviewPage=='log_out'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
                                 SizedBox(height: 40,),
 
@@ -296,8 +296,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                     child: MyBaseViewContainer(text: "help",
                                         containercolor: mp.baseviewPage=="help"?Color(0xFFECECEC):Colors.transparent,
                                         icon: Icons.question_mark,
-                                        textcolor: mp.baseviewPage=='help'?Color(0xFF0B6CF3):Color(0xFF797979),
-                                        iconcolor: mp.baseviewPage=='help'?Color(0xFF0B6CF3):Color(0xFF797979))),
+                                        textcolor: mp.baseviewPage=='help'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                        iconcolor: mp.baseviewPage=='help'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
                               ],
                             ),
                           ),
