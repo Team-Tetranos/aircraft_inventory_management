@@ -53,14 +53,14 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                     child: GridView.builder(
                       shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 6/3),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,childAspectRatio: 1.5),
                         itemCount: dvm.aircrafts.length,
 
                         itemBuilder: (context, index){
                           Category aircraft = dvm.aircrafts[index];
                           return Padding(
-                            padding:  const EdgeInsets.only(
-                                left: 21,right: 21,top: 31,bottom: 31),
+                            padding:  const EdgeInsets.only(top: 20,
+                                left: 40,right: 40),
                             child: GestureDetector(
                               onTap: (){
                                 dvm.pickAircraft(context, index);
@@ -68,8 +68,8 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                               child: MyDashBoardContainer(
                                   bordercolor: null,
                                   border: 0,
-                                  width: .123,
-                                  height: 30,
+                                  width: .181,
+                                  height: 510,
                                   color: dvm.pickedIndex==index?Color(0xff1366D9):Color(0xFFFFFDFD),
                                   blur: 25,
                                   xCoordinate: -2,
@@ -77,12 +77,13 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                                   radius: 10,
                                   shadowcolor: const Color(0xFF000000).withOpacity(.1),
                                   mywidget: Padding(
-                                    padding: const EdgeInsets.only(left: 15.58,right: 7),
-                                    child: Row(
+                                    padding: const EdgeInsets.only(top:21,left: 21,right: 24),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Container(
-                                          height: 102,
-                                          width: MediaQuery.of(context).size.width*.07,
+                                          height: MediaQuery.of(context).size.height*.22,
+                                          width: MediaQuery.of(context).size.width*.17,
                                           decoration: BoxDecoration(
 
                                               image: DecorationImage(
@@ -94,7 +95,9 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
 
                                           ),
                                         ),
-                                        SizedBox(width: 13,),
+                                        //SizedBox(height: 20,),
+
+
                                         Flexible(
                                           child: Text("${aircraft.name}",
                                             style: TextStyle(

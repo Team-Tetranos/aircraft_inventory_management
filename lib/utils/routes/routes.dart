@@ -1,6 +1,7 @@
 
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/views/base_view/base_view.dart';
+import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
 
 import 'package:aircraft_inventory_management/views/forgot_password_view/create_new_password/creat_new_password_view.dart';
 import 'package:aircraft_inventory_management/views/otp_view/otp_view.dart';
@@ -11,6 +12,7 @@ import 'package:aircraft_inventory_management/views/signup_view/signup_view_desk
 import 'package:flutter/material.dart';
 
 import '../../views/Blank_Page/blank_page.dart';
+import '../../views/dashboard_view/dashboard_view_tablet.dart';
 import '../../views/forgot_password_view/reset_password/reset_password_view.dart';
 
 
@@ -22,8 +24,12 @@ class Routes{
     switch(routeSettings.name){
       case RouteNames.blank:
         return MaterialPageRoute(builder: (_)=> BlankPage());
+      case RouteNames.dashboardtablet:
+        return MaterialPageRoute(builder: (_)=>DashBoardForTablet());
       case RouteNames.login:
         return MaterialPageRoute(builder: (_)=>LoginView());
+      case RouteNames.dashboardview:
+        return MaterialPageRoute(builder: (_)=>MyDashBoardView());
       case RouteNames.baseview:
         return MaterialPageRoute(builder: (_)=>BaseViewHome());
       case RouteNames.signup:

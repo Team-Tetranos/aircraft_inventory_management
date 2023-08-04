@@ -10,4 +10,6 @@ class RouteNames{
   static const String creatnewpasword = "CreatNewPassword";
   static const String productoverview = "product_overview";
   static const String usermanagement = "use_management";
+  static const String dashboardtablet = "dashboard_tablet";
+  static const String dashboardview = "dashboard_voiew";
 }
