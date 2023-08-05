@@ -1,6 +1,6 @@
 class AppConstants{
 
-  int mobile_width = 650;
-  int tablet_width = 1100;
+  double mobile_width = 650;
+  double tablet_width = 1100;
 
 }

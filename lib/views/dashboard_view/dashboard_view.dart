@@ -1,3 +1,5 @@
+import 'package:aircraft_inventory_management/views/base_view/base_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view_tablet.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_widget/container_for_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,8 +31,8 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
 
       builder: (context, dvm, _) {
         return ResponsiveLayout(
-            desktopBody: DashboardViewDesktop2(),
-            tabletBody: DashboardViewDesktop2(),
+            desktopBody: MybaseViewDesktop(),
+            tabletBody: DashBoardForTablet(),
             mobileBody: DashboardViewDesktop2()
         );
       }
