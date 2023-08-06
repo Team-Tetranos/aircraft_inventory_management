@@ -21,8 +21,10 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
   @override
   void initState() {
     // TODO: implement initState
-    Provider.of<DashboardViewModel>(context, listen: false).fetchAllAircrafts();
-    Provider.of<DashboardViewModel>(context, listen: false).fetchAllAircraftItems();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<DashboardViewModel>(context, listen: false).onInit(context);
+    });
+
     super.initState();
   }
   @override
@@ -31,7 +33,7 @@ class _MyDashBoardViewState extends State<MyDashBoardView> {
 
       builder: (context, dvm, _) {
         return ResponsiveLayout(
-            desktopBody: MybaseViewDesktop(),
+            desktopBody: DashboardViewDesktop2(),
             tabletBody: DashBoardForTablet(),
             mobileBody: DashboardViewDesktop2()
         );

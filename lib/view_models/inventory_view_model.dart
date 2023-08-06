@@ -15,7 +15,7 @@ import '../utils/dialogs/error_dialog.dart';
 import '../utils/dialogs/success_dialog.dart';
 
 class MyProviderForInventoryView with ChangeNotifier {
-
+  bool isLoading = true;
   AircraftRepository aircraftRepository = sl.get<AircraftRepository>();
   ct.Category? acft;
   TextEditingController cardController = TextEditingController();
@@ -48,11 +48,13 @@ class MyProviderForInventoryView with ChangeNotifier {
         acft = aircraft;
         aircraftItemsForInventory = items.where((element) => element.aircraft==aircraft.id).toList();
         duplicateaircraftItemsForInventory = aircraftItemsForInventory;
-        notifyListeners();
+
       }
     }catch(e){
       print(e);
     }
+    isLoading = false;
+    notifyListeners();
   }
 
   DateTime? pickedDate;
@@ -132,7 +134,7 @@ class MyProviderForInventoryView with ChangeNotifier {
     }else if(type=='card'){
       duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.cardNo!.toLowerCase().contains(s.toLowerCase())).toList();
     }else if(type=='quantity'){
-      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.quantity==s).toList();
+      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.quantity!.toLowerCase().contains(s.toLowerCase())).toList();
     }
     notifyListeners();
   }
@@ -161,6 +163,11 @@ class MyProviderForInventoryView with ChangeNotifier {
     pickedRange=null;
     duplicateaircraftItemsForInventory = aircraftItemsForInventory;
     notifyListeners();
+  }
+
+  void onSelectRow(BuildContext context, int index) {
+    Provider.of<BaseViewModel>(context, listen: false).changingOptions(context, 'item_details');
+    Provider.of<BaseViewModel>(context, listen: false).updatePickedAircraftItem(context, aircraftItemsForInventory[index], 'item_details');
   }
 
 

@@ -1,36 +1,27 @@
 import 'dart:convert';
-/// id : "7d7283ba-ec65-4ef2-9257-f3eaf35cf7bb"
-/// user : "3b7eec71-e273-499a-8853-cebeda2c8018"
-/// first_name : "sifat"
-/// last_name : "alam"
-/// email : "sifat1@gmail.com"
-/// phone : "dfr"
-/// profile_image : "/profile_images/42189030_2281696865383488_8519768381300146176_n.jpg"
-/// created_at : "2023-07-28T15:57:19.649945Z"
-/// updated_at : "2023-07-28T16:21:50.846428Z"
-/// refresh : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTY5MDgwODc0MiwiaWF0IjoxNjkwNzIyMzQyLCJqdGkiOiJhMTYxYzg0OTI4NDk0NWViYjVjY2E5ZDBlYzFkOGE4MiIsInVzZXJfaWQiOiIzYjdlZWM3MS1lMjczLTQ5OWEtODg1My1jZWJlZGEyYzgwMTgifQ.YyR1MNURFpikdfTtDzDPopbHXRqJvGqGGgo8rcKtQac"
-/// access : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIyMjU4MzQyLCJpYXQiOjE2OTA3MjIzNDIsImp0aSI6ImFmZDY0NWNmYmIyZDQ1YzA5OGY2NjFlZTE0MTE3M2Q5IiwidXNlcl9pZCI6IjNiN2VlYzcxLWUyNzMtNDk5YS04ODUzLWNlYmVkYTJjODAxOCJ9.O1OxeGN0B2672jldPQvx_6G1lVcxitQVyDTq21UT8xU"
-
-
+User userFromJson(String str) => User.fromJson(json.decode(str));
+String userToJson(User data) => json.encode(data.toJson());
 class User {
   User({
       String? id, 
-      String? user, 
       String? firstName, 
       String? lastName, 
       String? email, 
       String? phone, 
+      bool? isAdmin, 
+      List<String>? aircrafts, 
       String? profileImage, 
       String? createdAt, 
       String? updatedAt, 
       String? refresh, 
       String? access,}){
     _id = id;
-    _user = user;
     _firstName = firstName;
     _lastName = lastName;
     _email = email;
     _phone = phone;
+    _isAdmin = isAdmin;
+    _aircrafts = aircrafts;
     _profileImage = profileImage;
     _createdAt = createdAt;
     _updatedAt = updatedAt;
@@ -40,11 +31,12 @@ class User {
 
   User.fromJson(dynamic json) {
     _id = json['id'];
-    _user = json['user'];
     _firstName = json['first_name'];
     _lastName = json['last_name'];
     _email = json['email'];
     _phone = json['phone'];
+    _isAdmin = json['is_admin'];
+    _aircrafts = json['aircrafts'] != null ? json['aircrafts'].cast<String>() : [];
     _profileImage = json['profile_image'];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
@@ -52,33 +44,36 @@ class User {
     _access = json['access'];
   }
   String? _id;
-  String? _user;
   String? _firstName;
   String? _lastName;
   String? _email;
   String? _phone;
+  bool? _isAdmin;
+  List<String>? _aircrafts;
   String? _profileImage;
   String? _createdAt;
   String? _updatedAt;
   String? _refresh;
   String? _access;
 User copyWith({  String? id,
-  String? user,
   String? firstName,
   String? lastName,
   String? email,
   String? phone,
+  bool? isAdmin,
+  List<String>? aircrafts,
   String? profileImage,
   String? createdAt,
   String? updatedAt,
   String? refresh,
   String? access,
 }) => User(  id: id ?? _id,
-  user: user ?? _user,
   firstName: firstName ?? _firstName,
   lastName: lastName ?? _lastName,
   email: email ?? _email,
   phone: phone ?? _phone,
+  isAdmin: isAdmin ?? _isAdmin,
+  aircrafts: aircrafts ?? _aircrafts,
   profileImage: profileImage ?? _profileImage,
   createdAt: createdAt ?? _createdAt,
   updatedAt: updatedAt ?? _updatedAt,
@@ -86,11 +81,12 @@ User copyWith({  String? id,
   access: access ?? _access,
 );
   String? get id => _id;
-  String? get user => _user;
   String? get firstName => _firstName;
   String? get lastName => _lastName;
   String? get email => _email;
   String? get phone => _phone;
+  bool? get isAdmin => _isAdmin;
+  List<String>? get aircrafts => _aircrafts;
   String? get profileImage => _profileImage;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
@@ -100,11 +96,12 @@ User copyWith({  String? id,
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = _id;
-    map['user'] = _user;
     map['first_name'] = _firstName;
     map['last_name'] = _lastName;
     map['email'] = _email;
     map['phone'] = _phone;
+    map['is_admin'] = _isAdmin;
+    map['aircrafts'] = _aircrafts;
     map['profile_image'] = _profileImage;
     map['created_at'] = _createdAt;
     map['updated_at'] = _updatedAt;

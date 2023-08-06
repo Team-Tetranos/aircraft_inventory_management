@@ -12,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../dependency_injection/di.dart';
+import '../models/user.dart';
 
 class DashboardViewModel extends ChangeNotifier{
   AircraftRepository aircraftRepository = sl.get<AircraftRepository>();
@@ -20,11 +21,13 @@ class DashboardViewModel extends ChangeNotifier{
   ImagePicker imagePicker = ImagePicker();
   bool dragEntered = false;
   int? pickedIndex;
+  User user = sl.get();
 
   navigateTosubPage(BuildContext context, String page){
     Provider.of<BaseViewModel>(context, listen: false).changingOptions(context,page);
   }
   File? pickedImage;
+  List<Category> initialAircraft =[];
   List<Category> aircrafts = [];
   List<Aircraftitem> aircraftItems = [];
 
@@ -79,8 +82,9 @@ class DashboardViewModel extends ChangeNotifier{
 
     print(response.runtimeType);
     if(response is List<Category>){
-      aircrafts = response;
-      print(aircrafts);
+      initialAircraft = response;
+      aircrafts = initialAircraft;
+      //print(aircrafts);
       notifyListeners();
     }else{
       print('Error occured');
@@ -95,7 +99,7 @@ class DashboardViewModel extends ChangeNotifier{
     print(response.runtimeType);
     if(response is List<Aircraftitem>){
       aircraftItems = response;
-      print(aircraftItems);
+      //print(aircraftItems);
       notifyListeners();
     }else{
       print('Error occured');
@@ -112,6 +116,31 @@ class DashboardViewModel extends ChangeNotifier{
       notifyListeners();
     }catch(e){
     }
+
+  }
+
+  void filterAircraft(String s) {
+    try{
+      aircrafts = initialAircraft.where((element) => element.name!.toLowerCase().contains(s.toLowerCase())).toList();
+      notifyListeners();
+    }catch(e){
+      print(e);
+    }
+  }
+
+
+  setupUserData(BuildContext context){
+
+    user = Provider.of<BaseViewModel>(context, listen: false).user;
+    print(user.isAdmin);
+    notifyListeners();
+
+  }
+
+  onInit(BuildContext context)async{
+    await fetchAllAircrafts();
+    await fetchAllAircraftItems();
+    setupUserData(context);
 
   }
 

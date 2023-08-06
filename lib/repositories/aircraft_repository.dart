@@ -52,7 +52,7 @@ class AircraftRepository{
       List<Category> aircrafts = [];
       Iterable it = response.data as Iterable;
       for (var element in it) {
-        print(element);
+        //print(element);
         aircrafts.add(Category.fromJson(element));
       }
     result = aircrafts;

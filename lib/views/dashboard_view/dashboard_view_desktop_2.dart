@@ -21,11 +21,13 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
     return Consumer<DashboardViewModel>(
       builder: (context, dvm, _) {
         return Container(
+
             padding: EdgeInsets.only(top: 20),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
+
                 children: [
-                  GestureDetector(
+                  dvm.user.isAdmin==true?GestureDetector(
                     onTap: (){
                       dvm.navigateTosubPage(context, 'add_category');
                     },
@@ -42,7 +44,7 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                         fontFamily: 'Inter'
                       ),),
                     ),
-                  ),
+                  ):SizedBox.shrink(),
                   Container(
                       height: MediaQuery.of(context).size.height,
                     width: MediaQuery
@@ -79,7 +81,7 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                                   mywidget: Padding(
                                     padding: const EdgeInsets.only(top:21,left: 21,right: 24),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Container(
                                           height: MediaQuery.of(context).size.height*.22,
@@ -91,7 +93,7 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                                                   fit: BoxFit.fill
                                               ),
                                            // borderRadius: BorderRadius.circular(10),
-                                            border: Border.all(color: Colors.white,width: 10)
+                                            border: Border.all(color: Colors.white,width: 1)
 
                                           ),
                                         ),

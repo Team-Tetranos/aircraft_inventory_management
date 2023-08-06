@@ -6,9 +6,10 @@ class myData extends DataTableSource{
 
   BuildContext mycontext;
   List<Aircraftitem> items;
+  Function(int) onPressed;
 
 
-  myData({required this.mycontext, required this.items});
+  myData({required this.mycontext, required this.items, required this.onPressed});
 
 
   @override
@@ -113,7 +114,11 @@ class myData extends DataTableSource{
                   fontWeight: FontWeight.w500,
                   fontFamily: "Inter"),),),
           )),
-    ]);
+    ], onSelectChanged: (s){
+      if(s!=null && s){
+        onPressed(index);
+      }
+    });
   }
 
   @override

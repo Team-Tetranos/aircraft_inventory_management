@@ -1,3 +1,4 @@
+import 'package:aircraft_inventory_management/data/local/hive_manager.dart';
 import 'package:aircraft_inventory_management/data/local/shared_preference_manager.dart';
 import 'package:aircraft_inventory_management/data/remote/responses/api_response.dart';
 import 'package:aircraft_inventory_management/data/remote/service/base_api_service.dart';
@@ -8,17 +9,32 @@ import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../dependency_injection/di.dart';
+import '../models/user.dart';
+
 
 class AuthRepository{
   BaseApiService apiService = sl.get<ApiService>();
   EndPoints endPoints = sl.get<EndPoints>();
   SharedPreferenceManager sharedPreferenceManager = sl.get<SharedPreferenceManager>();
+  HiveManager hiveManager = sl.get<HiveManager>();
   Future<Object> login(String email, String password)async{
     var data = {
       'email':email,
       'password':password
     };
     var response = await apiService.postApiResponse(endPoints.base_url+endPoints.login, data);
+    if(response is Failure){
+
+
+    }else if (response is Success){
+      User user = User.fromJson(response.data);
+      print(user.isAdmin);
+      await sharedPreferenceManager.setAccessToken(user.access!);
+      await sharedPreferenceManager.setUserEmail(user.email!);
+      await sharedPreferenceManager.setIsAdmin(user.isAdmin!);
+      //await hiveManager.addUserData(user);
+
+    }
 
     return response;
 
@@ -42,6 +58,8 @@ class AuthRepository{
   Future logout(BuildContext context)async{
     confirmDialog(context, 'Logout', 'Are you sure you want to logout?', ()async{
       await sharedPreferenceManager.removeAccessToken();
+      await sharedPreferenceManager.removeUserEmail();
+      await sharedPreferenceManager.removeIsAdmin();
       Navigator.of(context).pop();
       Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.login, (route) => false);
     }, (){

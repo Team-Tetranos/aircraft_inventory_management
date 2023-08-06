@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../../view_models/blank_view_model.dart';
 import '../add_category_view/add_category_view.dart';
 import '../dashboard_2/dashboard_2.dart';
+import '../single-item_details/single_item_details.dart';
 import 'base_view_widget.dart';
 
 class MybaseViewDesktop extends StatefulWidget {
@@ -62,7 +63,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                 children: [
                                   SizedBox(width: 40,),
 
-                                  Container(
+                                  mp.baseviewPage=='dashboard'?Container(
                                       height: 44,
                                       width: MediaQuery.of(context).size.width*.277,
                                       decoration: BoxDecoration(
@@ -70,8 +71,12 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                           border: Border.all(width: 1,color: Color(0xFFECECEC)),
                                           borderRadius: BorderRadius.circular(35)
                                       ),
-                                      child: const TextField(
-                                        decoration: InputDecoration(
+                                      child: TextField(
+                                        onChanged: (s){
+                                          mp.filterAircraft(context,s);
+                                        },
+                                        decoration: const InputDecoration(
+
                                             border: OutlineInputBorder(
                                                 borderSide: BorderSide.none
                                             ),
@@ -79,11 +84,11 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                             prefixIcon: Icon(Icons.search,
                                               color: Color(0xFF858D9D),
                                               size: 20,),
-                                            hintText: "Search product,supplier,order"
+                                            hintText: "Search aircraft"
                                         ),
 
                                       )
-                                  ),
+                                  ):SizedBox.shrink(),
                                   Expanded(
                                     child: Container(
                                       height: 94,
@@ -129,7 +134,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                                 border: Border.all(width: 1,color: Color(0xFFECECEC)),
                                                 borderRadius: BorderRadius.circular(35)
                                             ),
-                                            child: const Row(
+                                            child: Row(
                                               mainAxisAlignment: MainAxisAlignment.start,
                                               children: [
                                                 Padding(
@@ -144,7 +149,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
 
                                                 Padding(
                                                   padding: EdgeInsets.only(right: 7),
-                                                  child: Text("james dane ",
+                                                  child: Text("${mp.user.email}",
                                                     style: TextStyle(
                                                         fontSize: 16,
                                                         fontWeight: FontWeight.w400,
@@ -168,9 +173,10 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                         ],
                       ),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
-                            height: 865,
+                            height: 1000,
                             width: MediaQuery.of(context).size.width*.225,
 
                             decoration: BoxDecoration(
@@ -220,13 +226,35 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                             mp.changingOptions(context,'inventory');
 
                                           },
-                                          child: MyBaseViewContainer(text: "inventory",
+                                          child: MyBaseViewContainer(text: "Inventory",
                                               containercolor: mp.baseviewPage=="inventory"?Color(0xFFECECEC):Colors.transparent,
                                               icon: Icons.add_shopping_cart_outlined,
                                               textcolor: mp.baseviewPage=='inventory'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
                                               iconcolor: mp.baseviewPage=='inventory'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
+
                                       SizedBox(height: 40,),
+
+                                      Visibility(
+                                        visible: mp.pickedAircraftItem!=null,
+                                        child: Column(
+                                          children: [
+                                            GestureDetector(
+                                                onTap: (){
+                                                  mp.changingOptions(context,'item_details');
+
+                                                },
+                                                child: MyBaseViewContainer(text: "Item Details",
+                                                    containercolor: mp.baseviewPage=="item_details"?Color(0xFFECECEC):Colors.transparent,
+                                                    icon: Icons.add_shopping_cart_outlined,
+                                                    textcolor: mp.baseviewPage=='item_details'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                                    iconcolor: mp.baseviewPage=='item_details'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
+                                            SizedBox(height: 40,),
+                                          ],
+                                        ),
+                                      ),
+
+
 
                                       GestureDetector(
                                           onTap: (){
@@ -244,17 +272,23 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                   ),
                                 ),
 
-                                GestureDetector(
-                                  onTap: (){
-                                    mp.changingOptions(context,'manage_store');
-                                  },
-                                    child: MyBaseViewContainer(text: "Manage Store",
-                                        containercolor: mp.baseviewPage=="manage_store"?Color(0xFFECECEC):Colors.transparent,
-                                        icon: Icons.storefront,
-                                        textcolor: mp.baseviewPage=='manage_store'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
-                                        iconcolor: mp.baseviewPage=='manage_store'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
+                                mp.user.isAdmin==true?Column(
+                                  children: [
+                                    GestureDetector(
+                                        onTap: (){
+                                          mp.changingOptions(context,'manage_store');
+                                        },
+                                        child: MyBaseViewContainer(text: "Manage Store",
+                                            containercolor: mp.baseviewPage=="manage_store"?Color(0xFFECECEC):Colors.transparent,
+                                            icon: Icons.storefront,
+                                            textcolor: mp.baseviewPage=='manage_store'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                            iconcolor: mp.baseviewPage=='manage_store'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
-                                SizedBox(height: 40,),
+                                    SizedBox(height: 40,),
+                                  ],
+                                ):SizedBox.shrink(),
+
+
 
                                 /*GestureDetector(
                                     onTap: (){
@@ -306,8 +340,23 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
 
                           //SizedBox(width: 40,),
 
-                          //mp.baseviewPage=='dashboard'?DashboardViewDesktop2():mp.baseviewPage=='inventory'?MyInventoryView():mp.baseviewPage=='add_category'?AddCategoryView():mp.baseviewPage=='add_item'?AddInventoryView():mp.baseviewPage=='product_overview'?Product_Overview_View():mp.baseviewPage=='manage_store'?User_Management_View():MyDashBoardView()
-                          Single_Item_Details_Desktop_View()
+                          if(mp.baseviewPage=='dashboard')
+                            MyDashBoardView()
+                          else if(mp.baseviewPage=='inventory')
+                            MyInventoryView()
+                          else if(mp.baseviewPage=='add_category')
+                            AddCategoryView()
+                          else if(mp.baseviewPage=='add_item')
+                            AddInventoryView()
+                          else if(mp.baseviewPage=='product_overview')
+                            Product_Overview_View()
+                          else if(mp.baseviewPage=='manage_store')
+                            User_Management_View()
+                          else if(mp.baseviewPage=='item_details')
+                            SingleItemDetails()
+                          else
+                            MyDashBoardView()
+                          //Single_Item_Details_Desktop_View()
                         ],
                       )
                     ],

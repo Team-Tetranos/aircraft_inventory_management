@@ -173,7 +173,7 @@ class ApiService extends BaseApiService{
     switch(response.statusCode){
       case 200:
         dynamic responseJson = jsonDecode(response.body);
-        print(responseJson);
+        //print(responseJson);
         return responseJson;
       case 201:
         dynamic responseJson = jsonDecode(response.body);

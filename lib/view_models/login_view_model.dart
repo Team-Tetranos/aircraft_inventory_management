@@ -1,5 +1,4 @@
 import 'package:aircraft_inventory_management/data/remote/responses/api_response.dart';
-import 'package:aircraft_inventory_management/models/user.dart';
 import 'package:aircraft_inventory_management/repositories/auth_repository.dart';
 import 'package:aircraft_inventory_management/utils/dialogs/error_dialog.dart';
 import 'package:aircraft_inventory_management/utils/email_validation.dart';
@@ -49,9 +48,6 @@ class LoginViewModel with ChangeNotifier{
       showSimpleErrorDialog(context, error['error']);
 
     }else if (result is Success){
-      User user = User.fromJson(result.data);
-      await sharedPreferenceManager.setAccessToken(user.access!);
-
       Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.baseview, (route) => false);
       isloading=false;
       notifyListeners();

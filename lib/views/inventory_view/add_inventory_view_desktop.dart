@@ -18,12 +18,15 @@ class _AddInventoryViewState extends State<AddInventoryView> {
   @override
   void initState() {
     // TODO: implement initState
-    try{
-      Category ct = Provider.of<BaseViewModel>(context, listen: false).pickedAircraft!;
-      Provider.of<MyProviderForInventoryView>(context, listen: false).initiateAircraftItem(ct);
-    }catch(e){
-      print(e);
-    }
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      try{
+        Category ct = Provider.of<BaseViewModel>(context, listen: false).pickedAircraft!;
+        Provider.of<MyProviderForInventoryView>(context, listen: false).initiateAircraftItem(ct);
+      }catch(e){
+        print(e);
+      }
+    });
+
 
     super.initState();
   }

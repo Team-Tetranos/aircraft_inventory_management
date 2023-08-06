@@ -3,6 +3,7 @@ import 'package:aircraft_inventory_management/utils/date_object_conversion.dart'
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/pagination_class.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 import '../../view_models/inventory_view_model.dart';
@@ -21,18 +22,31 @@ class _MyInventoryViewState extends State<MyInventoryView> {
   @override
   void initState() {
     // TODO: implement initState
-    Provider.of<MyProviderForInventoryView>(context, listen: false).updateAircraftItemsForInventory(context);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<MyProviderForInventoryView>(context, listen: false).updateAircraftItemsForInventory(context);
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     //final DataTableSource _data=myData(mycontext: context);
+
     return Consumer<MyProviderForInventoryView>(
       builder: (context,mp,_) {
         return Padding(
           padding: const EdgeInsets.only(left: 40),
-          child: Column(
+          child: mp.isLoading?Center(
+            child: SpinKitFadingCircle(
+              itemBuilder: (BuildContext context, int index) {
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: index.isEven ? Colors.red : Colors.green,
+                  ),
+                );
+              },
+            ),
+          ): Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 40,),
@@ -461,9 +475,12 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                               color: Color(0xFF797979)
                           ),),)
                         ],
-                        source: myData(mycontext: context, items: mp.duplicateaircraftItemsForInventory),
-                        rowsPerPage: 10,
+                        source: myData(mycontext: context, items: mp.duplicateaircraftItemsForInventory, onPressed: (index){
 
+                          mp.onSelectRow(context, index);
+
+                        }),
+                        rowsPerPage: 10,
                         columnSpacing: 60,),
                     )
                   ],),

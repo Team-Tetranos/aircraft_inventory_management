@@ -1,3 +1,4 @@
+import 'package:aircraft_inventory_management/data/local/hive_manager.dart';
 import 'package:aircraft_inventory_management/data/local/shared_preference_manager.dart';
 import 'package:aircraft_inventory_management/res/custom_scroll_behavior.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
@@ -9,6 +10,7 @@ import 'package:aircraft_inventory_management/view_models/sign_up_view_model.dar
 import 'package:aircraft_inventory_management/view_models/blank_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/inventory_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/otp_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/single_item_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/forgot_password_view_model.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +22,8 @@ import 'dependency_injection/di.dart';
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await setupDependency();
+
+
   runApp(MyApp());
 }
 
@@ -42,6 +46,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=>OtpViewModel()),
         ChangeNotifierProvider(create: (_)=>ResetPasswordViewModel()),
         ChangeNotifierProvider(create: (_)=>DashboardViewModel()),
+        ChangeNotifierProvider(create: (_)=>SingleItemViewModel()),
+
       ],
       child: MaterialApp(
         scrollBehavior: MyCustomScrollBehavior(),
@@ -54,7 +60,7 @@ class MyApp extends StatelessWidget {
 
           useMaterial3: true,
         ),
-        initialRoute: RouteNames.baseview,  /*sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,*/
+        initialRoute: sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,
         onGenerateRoute: Routes.generateRoute,
       ),
     );
