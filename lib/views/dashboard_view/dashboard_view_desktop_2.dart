@@ -44,7 +44,7 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                     ),
                   ),
                   Container(
-                      height: MediaQuery.of(context).size.height,
+                     // height: MediaQuery.of(context).size.height,
                     width: MediaQuery
                         .of(context)
                         .size
@@ -56,27 +56,64 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,childAspectRatio: 1.5),
                         itemCount: dvm.aircrafts.length,
 
-                        itemBuilder: (context, index){
+                        itemBuilder: (context, index) {
                           Category aircraft = dvm.aircrafts[index];
                           return Padding(
-                            padding:  const EdgeInsets.only(top: 20,
-                                left: 40,right: 40),
-                            child: GestureDetector(
-                              onTap: (){
-                                dvm.pickAircraft(context, index);
-                              },
-                              child: MyDashBoardContainer(
-                                  bordercolor: null,
-                                  border: 0,
-                                  width: .181,
-                                  height: 510,
-                                  color: dvm.pickedIndex==index?Color(0xff1366D9):Color(0xFFFFFDFD),
-                                  blur: 25,
-                                  xCoordinate: -2,
-                                  yCoordinate: 4,
-                                  radius: 10,
-                                  shadowcolor: const Color(0xFF000000).withOpacity(.1),
-                                  mywidget: Padding(
+                              padding: const EdgeInsets.only(top: 20,
+                                  left: 40, right: 40),
+                              child: GestureDetector(
+                                onTap: () {
+                                  dvm.pickAircraft(context, index);
+                                },
+                                child:  Container(
+                                      height: 247,
+                                      width: MediaQuery
+                                          .of(context)
+                                          .size
+                                          .width * .181,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          image: DecorationImage(
+                                              image: NetworkImage("${EndPoints()
+                                                  .image_base_url}${aircraft
+                                                  .image}"),
+                                              fit: BoxFit.fill
+                                          )
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.bottomCenter,
+                                        child: Container(
+                                          height: 68,
+                                          width: MediaQuery
+                                              .of(context)
+                                              .size
+                                              .width * .2,
+                                          decoration: BoxDecoration(
+                                              color: Colors.black.withOpacity(
+                                                  .68),
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft: Radius.circular(
+                                                      10),
+                                                  bottomRight: Radius.circular(
+                                                      10))
+                                          ),
+                                          child: Center(
+                                            child: Flexible(
+                                              child: Text("${aircraft.name}",
+                                                style: TextStyle(
+                                                    color:Colors.white,
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 20,
+                                                    fontFamily: "Inter"
+                                                ),),
+                                            ),
+                                          ),
+
+                                        ),
+                                      ),
+                                    )
+                                  /*Padding(
                                     padding: const EdgeInsets.only(top:21,left: 21,right: 24),
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -109,9 +146,11 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                                         )
                                       ],
                                     ),
-                                  )
-                              ),
-                            ),
+                                  )*/
+
+
+                              )
+
                           );
                         }
                     )

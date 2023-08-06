@@ -92,7 +92,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
 
-                                          Container(
+                                          /*Container(
                                             height: 36,
                                             width: MediaQuery.of(context).size.width*.0277,
                                             decoration: BoxDecoration(
@@ -104,11 +104,11 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                                 color: Colors.white,
                                                 size: 20,),
                                             ),
-                                          ),
+                                          ),*/
                                           SizedBox(width: 40,),
                                           Container(
                                             height: 36,
-                                            width: MediaQuery.of(context).size.width*.0277,
+                                            width: 36,
                                             decoration: BoxDecoration(
                                                 color: Color(0xFF569DFF),
                                                 borderRadius: BorderRadius.all(Radius.circular(5))
@@ -192,7 +192,9 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                     mp.changingOptions(context,'dashboard');
 
                                   },
-                                    child: MyBaseViewContainer(text: "Dashboard",
+                                    child: MyBaseViewContainer(
+                                      width: .206,
+                                        text: "Dashboard",
                                         containercolor: mp.baseviewPage=="dashboard"?Color(0xFFECECEC):Colors.transparent,
                                         icon: Icons.home,
                                         textcolor: mp.baseviewPage=='dashboard'?Color(0xFF0B6CF3):Color(0xFF797979),
@@ -208,7 +210,9 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                             mp.changingOptions(context,'add_item');
 
                                           },
-                                          child: MyBaseViewContainer(text: "Add Item",
+                                          child: MyBaseViewContainer(
+                                              width: .206,
+                                              text: "Add Item",
                                               containercolor: mp.baseviewPage=="add_item"?Color(0xFFECECEC):Colors.transparent,
                                               icon: Icons.add_shopping_cart_outlined,
                                               textcolor: mp.baseviewPage=='add_item'?Color(0xFF0B6CF3):Color(0xFF797979),
@@ -220,7 +224,9 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                             mp.changingOptions(context,'inventory');
 
                                           },
-                                          child: MyBaseViewContainer(text: "inventory",
+                                          child: MyBaseViewContainer(
+                                              width: .206,
+                                              text: "inventory",
                                               containercolor: mp.baseviewPage=="inventory"?Color(0xFFECECEC):Colors.transparent,
                                               icon: Icons.add_shopping_cart_outlined,
                                               textcolor: mp.baseviewPage=='inventory'?Color(0xFF0B6CF3):Color(0xFF797979),
@@ -232,7 +238,9 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                           onTap: (){
                                             mp.changingOptions(context,'product_overview');
                                           },
-                                          child: MyBaseViewContainer(text: "Product Overview",
+                                          child: MyBaseViewContainer(
+                                              width: .206,
+                                              text: "Product Overview",
                                               containercolor: mp.baseviewPage=="product_overview"?Colors.white:Colors.transparent,
                                               icon: Icons.event_note_sharp,
                                               textcolor: mp.baseviewPage=='product_overview'?Color(0xFF0B6CF3):Color(0xFF797979),
@@ -248,7 +256,9 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                   onTap: (){
                                     mp.changingOptions(context,'manage_store');
                                   },
-                                    child: MyBaseViewContainer(text: "Manage Store",
+                                    child: MyBaseViewContainer(
+                                        width: .206,
+                                        text: "Manage Store",
                                         containercolor: mp.baseviewPage=="manage_store"?Color(0xFFECECEC):Colors.transparent,
                                         icon: Icons.storefront,
                                         textcolor: mp.baseviewPage=='manage_store'?Color(0xFF0B6CF3):Color(0xFF797979),
@@ -271,7 +281,9 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                   onTap: (){
                                     mp.changingOptions(context,'settings');
                                   },
-                                    child: MyBaseViewContainer(text: "Settings",
+                                    child: MyBaseViewContainer(
+                                        width: .206,
+                                        text: "Settings",
                                         containercolor: mp.baseviewPage=="settings"?Color(0xFFECECEC):Colors.transparent,
                                         icon: Icons.settings,
                                         textcolor: mp.baseviewPage=='settings'?Color(0xFF0B6CF3):Color(0xFF797979),
@@ -283,7 +295,9 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                   onTap: ()async{
                                     await mp.logout(context);
                                   },
-                                    child: MyBaseViewContainer(text: "Log Out",
+                                    child: MyBaseViewContainer(
+                                        width: .206,
+                                        text: "Log Out",
                                         containercolor: mp.baseviewPage=="log_out"?Color(0xFFECECEC):Colors.transparent,
                                         icon: Icons.logout,
                                         textcolor: mp.baseviewPage=='log_out'?Color(0xFF0B6CF3):Color(0xFF797979),
@@ -295,7 +309,9 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                   onTap: (){
                                     mp.changingOptions(context,'help');
                                   },
-                                    child: MyBaseViewContainer(text: "help",
+                                    child: MyBaseViewContainer(
+                                        width: .206,
+                                        text: "help",
                                         containercolor: mp.baseviewPage=="help"?Color(0xFFECECEC):Colors.transparent,
                                         icon: Icons.question_mark,
                                         textcolor: mp.baseviewPage=='help'?Color(0xFF0B6CF3):Color(0xFF797979),
@@ -306,8 +322,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
 
                           //SizedBox(width: 40,),
 
-                          //mp.baseviewPage=='dashboard'?DashboardViewDesktop2():mp.baseviewPage=='inventory'?MyInventoryView():mp.baseviewPage=='add_category'?AddCategoryView():mp.baseviewPage=='add_item'?AddInventoryView():mp.baseviewPage=='product_overview'?Product_Overview_View():mp.baseviewPage=='manage_store'?User_Management_View():MyDashBoardView()
-                          Single_Item_Details_Desktop_View()
+                          mp.baseviewPage=='dashboard'?DashboardViewDesktop2():mp.baseviewPage=='inventory'?InventoryViewForDesktop():mp.baseviewPage=='add_category'?AddCategoryView():mp.baseviewPage=='add_item'?AddInventoryView():mp.baseviewPage=='product_overview'?Product_Overview_View():mp.baseviewPage=='manage_store'?User_Management_View():MyDashBoardView()
+                          //Single_Item_Details_Desktop_View()
                         ],
                       )
                     ],

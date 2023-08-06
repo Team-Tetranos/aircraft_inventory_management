@@ -8,14 +8,15 @@ import '../../view_models/inventory_view_model.dart';
 
 //import 'inventory_widget/pagination_class.dart';
 
-class MyInventoryView extends StatefulWidget {
-  const MyInventoryView({Key? key}) : super(key: key);
+class InventoryViewForDesktop extends StatefulWidget {
+  const InventoryViewForDesktop({Key? key}) : super(key: key);
 
   @override
-  State<MyInventoryView> createState() => _MyInventoryViewState();
+  State<InventoryViewForDesktop> createState() => _InventoryViewForDesktopState();
 }
 
-class _MyInventoryViewState extends State<MyInventoryView> {
+class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
+  ScrollController controller=ScrollController();
 
   @override
   void initState() {
@@ -191,7 +192,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                     SizedBox(height: 28.53,),
                     Row(
                       children: [
-                        SizedBox(width: 43,),
+                        SizedBox(width: 12,),
                         GestureDetector(
                           onTap: (){
 
@@ -315,7 +316,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
 
                                   ),
                                 ),
-                                SizedBox(width: 20,),
+                                //SizedBox(width: 20,),
                                 Container(
                                   height: 33.81,
                                   width: MediaQuery.of(context).size.width*.029,
@@ -327,31 +328,38 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                                     child: Icon(Icons.delete_outline_outlined,color: Color(0xFFE70707),size: 20,),
                                   ),
                                 ),
-                                SizedBox(width: 20,),
+                               // SizedBox(width: 10,),
                                 Container(
-                                  height: 33.81,
-                                  width: MediaQuery.of(context).size.width*.0569,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                                      color: Color(0xFFE5F0FF)
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text("Export",style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: "Inter",
-                                          color: Color(0xFF0268F4)
-                                      ),),
-                                      SizedBox(width: 2,),
-                                      Icon(Icons.arrow_drop_down_sharp,
-                                        size: 18,
-                                        color: Color(0xFF1366D9),)
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(width: 33,)
+                                      height: 33.81,
+                                      width: MediaQuery.of(context).size.width*.0569,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                                          color: Color(0xFFE5F0FF)
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Flexible(
+                                            child: Text("Export",style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF0268F4)
+                                            ),),
+                                          ),
+                                          SizedBox(width: 5,),
+                                          Flexible(
+                                            child: Icon(Icons.arrow_drop_down_sharp,
+                                              size: 18,
+                                              color: Color(0xFF1366D9),),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                SizedBox(width: 10,)
+
+
+
                               ],
                             ),
                           ),
@@ -362,95 +370,105 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                     SizedBox(height: 31.7,),
 
 
-                    PaginatedDataTable(
-                      //arrowHeadColor: Colors.blue,
+                    Scrollbar(
+                      thickness: 10,
 
-                      columns:
-                      [
-                        DataColumn(label: Container(
-                          height: 27.47,
-                          width: MediaQuery.of(context).size.width*.018,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(5)),
-                              color: Color(0xFFD9D9D9)
+                      controller: controller,
+                      child: PaginatedDataTable(
+                        //arrowHeadColor: Colors.blue,
+                        controller: controller,
+
+
+                        columns:
+                        [
+                          DataColumn(label: Container(
+                            height: 27.47,
+                            width: MediaQuery.of(context).size.width*.018,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(5)),
+                                color: Color(0xFFD9D9D9)
+                            ),),),
+                          DataColumn(label: Text("Part No",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
                           ),),),
-                        DataColumn(label: Text("Part No",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Nomenclature",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("A/U",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Card No",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Quantity",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Received\nDi/Org",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Manufacturer",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Expire",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Expenditure",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("RMK",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Created",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),),
-                        DataColumn(label: Text("Status",style: TextStyle(
-                            fontFamily: "Inter",
-                            fontWeight: FontWeight.w500,
-                            fontSize: 14,
-                            color: Color(0xFF797979)
-                        ),),)
-                      ]
+                          DataColumn(label: Text("Nomenclature",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: Text("A/U",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: Text("Card No",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: Text("Quantity",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: Text("Received\nDi/Org",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: Text("Manufacturer",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: Text("Expire",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: Text("Expenditure",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: Text("RMK",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: Text("Created",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+                          DataColumn(label: Text("Status",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),)
+                        ]
 
-                      , source: myData(mycontext: context, items: mp.duplicateaircraftItemsForInventory),
-                      rowsPerPage: 10,
-                      columnSpacing: 60,)
+                        , source: myData(mycontext: context, items: mp.duplicateaircraftItemsForInventory),
+
+                        rowsPerPage: 10,
+                        columnSpacing: 60,
+
+                      ),
+                    )
                   ],),
 
               ),

@@ -7,14 +7,15 @@ class MyBaseViewContainer extends StatelessWidget {
   Color textcolor;
   Color iconcolor;
   Color containercolor;
+  double width;
 
-   MyBaseViewContainer({Key? key,required this.text,required this.icon, required this.iconcolor,required this.textcolor,required this.containercolor,}) : super(key: key);
+   MyBaseViewContainer({Key? key,required this.text,required this.icon, required this.iconcolor,required this.textcolor,required this.containercolor,required this.width}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
         height: 54,
-        width: MediaQuery.of(context).size.width*.206,
+        width: MediaQuery.of(context).size.width*width,
 
         decoration: BoxDecoration(
           color: containercolor,

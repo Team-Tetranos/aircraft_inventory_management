@@ -12,7 +12,9 @@ class myData extends DataTableSource{
 
   @override
   DataRow? getRow(int index) {
-    return DataRow(cells: [
+    return DataRow(
+      //color:MaterialStateProperty.all<Color>(Colors.black),
+        cells: [
       DataCell(Container(
       height: 27.47,
       width: MediaQuery.of(mycontext).size.width*.018,
