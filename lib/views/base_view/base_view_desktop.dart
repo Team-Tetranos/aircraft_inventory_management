@@ -1,7 +1,8 @@
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
+import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view_desktop_2.dart';
-import 'package:aircraft_inventory_management/views/inventory_view/add_inventory_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/product_overview_view/product_overview.dart';
 import 'package:aircraft_inventory_management/views/single-item_details/single_item_details_desktop.dart';
@@ -343,11 +344,12 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           if(mp.baseviewPage=='dashboard')
                             MyDashBoardView()
                           else if(mp.baseviewPage=='inventory')
-                            MyInventoryView()
+                            InventoryViewForDesktop()
                           else if(mp.baseviewPage=='add_category')
                             AddCategoryView()
                           else if(mp.baseviewPage=='add_item')
-                            AddInventoryView()
+                            AddInventoryViewForDesktop()
+
                           else if(mp.baseviewPage=='product_overview')
                             Product_Overview_View()
                           else if(mp.baseviewPage=='manage_store')

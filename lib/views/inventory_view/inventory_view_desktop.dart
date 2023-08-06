@@ -10,14 +10,14 @@ import '../../view_models/inventory_view_model.dart';
 
 //import 'inventory_widget/pagination_class.dart';
 
-class MyInventoryView extends StatefulWidget {
-  const MyInventoryView({Key? key}) : super(key: key);
+class InventoryViewForDesktop extends StatefulWidget {
+  const InventoryViewForDesktop({Key? key}) : super(key: key);
 
   @override
-  State<MyInventoryView> createState() => _MyInventoryViewState();
+  State<InventoryViewForDesktop> createState() => _InventoryViewForDesktopState();
 }
 
-class _MyInventoryViewState extends State<MyInventoryView> {
+class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
 
   @override
   void initState() {
@@ -199,7 +199,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
 
                         Expanded(
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Container(
                                 height: 33.81,
@@ -335,7 +335,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                               SizedBox(width: 20,),
                               Container(
                                 height: 33.81,
-                                width: MediaQuery.of(context).size.width*.0569,
+                                width: 75,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.all(Radius.circular(5)),
                                     color: Color(0xFFE5F0FF)
@@ -344,7 +344,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text("Export",style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                         fontFamily: "Inter",
                                         color: Color(0xFF0268F4)
@@ -356,7 +356,7 @@ class _MyInventoryViewState extends State<MyInventoryView> {
                                   ],
                                 ),
                               ),
-                              SizedBox(width: 33,)
+                             // SizedBox(width: 20,)
                             ],
                           ),
                         )

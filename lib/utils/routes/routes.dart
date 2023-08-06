@@ -53,7 +53,7 @@ class Routes{
         }
         return MaterialPageRoute(builder: (_)=>CreatNewPaswordView(data: passData,));
       case RouteNames.inventory:
-        return MaterialPageRoute(builder: (_)=>MyInventoryView());
+        return MaterialPageRoute(builder: (_)=>InventoryViewForDesktop());
       default:
         return MaterialPageRoute(builder: (_)=>const Scaffold(
           body: Center(

@@ -46,7 +46,7 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                     ),
                   ):SizedBox.shrink(),
                   Container(
-                      height: MediaQuery.of(context).size.height,
+                     // height: MediaQuery.of(context).size.height,
                     width: MediaQuery
                         .of(context)
                         .size
@@ -67,7 +67,43 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                               onTap: (){
                                 dvm.pickAircraft(context, index);
                               },
-                              child: MyDashBoardContainer(
+                              child:Container(
+                                height: 269,
+                                width: MediaQuery.of(context).size.width*.18,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                                  //border: Border.all(width: 6,color: Colors.white),
+                                  image: DecorationImage(
+                                      image: NetworkImage("${EndPoints().image_base_url}${aircraft.image}"),
+                                      fit: BoxFit.fill
+                                  ),
+                                ),
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: Container(
+                                    height: 68,
+                                    width: MediaQuery.of(context).size.width*1,
+                                    decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(.68),
+                                      borderRadius: BorderRadius.only(bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10))
+                                    ),
+                                    child:Center(
+                                      child: Flexible(
+                                          child: Text("${aircraft.name}",
+                                            style: TextStyle(
+                                                color:Colors.white,
+                                                fontWeight: FontWeight.w800,
+                                                fontSize: 16,
+                                                fontFamily: "Inter"
+                                            ),),
+                                        ),
+                                    ),
+
+                                  ),
+                                ),
+                              )
+                              /*MyDashBoardContainer(
                                   bordercolor: null,
                                   border: 0,
                                   width: .181,
@@ -112,7 +148,7 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                                       ],
                                     ),
                                   )
-                              ),
+                              ),*/
                             ),
                           );
                         }

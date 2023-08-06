@@ -96,31 +96,42 @@ class _DashBoardForTabletState extends State<DashBoardForTablet> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 12,right: 12,top: 12,bottom: 12),
                         child:
-                                Container(
-                                  height: 40,
-                                  width: .11,
-
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage("${EndPoints().image_base_url}${aircraft.image}"),
-                                      fit: BoxFit.cover
-                                    )
-                                  ),
-                                  child:  Padding(
-                                    padding: const EdgeInsets.only(left: 8),
-                                    child: Align(
-                                      alignment: Alignment.bottomLeft,
-                                      child:  Text("${aircraft.name}",
-                                          style: TextStyle(
-                                              color:Colors.white,
-                                              fontWeight: FontWeight.w800,
-                                              fontSize: 30,
-                                              fontFamily: "Inter"
-                                          ),),
-
-                                    ),
-                                  )
+                        Container(
+                          height: 269,
+                          width: MediaQuery.of(context).size.width*.18,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                            //border: Border.all(width: 6,color: Colors.white),
+                            image: DecorationImage(
+                                image: NetworkImage("${EndPoints().image_base_url}${aircraft.image}"),
+                                fit: BoxFit.fill
+                            ),
+                          ),
+                          child: Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              height: 68,
+                              width: MediaQuery.of(context).size.width*1,
+                              decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(.68),
+                                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10))
+                              ),
+                              child:Center(
+                                child: Flexible(
+                                  child: Text("${aircraft.name}",
+                                    style: TextStyle(
+                                        color:Colors.white,
+                                        fontWeight: FontWeight.w800,
+                                        fontSize: 16,
+                                        fontFamily: "Inter"
+                                    ),),
                                 ),
+                              ),
+
+                            ),
+                          ),
+                        )
 
 
 

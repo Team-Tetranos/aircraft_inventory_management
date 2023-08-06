@@ -5,27 +5,27 @@ import 'package:aircraft_inventory_management/view_models/view_model_for_base_vi
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AddInventoryView extends StatefulWidget {
-   AddInventoryView({Key? key}) : super(key: key);
+class AddInventoryViewForDesktop extends StatefulWidget {
+   AddInventoryViewForDesktop({Key? key}) : super(key: key);
 
   @override
-  State<AddInventoryView> createState() => _AddInventoryViewState();
+  State<AddInventoryViewForDesktop> createState() => _AddInventoryViewForDesktopState();
 }
 
-class _AddInventoryViewState extends State<AddInventoryView> {
+class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop> {
 
 
   @override
   void initState() {
     // TODO: implement initState
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    /*WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       try{
         Category ct = Provider.of<BaseViewModel>(context, listen: false).pickedAircraft!;
         Provider.of<MyProviderForInventoryView>(context, listen: false).initiateAircraftItem(ct);
       }catch(e){
         print(e);
       }
-    });
+    });*/
 
 
     super.initState();
