@@ -132,7 +132,7 @@ class DashboardViewModel extends ChangeNotifier{
   setupUserData(BuildContext context){
 
     user = Provider.of<BaseViewModel>(context, listen: false).user;
-    print(user.isAdmin);
+
     notifyListeners();
 
   }

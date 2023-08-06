@@ -27,12 +27,12 @@ class AuthRepository{
 
 
     }else if (response is Success){
-      User user = User.fromJson(response.data);
-      print(user.isAdmin);
+      User user = User.fromJson(response.data as Map<String, dynamic>);
+      print(response.data);
+      print(user.email);
+      //print(user.isAdmin);
       await sharedPreferenceManager.setAccessToken(user.access!);
-      await sharedPreferenceManager.setUserEmail(user.email!);
-      await sharedPreferenceManager.setIsAdmin(user.isAdmin!);
-      //await hiveManager.addUserData(user);
+      await hiveManager.addUserData(user);
 
     }
 
@@ -58,8 +58,6 @@ class AuthRepository{
   Future logout(BuildContext context)async{
     confirmDialog(context, 'Logout', 'Are you sure you want to logout?', ()async{
       await sharedPreferenceManager.removeAccessToken();
-      await sharedPreferenceManager.removeUserEmail();
-      await sharedPreferenceManager.removeIsAdmin();
       Navigator.of(context).pop();
       Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.login, (route) => false);
     }, (){

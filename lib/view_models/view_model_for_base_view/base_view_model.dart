@@ -67,18 +67,21 @@ class BaseViewModel extends ChangeNotifier{
   }
 
   setupUserData()async{
-    var usr = user.copyWith(
-      email: sharedPreferenceManager.getUserEmail(),
-      isAdmin: sharedPreferenceManager.getIsAdmin()
-    );
-    user = usr;
+    try{
+      var usr = await hiveManager.getUserData();
+      user = usr!;
 
-
-    notifyListeners();
+      notifyListeners();
+    }catch(e){
+      print(e);
+    }
+    //notifyListeners();
   }
 
   onInit()async{
     await setupUserData();
+
+
   }
 
   void filterAircraft(BuildContext context, String s) {

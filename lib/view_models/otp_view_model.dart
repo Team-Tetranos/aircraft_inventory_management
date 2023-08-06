@@ -52,7 +52,7 @@ class OtpViewModel extends ChangeNotifier{
       isloading=false;
       notifyListeners();
     }else if (result is Success){
-      User user = User.fromJson(result.data);
+      User user = User.fromJson(result.data as Map<String, dynamic>);
       await sharedPreferenceManager.setAccessToken(user.access!);
 
       Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.baseview, (route) => false);

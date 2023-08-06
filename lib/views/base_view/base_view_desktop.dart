@@ -272,7 +272,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                   ),
                                 ),
 
-                                mp.user.isAdmin==true?Column(
+                                mp.user.is_admin==true?Column(
                                   children: [
                                     GestureDetector(
                                         onTap: (){

@@ -27,7 +27,7 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                 crossAxisAlignment: CrossAxisAlignment.end,
 
                 children: [
-                  dvm.user.isAdmin==true?GestureDetector(
+                  dvm.user.is_admin==true?GestureDetector(
                     onTap: (){
                       dvm.navigateTosubPage(context, 'add_category');
                     },
@@ -36,9 +36,9 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                       margin: EdgeInsets.only(right: 20),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5),
-                        color: Color(0xff1366D9)
+                        color: const Color(0xff1366D9)
                       ),
-                      child: Text('Add Aircraft', style: TextStyle(
+                      child: const Text('Add Aircraft', style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         fontFamily: 'Inter'
