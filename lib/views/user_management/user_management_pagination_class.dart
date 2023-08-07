@@ -1,48 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/user.dart';
+
 class User_management_Data extends DataTableSource{
 
   BuildContext mycontext;
 
+  List<User> profiles;
+  Function(int) onPressed;
 
-  List<Map<String ,dynamic>> _data=List.generate(
-      155,
-          (index) => {
-
-        "Name":"'mamun",
-        "User Role" : {
-          "Manager" : "manager",
-          "Admin" : "Admin",
-          "Auditor" : "Auditor"
-        },
-            "Action" : "Active"
-
-      });
-
-  User_management_Data({required this.mycontext});
+  User_management_Data({required this.mycontext, required this.profiles, required this.onPressed});
 
 
   @override
   DataRow? getRow(int index) {
     return DataRow(cells: [
-      DataCell(Container(
+      /*DataCell(Container(
         height: 27.47,
         width: MediaQuery.of(mycontext).size.width*.018,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(5)),
             color: Color(0xFFD9D9D9)
-        ),),),
+        ),),),*/
       DataCell(Container(
         height: 36,
         child: Row(
           children: [
             CircleAvatar(
               radius: 20,
-              backgroundImage: NetworkImage("https://images.unsplash.com/photo-1611003228941-98852ba62227?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmFieSUyMGRvZ3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"),
+              backgroundImage: NetworkImage("https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000"),
             ),
             SizedBox(width: 13,),
-            Text(_data[index]["Name"].toString(),style: TextStyle(
+            Text(profiles[index].email.toString(),style: TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.w500,
                 fontSize: 14,
@@ -65,7 +55,7 @@ class User_management_Data extends DataTableSource{
                   borderRadius: BorderRadius.all(Radius.circular(10))
                 ),
                 child: Center(
-                  child: Text(_data[index]["User Role"]["Manager"].toString(),style: TextStyle(
+                  child: Text('Staff',style: TextStyle(
                       fontFamily: "Inter",
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
@@ -74,25 +64,33 @@ class User_management_Data extends DataTableSource{
                 ),
                 
               ),
-              SizedBox(width: 20,),
-              Container(
-                height: 23,
-                width: MediaQuery.of(mycontext).size.width*.0416,
-                decoration: BoxDecoration(
-                    color: Color(0xFF079827),
-                    borderRadius: BorderRadius.all(Radius.circular(10))
-                ),
-                child: Center(
-                    child: Text(_data[index]["User Role"]["Admin"].toString(),style: TextStyle(
-                        fontFamily: "Inter",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        color: Colors.white
-                    ),)
-                ),
+              Visibility(
+                visible: profiles[index].is_admin??false,
+                child: Row(
+                  children: [
+                    SizedBox(width: 20,),
+                    Container(
+                      height: 23,
+                      width: MediaQuery.of(mycontext).size.width*.0416,
+                      decoration: BoxDecoration(
+                          color: Color(0xFF079827),
+                          borderRadius: BorderRadius.all(Radius.circular(10))
+                      ),
+                      child: Center(
+                          child: Text(profiles[index].is_admin.toString(),style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Colors.white
+                          ),)
+                      ),
 
+                    ),
+                  ],
+                ),
               ),
-              SizedBox(width: 20,),
+
+              /*SizedBox(width: 20,),
               Container(
                 height: 23,
                 width: MediaQuery.of(mycontext).size.width*.0416,
@@ -101,7 +99,7 @@ class User_management_Data extends DataTableSource{
                     borderRadius: BorderRadius.all(Radius.circular(10))
                 ),
                 child: Center(
-                    child: Text(_data[index]["User Role"]["Auditor"].toString(),style: TextStyle(
+                    child: Text(profiles[index].is_admin.toString(),style: TextStyle(
                         fontFamily: "Inter",
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -109,19 +107,52 @@ class User_management_Data extends DataTableSource{
                     ),)
                 ),
 
-              )
+              )*/
             ],
           ),
         )
       ),
-      DataCell(Text(_data[index]["Action"].toString(),style: TextStyle(
+      DataCell(
+          Container(
+            height: 25,
+            child: Row(
+              children: [
+                Container(
+                  height: 23,
+                  width: MediaQuery.of(mycontext).size.width*.0416,
+                  decoration: BoxDecoration(
+                      color: profiles[index].is_verified==true?Colors.green:Colors.redAccent,
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                  ),
+                  child: Center(
+                      child: Text(profiles[index].is_verified==true?'Verified':'Pending',style: TextStyle(
+                          fontFamily: "Inter",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          color: Colors.black
+                      ),)
+                  ),
+
+                ),
+
+
+
+              ],
+            ),
+          )
+      ),
+      DataCell(Text(profiles[index].permitted_aircrafts!.map((e) => e.name).toList().toString().replaceAll('[', '').replaceAll(']', ''),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF797979)
       ),),),
 
-    ]);
+    ], onSelectChanged: (s){
+      if(s!=null && s){
+        onPressed(index);
+      }
+    });
   }
 
   @override
@@ -130,7 +161,7 @@ class User_management_Data extends DataTableSource{
 
   @override
   // TODO: implement rowCount
-  int get rowCount => _data.length;
+  int get rowCount => profiles.length;
 
   @override
   // TODO: implement selectedRowCount

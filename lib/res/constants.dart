@@ -7,4 +7,6 @@ class HiveConstants{
   int userClassTypeId = 0;
   String userClassBoxName = 'user';
   String myProfileKey = 'myProfile';
+
+  String aircraftBoxName = 'aircraft';
 }

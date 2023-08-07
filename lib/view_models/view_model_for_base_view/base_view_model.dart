@@ -70,6 +70,7 @@ class BaseViewModel extends ChangeNotifier{
     try{
       var usr = await hiveManager.getUserData();
       user = usr!;
+      //print(usr!.is_admin);
 
       notifyListeners();
     }catch(e){
@@ -80,7 +81,6 @@ class BaseViewModel extends ChangeNotifier{
 
   onInit()async{
     await setupUserData();
-
 
   }
 

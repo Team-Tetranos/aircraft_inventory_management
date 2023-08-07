@@ -351,7 +351,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           else if(mp.baseviewPage=='product_overview')
                             Product_Overview_View()
                           else if(mp.baseviewPage=='manage_store')
-                            User_Management_View()
+                            UserManagementView()
                           else if(mp.baseviewPage=='item_details')
                             SingleItemDetails()
                           else

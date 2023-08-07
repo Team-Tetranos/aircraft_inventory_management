@@ -1,3 +1,4 @@
+import 'package:aircraft_inventory_management/models/category.dart';
 import 'package:aircraft_inventory_management/res/constants.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -11,8 +12,12 @@ class HiveManager{
     var directory = await getApplicationDocumentsDirectory();
     //Hive.init(directory.path);
     await Hive.initFlutter("${directory.path}/tetranos_db");
+
     Hive.registerAdapter(UserAdapter());
+    Hive.registerAdapter(CategoryAdapter());
     await Hive.openBox<User>(hiveConstants.userClassBoxName);
+    await Hive.openBox<Category>(hiveConstants.aircraftBoxName);
+
     print('hive setup finished');
   }
   Future<Box<String>> getSampleBox()async{

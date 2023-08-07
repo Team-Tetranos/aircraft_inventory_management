@@ -5,6 +5,7 @@ import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/utils/routes/routes.dart';
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/login_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/manage_store_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/reset_password_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/sign_up_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/blank_view_model.dart';
@@ -14,10 +15,28 @@ import 'package:aircraft_inventory_management/view_models/single_item_view_model
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/forgot_password_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'dependency_injection/di.dart';
 
+Future<void> deleteHiveDatabase() async {
+  try {
+    // Close all open Hive boxes
+    await Hive.close();
+
+    // Get the application's document directory
+    final appDocumentDir = await getApplicationDocumentsDirectory();
+
+    // Delete the Hive database files
+    await appDocumentDir.delete(recursive: true);
+
+    print('Hive database deleted successfully');
+  } catch (e) {
+    print('Error deleting Hive database: $e');
+  }
+}
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,6 +67,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=>ResetPasswordViewModel()),
         ChangeNotifierProvider(create: (_)=>DashboardViewModel()),
         ChangeNotifierProvider(create: (_)=>SingleItemViewModel()),
+        ChangeNotifierProvider(create: (_)=>ManageStoreViewModel()),
+
 
       ],
       child: MaterialApp(
