@@ -1,4 +1,5 @@
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
+import 'package:aircraft_inventory_management/views/add_category_view/add_category_view_tablet.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view_tablet.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view_tablet.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_for_tablet.dart';
@@ -335,7 +336,8 @@ class _Base_View_tabletState extends State<Base_View_tablet> {
                           ),
                         ),
                      //Single_Item_Details_Tablet_View()
-                       AddInventoryViewForTablet()
+                       //AddInventoryViewForTablet()
+                        AddCategoryForTablet()
 
 
 

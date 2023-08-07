@@ -1,6 +1,7 @@
 import 'package:aircraft_inventory_management/res/responsive_layout.dart';
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
 import 'package:aircraft_inventory_management/views/add_category_view/add_category_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/add_category_view/add_category_view_tablet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,7 @@ class _AddCategoryViewState extends State<AddCategoryView> {
       builder: (context, dvm, _) {
         return ResponsiveLayout(
             desktopBody: AddCategoryViewDesktop(),
-            tabletBody: AddCategoryViewDesktop(),
+            tabletBody:AddCategoryForTablet(),
             mobileBody: AddCategoryViewDesktop()
         );
       }

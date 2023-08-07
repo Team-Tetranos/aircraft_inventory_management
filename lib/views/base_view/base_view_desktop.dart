@@ -342,7 +342,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           //SizedBox(width: 40,),
 
                           if(mp.baseviewPage=='dashboard')
-                            MyDashBoardView()
+                          MyDashBoardView()
                           else if(mp.baseviewPage=='inventory')
                             InventoryViewForDesktop()
                           else if(mp.baseviewPage=='add_category')

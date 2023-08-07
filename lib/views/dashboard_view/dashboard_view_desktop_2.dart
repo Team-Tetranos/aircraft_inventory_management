@@ -18,9 +18,12 @@ class DashboardViewDesktop2 extends StatefulWidget {
 class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
   @override
   Widget build(BuildContext context) {
+
     return Consumer<DashboardViewModel>(
       builder: (context, dvm, _) {
+
         return Container(
+
 
             padding: EdgeInsets.only(top: 20),
             child: Column(

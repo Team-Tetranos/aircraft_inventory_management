@@ -17,6 +17,7 @@ class BaseViewHome extends StatefulWidget {
 class _BaseViewHomeState extends State<BaseViewHome> {
 
 
+  @override
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
