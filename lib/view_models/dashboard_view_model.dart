@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:aircraft_inventory_management/data/local/hive_manager.dart';
 import 'package:aircraft_inventory_management/models/aircraftitem.dart';
 import 'package:aircraft_inventory_management/models/category.dart';
 import 'package:aircraft_inventory_management/repositories/aircraft_repository.dart';
@@ -18,6 +19,7 @@ class DashboardViewModel extends ChangeNotifier{
   AircraftRepository aircraftRepository = sl.get<AircraftRepository>();
   TextEditingController aircraft_name_controller = TextEditingController();
   TextEditingController aircraft_id_controller = TextEditingController();
+  HiveManager hiveManager = sl.get();
   ImagePicker imagePicker = ImagePicker();
   bool dragEntered = false;
   int? pickedIndex;
@@ -78,6 +80,10 @@ class DashboardViewModel extends ChangeNotifier{
 
   fetchAllAircrafts()async{
 
+    initialAircraft = [];
+    aircrafts = [];
+    notifyListeners();
+
     var response = await aircraftRepository.allAircrafts();
 
     print(response.runtimeType);
@@ -129,23 +135,23 @@ class DashboardViewModel extends ChangeNotifier{
   }
 
 
-  setupUserData(BuildContext context){
+  setupUserData(BuildContext context)async{
 
-    user = Provider.of<BaseViewModel>(context, listen: false).user;
-
-    notifyListeners();
+    try{
+      var usr = await hiveManager.getUserData();
+      user = usr!;
+      notifyListeners();
+    }catch(e){
+      print(e);
+    }
 
   }
 
   onInit(BuildContext context)async{
+    setupUserData(context);
     await fetchAllAircrafts();
     await fetchAllAircraftItems();
-    setupUserData(context);
-
   }
-
-
-
 
 
 }

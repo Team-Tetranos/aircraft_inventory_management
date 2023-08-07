@@ -1,6 +1,8 @@
 import 'package:aircraft_inventory_management/data/remote/responses/api_response.dart';
+import 'package:aircraft_inventory_management/models/user.dart';
 import 'package:aircraft_inventory_management/repositories/auth_repository.dart';
 import 'package:aircraft_inventory_management/utils/dialogs/error_dialog.dart';
+import 'package:aircraft_inventory_management/utils/dialogs/success_dialog.dart';
 import 'package:aircraft_inventory_management/utils/email_validation.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/utils/routes/routes.dart';
@@ -47,10 +49,15 @@ class LoginViewModel with ChangeNotifier{
       notifyListeners();
       showSimpleErrorDialog(context, error['error']);
 
-    }else if (result is Success){
-      Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.baseview, (route) => false);
+    }else if (result is User){
       isloading=false;
       notifyListeners();
+      if(result.is_verified==true||result.is_admin==true){
+        Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.baseview, (route) => false);
+      }else{
+        showSuccessDialog(context, 'Your account is not verified from admin yet, we will let you know after verification');
+      }
+
     }
 
 

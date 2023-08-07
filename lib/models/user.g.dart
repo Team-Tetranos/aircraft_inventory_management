@@ -23,19 +23,20 @@ class UserAdapter extends TypeAdapter<User> {
       email: fields[3] as String?,
       phone: fields[4] as String?,
       is_admin: fields[5] as bool?,
-      aircrafts: (fields[6] as List?)?.cast<String>(),
-      profile_image: fields[7] as String?,
-      created_at: fields[8] as String?,
-      updated_at: fields[9] as String?,
-      refresh: fields[10] as String?,
-      access: fields[11] as String?,
+      profile_image: fields[6] as String?,
+      created_at: fields[7] as String?,
+      updated_at: fields[8] as String?,
+      refresh: fields[9] as String?,
+      access: fields[10] as String?,
+      is_verified: fields[11] as bool?,
+      permitted_aircrafts: (fields[12] as List?)?.cast<Category>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, User obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -49,17 +50,19 @@ class UserAdapter extends TypeAdapter<User> {
       ..writeByte(5)
       ..write(obj.is_admin)
       ..writeByte(6)
-      ..write(obj.aircrafts)
-      ..writeByte(7)
       ..write(obj.profile_image)
-      ..writeByte(8)
+      ..writeByte(7)
       ..write(obj.created_at)
-      ..writeByte(9)
+      ..writeByte(8)
       ..write(obj.updated_at)
-      ..writeByte(10)
+      ..writeByte(9)
       ..write(obj.refresh)
+      ..writeByte(10)
+      ..write(obj.access)
       ..writeByte(11)
-      ..write(obj.access);
+      ..write(obj.is_verified)
+      ..writeByte(12)
+      ..write(obj.permitted_aircrafts);
   }
 
   @override
@@ -84,14 +87,15 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       email: json['email'] as String?,
       phone: json['phone'] as String?,
       is_admin: json['is_admin'] as bool?,
-      aircrafts: (json['aircrafts'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
       profile_image: json['profile_image'] as String?,
       created_at: json['created_at'] as String?,
       updated_at: json['updated_at'] as String?,
       refresh: json['refresh'] as String?,
       access: json['access'] as String?,
+      is_verified: json['is_verified'] as bool?,
+      permitted_aircrafts: (json['permitted_aircrafts'] as List<dynamic>?)
+          ?.map((e) => Category.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
@@ -101,10 +105,11 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'email': instance.email,
       'phone': instance.phone,
       'is_admin': instance.is_admin,
-      'aircrafts': instance.aircrafts,
       'profile_image': instance.profile_image,
       'created_at': instance.created_at,
       'updated_at': instance.updated_at,
       'refresh': instance.refresh,
       'access': instance.access,
+      'is_verified': instance.is_verified,
+      'permitted_aircrafts': instance.permitted_aircrafts,
     };

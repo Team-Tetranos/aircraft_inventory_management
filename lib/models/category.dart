@@ -1,64 +1,39 @@
-import 'dart:convert';
 
-class Category {
+import 'package:hive/hive.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+
+part 'category.g.dart';
+
+@HiveType(typeId: 1)
+@JsonSerializable()
+class Category extends HiveObject{
+  @HiveField(0)
+  String? id;
+  @HiveField(1)
+  String? name;
+  @HiveField(2)
+  String? aircraft_id;
+  @HiveField(3)
+  String? image;
+  @HiveField(4)
+  String? created_at;
+  @HiveField(5)
+  String? updated_at;
+
   Category({
-      String? id, 
-      String? name, 
-      String? aircraftId, 
-      String? image, 
-      String? createdAt,
-      String? updatedAt,}){
-    _id = id;
-    _name = name;
-    _aircraftId = aircraftId;
-    _image = image;
-    _createdAt = createdAt;
-    _updatedAt = updatedAt;
-}
+    this.id,
+  this.name,
+  this.aircraft_id,
+  this.image,
+  this.created_at,
+  this.updated_at
+});
 
-  Category.fromJson(dynamic json) {
-    _id = json['id'];
-    _name = json['name'];
-    _aircraftId = json['aircraft_id'];
-    _image = json['image'];
-    _createdAt = json['created_at'];
-    _updatedAt = json['updated_at'];
-  }
-  String? _id;
-  String? _name;
-  String? _aircraftId;
-  String? _image;
-  String? _createdAt;
-  String? _updatedAt;
-Category copyWith({  String? id,
-  String? name,
-  String? aircraftId,
-  String? image,
-  String? createdAt,
-  String? updatedAt,
-}) => Category(  id: id ?? _id,
-  name: name ?? _name,
-  aircraftId: aircraftId ?? _aircraftId,
-  image: image ?? _image,
-  createdAt: createdAt ?? _createdAt,
-  updatedAt: updatedAt ?? _updatedAt,
-);
-  String? get id => _id;
-  String? get name => _name;
-  String? get aircraftId => _aircraftId;
-  String? get image => _image;
-  String? get createdAt => _createdAt;
-  String? get updatedAt => _updatedAt;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['id'] = _id;
-    map['name'] = _name;
-    map['aircraft_id'] = _aircraftId;
-    map['image'] = _image;
-    map['created_at'] = _createdAt;
-    map['updated_at'] = _updatedAt;
-    return map;
-  }
+  factory Category.fromJson(Map<String, dynamic> json) => _$CategoryFromJson(json);
+  Map<String, dynamic> toJson() => _$CategoryToJson(this);
 
 }
+
+
+

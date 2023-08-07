@@ -22,7 +22,7 @@ class AircraftRepository{
     if(image==null){
       var response = await apiService.postApiResponse(endPoints.base_url+endPoints.add_aircraft, data, token: true);
       if(response is Success){
-        Category category = Category.fromJson(response.data);
+        Category category = Category.fromJson(response.data as Map<String, dynamic>);
         result = category;
       }else if(response is Failure){
 
@@ -32,7 +32,7 @@ class AircraftRepository{
     }else{
       var response = await apiService.postWithFiles(endPoints.base_url+endPoints.add_aircraft, data, {'image':image}, token: true);
       if(response is Success){
-        Category category = Category.fromJson(response.data);
+        Category category = Category.fromJson(response.data as Map<String, dynamic>);
         result = category;
       }else if(response is Failure){
         result=response;
@@ -78,7 +78,7 @@ class AircraftRepository{
     }else{
       var response = await apiService.postWithFiles(endPoints.base_url+endPoints.add_aircraft, data, {'image':image}, token: true);
       if(response is Success){
-        Category category = Category.fromJson(response.data);
+        Category category = Category.fromJson(response.data as Map<String, dynamic>);
         result = category;
       }else if(response is Failure){
         result=response;

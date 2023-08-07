@@ -14,16 +14,28 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  LoginViewModel loginViewModel = LoginViewModel();
   @override
   Widget build(BuildContext context) {
-    return Consumer<LoginViewModel>(
-      builder: (context, lvm, _) {
-        return ResponsiveLayout(
-            desktopBody: MyLogInViewDesktop(),
-            tabletBody: MyLogInViewTablet(),
-            mobileBody: MyLogInViewDesktop()
-        );
-      }
+    return ChangeNotifierProvider.value(
+      value: loginViewModel,
+      child: Consumer<LoginViewModel>(
+        builder: (context, lvm, _) {
+          return ResponsiveLayout(
+              desktopBody: MyLogInViewDesktop(),
+              tabletBody: MyLogInViewTablet(),
+              mobileBody: MyLogInViewDesktop()
+          );
+        }
+      ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    print('Dispose is called');
+    loginViewModel.dispose();
+    super.dispose();
   }
 }

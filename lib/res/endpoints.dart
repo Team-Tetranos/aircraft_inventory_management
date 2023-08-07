@@ -12,4 +12,10 @@ class EndPoints{
     final String add_aircraft_item = 'aircraft/create-aircraft-item/';
     final String all_aircraft_item = 'aircraft/all-aircraft-item/';
 
+    //super admin staff
+    final String all_profile = 'profile/all-profile/';
+
+    final String profile_detail = 'profile/user-profile/';
+
+    final String verify_profile = 'profile/verify-profile/';
 }
