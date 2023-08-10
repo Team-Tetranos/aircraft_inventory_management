@@ -91,17 +91,25 @@ class _DashboardViewDesktop2State extends State<DashboardViewDesktop2> {
                                       color: Colors.black.withOpacity(.68),
                                       borderRadius: BorderRadius.only(bottomRight: Radius.circular(10),bottomLeft: Radius.circular(10))
                                     ),
-                                    child:Center(
-                                      child: Flexible(
-                                          child: Text("${aircraft.name}",
-                                            style: TextStyle(
-                                                color:Colors.white,
-                                                fontWeight: FontWeight.w800,
-                                                fontSize: 16,
-                                                fontFamily: "Inter"
-                                            ),),
-                                        ),
+                                    child:Flex(
+                                      direction: Axis.vertical,
+                                      children: [
+                                        Flexible(
+                                        
+                                            child: Center(
+                                              child: Text("${aircraft.name}",
+                                                style: TextStyle(
+                                                    color:Colors.white,
+                                                    fontWeight: FontWeight.w800,
+                                                    fontSize: 16,
+                                                    fontFamily: "Inter"
+                                                ),),
+                                            ),
+                                          ),
+                                      ]
+
                                     ),
+
 
                                   ),
                                 ),
