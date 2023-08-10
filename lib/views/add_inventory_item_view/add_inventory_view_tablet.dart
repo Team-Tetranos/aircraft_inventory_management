@@ -200,7 +200,7 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
                                           ),
                                           child: Center(
                                             child: TextField(
-                                              controller: ivm.aircraftforfirstpageAddInventory,
+                                              controller: ivm.aircraftforfirstpageAddInventory=TextEditingController(text: ivm.acft!.name),
                                               decoration: InputDecoration(
                                                 hintText: '',
                                                 border: InputBorder
