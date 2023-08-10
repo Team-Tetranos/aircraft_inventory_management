@@ -1,3 +1,5 @@
+import 'package:aircraft_inventory_management/views/add_inventory_item_view/page_view.dart';
+import 'package:aircraft_inventory_management/views/add_inventory_item_view/paginated_table_class.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,276 +17,311 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
   Widget build(BuildContext context) {
     return Consumer<MyProviderForInventoryView>(
         builder: (context, ivm, _) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 52,
-                  //width: MediaQuery.of(context).size.width * .716,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      children: [
-                        Icon(Icons.add_box_outlined),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text("New Item"),
-                      ],
-                    ),
-                  ),
-                ),
 
-                Container(
-                  height: 747,
-                  //width: MediaQuery.of(context).size.width * .716,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          return Padding(
+            padding: const EdgeInsets.only(left:25,top: 20,right: 25),
+            child: Container(
+              height:810,
+              //width: MediaQuery.of(context).size.width * .716,
+              child: PageViewWidget(
+                //controller: ivm.pagecontroller,
+                firstWidget: Container(
+                    height: 747,
+                    width: MediaQuery.of(context).size.width * .716,
+                    color: Colors.white,
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                            flex: 8,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  flex: 3,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children:[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10,top: 40),
+                            child: Container(
+                              height: 350,
+
+                              width: 435,
+                              //color: Colors.blue,
+                              child: Column(
+                                children: [
+                                  Row(
                                     children: [
-                                      Text(
-                                        "Part No",
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                      SizedBox(
-                                        height: 40,
-                                      ),
-                                      Text(
-                                        "Nomenclature",
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                      SizedBox(
-                                        height: 40,
-                                      ),
-                                      Text(
-                                        "A/U",
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                      SizedBox(
-                                        height: 40,
-                                      ),
+                                      Container(
+                                          height: 26,
+                                          width: 24,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(Radius.circular(5)),
+                                              border: Border.all(width: 1,color: Color(0xFF696969))
+                                          ),
+                                          child:  Icon(Icons.add,color: Color(0xFF696969),
+                                          )),
+                                      SizedBox(width: 14,),
+                                      Text("Add New Item",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 20,
+                                            fontFamily: "Inter",
+                                            color: Color(0xFF696969)
+                                        ),)
+                                    ],
+                                  ),
+
+                                  SizedBox(height: 40,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
                                       Text(
                                         "Card No",
-                                        style: TextStyle(color: Colors.black),
+                                        style: TextStyle(color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                            fontFamily: "Inter"),
                                       ),
-                                      SizedBox(
-                                        height: 40,
+
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Container(
+                                          // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                          height: 30.0,
+                                          width: 300,// Set the desired height for the TextField
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.grey),
+                                          ),
+                                          child: Center(
+                                            child: TextField(
+                                              controller: ivm.cardnumberforfirstpageAddInventory,
+                                              decoration: InputDecoration(
+                                                hintText: '',
+                                                border: InputBorder
+                                                    .none, // Remove the default TextField border
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
+
+                                    ],),
+                                  SizedBox(height: 20,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
                                       Text(
-                                        "Quantity",
-                                        style: TextStyle(color: Colors.black),
+                                        "Date",
+                                        style: TextStyle(color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                            fontFamily: "Inter"),
                                       ),
-                                      SizedBox(
-                                        height: 40,
+
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Container(
+                                          // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                          height: 30.0,
+                                          width: 300,// Set the desired height for the TextField
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.grey),
+                                          ),
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                            height: 30.0, // Set the desired height for the TextField
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: Colors.grey),
+                                            ),
+                                            child: TextField(
+                                              controller: ivm.dateforfirstpageAddInventory,
+                                              onTap: (){
+                                                ivm.pickDate(context);
+                                              },
+                                              decoration: InputDecoration(
+                                                hintText: 'Tap to pick date',
+                                                border: InputBorder
+                                                    .none, // Remove the default TextField border
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
+
+                                    ],),
+                                  SizedBox(height: 20,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
                                       Text(
-                                        "Received Di/Org",
-                                        style: TextStyle(color: Colors.black),
+                                        "Stock No",
+                                        style: TextStyle(color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                            fontFamily: "Inter"),
                                       ),
-                                      SizedBox(
-                                        height: 40,
+
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Container(
+                                          // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                          height: 30.0,
+                                          width: 300,// Set the desired height for the TextField
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.grey),
+                                          ),
+                                          child: Center(
+                                            child: TextField(
+                                              controller: ivm.stocknumberforfirstpageAddInventory,
+                                              decoration: InputDecoration(
+                                                hintText: '',
+                                                border: InputBorder
+                                                    .none, // Remove the default TextField border
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
+
+                                    ],),
+                                  SizedBox(height: 20,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
                                       Text(
-                                        "Manufacturer",
-                                        style: TextStyle(color: Colors.black),
+                                        "Aircraft",
+                                        style: TextStyle(color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                            fontFamily: "Inter"),
                                       ),
-                                      SizedBox(
-                                        height: 40,
+
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Container(
+                                          // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                          height: 30.0,
+                                          width: 300,// Set the desired height for the TextField
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.grey),
+                                          ),
+                                          child: Center(
+                                            child: TextField(
+                                              controller: ivm.aircraftforfirstpageAddInventory,
+                                              decoration: InputDecoration(
+                                                hintText: '',
+                                                border: InputBorder
+                                                    .none, // Remove the default TextField border
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
+
+                                    ],),
+                                  SizedBox(height: 20,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
                                       Text(
-                                        "Expiry Date",
-                                        style: TextStyle(color: Colors.black),
+                                        "Nomenclature",
+                                        style: TextStyle(color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                            fontFamily: "Inter"),
                                       ),
-                                      SizedBox(
-                                        height: 40,
+
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Container(
+                                          // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                          height: 30.0,
+                                          width: 300,// Set the desired height for the TextField
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.grey),
+                                          ),
+                                          child: Center(
+                                            child: TextField(
+                                              controller: ivm.nomenclatureforfirstpageAddInventory,
+                                              decoration: InputDecoration(
+                                                hintText: '',
+                                                border: InputBorder
+                                                    .none, // Remove the default TextField border
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                      Text(
-                                        "Expenditure",
-                                        style: TextStyle(color: Colors.black),
+
+                                    ],),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 100),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 150,
+                                  width: 150,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black54
                                       ),
+                                      shape: BoxShape.rectangle
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 15
+                                        ),
+                                        child: Icon(Icons.camera_rounded),
+                                      ),
+                                      Text("Drag Image here"),
+                                      Text("or"),
+                                      Text("Browse Image",style: TextStyle(
+                                          color: Color(0xff448DF2)
+                                      ),),
                                     ],
                                   ),
                                 ),
-                                Expanded(
-                                  flex: 7,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                SizedBox(height: 50,),
+                                Container(
+                                  height: 100,
+                                  width: MediaQuery.of(context).size.width*0.3,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                        height: 30.0, // Set the desired height for the TextField
                                         decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.grey),
+                                            border: Border.all(
+                                                color: Colors.grey
+                                            ),
+                                            borderRadius: BorderRadius.circular(5)
                                         ),
-                                        child: TextField(
-                                          controller: ivm.partNo,
-                                          decoration: InputDecoration(
-                                            hintText: '',
-                                            border: InputBorder
-                                                .none, // Remove the default TextField border
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10,
+                                              horizontal: 20
                                           ),
+                                          child: Text('Cancel'),
                                         ),
                                       ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                        height: 30.0, // Set the desired height for the TextField
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.grey),
-                                        ),
-                                        child: TextField(
-                                          controller: ivm.nomenclature,
-                                          decoration: InputDecoration(
-                                            hintText: '',
-                                            border: InputBorder
-                                                .none, // Remove the default TextField border
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                        height: 30.0, // Set the desired height for the TextField
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.grey),
-                                        ),
-                                        child: TextField(
-                                          controller: ivm.astronomical_unit,
-                                          decoration: InputDecoration(
-                                            hintText: '',
+                                      GestureDetector(
+                                        onTap: (){
+                                          //ivm.addAircraftItem(context);
+                                          ivm.pagecontroller.animateToPage(1, duration: Duration(seconds: 1), curve: Curves.easeInOut);
 
-                                            border: InputBorder
-                                                .none, // Remove the default TextField border
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Color(0xff1366D9),
+                                              borderRadius: BorderRadius.circular(5)
                                           ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                        height: 30.0, // Set the desired height for the TextField
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.grey),
-                                        ),
-                                        child: TextField(
-                                          controller: ivm.card_no,
-                                          decoration: InputDecoration(
-                                            hintText: '',
-                                            border: InputBorder
-                                                .none, // Remove the default TextField border
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                        height: 30.0, // Set the desired height for the TextField
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.grey),
-                                        ),
-                                        child: TextField(
-                                          controller: ivm.quantity,
-                                          decoration: InputDecoration(
-                                            hintText: '',
-                                            border: InputBorder
-                                                .none, // Remove the default TextField border
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                        height: 30.0, // Set the desired height for the TextField
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.grey),
-                                        ),
-                                        child: TextField(
-                                          controller: ivm.received_di_org,
-                                          decoration: InputDecoration(
-                                            hintText: '',
-                                            border: InputBorder
-                                                .none, // Remove the default TextField border
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                        height: 30.0, // Set the desired height for the TextField
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.grey),
-                                        ),
-                                        child: TextField(
-                                          controller: ivm.manufacturer,
-                                          decoration: InputDecoration(
-                                            hintText: '',
-                                            border: InputBorder
-                                                .none, // Remove the default TextField border
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                        height: 30.0, // Set the desired height for the TextField
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.grey),
-                                        ),
-                                        child: TextField(
-                                          controller: ivm.expire,
-                                          onTap: (){
-                                            ivm.pickDate(context);
-                                          },
-                                          decoration: InputDecoration(
-                                            hintText: 'Tap to pick date',
-                                            border: InputBorder
-                                                .none, // Remove the default TextField border
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                        height: 30.0, // Set the desired height for the TextField
-                                        decoration: BoxDecoration(
-                                          border: Border.all(color: Colors.grey),
-                                        ),
-                                        child: TextField(
-                                          controller: ivm.expenditure,
-                                          decoration: InputDecoration(
-                                            hintText: '',
-                                            border: InputBorder
-                                                .none, // Remove the default TextField border
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 10,
+                                                horizontal: 20
+                                            ),
+                                            child: Text('Add Item',style: TextStyle(
+                                                color: Colors.white
+                                            ),),
                                           ),
                                         ),
                                       ),
@@ -292,191 +329,279 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
                                   ),
                                 ),
                               ],
-                            )),
-                        SizedBox(
-                          width: 10,
+                            ),
+                          )
+                        ]
+                    )
+                ),
+                secondWidget: Container(
+                  // height: 747,
+                  width: MediaQuery.of(context).size.width * .716,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 25,top: 20,),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+
+
+                      children: [
+                        DropdownButton<String>(
+                          value: ivm.dropvalue.toString(),
+                          icon: Icon(Icons.menu,color: Colors.black,),
+                          underline: Container(
+                            height: 2,
+                            color: Colors.black,
+                          ),
+                          style: TextStyle(
+                              color: Colors.black
+                          ),
+                          onChanged: (String?  value){
+                            ivm.dropdownbuttonvaluechange(value!);
+
+                          },
+                          items: [
+
+                            DropdownMenuItem<String>(
+                                value: "Received",
+                                child: Text("Received")),
+                            DropdownMenuItem<String>(
+                                value: "Expenditure",
+                                child: Text("Expenditure"))
+
+                          ],
                         ),
-                        Expanded(
-                            flex: 7,
-                            child: Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                        SizedBox(height: 50,),
+
+                        Row(
+
+                          children: [
+                            Container(
+                                width: 350,
+
+                                child: Column(
                                   children: [
-
-                                    SizedBox(height: 35,),
-
-                                    Container(
-                                      height: 150,
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.black54
-                                          ),
-                                          shape: BoxShape.rectangle
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 15
-                                            ),
-                                            child: Icon(Icons.camera_rounded),
-                                          ),
-                                          Text("Drag Image here"),
-                                          Text("or"),
-                                          Text("Browse Image",style: TextStyle(
-                                              color: Color(0xff448DF2)
-                                          ),),
-                                        ],
-                                      ),
-                                    ),
-
-                                    SizedBox(height: 175,),
-
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8
-                                      ),
-                                      child: Container(
-                                        height: 100,
-                                        width: MediaQuery.of(context).size.width*0.3,
-                                        child: Row(children: [
-                                          Expanded(
-                                              flex: 5,
-                                              child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    flex: 1,
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(
-                                                          "RMK",
-                                                          style: TextStyle(color: Colors.black),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 40,
-                                                        ),
-                                                        Text(
-                                                          "Aircraft",
-                                                          style: TextStyle(color: Colors.black),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Expanded(
-                                                    flex: 4,
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Container(
-                                                          padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                                          height: 30.0, // Set the desired height for the TextField
-                                                          decoration: BoxDecoration(
-                                                            border: Border.all(color: Colors.grey),
-                                                          ),
-                                                          child: TextField(
-                                                            controller: ivm.rmk,
-                                                            decoration: InputDecoration(
-                                                              hintText: '',
-                                                              border: InputBorder
-                                                                  .none, // Remove the default TextField border
-                                                            ),
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                          height: 30,
-                                                        ),
-                                                        Container(
-                                                          padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                                          height: 30.0, // Set the desired height for the TextField
-                                                          decoration: BoxDecoration(
-                                                            border: Border.all(color: Colors.grey),
-                                                          ),
-                                                          child: TextField(
-                                                            controller: ivm.aircraft,
-                                                            enabled: false,
-
-                                                            decoration: InputDecoration(
-                                                              labelText: ivm.newAircraftitemToadd.aircraft,
-                                                              border: InputBorder
-                                                                  .none, // Remove the default TextField border
-                                                            ),
-                                                          ),
-                                                        ),
-
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              )),
-                                        ],),
-                                      ),
-                                    ),
-
-                                    SizedBox(height: 50,),
-
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: Container(
-                                        height: 100,
-                                        width: MediaQuery.of(context).size.width*0.3,
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      color: Colors.grey
-                                                  ),
-                                                  borderRadius: BorderRadius.circular(5)
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.symmetric(
-                                                    vertical: 10,
-                                                    horizontal: 20
-                                                ),
-                                                child: Text('Cancel'),
-                                              ),
-                                            ),
-                                            GestureDetector(
-                                              onTap: (){
-                                                ivm.addAircraftItem(context);
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Color(0xff1366D9),
-                                                    borderRadius: BorderRadius.circular(5)
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.symmetric(
-                                                      vertical: 10,
-                                                      horizontal: 20
-                                                  ),
-                                                  child: Text('Add Item',style: TextStyle(
-                                                      color: Colors.white
-                                                  ),),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
+                                    SizedBox(height: 20,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Date",
+                                          style: TextStyle(color: Colors.black,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16,
+                                              fontFamily: "Inter"),
                                         ),
-                                      ),
-                                    )
 
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5),
+                                          child: Container(
+                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                            height: 30.0,
+                                            width: 250,// Set the desired height for the TextField
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: Colors.grey),
+                                            ),
+                                            child: Center(
+                                              child: TextField(
+                                                onTap: (){
+                                                  ivm.pickDate(context);
+                                                },
+                                                controller: ivm.dateforsecondpageAddInventory,
+                                                decoration: InputDecoration(
+                                                  hintText: '',
+                                                  border: InputBorder
+                                                      .none, // Remove the default TextField border
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],),
+                                    SizedBox(height: 20,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Quantity",
+                                          style: TextStyle(color: Colors.black,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16,
+                                              fontFamily: "Inter"),
+                                        ),
+
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5),
+                                          child: Container(
+                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                            height: 30.0,
+                                            width: 250,// Set the desired height for the TextField
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: Colors.grey),
+                                            ),
+                                            child: Center(
+                                              child: TextField(
+                                                controller: ivm.quantityforsecondpageAddInventory,
+                                                decoration: InputDecoration(
+                                                  hintText: '',
+                                                  border: InputBorder
+                                                      .none, // Remove the default TextField border
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],),
                                   ],
                                 )
-                              ],
-                            )),
-                      ],
-                    ),
+                            ),
+                            SizedBox(width: 60,),
+                            Container(
+                                width: 350,
+
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 20,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Voucher No",
+                                          style: TextStyle(color: Colors.black,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16,
+                                              fontFamily: "Inter"),
+                                        ),
+
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5),
+                                          child: Container(
+                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                            height: 30.0,
+                                            width: 250,// Set the desired height for the TextField
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: Colors.grey),
+                                            ),
+                                            child: Center(
+                                              child: TextField(
+                                                controller: ivm.vouchernumberforsecondpageAddInventory,
+                                                decoration: InputDecoration(
+                                                  hintText: '',
+                                                  border: InputBorder
+                                                      .none, // Remove the default TextField border
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],),
+                                    SizedBox(height: 20,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text("${ivm.dropvalue.toString()}",
+                                          style: TextStyle(color: Colors.black,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16,
+                                              fontFamily: "Inter"),
+                                        ),
+
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5),
+                                          child: Container(
+                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                            height: 30.0,
+                                            width: 250,// Set the desired height for the TextField
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: Colors.grey),
+                                            ),
+                                            child: Center(
+                                              child: TextField(
+                                                controller: ivm.dropvalue=="Received"?ivm.receivedforsecondpagAddInventory:ivm.expenditureforsecondpageAddInventory,
+                                                decoration: InputDecoration(
+                                                  hintText: '',
+                                                  border: InputBorder
+                                                      .none, // Remove the default TextField border
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],),
+                                  ],
+                                )
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 70,),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 25),
+                          child: Container(
+                            height: 500,
+
+                            child: SingleChildScrollView(
+
+                              child: Column(
+                                children: [
+                                  PaginatedDataTable(
+
+                                    columns: [
+                                      //DataColumn(label: SizedBox.shrink()),
+                                      const DataColumn(label: Text("Date",style: TextStyle(
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                          color: Color(0xFF797979)
+                                      ),),),  DataColumn(label: SizedBox.shrink()),
+                                      const DataColumn(label: Text("Quantity",style: TextStyle(
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                          color: Color(0xFF797979)
+                                      ),),),  DataColumn(label: SizedBox.shrink()),
+                                      const DataColumn(label: Text("Voucher No",style: TextStyle(
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                          color: Color(0xFF797979)
+                                      ),),),  DataColumn(label: SizedBox.shrink()),
+                                      const DataColumn(label: Text("Received",style: TextStyle(
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                          color: Color(0xFF797979)
+                                      ),),),  DataColumn(label: SizedBox.shrink()),
+                                      const DataColumn(label: Text("expenditure",style: TextStyle(
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                          color: Color(0xFF797979)
+                                      ),),),
+                                    ],
+                                    source: DataClass(),
+                                    rowsPerPage: 50,
+                                    columnSpacing: 60,
+
+
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+                      ],),
                   ),
-                )
-              ],
+
+
+                ),
+
+              ),
             ),
           );
+
         }
     );
   }

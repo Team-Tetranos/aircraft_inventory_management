@@ -33,6 +33,32 @@ class MyProviderForInventoryView with ChangeNotifier {
   TextEditingController expenditure = TextEditingController();
   TextEditingController rmk = TextEditingController();
   TextEditingController aircraft = TextEditingController();
+  TextEditingController stocknumber = TextEditingController();
+  final pagecontroller = PageController();
+
+
+  
+  //these variables are for AddInventory second page
+  String? dropvalue="Received";
+  TextEditingController dateforsecondpageAddInventory = TextEditingController();
+  TextEditingController vouchernumberforsecondpageAddInventory = TextEditingController();
+  TextEditingController quantityforsecondpageAddInventory = TextEditingController();
+  TextEditingController receivedforsecondpagAddInventory = TextEditingController();
+  TextEditingController expenditureforsecondpageAddInventory= TextEditingController();
+
+
+  //these variables are for AddInventory first page
+
+  TextEditingController cardnumberforfirstpageAddInventory =TextEditingController();
+  TextEditingController dateforfirstpageAddInventory = TextEditingController();
+  TextEditingController stocknumberforfirstpageAddInventory = TextEditingController();
+  late TextEditingController aircraftforfirstpageAddInventory;
+  TextEditingController nomenclatureforfirstpageAddInventory = TextEditingController();
+
+
+
+
+
 
   List<Aircraftitem> aircraftItemsForInventory = [];
   List<Aircraftitem> duplicateaircraftItemsForInventory = [];
@@ -54,6 +80,11 @@ class MyProviderForInventoryView with ChangeNotifier {
       print(e);
     }
     isLoading = false;
+    notifyListeners();
+  }
+
+  dropdownbuttonvaluechange(String val){
+    dropvalue=val;
     notifyListeners();
   }
 

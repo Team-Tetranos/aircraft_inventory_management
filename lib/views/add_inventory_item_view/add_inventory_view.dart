@@ -1,3 +1,6 @@
+import 'package:aircraft_inventory_management/views/add_category_view/add_category_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view_tablet.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_for_tablet.dart';
 import 'package:flutter/material.dart';
@@ -32,8 +35,8 @@ class _AddInventoryViewState extends State<AddInventoryView> {
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayout(
-        desktopBody: InventoryViewForDesktop(),
-        tabletBody: InventoryViewForTablet(),
+        desktopBody: AddInventoryViewForDesktop(),
+        tabletBody: AddInventoryViewForTablet(),
         mobileBody: MybaseViewDesktop()
     );
   }

@@ -10,6 +10,7 @@ import 'package:hive/hive.dart';
 import 'package:provider/provider.dart';
 
 import '../../res/constants.dart';
+import '../add_inventory_item_view/add_inventory_view.dart';
 import 'base_view_widget.dart';
 
 class Base_View_tablet extends StatefulWidget {
@@ -336,8 +337,8 @@ class _Base_View_tabletState extends State<Base_View_tablet> {
                           ),
                         ),
                      //Single_Item_Details_Tablet_View()
-                       //AddInventoryViewForTablet()
-                        AddCategoryForTablet()
+                       AddInventoryView()
+                       // AddCategoryForTablet()
 
 
 

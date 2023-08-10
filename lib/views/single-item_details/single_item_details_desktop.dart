@@ -88,212 +88,242 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                               SizedBox(height: 18,),
 
                               Container(
-                                width: MediaQuery.of(context).size.width*.2,
+
+                                width: 300,
+                                //MediaQuery.of(context).size.width*.2,
                                 child: Column(
                                   children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    Container(
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-                                      children: [
-                                        Text("Part No",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                        SizedBox(width: 100,),
+                                        children: [
+                                          Text("Part No",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
 
-                                        Text("${svm.aircraftitem.partNo}",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                      ],
+
+                                          Text("${svm.aircraftitem.partNo}",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+                                        ],
+                                      ),
+
+
                                     ),
                                     SizedBox(height: 32,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Card No",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                        SizedBox(width: 125,),
+                                    Container(
 
-                                        Text("${svm.aircraftitem.cardNo}",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                      ],
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Card No",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+
+
+                                          Text("${svm.aircraftitem.cardNo}",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(height: 32,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Quantity",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                        SizedBox(width: 75,),
+                                    Container(
 
-                                        Text("${svm.aircraftitem.quantity}",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                      ],
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Quantity",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+
+
+                                          Text("${svm.aircraftitem.quantity}",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(height: 32,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Expiry Date",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                        SizedBox(width: 118,),
+                                    Container(
+
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Expiry Date",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
 
 
-                                        Text("${stringToDate(svm.aircraftitem.expire)}",
 
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                      ],
+                                          Text("${stringToDate(svm.aircraftitem.expire)}",
+
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(height: 32,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Manufacturer",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                        SizedBox(width: 95,),
+                                    Container(
 
-                                        Text("${svm.aircraftitem.manufacturer}",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                      ],
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Manufacturer",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+
+
+                                          Text("${svm.aircraftitem.manufacturer}",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+                                        ],
+                                      ),
                                     ),
 
 
                                     SizedBox(height: 32,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("A/U",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                        SizedBox(width: 95,),
+                                    Container(
 
-                                        Text("${svm.aircraftitem.astronomicalUnit}",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                      ],
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("A/U",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+
+
+                                          Text("${svm.aircraftitem.astronomicalUnit}",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+                                        ],
+                                      ),
                                     ),
                                     SizedBox(height: 32,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Received",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                        SizedBox(width: 95,),
+                                    Container(
 
-                                        Text("${svm.aircraftitem.receivedDiOrg}",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                      ],
-                                    ),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Received",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
 
-                                    SizedBox(height: 32,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("Expenditure",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                        SizedBox(width: 95,),
 
-                                        Text("${svm.aircraftitem.expenditure}",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                      ],
+                                          Text("${svm.aircraftitem.receivedDiOrg}",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+                                        ],
+                                      ),
                                     ),
 
                                     SizedBox(height: 32,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text("RMK",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                        SizedBox(width: 95,),
+                                    Container(
 
-                                        Text("${svm.aircraftitem.rmk}",
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              fontFamily: "Inter",
-                                              color: Color(0xFF383E49)
-                                          ),),
-                                      ],
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("Expenditure",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+
+
+                                          Text("${svm.aircraftitem.expenditure}",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+                                        ],
+                                      ),
+                                    ),
+
+                                    SizedBox(height: 32,),
+                                    Container(
+
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text("RMK",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+
+
+                                          Text("${svm.aircraftitem.rmk}",
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w500,
+                                                fontFamily: "Inter",
+                                                color: Color(0xFF383E49)
+                                            ),),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),

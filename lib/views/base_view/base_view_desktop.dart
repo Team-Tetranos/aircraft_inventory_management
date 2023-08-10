@@ -33,6 +33,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
               return Scaffold(
                 backgroundColor: const Color(0xFFD9D9D9),
                 body: SingleChildScrollView(
+
                   child: Column(
                     children: [
                       Row(
@@ -348,7 +349,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           else if(mp.baseviewPage=='add_category')
                             AddCategoryView()
                           else if(mp.baseviewPage=='add_item')
-                            AddInventoryViewForDesktop()
+                            AddInventoryView()
 
                           else if(mp.baseviewPage=='product_overview')
                             Product_Overview_View()
