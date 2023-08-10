@@ -1,4 +1,5 @@
 import 'package:aircraft_inventory_management/view_models/inventory_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/stock_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,7 @@ class PageViewWidget extends StatefulWidget {
 class _PageViewWidgetState extends State<PageViewWidget> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<MyProviderForInventoryView>(
+    return Consumer<StockViewModel>(
       builder: (context,mpv,_) {
         return PageView(
         controller: mpv.pagecontroller,

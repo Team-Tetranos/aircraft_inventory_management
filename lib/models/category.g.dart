@@ -72,7 +72,7 @@ Map<String, dynamic> _$CategoryToJson(Category instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'aircraft_id': instance.aircraft_id,
-      //'image': instance.image,
+      'image': instance.image,
       'created_at': instance.created_at,
       'updated_at': instance.updated_at,
     };

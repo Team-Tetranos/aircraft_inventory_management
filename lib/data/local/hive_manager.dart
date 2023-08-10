@@ -1,4 +1,6 @@
 import 'package:aircraft_inventory_management/models/category.dart';
+import 'package:aircraft_inventory_management/models/stock_history.dart';
+import 'package:aircraft_inventory_management/models/stock_record.dart';
 import 'package:aircraft_inventory_management/res/constants.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -15,8 +17,12 @@ class HiveManager{
 
     Hive.registerAdapter(UserAdapter());
     Hive.registerAdapter(CategoryAdapter());
+    Hive.registerAdapter(StockHistoryAdapter());
+    Hive.registerAdapter(StockRecordAdapter());
     await Hive.openBox<User>(hiveConstants.userClassBoxName);
     await Hive.openBox<Category>(hiveConstants.aircraftBoxName);
+    await Hive.openBox<StockRecord>(hiveConstants.stockRecordBoxName);
+    await Hive.openBox<StockHistory>(hiveConstants.stockHistoryBoxName);
 
     print('hive setup finished');
   }
@@ -50,6 +56,20 @@ class HiveManager{
     }
     return Hive.box<User>(hiveConstants.userClassBoxName);
   }
+  Future<Box<StockRecord>> getStockRecordBox()async{
+    if(!Hive.isBoxOpen(hiveConstants.stockRecordBoxName)){
+      await Hive.openBox<StockRecord>(hiveConstants.stockRecordBoxName);
+    }
+    return Hive.box<StockRecord>(hiveConstants.stockRecordBoxName);
+  }
+  Future<Box<StockHistory>> getStockHistoryBox()async{
+    if(!Hive.isBoxOpen(hiveConstants.stockHistoryBoxName)){
+      await Hive.openBox<StockHistory>(hiveConstants.stockHistoryBoxName);
+    }
+    return Hive.box<StockHistory>(hiveConstants.stockHistoryBoxName);
+  }
+
+  //User operation
 
   Future<void> addUserData(User user)async{
     var userBox = await getUserBox();
@@ -60,8 +80,6 @@ class HiveManager{
       print('user data input exception');
       print(e);
     }
-
-
   }
 
   Future<User?> getUserData()async{
@@ -69,10 +87,52 @@ class HiveManager{
     return userBox.get(hiveConstants.myProfileKey);
   }
 
-  printKeys()async{
-    var userBox = await getUserBox();
-    var usd = userBox.get(hiveConstants.myProfileKey);
 
+  //StockRecord operation
+
+  Future<void> addStockRecordData(StockRecord stockRecord)async{
+    var stockRecordBox = await getStockRecordBox();
+    try{
+      await stockRecordBox.add(stockRecord);
+    }catch(e){
+      print('stock data input exception');
+      print(e);
+    }
+  }
+
+  Future<List<StockRecord>> getStockRecordData()async{
+    var stockRecordBox = await getStockRecordBox();
+    List<StockRecord> result = [];
+    result = stockRecordBox.values.map((e) => e).toList();
+    return result;
+  }
+
+
+  //stock history operation
+
+  Future<void> addStockHistoryData(StockHistory stockHistory)async{
+    var stockHistoryBox = await getStockHistoryBox();
+    try{
+      await stockHistoryBox.add(stockHistory);
+
+    }catch(e){
+      print('stock history input exception');
+      print(e);
+    }
+  }
+
+  Future<List<StockHistory>> getStockHistoryData()async{
+    var stockHistoryBox = await getStockHistoryBox();
+    List<StockHistory> result = [];
+    result = stockHistoryBox.values.map((e) => e).toList();
+    return result;
+  }
+
+  Future<List<StockHistory>> getStockHistoryDataByRecord(StockRecord stockRecord)async{
+    var stockHistoryBox = await getStockHistoryBox();
+    List<StockHistory> result = [];
+    result = stockHistoryBox.values.where((e) => e.stock_record==stockRecord).toList();
+    return result;
   }
 
 

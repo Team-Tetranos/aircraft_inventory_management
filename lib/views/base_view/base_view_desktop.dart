@@ -216,7 +216,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                             mp.changingOptions(context,'add_item');
 
                                           },
-                                          child: MyBaseViewContainer(text: "Add Item",
+                                          child: MyBaseViewContainer(text: "Add Stock",
                                               containercolor: mp.baseviewPage=="add_item"?Color(0xFFECECEC):Colors.transparent,
                                               icon: Icons.add_shopping_cart_outlined,
                                               textcolor: mp.baseviewPage=='add_item'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),

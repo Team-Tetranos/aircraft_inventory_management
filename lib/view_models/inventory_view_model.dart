@@ -1,5 +1,7 @@
+import 'package:aircraft_inventory_management/data/remote/responses/api_response.dart';
 import 'package:aircraft_inventory_management/models/aircraftitem.dart';
 import 'package:aircraft_inventory_management/models/category.dart' as ct;
+import 'package:aircraft_inventory_management/models/stock_record.dart';
 import 'package:aircraft_inventory_management/repositories/aircraft_repository.dart';
 import 'package:aircraft_inventory_management/utils/date_object_conversion.dart';
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
@@ -10,54 +12,17 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../data/local/hive_manager.dart';
 import '../dependency_injection/di.dart';
 import '../utils/dialogs/error_dialog.dart';
 import '../utils/dialogs/success_dialog.dart';
+import '../utils/snackbars/input_field_error_snackbar.dart';
 
 class MyProviderForInventoryView with ChangeNotifier {
   bool isLoading = true;
   AircraftRepository aircraftRepository = sl.get<AircraftRepository>();
+  HiveManager hiveManager = sl.get<HiveManager>();
   ct.Category? acft;
-  TextEditingController cardController = TextEditingController();
-  TextEditingController partController = TextEditingController();
-  TextEditingController quantityController = TextEditingController();
-
-  TextEditingController partNo = TextEditingController();
-  TextEditingController nomenclature = TextEditingController();
-  TextEditingController astronomical_unit = TextEditingController();
-  TextEditingController card_no = TextEditingController();
-  TextEditingController quantity = TextEditingController();
-  TextEditingController received_di_org = TextEditingController();
-  TextEditingController manufacturer = TextEditingController();
-  TextEditingController expire = TextEditingController();
-  TextEditingController expenditure = TextEditingController();
-  TextEditingController rmk = TextEditingController();
-  TextEditingController aircraft = TextEditingController();
-  TextEditingController stocknumber = TextEditingController();
-  final pagecontroller = PageController();
-
-
-  
-  //these variables are for AddInventory second page
-  String? dropvalue="Received";
-  TextEditingController dateforsecondpageAddInventory = TextEditingController();
-  TextEditingController vouchernumberforsecondpageAddInventory = TextEditingController();
-  TextEditingController quantityforsecondpageAddInventory = TextEditingController();
-  TextEditingController receivedforsecondpagAddInventory = TextEditingController();
-  TextEditingController expenditureforsecondpageAddInventory= TextEditingController();
-
-
-  //these variables are for AddInventory first page
-
-  TextEditingController cardnumberforfirstpageAddInventory =TextEditingController();
-  TextEditingController dateforfirstpageAddInventory = TextEditingController();
-  TextEditingController stocknumberforfirstpageAddInventory = TextEditingController();
-  late TextEditingController aircraftforfirstpageAddInventory;
-  TextEditingController nomenclatureforfirstpageAddInventory = TextEditingController();
-
-
-
-
 
 
   List<Aircraftitem> aircraftItemsForInventory = [];
@@ -74,7 +39,6 @@ class MyProviderForInventoryView with ChangeNotifier {
         acft = aircraft;
         aircraftItemsForInventory = items.where((element) => element.aircraft==aircraft.id).toList();
         duplicateaircraftItemsForInventory = aircraftItemsForInventory;
-
       }
     }catch(e){
       print(e);
@@ -83,10 +47,7 @@ class MyProviderForInventoryView with ChangeNotifier {
     notifyListeners();
   }
 
-  dropdownbuttonvaluechange(String val){
-    dropvalue=val;
-    notifyListeners();
-  }
+
 
   DateTime? pickedDate;
   String? aircraft_id;
@@ -101,74 +62,14 @@ class MyProviderForInventoryView with ChangeNotifier {
   Aircraftitem newAircraftitemToadd = Aircraftitem();
 
   initiateAircraftItem(ct.Category af){
-    aircraft.text = af.name!;
-    aircraft_id = af.id;
+    acft = af;
     notifyListeners();
   }
 
-  pickDate(BuildContext context) async{
-    DateTime? pd = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1990),
-        lastDate: DateTime(2090));
-    if(pd!=null){
-      expire.text = DateFormat('yyyy-MM-dd').format(pd);
-      notifyListeners();
-    }
-
-  }
 
 
-  addAircraftItem(BuildContext context)async{
 
-    Aircraftitem aircraftitem = Aircraftitem(
-      partNo: partNo.text.trim(),
-      nomenclature: nomenclature.text.trim(),
-      astronomicalUnit: astronomical_unit.text.trim(),
-      cardNo: card_no.text.trim(),
-      quantity: quantity.text.trim(),
-      receivedDiOrg: received_di_org.text.trim(),
-      manufacturer: manufacturer.text.trim(),
-      expire: expire.text.trim(),
-      expenditure: expenditure.text.trim(),
-      rmk: rmk.text.trim(),
-      aircraft: aircraft_id,
-    );
 
-    Object result = await aircraftRepository.addAircraftItem(aircraftitem);
-
-    print(result.runtimeType);
-    if(result is Aircraftitem){
-      showSuccessDialog(context, 'New Aircraft Item Created');
-      partNo.clear();
-      nomenclature.clear();
-      astronomical_unit.clear();
-      card_no.clear();
-      quantity.clear();
-      received_di_org.clear();
-      expenditure.clear();
-      expire.clear();
-      rmk.clear();
-      manufacturer.clear();
-      await Provider.of<DashboardViewModel>(context, listen: false).fetchAllAircraftItems();
-      updateAircraftItemsForInventory(context);
-      notifyListeners();
-    }else{
-      showSimpleErrorDialog(context, 'Server Error');
-    }
-  }
-
-  aircraftFiltering(String type, String s){
-    if(type=='part'){
-      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.partNo!.toLowerCase().contains(s.toLowerCase())).toList();
-    }else if(type=='card'){
-      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.cardNo!.toLowerCase().contains(s.toLowerCase())).toList();
-    }else if(type=='quantity'){
-      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => element.quantity!.toLowerCase().contains(s.toLowerCase())).toList();
-    }
-    notifyListeners();
-  }
 
   void selectExpireDateRange(BuildContext context) async{
     final DateTimeRange? picked = await showDateRangePicker(
@@ -200,6 +101,9 @@ class MyProviderForInventoryView with ChangeNotifier {
     Provider.of<BaseViewModel>(context, listen: false).changingOptions(context, 'item_details');
     Provider.of<BaseViewModel>(context, listen: false).updatePickedAircraftItem(context, aircraftItemsForInventory[index], 'item_details');
   }
+
+
+
 
 
 

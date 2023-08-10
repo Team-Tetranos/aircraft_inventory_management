@@ -211,7 +211,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                                 ),
                                 child: TextField(
                                   onChanged: (s){
-                                    mp.aircraftFiltering('part', s);
+                                    //mp.aircraftFiltering('part', s);
                                   },
                                   decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
@@ -238,7 +238,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                                 ),
                                 child: TextField(
                                   onChanged: (s){
-                                    mp.aircraftFiltering('card', s);
+                                    //mp.aircraftFiltering('card', s);
                                   },
                                   decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
@@ -265,7 +265,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                                 ),
                                 child: TextField(
                                   onChanged: (s){
-                                    mp.aircraftFiltering('quantity', s);
+                                    //mp.aircraftFiltering('quantity', s);
                                   },
                                   decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),

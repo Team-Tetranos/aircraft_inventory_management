@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:aircraft_inventory_management/data/remote/responses/api_response.dart';
 import 'package:aircraft_inventory_management/models/aircraftitem.dart';
 import 'package:aircraft_inventory_management/models/category.dart';
+import 'package:aircraft_inventory_management/models/stock_record.dart';
 
 import '../data/remote/service/base_api_service.dart';
 import '../data/remote/service/network_api_service.dart';
@@ -105,5 +106,31 @@ class AircraftRepository{
     return result;
   }
 
+
+  Future<Object> createStockRecord(Map<String, dynamic> data, {File? image})async{
+
+    Object result = Failure(code: 400, error: {}, key: '');
+    if(image==null){
+      var response = await apiService.postApiResponse(endPoints.base_url+endPoints.create_stock_record, data, token: true);
+      if(response is Success){
+        StockRecord stockRecord = StockRecord.fromJson(response.data as Map<String, dynamic>);
+        result = stockRecord;
+      }else if(response is Failure){
+
+        result=response;
+      }
+
+    }else{
+      var response = await apiService.postWithFiles(endPoints.base_url+endPoints.create_stock_record, data, {'image':image}, token: true);
+      if(response is Success){
+        StockRecord stockRecord = StockRecord.fromJson(response.data as Map<String, dynamic>);
+        result = stockRecord;
+      }else if(response is Failure){
+        result=response;
+      }
+    }
+    return result;
+
+  }
 
 }

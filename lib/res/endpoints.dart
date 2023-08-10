@@ -1,6 +1,6 @@
 class EndPoints{
-    //final String base_url = 'http://127.0.0.1:8000/api/';
-    final String base_url = 'https://tetranos.com/api/';
+    final String base_url = 'http://127.0.0.1:8000/api/';
+    //final String base_url = 'https://tetranos.com/api/';
     final String image_base_url = 'https://tetranos.com';
     final String login = 'user/login/';
     final String signup = 'user/register/';
@@ -18,4 +18,7 @@ class EndPoints{
     final String profile_detail = 'profile/user-profile/';
 
     final String verify_profile = 'profile/verify-profile/';
+
+    //stock record
+    final String create_stock_record = 'stock-record/create-stock-records/';
 }

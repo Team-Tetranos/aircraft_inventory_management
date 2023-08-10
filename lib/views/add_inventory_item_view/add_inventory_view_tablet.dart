@@ -1,3 +1,4 @@
+import 'package:aircraft_inventory_management/view_models/stock_view_model.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/page_view.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/paginated_table_class.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class AddInventoryViewForTablet extends StatefulWidget {
 class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<MyProviderForInventoryView>(
+    return Consumer<StockViewModel>(
         builder: (context, ivm, _) {
 
           return Padding(
@@ -345,31 +346,8 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
 
 
                       children: [
-                        DropdownButton<String>(
-                          value: ivm.dropvalue.toString(),
-                          icon: Icon(Icons.menu,color: Colors.black,),
-                          underline: Container(
-                            height: 2,
-                            color: Colors.black,
-                          ),
-                          style: TextStyle(
-                              color: Colors.black
-                          ),
-                          onChanged: (String?  value){
-                            ivm.dropdownbuttonvaluechange(value!);
+                        Text('Add Stock History'),
 
-                          },
-                          items: [
-
-                            DropdownMenuItem<String>(
-                                value: "Received",
-                                child: Text("Received")),
-                            DropdownMenuItem<String>(
-                                value: "Expenditure",
-                                child: Text("Expenditure"))
-
-                          ],
-                        ),
                         SizedBox(height: 50,),
 
                         Row(
@@ -404,7 +382,7 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
                                             child: Center(
                                               child: TextField(
                                                 onTap: (){
-                                                  ivm.pickDate(context);
+                                                  ivm.pickDateForHistory(context);
                                                 },
                                                 controller: ivm.dateforsecondpageAddInventory,
                                                 decoration: InputDecoration(
@@ -466,7 +444,7 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
+                                        const Text(
                                           "Voucher No",
                                           style: TextStyle(color: Colors.black,
                                               fontWeight: FontWeight.w500,
@@ -486,7 +464,7 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
                                             child: Center(
                                               child: TextField(
                                                 controller: ivm.vouchernumberforsecondpageAddInventory,
-                                                decoration: InputDecoration(
+                                                decoration: const InputDecoration(
                                                   hintText: '',
                                                   border: InputBorder
                                                       .none, // Remove the default TextField border
@@ -501,8 +479,8 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("${ivm.dropvalue.toString()}",
-                                          style: TextStyle(color: Colors.black,
+                                        Text(ivm.selectedHistoryStatus.toString(),
+                                          style: const TextStyle(color: Colors.black,
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16,
                                               fontFamily: "Inter"),
@@ -518,13 +496,20 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
                                               border: Border.all(color: Colors.grey),
                                             ),
                                             child: Center(
-                                              child: TextField(
-                                                controller: ivm.dropvalue=="Received"?ivm.receivedforsecondpagAddInventory:ivm.expenditureforsecondpageAddInventory,
-                                                decoration: InputDecoration(
-                                                  hintText: '',
-                                                  border: InputBorder
-                                                      .none, // Remove the default TextField border
+                                              child: DropdownButton<String>(
+                                                value: ivm.selectedHistoryStatus,
+
+
+                                                style: const TextStyle(
+                                                    color: Colors.black
                                                 ),
+                                                onChanged: (String?  value){
+                                                  ivm.updateSelectedHistoryStatus(value!);
+                                                },
+                                                items: ivm.historyStatus.map((e) => DropdownMenuItem<String>(
+                                                    value: e,
+                                                    child: Text(e)
+                                                )).toList(),
                                               ),
                                             ),
                                           ),
@@ -536,7 +521,7 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
                             )
                           ],
                         ),
-                        SizedBox(height: 70,),
+                        const SizedBox(height: 70,),
                         Padding(
                           padding: const EdgeInsets.only(right: 25),
                           child: Container(

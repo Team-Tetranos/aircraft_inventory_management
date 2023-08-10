@@ -1,3 +1,4 @@
+import 'package:aircraft_inventory_management/view_models/stock_view_model.dart';
 import 'package:aircraft_inventory_management/views/add_category_view/add_category_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view_tablet.dart';
@@ -25,7 +26,8 @@ class _AddInventoryViewState extends State<AddInventoryView> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       try{
         Category ct = Provider.of<BaseViewModel>(context, listen: false).pickedAircraft!;
-        Provider.of<MyProviderForInventoryView>(context, listen: false).initiateAircraftItem(ct);
+        Provider.of<StockViewModel>(context, listen: false).initiateAircraftItem(ct);
+        Provider.of<StockViewModel>(context, listen: false).initiateStockRecord(null);
       }catch(e){
         print(e);
       }

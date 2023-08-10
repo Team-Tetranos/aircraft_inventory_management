@@ -1,6 +1,7 @@
 
 import 'package:aircraft_inventory_management/models/category.dart';
 import 'package:aircraft_inventory_management/view_models/inventory_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/stock_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/page_view.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/paginated_table_class.dart';
@@ -16,35 +17,10 @@ class AddInventoryViewForDesktop extends StatefulWidget {
 
 class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop> {
 
-  @override
-  /*void initState() {
-    // TODO: implement initState
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<MyProviderForInventoryView>(context, listen: false).updateAircraftItemsForInventory(context);
-    });
-    super.initState();
-  }
-*/
-
-/*  @override
-  void initState() {
-    // TODO: implement initState
-    *//*WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      try{
-        Category ct = Provider.of<BaseViewModel>(context, listen: false).pickedAircraft!;
-        Provider.of<MyProviderForInventoryView>(context, listen: false).initiateAircraftItem(ct);
-      }catch(e){
-        print(e);
-      }
-    });*//*
-
-
-    super.initState();
-  }*/
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MyProviderForInventoryView>(
+    return Consumer<StockViewModel>(
       builder: (context, ivm, _) {
 
         return Padding(
@@ -82,7 +58,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       child:  Icon(Icons.add,color: Color(0xFF696969),
                                       )),
                                   SizedBox(width: 14,),
-                                  Text("Add New Item",
+                                  Text("Add New Stock",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 20,
@@ -228,7 +204,8 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       ),
                                       child: Center(
                                         child: TextField(
-                                          controller: ivm.aircraftforfirstpageAddInventory=TextEditingController(text: ivm.acft!.name),
+                                          enabled: false,
+                                          controller: ivm.aircraftforfirstpageAddInventory,
                                           decoration: InputDecoration(
                                             hintText: '',
                                             border: InputBorder
@@ -333,9 +310,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                   ),
                                   GestureDetector(
                                     onTap: (){
-                                      //ivm.addAircraftItem(context);
-                                      //ivm.pagecontroller.nextPage(duration: Duration(seconds: 1), curve: Curves.easeInOut);
-                                      ivm.pagecontroller.animateToPage(1, duration: Duration(seconds: 1), curve:Curves.easeInOut);
+                                      ivm.create_stock_record(context);
 
                                     },
                                     child: Container(
@@ -372,9 +347,9 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
 
-
                       children: [
-                        DropdownButton<String>(
+                        Text('Add Stock History'),
+                        /*DropdownButton<String>(
                           value: ivm.dropvalue.toString(),
                           icon: Icon(Icons.menu,color: Colors.black,),
                           underline: Container(
@@ -386,10 +361,8 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                           ),
                           onChanged: (String?  value){
                             ivm.dropdownbuttonvaluechange(value!);
-
                           },
                           items: [
-
                             DropdownMenuItem<String>(
                                 value: "Received",
                                 child: Text("Received")),
@@ -398,7 +371,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                 child: Text("Expenditure"))
 
                           ],
-                        ),
+                        ),*/
                         SizedBox(height: 50,),
 
                         Row(
@@ -433,11 +406,11 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                             child: Center(
                                               child: TextField(
                                                 onTap: (){
-                                                  ivm.pickDate(context);
+                                                  ivm.pickDateForHistory(context);
                                                 },
                                                 controller: ivm.dateforsecondpageAddInventory,
                                                 decoration: InputDecoration(
-                                                  hintText: '',
+                                                  hintText: 'Tap to input date',
                                                   border: InputBorder
                                                       .none, // Remove the default TextField border
                                                 ),
@@ -530,7 +503,59 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text("${ivm.dropvalue.toString()}",
+                                        Text(ivm.selectedHistoryStatus.toString(),
+                                          style: TextStyle(color: Colors.black,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16,
+                                              fontFamily: "Inter"),
+                                        ),
+
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5),
+                                          child: Container(
+                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                            height: 30.0,
+                                            width: 250,// Set the desired height for the TextField
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: Colors.grey),
+                                            ),
+                                            child: Center(
+                                              child: DropdownButton<String>(
+                                                value: ivm.selectedHistoryStatus,
+
+                                                
+                                                style: TextStyle(
+                                                    color: Colors.black
+                                                ),
+                                                onChanged: (String?  value){
+                                                  ivm.updateSelectedHistoryStatus(value!);
+                                                },
+                                                items: ivm.historyStatus.map((e) => DropdownMenuItem<String>(
+                                                  value: e,
+                                                    child: Text(e)
+                                                )).toList(),
+                                              )
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],),
+                                  ],
+                                )
+                            ),
+
+                            SizedBox(width: 60,),
+                            Container(
+                                width: 350,
+
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 20,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Voucher No",
                                           style: TextStyle(color: Colors.black,
                                               fontWeight: FontWeight.w500,
                                               fontSize: 16,
@@ -548,7 +573,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                             ),
                                             child: Center(
                                               child: TextField(
-                                                controller: ivm.dropvalue=="Received"?ivm.receivedforsecondpagAddInventory:ivm.expenditureforsecondpageAddInventory,
+                                                controller: ivm.vouchernumberforsecondpageAddInventory,
                                                 decoration: InputDecoration(
                                                   hintText: '',
                                                   border: InputBorder
@@ -560,9 +585,51 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                         ),
 
                                       ],),
+                                    SizedBox(height: 20,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(ivm.selectedHistoryStatus.toString(),
+                                          style: TextStyle(color: Colors.black,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 16,
+                                              fontFamily: "Inter"),
+                                        ),
+
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 5),
+                                          child: Container(
+                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                            height: 30.0,
+                                            width: 250,// Set the desired height for the TextField
+                                            decoration: BoxDecoration(
+                                              border: Border.all(color: Colors.grey),
+                                            ),
+                                            child: Center(
+                                                child: DropdownButton<String>(
+                                                  value: ivm.selectedHistoryStatus,
+
+
+                                                  style: TextStyle(
+                                                      color: Colors.black
+                                                  ),
+                                                  onChanged: (String?  value){
+                                                    ivm.updateSelectedHistoryStatus(value!);
+                                                  },
+                                                  items: ivm.historyStatus.map((e) => DropdownMenuItem<String>(
+                                                      value: e,
+                                                      child: Text(e)
+                                                  )).toList(),
+                                                )
+                                            ),
+                                          ),
+                                        ),
+
+                                      ],),
                                   ],
                                 )
-                            )
+                            ),
+
                           ],
                         ),
                         SizedBox(height: 70,),

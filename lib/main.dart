@@ -12,6 +12,7 @@ import 'package:aircraft_inventory_management/view_models/blank_view_model.dart'
 import 'package:aircraft_inventory_management/view_models/inventory_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/otp_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/single_item_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/stock_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/forgot_password_view_model.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=>DashboardViewModel()),
         ChangeNotifierProvider(create: (_)=>SingleItemViewModel()),
         ChangeNotifierProvider(create: (_)=>ManageStoreViewModel()),
+        ChangeNotifierProvider(create: (_)=>StockViewModel()),
 
 
       ],
