@@ -1,5 +1,6 @@
 import 'package:aircraft_inventory_management/res/responsive_layout.dart';
 import 'package:aircraft_inventory_management/views/signup_view/signup_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/signup_view/signup_view_tablet.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,9 +25,9 @@ class _SignUpViewState extends State<SignUpView> {
       child: Consumer<SignupViewModel>(
         builder: (context, svm, _) {
           return ResponsiveLayout(
-              desktopBody: MySignUpViewDesktop(),
-              tabletBody: MySignUpViewDesktop(),
-              mobileBody: MySignUpViewDesktop()
+              desktopBody: SignUpViewDesktop(),
+              tabletBody: SignUpViewTablet(),
+              mobileBody: SignUpViewDesktop()
           );
         }
       ),
