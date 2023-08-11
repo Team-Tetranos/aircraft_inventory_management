@@ -191,7 +191,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Text("Expiry Date",
+                                          Text("Issued At",
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w500,
@@ -199,10 +199,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                                 color: Color(0xFF383E49)
                                             ),),
 
-
-
-                                          Text("{stringToDate(svm.aircraftitem.expire)}",
-
+                                          Text("${stringToDate(svm.stockRecord.date)}",
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w500,
@@ -252,31 +249,37 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                     ),
                                   ),
                                   SizedBox(width: 12,),
-                                  Container(
+                                  GestureDetector(
+                                    onTap: (){
+                                      Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(3);
 
-                                    height: 40,
-                                    width: 77,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                                        border: Border.all(width: 1,color: Color(0xFFD0D5DD))
-                                    ),
-                                    child:Padding(
-                                      padding: const EdgeInsets.only(left: 10,right: 10),
-                                      child: Row(
-                                        children: [
-                                          FaIcon(FontAwesomeIcons.pen,color: Color(0xFF5D6679),size: 13,),
-                                          SizedBox(width: 8,),
-                                          Text("Edit",
-                                              style: TextStyle(
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 14,
-                                                  color: Color(0xFF5D6679)
-                                              ),),
-                                        ],
+                                    },
+                                    child: Container(
+
+                                      height: 40,
+                                      width: 77,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(4)),
+                                          border: Border.all(width: 1,color: Color(0xFFD0D5DD))
                                       ),
-                                    ),
+                                      child:Padding(
+                                        padding: const EdgeInsets.only(left: 10,right: 10),
+                                        child: Row(
+                                          children: [
+                                            FaIcon(FontAwesomeIcons.pen,color: Color(0xFF5D6679),size: 13,),
+                                            SizedBox(width: 8,),
+                                            Text("Edit",
+                                                style: TextStyle(
+                                                    fontFamily: "Inter",
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: 14,
+                                                    color: Color(0xFF5D6679)
+                                                ),),
+                                          ],
+                                        ),
+                                      ),
 
+                                    ),
                                   ),
 
                                   SizedBox(width: 12,),

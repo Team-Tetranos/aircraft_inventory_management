@@ -3,6 +3,7 @@ import 'package:aircraft_inventory_management/views/inventory_view/inventory_vie
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_for_tablet.dart';
 import 'package:aircraft_inventory_management/views/single-item_details/single_item_details.dart';
 import 'package:aircraft_inventory_management/views/stock_history_view/stock_history_view.dart';
+import 'package:aircraft_inventory_management/views/stock_update_view/stock_update_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -33,31 +34,28 @@ class _InventoryViewState extends State<InventoryView> {
   @override
   Widget build(BuildContext context) {
     return Consumer<MyProviderForInventoryView>(
-        builder: (context, bvm, _)
-    {
-      return Container(
-        height: 1050,
-        width: MediaQuery.of(context).size.width*.75,
-        child: PageView(
-          physics: const NeverScrollableScrollPhysics(),
-          controller: bvm.pageController,
-          children: [
-            ResponsiveLayout(
-                desktopBody: InventoryViewForDesktop(),
-                tabletBody: InventoryViewForTablet(),
-                mobileBody: MybaseViewDesktop()
-            ),
-            SingleItemDetails(),
-            StockHistoryView(stockRecord: Provider
-                .of<MyProviderForInventoryView>(context, listen: false)
-                .selectedStockRecord,)
+        builder: (context, bvm, _) {
 
-          ],
-        ),
+              return Container(
+                height: 1050,
+                width: MediaQuery.of(context).size.width*.75,
+                child: PageView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: bvm.pageController,
+                  children: [
+                    ResponsiveLayout(
+                        desktopBody: InventoryViewForDesktop(),
+                        tabletBody: InventoryViewForTablet(),
+                        mobileBody: InventoryViewForTablet()
+                    ),
+                    SingleItemDetails(),
+                    StockHistoryView(stockRecord:Provider.of<MyProviderForInventoryView>(context, listen: false).selectedStockRecord,),
+                    StockUpdateView(),
+                  ],
+                ),
+              );
 
-
-      );
-    }
+        }
     );
   }
 }

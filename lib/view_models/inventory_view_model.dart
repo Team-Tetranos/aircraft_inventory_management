@@ -1,3 +1,4 @@
+
 import 'package:aircraft_inventory_management/data/remote/responses/api_response.dart';
 import 'package:aircraft_inventory_management/models/aircraftitem.dart';
 import 'package:aircraft_inventory_management/models/category.dart' as ct;
@@ -56,9 +57,14 @@ class MyProviderForInventoryView with ChangeNotifier {
     notifyListeners();
   }
 
+  int previouspage = 0;
 
   changePage(int pageNo){
-    pageController.animateToPage(pageNo, duration: Duration(seconds: 1), curve: Curves.linear);
+   // pageController.animateToPage(pageNo, duration: Duration(seconds: 1), curve: Curves.linear);
+    previouspage = pageController.page!.toInt();
+    notifyListeners();
+    pageController.jumpToPage(pageNo);
+
   }
 
 
@@ -141,6 +147,11 @@ class MyProviderForInventoryView with ChangeNotifier {
     }
     changeLoading(false);
 
+  }
+
+  void previousPage() {
+    pageController.jumpToPage(previouspage);
+    notifyListeners();
   }
 
 

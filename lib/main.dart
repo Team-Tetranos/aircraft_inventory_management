@@ -1,5 +1,6 @@
 import 'package:aircraft_inventory_management/data/local/hive_manager.dart';
 import 'package:aircraft_inventory_management/data/local/shared_preference_manager.dart';
+import 'package:aircraft_inventory_management/res/constants.dart';
 import 'package:aircraft_inventory_management/res/custom_scroll_behavior.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/utils/routes/routes.dart';
@@ -40,9 +41,27 @@ Future<void> deleteHiveDatabase() async {
   }
 }
 
+
+Future<void> deleteHiveBoxes() async {
+  try {
+    HiveConstants hiveConstants = HiveConstants();
+    // Close all open Hive boxes
+    //await Hive.close();
+    await Hive.deleteBoxFromDisk(hiveConstants.stockListHistoryBox);
+    await Hive.deleteBoxFromDisk(hiveConstants.stockHistoryBoxName);
+    await Hive.deleteBoxFromDisk(hiveConstants.userClassBoxName);
+    await Hive.deleteBoxFromDisk(hiveConstants.stockRecordBoxName);
+
+    print('Hive database deleted successfully');
+  } catch (e) {
+    print('Error deleting Hive database: $e');
+  }
+}
+
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await setupDependency();
+  //await deleteHiveBoxes();
   //await deleteHiveDatabase();
 
   runApp(MyApp());

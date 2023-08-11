@@ -1,11 +1,10 @@
-import 'package:aircraft_inventory_management/view_models/inventory_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/stock_history_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/stock_history.dart';
+import '../../view_models/inventory_view_model.dart';
 import '../add_inventory_item_view/paginated_table_class.dart';
 
 class StockHistoryViewDesktop extends StatefulWidget {
@@ -18,8 +17,8 @@ class StockHistoryViewDesktop extends StatefulWidget {
 class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
   @override
   Widget build(BuildContext context) {
-    return Consumer2<StockHistoryViewModel,MyProviderForInventoryView>(
-      builder: (context, ivm,mp, _) {
+    return Consumer<StockHistoryViewModel>(
+      builder: (context, ivm, _) {
         return SingleChildScrollView(
           child: Container(
             // height: 747,
@@ -34,18 +33,33 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                     Container(
-                       child: Row(
-                         children: [
-                           IconButton(icon: Icon(Icons.arrow_back_ios_new,size: 16,color: Colors.black,),
-                             onPressed: () {
-                             mp.pageController.previousPage(duration: Duration(seconds: 1), curve: Curves.easeInOut);
-                             }, ),
-                           SizedBox(width: 10,),
-                           Text('Add Stock History'),
-                         ],
-                       ),
-                     ),
+                      Row(
+                        children: [
+                          GestureDetector(
+                            onTap:(){
+                              Provider.of<MyProviderForInventoryView>(context, listen: false).previousPage();
+
+                            },
+                            child: Container(
+                                height: 26,
+                                width: 24,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                                    border: Border.all(width: 1,color: Color(0xFF696969))
+                                ),
+                                child:  Icon(Icons.arrow_back,color: Colors.black,
+                                )),
+                          ),
+                          SizedBox(width: 14,),
+                          Text("Add Stock History",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 20,
+                                fontFamily: "Inter",
+                                color: Color(0xFF696969)
+                            ),)
+                        ],
+                      ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: GestureDetector(
@@ -292,11 +306,10 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
 
                         child: Column(
                           children: [
-                            StreamBuilder<BoxEvent>(
-                                stream: ivm.stockListHistoryBox.watch(),
-                                builder: (context, snapshot) {
-
-                                  final stockHistories = ivm.stockListHistoryBox.get(ivm.updatedStockRecordForNextPag!.id, defaultValue: <StockHistory>[])??<StockHistory>[];
+                            ValueListenableBuilder(
+                                valueListenable: ivm.stockListHistoryBox.listenable(),
+                                builder: (context, box, _){
+                                  final stocks = box.values.where((element) => element.stock_record==ivm.updatedStockRecordForNextPag!.id).toList();
                                   return PaginatedDataTable(
                                     columns: [
                                       // DataColumn(label: SizedBox.shrink()),
@@ -338,7 +351,7 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                           color: Color(0xFF797979)
                                       ),),),
                                     ],
-                                    source: DataClass(data: stockHistories),
+                                    source: DataClass(data: stocks??[]),
                                     rowsPerPage: 50,
                                     columnSpacing: 60,
 

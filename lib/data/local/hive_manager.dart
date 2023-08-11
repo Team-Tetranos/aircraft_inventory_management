@@ -24,8 +24,11 @@ class HiveManager{
     await Hive.openBox<StockRecord>(hiveConstants.stockRecordBoxName);
     await Hive.openBox<StockHistory>(hiveConstants.stockHistoryBoxName);
     await Hive.openBox<List<StockHistory>>(hiveConstants.stockListHistoryBox);
+
     print('hive setup finished');
   }
+
+
   Future<Box<String>> getSampleBox()async{
     if(!Hive.isBoxOpen('sample')){
       await Hive.openBox<String>('sample');
@@ -62,17 +65,15 @@ class HiveManager{
     }
     return Hive.box<StockRecord>(hiveConstants.stockRecordBoxName);
   }
-  Future<Box<StockHistory>> getStockHistoryBox()async{
-    if(!Hive.isBoxOpen(hiveConstants.stockHistoryBoxName)){
-      await Hive.openBox<List<StockHistory>>(hiveConstants.stockHistoryBoxName);
-    }
+  Box<StockHistory> getStockHistoryBox(){
+
     return Hive.box<StockHistory>(hiveConstants.stockHistoryBoxName);
   }
 
-  Future<Box<List<StockHistory>>> getStockListHistoryBox()async{
-    if(!Hive.isBoxOpen(hiveConstants.stockListHistoryBox)){
+  Box<List<StockHistory>>getStockListHistoryBox(){
+    /*if(!Hive.isBoxOpen(hiveConstants.stockListHistoryBox)){
       await Hive.openBox<List<StockHistory>>(hiveConstants.stockListHistoryBox);
-    }
+    }*/
     return Hive.box<List<StockHistory>>(hiveConstants.stockListHistoryBox);
   }
 
@@ -119,10 +120,9 @@ class HiveManager{
   //stock history operation
 
   Future<void> addStockHistoryData(StockHistory stockHistory)async{
-    var stockHistoryBox = await getStockHistoryBox();
+    var stockHistoryBox = getStockHistoryBox();
     try{
       await stockHistoryBox.add(stockHistory);
-
     }catch(e){
       print('stock history input exception');
       print(e);
@@ -130,10 +130,13 @@ class HiveManager{
   }
 
   Future<void> addStockHistoryDataToSpecificRecord(StockRecord stockRecord,StockHistory stockHistory)async{
-    var stockListHistoryBox = await getStockListHistoryBox();
+    var stockListHistoryBox = getStockListHistoryBox();
+
+
+
     try{
-      var lst = stockListHistoryBox.get(stockRecord.id);
-      if(lst==null||lst.isEmpty){
+      List<StockHistory> lst = stockListHistoryBox.get(stockRecord.id)??[];
+      if(lst.isEmpty){
         lst = [];
       }
       lst.add(stockHistory);
@@ -144,19 +147,19 @@ class HiveManager{
     }
   }
 
-  Future<List<StockHistory>> getStockListHistoryData(StockRecord stockRecord)async{
-    var stockListHistoryData = await getStockListHistoryBox();
+  List<StockHistory> getStockHistoryData(StockRecord stockRecord){
+    var stockListHistoryData = getStockHistoryBox();
     List<StockHistory> result = [];
-    result = stockListHistoryData.get(stockRecord.id)??[];
+    result = stockListHistoryData.values.where((element) => element.stock_record==stockRecord.id).toList();
     return result;
   }
 
-  Future<List<StockHistory>> getStockHistoryData()async{
+  /*Future<List<StockHistory>> getStockHistoryData()async{
     var stockHistoryBox = await getStockHistoryBox();
     List<StockHistory> result = [];
     result = stockHistoryBox.values.map((e) => e).toList();
     return result;
-  }
+  }*/
 
   Future<List<StockHistory>> getStockHistoryDataByRecord(StockRecord stockRecord)async{
     var stockHistoryBox = await getStockHistoryBox();
@@ -205,23 +208,25 @@ class HiveManager{
   }
 
   updateStockHistory(StockRecord stockRecord) async{
-    var stockListHistoryBox = await getStockListHistoryBox();
+    var stockListHistoryBox = getStockHistoryBox();
     try{
-      var lst = stockListHistoryBox.get(stockRecord.id);
-      var lst2=<StockHistory>[];
-      if(lst==null||lst.isEmpty){
-        lst = [];
+      var lst = stockListHistoryBox.values.where((element) => element.stock_record==stockRecord.id && element.uploaded).toList();
+      for (var element in lst) {
+        await element.delete();
       }
-      try{
-        lst2 = lst.where((e) => !e.uploaded).toList();
-      }catch(e){
-      }
-      await stockListHistoryBox.put(stockRecord.id, lst2);
+
     }catch(e){
       print('stock history input exception');
       print(e);
     }
   }
+
+  updateUploadedHistoryItems(StockHistory stock) async{
+    stock.uploaded = true;
+    await stock.save();
+  }
+
+
 
 
 }

@@ -22,9 +22,7 @@ class StockViewModel extends ChangeNotifier{
   HiveManager hiveManager = sl.get<HiveManager>();
   HiveConstants hiveConstants = sl.get<HiveConstants>();
   AircraftRepository aircraftRepository = sl.get<AircraftRepository>();
-  Box<List<StockHistory>> stockListHistoryBox = Hive.box(
-    'stock_history_list'
-  );
+  late Box<StockHistory> stockListHistoryBox;
   ct.Category? acft;
   List<StockHistory> stockHistory = [];
 
@@ -40,11 +38,16 @@ class StockViewModel extends ChangeNotifier{
 
   onInit(BuildContext context, ct.Category ct)async{
     //await updateStockListHistoryBox();
+    getStockHistoryBox();
     initiateAircraftItem(ct);
     initiateStockRecord(null);
 
   }
 
+  getStockHistoryBox()async{
+    stockListHistoryBox = hiveManager.getStockHistoryBox();
+    notifyListeners();
+  }
 
   StockRecord? updatedStockRecordForNextPag;
   List<String> historyStatus = [
@@ -186,8 +189,6 @@ class StockViewModel extends ChangeNotifier{
       return;
     }
 
-
-
     User? user = await hiveManager.getUserData();
 
     StockHistory stockHistory = StockHistory(
@@ -200,9 +201,11 @@ class StockViewModel extends ChangeNotifier{
         received: selectedHistoryStatus==historyStatus[0],
         uploaded: false
     );
+    await hiveManager.addStockHistoryData(stockHistory);
+
     try{
-      await hiveManager.addStockHistoryDataToSpecificRecord(updatedStockRecordForNextPag!, stockHistory);
-      clearStockHistoryFieldData();
+
+      //clearStockHistoryFieldData();
       print('suucessfully added');
     }catch(e){
       print(e);
@@ -212,14 +215,13 @@ class StockViewModel extends ChangeNotifier{
 
   void create_stock_history(BuildContext context) async{
     try{
-
-      List<StockHistory> stocks = await hiveManager.getStockListHistoryData(updatedStockRecordForNextPag!);
+      List<StockHistory> stocks = hiveManager.getStockHistoryData(updatedStockRecordForNextPag!);
 
       print(stocks.length);
       for (int i=0;i<stocks.length;i++) {
         var result = await aircraftRepository.createStockHistory(stocks[i]);
         if(result is StockHistory){
-          await hiveManager.updateUploadedListHistoryItem(updatedStockRecordForNextPag!, i);
+          await hiveManager.updateUploadedHistoryItems(stocks[i]);
         }else{
           failedSnackbar(context: context, message: 'Stock uploading failed');
         }
