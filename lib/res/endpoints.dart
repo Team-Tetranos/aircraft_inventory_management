@@ -25,4 +25,6 @@ class EndPoints{
     final String get_stock_history_by_record = 'stock-history/stock-history-by-record/';
     final String create_bulk_stock_history = 'stock-history/create-bulk-stock-history/';
     final String create_stock_history = 'stock-history/create-stock-history/';
+
+    final String stock_record_by_id = 'stock-record/stock-records-by-id/';
 }
