@@ -33,28 +33,31 @@ class _InventoryViewState extends State<InventoryView> {
   @override
   Widget build(BuildContext context) {
     return Consumer<MyProviderForInventoryView>(
-        builder: (context, bvm, _) {
+        builder: (context, bvm, _)
+    {
+      return Container(
+        height: 1050,
+        width: MediaQuery.of(context).size.width*.75,
+        child: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: bvm.pageController,
+          children: [
+            ResponsiveLayout(
+                desktopBody: InventoryViewForDesktop(),
+                tabletBody: InventoryViewForTablet(),
+                mobileBody: MybaseViewDesktop()
+            ),
+            SingleItemDetails(),
+            StockHistoryView(stockRecord: Provider
+                .of<MyProviderForInventoryView>(context, listen: false)
+                .selectedStockRecord,)
 
-              return Container(
-                height: 1050,
-                width: MediaQuery.of(context).size.width*.75,
-                child: PageView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: bvm.pageController,
-                  children: [
-                    ResponsiveLayout(
-                        desktopBody: InventoryViewForDesktop(),
-                        tabletBody: InventoryViewForTablet(),
-                        mobileBody: MybaseViewDesktop()
-                    ),
-                    SingleItemDetails(),
-                    StockHistoryView(stockRecord:Provider.of<MyProviderForInventoryView>(context, listen: false).selectedStockRecord,)
+          ],
+        ),
 
-                  ],
-                ),
-              );
 
-        }
+      );
+    }
     );
   }
 }

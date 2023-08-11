@@ -1,5 +1,7 @@
+import 'package:aircraft_inventory_management/view_models/inventory_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/stock_history_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -16,8 +18,8 @@ class StockHistoryViewDesktop extends StatefulWidget {
 class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<StockHistoryViewModel>(
-      builder: (context, ivm, _) {
+    return Consumer2<StockHistoryViewModel,MyProviderForInventoryView>(
+      builder: (context, ivm,mp, _) {
         return SingleChildScrollView(
           child: Container(
             // height: 747,
@@ -32,7 +34,18 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Add Stock History'),
+                     Container(
+                       child: Row(
+                         children: [
+                           IconButton(icon: Icon(Icons.arrow_back_ios_new,size: 16,color: Colors.black,),
+                             onPressed: () {
+                             mp.pageController.previousPage(duration: Duration(seconds: 1), curve: Curves.easeInOut);
+                             }, ),
+                           SizedBox(width: 10,),
+                           Text('Add Stock History'),
+                         ],
+                       ),
+                     ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: GestureDetector(
