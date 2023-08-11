@@ -54,9 +54,7 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                          flex: 8,
-                          child: Column(
+                      Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                             Row(
@@ -76,11 +74,12 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                               Common_Container(bordercolor: Colors.black, border: 0,
                                   height: 45,
                                   color: Colors.white,
-                                  width: .27,
+                                  width: 389,
                                   radius: 5,
                                   mywidget:TextField(
                                     controller: dvm.aircraft_name_controller,
                                     style: TextStyle(
+
                                         fontSize: 18,
                                         fontWeight: FontWeight.w500,
                                         fontFamily: "Inter"
@@ -129,11 +128,12 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                                   Common_Container(bordercolor: Colors.black, border: 0,
                                       height: 45,
                                       color: Colors.white,
-                                      width: .27,
+                                      width: 389,
                                       radius: 5,
                                       mywidget:TextField(
                                         controller: dvm.aircraft_id_controller,
                                         style: const TextStyle(
+                                          color: Colors.black,
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
                                             fontFamily: "Inter"
@@ -158,7 +158,7 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                                 ],
                               ),
                             ],
-                          )),
+                          ),
                       SizedBox(
                         width: 10,
                       ),
