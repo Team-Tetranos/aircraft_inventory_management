@@ -3,6 +3,7 @@ import 'package:aircraft_inventory_management/views/inventory_view/inventory_vie
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_for_tablet.dart';
 import 'package:aircraft_inventory_management/views/single-item_details/single_item_details.dart';
 import 'package:aircraft_inventory_management/views/stock_history_view/stock_history_view.dart';
+import 'package:aircraft_inventory_management/views/stock_update_view/stock_update_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -45,11 +46,11 @@ class _InventoryViewState extends State<InventoryView> {
                     ResponsiveLayout(
                         desktopBody: InventoryViewForDesktop(),
                         tabletBody: InventoryViewForTablet(),
-                        mobileBody: MybaseViewDesktop()
+                        mobileBody: InventoryViewForTablet()
                     ),
                     SingleItemDetails(),
-                    StockHistoryView(stockRecord:Provider.of<MyProviderForInventoryView>(context, listen: false).selectedStockRecord,)
-
+                    StockHistoryView(stockRecord:Provider.of<MyProviderForInventoryView>(context, listen: false).selectedStockRecord,),
+                    StockUpdateView(),
                   ],
                 ),
               );

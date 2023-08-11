@@ -601,11 +601,11 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
 
                                 child: Column(
                                   children: [
-                                    StreamBuilder<BoxEvent>(
-                                      stream: ivm.stockListHistoryBox.watch(),
-                                      builder: (context, snapshot) {
+                                    ValueListenableBuilder(
+                                      valueListenable: ivm.stockListHistoryBox.listenable(),
+                                      builder: (context, box, _) {
 
-                                        final stockHistories = ivm.stockListHistoryBox.get(ivm.updatedStockRecordForNextPag!.id, defaultValue: <StockHistory>[])??[];
+                                        final stocks = box.values.where((element) => element.stock_record==ivm.updatedStockRecordForNextPag!.id).toList();
                                         return PaginatedDataTable(
 
                                           columns: [
@@ -648,7 +648,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                                 color: Color(0xFF797979)
                                             ),),),
                                           ],
-                                          source: DataClass(data: stockHistories),
+                                          source: DataClass(data: stocks),
                                           rowsPerPage: 50,
                                           columnSpacing: 60,
 
