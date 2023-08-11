@@ -13,9 +13,9 @@ class StockHistory extends HiveObject{
   @HiveField(0)
   String? id;
   @HiveField(1)
-  User? created_by;
+  String? created_by;
   @HiveField(2)
-  StockRecord? stock_record;
+  String? stock_record;
   @HiveField(3)
   String? date;
   @HiveField(4)

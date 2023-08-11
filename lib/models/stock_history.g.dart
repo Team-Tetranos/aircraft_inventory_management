@@ -18,8 +18,8 @@ class StockHistoryAdapter extends TypeAdapter<StockHistory> {
     };
     return StockHistory(
       id: fields[0] as String?,
-      created_by: fields[1] as User?,
-      stock_record: fields[2] as StockRecord?,
+      created_by: fields[1] as String?,
+      stock_record: fields[2] as String?,
       date: fields[3] as String?,
       voucher_no: fields[4] as String?,
       quantity: fields[5] as int?,
@@ -76,12 +76,8 @@ class StockHistoryAdapter extends TypeAdapter<StockHistory> {
 
 StockHistory _$StockHistoryFromJson(Map<String, dynamic> json) => StockHistory(
       id: json['id'] as String?,
-      created_by: json['created_by'] == null
-          ? null
-          : User.fromJson(json['created_by'] as Map<String, dynamic>),
-      stock_record: json['stock_record'] == null
-          ? null
-          : StockRecord.fromJson(json['stock_record'] as Map<String, dynamic>),
+      created_by: json['created_by'] as String?,
+      stock_record: json['stock_record'] as String?,
       date: json['date'] as String?,
       voucher_no: json['voucher_no'] as String?,
       quantity: json['quantity'] as int?,

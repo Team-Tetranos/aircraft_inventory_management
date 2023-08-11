@@ -16,14 +16,13 @@ import '../repositories/aircraft_repository.dart';
 import '../utils/snackbars/input_field_error_snackbar.dart';
 import 'package:aircraft_inventory_management/models/category.dart' as ct;
 
+class StockHistoryViewModel extends ChangeNotifier{
 
-class StockViewModel extends ChangeNotifier{
-  //these variables are for AddInventory second page
   HiveManager hiveManager = sl.get<HiveManager>();
   HiveConstants hiveConstants = sl.get<HiveConstants>();
   AircraftRepository aircraftRepository = sl.get<AircraftRepository>();
   Box<List<StockHistory>> stockListHistoryBox = Hive.box(
-    'stock_history_list'
+      'stock_history_list'
   );
   ct.Category? acft;
   List<StockHistory> stockHistory = [];
@@ -38,10 +37,10 @@ class StockViewModel extends ChangeNotifier{
     notifyListeners();
   }*/
 
-  onInit(BuildContext context, ct.Category ct)async{
+  onInit(BuildContext context, ct.Category ct, StockRecord stockRecord)async{
     //await updateStockListHistoryBox();
     initiateAircraftItem(ct);
-    initiateStockRecord(null);
+    initiateStockRecord(stockRecord);
 
   }
 
@@ -186,8 +185,6 @@ class StockViewModel extends ChangeNotifier{
       return;
     }
 
-
-
     User? user = await hiveManager.getUserData();
 
     StockHistory stockHistory = StockHistory(
@@ -232,6 +229,5 @@ class StockViewModel extends ChangeNotifier{
 
     }
   }
-
 
 }

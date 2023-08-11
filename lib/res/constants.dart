@@ -8,6 +8,7 @@ class HiveConstants{
   String userClassBoxName = 'user';
   String stockRecordBoxName = 'stock_record';
   String stockHistoryBoxName = 'stock_history';
+  String stockListHistoryBox = 'stock_history_list';
   String myProfileKey = 'myProfile';
 
   String aircraftBoxName = 'aircraft';

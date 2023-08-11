@@ -21,8 +21,7 @@ class _BaseViewHomeState extends State<BaseViewHome> {
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<DashboardViewModel>(context, listen: false).fetchAllAircrafts();
-      Provider.of<DashboardViewModel>(context, listen: false).fetchAllAircraftItems();
+
       Provider.of<BaseViewModel>(context, listen: false).onInit();
     });
 

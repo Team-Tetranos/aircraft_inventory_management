@@ -69,7 +69,7 @@ class _InventoryViewForTabletState extends State<InventoryViewForTablet> {
 
                               ),
                               child: Center(
-                                child: Text("${mp.aircraftItemsForInventory.length}",
+                                child: Text("${mp.duplicatestockRecords.length}",
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 10,
@@ -462,7 +462,7 @@ class _InventoryViewForTabletState extends State<InventoryViewForTablet> {
                                 color: Color(0xFF797979)
                             ),),)
                           ],
-                          source: myData(mycontext: context, items: mp.duplicateaircraftItemsForInventory, onPressed: (index){
+                          source: myData(mycontext: context, items: mp.duplicatestockRecords, onPressed: (index){
 
                             mp.onSelectRow(context, index);
 

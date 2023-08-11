@@ -1,45 +1,53 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/stock_history.dart';
+
 class DataClass extends DataTableSource{
+  List<StockHistory> data;
+  DataClass({required this.data});
   @override
   DataRow? getRow(int index) {
+    StockHistory stockHistory = data[index];
     return DataRow(
       cells: [
        // DataCell(VerticalDivider()),
-        DataCell(Text("3/2/2023",style: TextStyle(
+        DataCell(Text("${stockHistory.date}",style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
             fontSize: 14,
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
-        DataCell(Text("SL034",style: TextStyle(
+        DataCell(Text("${stockHistory.quantity}",style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
             fontSize: 14,
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
-        DataCell(Text("20",style: TextStyle(
+        DataCell(Text("${stockHistory.voucher_no}",style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
             fontSize: 14,
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
-        DataCell(Text("15",style: TextStyle(
+        DataCell(Text(stockHistory.received!?'Yes':'No',style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
             fontSize: 14,
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
-        DataCell(Text("20",style: TextStyle(
+        DataCell(Text(!stockHistory.received!?'Yes':'No',style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
             fontSize: 14,
             color: Color(0xFF484848)
         ),),),
+        DataCell(VerticalDivider()),
+        DataCell(stockHistory.uploaded?Icon(Icons.check, color: Colors.green,):Icon(CupertinoIcons.info_circle_fill, color: Colors.red,)),
       ]
     );
     throw UnimplementedError();
@@ -51,7 +59,7 @@ class DataClass extends DataTableSource{
 
   @override
   // TODO: implement rowCount
-  int get rowCount => 50;
+  int get rowCount => data.length;
 
   @override
   // TODO: implement selectedRowCount

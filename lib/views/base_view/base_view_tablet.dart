@@ -337,7 +337,7 @@ class _Base_View_tabletState extends State<Base_View_tablet> {
                           ),
                         ),
                      //Single_Item_Details_Tablet_View()
-                       AddInventoryView()
+                       AddInventoryView(fromAddStock: true,)
                        // AddCategoryForTablet()
 
 

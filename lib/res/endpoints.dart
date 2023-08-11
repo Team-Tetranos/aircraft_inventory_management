@@ -1,6 +1,6 @@
 class EndPoints{
-    final String base_url = 'http://127.0.0.1:8000/api/';
-    //final String base_url = 'https://tetranos.com/api/';
+    //final String base_url = 'http://127.0.0.1:8000/api/';
+    final String base_url = 'https://tetranos.com/api/';
     final String image_base_url = 'https://tetranos.com';
     final String login = 'user/login/';
     final String signup = 'user/register/';
@@ -21,4 +21,8 @@ class EndPoints{
 
     //stock record
     final String create_stock_record = 'stock-record/create-stock-records/';
+    final String get_stock_record_by_aircraft = 'stock-record/stock-records-by/';
+    final String get_stock_history_by_record = 'stock-history/stock-history-by-record/';
+    final String create_bulk_stock_history = 'stock-history/create-bulk-stock-history/';
+    final String create_stock_history = 'stock-history/create-stock-history/';
 }

@@ -98,21 +98,6 @@ class DashboardViewModel extends ChangeNotifier{
 
   }
 
-  fetchAllAircraftItems()async{
-
-    var response = await aircraftRepository.allAircraftItems();
-
-    print(response.runtimeType);
-    if(response is List<Aircraftitem>){
-      aircraftItems = response;
-      //print(aircraftItems);
-      notifyListeners();
-    }else{
-      print('Error occured');
-    }
-
-  }
-
 
   pickAircraft(BuildContext context,int index){
     try{
@@ -150,7 +135,6 @@ class DashboardViewModel extends ChangeNotifier{
   onInit(BuildContext context)async{
     setupUserData(context);
     await fetchAllAircrafts();
-    await fetchAllAircraftItems();
   }
 
 

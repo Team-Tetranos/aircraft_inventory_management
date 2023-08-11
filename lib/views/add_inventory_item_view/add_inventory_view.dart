@@ -14,7 +14,9 @@ import '../../view_models/view_model_for_base_view/base_view_model.dart';
 import '../base_view/base_view_desktop.dart';
 
 class AddInventoryView extends StatefulWidget {
-  const AddInventoryView({Key? key}) : super(key: key);
+  AddInventoryView({Key? key, required this.fromAddStock}) : super(key: key);
+
+  bool fromAddStock;
 
   @override
   State<AddInventoryView> createState() => _AddInventoryViewState();
@@ -23,11 +25,12 @@ class AddInventoryView extends StatefulWidget {
 class _AddInventoryViewState extends State<AddInventoryView> {
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
       try{
         Category ct = Provider.of<BaseViewModel>(context, listen: false).pickedAircraft!;
-        Provider.of<StockViewModel>(context, listen: false).initiateAircraftItem(ct);
-        Provider.of<StockViewModel>(context, listen: false).initiateStockRecord(null);
+        await Provider.of<StockViewModel>(context, listen: false).onInit(context, ct);
+        /*Provider.of<StockViewModel>(context, listen: false).initiateAircraftItem(ct);
+        Provider.of<StockViewModel>(context, listen: false).initiateStockRecord(null);*/
       }catch(e){
         print(e);
       }

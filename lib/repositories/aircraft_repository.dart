@@ -8,6 +8,7 @@ import 'package:aircraft_inventory_management/models/stock_record.dart';
 import '../data/remote/service/base_api_service.dart';
 import '../data/remote/service/network_api_service.dart';
 import '../dependency_injection/di.dart';
+import '../models/stock_history.dart';
 import '../res/endpoints.dart';
 
 class AircraftRepository{
@@ -107,6 +108,44 @@ class AircraftRepository{
   }
 
 
+  Future<Object> stockRecordByAircraft(Category stockRecord)async{
+    Object result = Failure(code: 400, error: {}, key: '');
+    var response = await apiService.getApiResponse(endPoints.base_url+endPoints.get_stock_record_by_aircraft+'${stockRecord.id}/', token: true);
+
+    if(response is Success){
+      print(response.data);
+      List<StockRecord> stocks = [];
+      Iterable it = response.data as Iterable;
+      for (var element in it) {
+        stocks.add(StockRecord.fromJson(element));
+      }
+      result = stocks;
+    }else if(response is Failure){
+      result = response;
+    }
+    return result;
+  }
+
+  Future<Object> stockHistoryByRecord(StockRecord stockRecord)async{
+    Object result = Failure(code: 400, error: {}, key: '');
+    var response = await apiService.getApiResponse(endPoints.base_url+endPoints.get_stock_history_by_record+'${stockRecord.id}/', token: true);
+
+    if(response is Success){
+
+      print(response.data);
+      List<StockHistory> stocks = [];
+      Iterable it = response.data as Iterable;
+      for (var element in it) {
+        stocks.add(StockHistory.fromJson(element));
+      }
+      result = stocks;
+      print(stocks.length);
+    }else if(response is Failure){
+      result = response;
+    }
+    return result;
+  }
+
   Future<Object> createStockRecord(Map<String, dynamic> data, {File? image})async{
 
     Object result = Failure(code: 400, error: {}, key: '');
@@ -126,6 +165,76 @@ class AircraftRepository{
         StockRecord stockRecord = StockRecord.fromJson(response.data as Map<String, dynamic>);
         result = stockRecord;
       }else if(response is Failure){
+        result=response;
+      }
+    }
+    return result;
+
+  }
+
+  Future<Object> createBulkHistory(List<StockHistory> stockHistory, {File? image})async{
+
+    final data = stockHistory.map((e) => {
+      'created_by':e.created_by,
+      'date':e.date,
+      'stock_record':e.stock_record,
+      'voucher_no':e.voucher_no,
+      'quantity':e.quantity,
+      'received':e.received
+    }).toList();
+
+    Object result = Failure(code: 400, error: {}, key: '');
+    if(image==null){
+      var response = await apiService.postApiResponse(endPoints.base_url+endPoints.create_stock_record, data, token: true);
+      if(response is Success){
+        StockRecord stockRecord = StockRecord.fromJson(response.data as Map<String, dynamic>);
+        result = stockRecord;
+      }else if(response is Failure){
+
+        result=response;
+      }
+
+    }else{
+      var response = await apiService.postWithFiles(endPoints.base_url+endPoints.create_stock_record, data, {'image':image}, token: true);
+      if(response is Success){
+        StockRecord stockRecord = StockRecord.fromJson(response.data as Map<String, dynamic>);
+        result = stockRecord;
+      }else if(response is Failure){
+        result=response;
+      }
+    }
+    return result;
+
+  }
+
+
+  Future<Object> createStockHistory(StockHistory e, {File? image})async{
+    final data = {
+      'created_by':e.created_by,
+      'date':e.date,
+      'stock_record':e.stock_record,
+      'voucher_no':e.voucher_no,
+      'quantity':e.quantity,
+      'received':e.received
+    };
+    Object result = Failure(code: 400, error: {}, key: '');
+    if(image==null){
+      var response = await apiService.postApiResponse(endPoints.base_url+endPoints.create_stock_history, data, token: true);
+      if(response is Success){
+        StockHistory stockHistory = StockHistory.fromJson(response.data as Map<String, dynamic>);
+        result = stockHistory;
+      }else if(response is Failure){
+
+        result=response;
+      }
+
+    }else{
+      var response = await apiService.postWithFiles(endPoints.base_url+endPoints.create_stock_history, data, {'image':image}, token: true);
+      if(response is Success){
+        StockHistory stockHistory = StockHistory.fromJson(response.data as Map<String, dynamic>);
+        result = stockHistory;
+      }else if(response is Failure){
+
         result=response;
       }
     }

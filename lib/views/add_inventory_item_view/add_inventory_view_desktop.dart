@@ -1,11 +1,13 @@
 
 import 'package:aircraft_inventory_management/models/category.dart';
+import 'package:aircraft_inventory_management/models/stock_history.dart';
 import 'package:aircraft_inventory_management/view_models/inventory_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/stock_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/page_view.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/paginated_table_class.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 class AddInventoryViewForDesktop extends StatefulWidget {
@@ -338,274 +340,196 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                     ]
                 )
             ),
-                secondWidget: Container(
-                  // height: 747,
-                  width: MediaQuery.of(context).size.width * .716,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 25,top: 20,),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                secondWidget: SingleChildScrollView(
+                  child: Container(
+                    // height: 747,
+                    width: MediaQuery.of(context).size.width * .716,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 25,top: 20,),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
 
-                      children: [
-                        Text('Add Stock History'),
-                        /*DropdownButton<String>(
-                          value: ivm.dropvalue.toString(),
-                          icon: Icon(Icons.menu,color: Colors.black,),
-                          underline: Container(
-                            height: 2,
-                            color: Colors.black,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Add Stock History'),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                child: GestureDetector(
+                                  onTap: (){
+                                    ivm.create_stock_history(context);
+
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff1366D9),
+                                        borderRadius: BorderRadius.circular(5)
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10,
+                                          horizontal: 20
+                                      ),
+                                      child: Text('Upload Item',style: TextStyle(
+                                          color: Colors.white
+                                      ),),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          style: TextStyle(
-                              color: Colors.black
-                          ),
-                          onChanged: (String?  value){
-                            ivm.dropdownbuttonvaluechange(value!);
-                          },
-                          items: [
-                            DropdownMenuItem<String>(
-                                value: "Received",
-                                child: Text("Received")),
-                            DropdownMenuItem<String>(
-                                value: "Expenditure",
-                                child: Text("Expenditure"))
 
-                          ],
-                        ),*/
-                        SizedBox(height: 50,),
+                          SizedBox(height: 50,),
 
-                        Row(
+                          Row(
 
-                          children: [
-                            Container(
-                                width: 350,
+                            children: [
+                              Container(
+                                  width: 350,
 
-                                child: Column(
-                                  children: [
-                                    SizedBox(height: 20,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Date",
-                                          style: TextStyle(color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                              fontFamily: "Inter"),
-                                        ),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(height: 20,),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Date",
+                                            style: TextStyle(color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 16,
+                                                fontFamily: "Inter"),
+                                          ),
 
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5),
-                                          child: Container(
-                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                            height: 30.0,
-                                            width: 250,// Set the desired height for the TextField
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: Colors.grey),
-                                            ),
-                                            child: Center(
-                                              child: TextField(
-                                                onTap: (){
-                                                  ivm.pickDateForHistory(context);
-                                                },
-                                                controller: ivm.dateforsecondpageAddInventory,
-                                                decoration: InputDecoration(
-                                                  hintText: 'Tap to input date',
-                                                  border: InputBorder
-                                                      .none, // Remove the default TextField border
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5),
+                                            child: Container(
+                                              // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                              height: 30.0,
+                                              width: 250,// Set the desired height for the TextField
+                                              decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.grey),
+                                              ),
+                                              child: Center(
+                                                child: TextField(
+                                                  onTap: (){
+                                                    ivm.pickDateForHistory(context);
+                                                  },
+                                                  controller: ivm.dateforsecondpageAddInventory,
+                                                  decoration: InputDecoration(
+                                                    hintText: 'Tap to input date',
+                                                    border: InputBorder
+                                                        .none, // Remove the default TextField border
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
 
-                                      ],),
-                                    SizedBox(height: 20,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Quantity",
-                                          style: TextStyle(color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                              fontFamily: "Inter"),
-                                        ),
+                                        ],),
+                                      SizedBox(height: 20,),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Quantity",
+                                            style: TextStyle(color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 16,
+                                                fontFamily: "Inter"),
+                                          ),
 
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5),
-                                          child: Container(
-                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                            height: 30.0,
-                                            width: 250,// Set the desired height for the TextField
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: Colors.grey),
-                                            ),
-                                            child: Center(
-                                              child: TextField(
-                                                controller: ivm.quantityforsecondpageAddInventory,
-                                                decoration: InputDecoration(
-                                                  hintText: '',
-                                                  border: InputBorder
-                                                      .none, // Remove the default TextField border
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5),
+                                            child: Container(
+                                              // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                              height: 30.0,
+                                              width: 250,// Set the desired height for the TextField
+                                              decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.grey),
+                                              ),
+                                              child: Center(
+                                                child: TextField(
+                                                  controller: ivm.quantityforsecondpageAddInventory,
+                                                  decoration: InputDecoration(
+                                                    hintText: '',
+                                                    border: InputBorder
+                                                        .none, // Remove the default TextField border
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
 
-                                      ],),
-                                  ],
-                                )
-                            ),
-                            SizedBox(width: 60,),
-                            Container(
-                                width: 350,
+                                        ],),
+                                    ],
+                                  )
+                              ),
+                              SizedBox(width: 60,),
+                              Container(
+                                  width: 350,
 
-                                child: Column(
-                                  children: [
-                                    SizedBox(height: 20,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Voucher No",
-                                          style: TextStyle(color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                              fontFamily: "Inter"),
-                                        ),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(height: 20,),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Voucher No",
+                                            style: TextStyle(color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 16,
+                                                fontFamily: "Inter"),
+                                          ),
 
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5),
-                                          child: Container(
-                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                            height: 30.0,
-                                            width: 250,// Set the desired height for the TextField
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: Colors.grey),
-                                            ),
-                                            child: Center(
-                                              child: TextField(
-                                                controller: ivm.vouchernumberforsecondpageAddInventory,
-                                                decoration: InputDecoration(
-                                                  hintText: '',
-                                                  border: InputBorder
-                                                      .none, // Remove the default TextField border
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5),
+                                            child: Container(
+                                              // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                              height: 30.0,
+                                              width: 250,// Set the desired height for the TextField
+                                              decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.grey),
+                                              ),
+                                              child: Center(
+                                                child: TextField(
+                                                  controller: ivm.vouchernumberforsecondpageAddInventory,
+                                                  decoration: InputDecoration(
+                                                    hintText: '',
+                                                    border: InputBorder
+                                                        .none, // Remove the default TextField border
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
 
-                                      ],),
-                                    SizedBox(height: 20,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(ivm.selectedHistoryStatus.toString(),
-                                          style: TextStyle(color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                              fontFamily: "Inter"),
-                                        ),
-
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5),
-                                          child: Container(
-                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                            height: 30.0,
-                                            width: 250,// Set the desired height for the TextField
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: Colors.grey),
-                                            ),
-                                            child: Center(
-                                              child: DropdownButton<String>(
-                                                value: ivm.selectedHistoryStatus,
-
-                                                
-                                                style: TextStyle(
-                                                    color: Colors.black
-                                                ),
-                                                onChanged: (String?  value){
-                                                  ivm.updateSelectedHistoryStatus(value!);
-                                                },
-                                                items: ivm.historyStatus.map((e) => DropdownMenuItem<String>(
-                                                  value: e,
-                                                    child: Text(e)
-                                                )).toList(),
-                                              )
-                                            ),
+                                        ],),
+                                      SizedBox(height: 20,),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(ivm.selectedHistoryStatus.toString(),
+                                            style: TextStyle(color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 16,
+                                                fontFamily: "Inter"),
                                           ),
-                                        ),
 
-                                      ],),
-                                  ],
-                                )
-                            ),
-
-                            SizedBox(width: 60,),
-                            Container(
-                                width: 350,
-
-                                child: Column(
-                                  children: [
-                                    SizedBox(height: 20,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Voucher No",
-                                          style: TextStyle(color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                              fontFamily: "Inter"),
-                                        ),
-
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5),
-                                          child: Container(
-                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                            height: 30.0,
-                                            width: 250,// Set the desired height for the TextField
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: Colors.grey),
-                                            ),
-                                            child: Center(
-                                              child: TextField(
-                                                controller: ivm.vouchernumberforsecondpageAddInventory,
-                                                decoration: InputDecoration(
-                                                  hintText: '',
-                                                  border: InputBorder
-                                                      .none, // Remove the default TextField border
-                                                ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5),
+                                            child: Container(
+                                              // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                              height: 30.0,
+                                              width: 250,// Set the desired height for the TextField
+                                              decoration: BoxDecoration(
+                                                border: Border.all(color: Colors.grey),
                                               ),
-                                            ),
-                                          ),
-                                        ),
-
-                                      ],),
-                                    SizedBox(height: 20,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(ivm.selectedHistoryStatus.toString(),
-                                          style: TextStyle(color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                              fontFamily: "Inter"),
-                                        ),
-
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5),
-                                          child: Container(
-                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                            height: 30.0,
-                                            width: 250,// Set the desired height for the TextField
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: Colors.grey),
-                                            ),
-                                            child: Center(
+                                              child: Center(
                                                 child: DropdownButton<String>(
                                                   value: ivm.selectedHistoryStatus,
 
@@ -617,81 +541,131 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                                     ivm.updateSelectedHistoryStatus(value!);
                                                   },
                                                   items: ivm.historyStatus.map((e) => DropdownMenuItem<String>(
-                                                      value: e,
+                                                    value: e,
                                                       child: Text(e)
                                                   )).toList(),
                                                 )
+                                              ),
                                             ),
                                           ),
-                                        ),
 
-                                      ],),
-                                  ],
-                                )
-                            ),
-
-                          ],
-                        ),
-                        SizedBox(height: 70,),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 25),
-                          child: Container(
-                            height: 500,
-
-                            child: SingleChildScrollView(
-
-                              child: Column(
-                                children: [
-                                  PaginatedDataTable(
-
-                                    columns: [
-                                      // DataColumn(label: SizedBox.shrink()),
-                                      const DataColumn(label: Text("Date",style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Color(0xFF797979)
-                                      ),),),  DataColumn(label: SizedBox.shrink()),
-                                      const DataColumn(label: Text("Quantity",style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Color(0xFF797979)
-                                      ),),),  DataColumn(label: SizedBox.shrink()),
-                                      const DataColumn(label: Text("Voucher No",style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Color(0xFF797979)
-                                      ),),),  DataColumn(label: SizedBox.shrink()),
-                                      const DataColumn(label: Text("Received",style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Color(0xFF797979)
-                                      ),),),  DataColumn(label: SizedBox.shrink()),
-                                      const DataColumn(label: Text("expenditure",style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Color(0xFF797979)
-                                      ),),),
+                                        ],),
                                     ],
-                                    source: DataClass(),
-                                    rowsPerPage: 50,
-                                    columnSpacing: 60,
+                                  )
+                              ),
+
+                              //SizedBox(width: 60,),
 
 
+                            ],
+                          ),
+
+                          SizedBox(height: 30,),
+
+                          Container(
+                            width: 760,
+
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  GestureDetector(
+                                    onTap: (){
+                                      ivm.createStockHistoryRecordBulk(context);
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Color(0xff1366D9),
+                                          borderRadius: BorderRadius.circular(5)
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal: 20
+                                        ),
+                                        child: Text('Save and continue adding',style: TextStyle(
+                                            color: Colors.white
+                                        ),),
+                                      ),
+                                    ),
                                   ),
                                 ],
+                              )
+                          ),
+                          SizedBox(height: 70,),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 25),
+                            child: Container(
+                              //height: 500,
+
+                              child: SingleChildScrollView(
+
+                                child: Column(
+                                  children: [
+                                    StreamBuilder<BoxEvent>(
+                                      stream: ivm.stockListHistoryBox.watch(),
+                                      builder: (context, snapshot) {
+
+                                        final stockHistories = ivm.stockListHistoryBox.get(ivm.updatedStockRecordForNextPag!.id, defaultValue: <StockHistory>[])??[];
+                                        return PaginatedDataTable(
+
+                                          columns: [
+                                            // DataColumn(label: SizedBox.shrink()),
+                                            const DataColumn(label: Text("Date",style: TextStyle(
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                                color: Color(0xFF797979)
+                                            ),),),  DataColumn(label: SizedBox.shrink()),
+                                            const DataColumn(label: Text("Quantity",style: TextStyle(
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                                color: Color(0xFF797979)
+                                            ),),),  DataColumn(label: SizedBox.shrink()),
+                                            const DataColumn(label: Text("Voucher No",style: TextStyle(
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                                color: Color(0xFF797979)
+                                            ),),),  DataColumn(label: SizedBox.shrink()),
+                                            const DataColumn(label: Text("Received",style: TextStyle(
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                                color: Color(0xFF797979)
+                                            ),),),  DataColumn(label: SizedBox.shrink()),
+                                            const DataColumn(label: Text("expenditure",style: TextStyle(
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                                color: Color(0xFF797979)
+                                            ),),),
+                                            DataColumn(label: SizedBox.shrink()),
+                                            const DataColumn(label: Text("Uploaded",style: TextStyle(
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                                color: Color(0xFF797979)
+                                            ),),),
+                                          ],
+                                          source: DataClass(data: stockHistories),
+                                          rowsPerPage: 50,
+                                          columnSpacing: 60,
+
+
+                                        );
+                                      }
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                      ],),
+                          )
+                        ],),
+                    ),
+
+
                   ),
-
-
                 ),
 
             )

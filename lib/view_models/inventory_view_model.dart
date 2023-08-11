@@ -4,6 +4,7 @@ import 'package:aircraft_inventory_management/models/category.dart' as ct;
 import 'package:aircraft_inventory_management/models/stock_record.dart';
 import 'package:aircraft_inventory_management/repositories/aircraft_repository.dart';
 import 'package:aircraft_inventory_management/utils/date_object_conversion.dart';
+import 'package:aircraft_inventory_management/utils/snackbars/failure_snackbar.dart';
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,22 +24,30 @@ class MyProviderForInventoryView with ChangeNotifier {
   AircraftRepository aircraftRepository = sl.get<AircraftRepository>();
   HiveManager hiveManager = sl.get<HiveManager>();
   ct.Category? acft;
+  PageController pageController = PageController(initialPage: 0);
+
+  List<StockRecord> stockRecords = [];
+  List<StockRecord> duplicatestockRecords = [];
+  StockRecord selectedStockRecord = StockRecord();
 
 
-  List<Aircraftitem> aircraftItemsForInventory = [];
-  List<Aircraftitem> duplicateaircraftItemsForInventory = [];
+  updateSelectedStockRecord(StockRecord stockRecord){
+    selectedStockRecord = stockRecord;
+    notifyListeners();
+  }
+
+
 
   DateTimeRange? pickedRange;
 
   updateAircraftItemsForInventory(BuildContext context){
-    aircraftItemsForInventory = [];
+
     ct.Category? aircraft = Provider.of<BaseViewModel>(context, listen: false).pickedAircraft;
     List<Aircraftitem> items = Provider.of<DashboardViewModel>(context, listen: false).aircraftItems;
     try{
       if(aircraft!=null){
         acft = aircraft;
-        aircraftItemsForInventory = items.where((element) => element.aircraft==aircraft.id).toList();
-        duplicateaircraftItemsForInventory = aircraftItemsForInventory;
+
       }
     }catch(e){
       print(e);
@@ -47,6 +56,10 @@ class MyProviderForInventoryView with ChangeNotifier {
     notifyListeners();
   }
 
+
+  changePage(int pageNo){
+    pageController.animateToPage(pageNo, duration: Duration(seconds: 1), curve: Curves.linear);
+  }
 
 
   DateTime? pickedDate;
@@ -86,22 +99,49 @@ class MyProviderForInventoryView with ChangeNotifier {
       DateTime last = picked.end;
       String firstDate = dateToString(first);
       String lastDate = dateToString(last);
-      duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => stringToDate(element.expire).compareTo(firstDate)>=0 && stringToDate(element.expire).compareTo(lastDate)<=0).toList();
+      //duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => stringToDate(element.expire).compareTo(firstDate)>=0 && stringToDate(element.expire).compareTo(lastDate)<=0).toList();
       notifyListeners();
     }
   }
 
   clearDateRange(){
     pickedRange=null;
-    duplicateaircraftItemsForInventory = aircraftItemsForInventory;
+    //duplicateaircraftItemsForInventory = aircraftItemsForInventory;
     notifyListeners();
   }
 
   void onSelectRow(BuildContext context, int index) {
-    Provider.of<BaseViewModel>(context, listen: false).changingOptions(context, 'item_details');
-    Provider.of<BaseViewModel>(context, listen: false).updatePickedAircraftItem(context, aircraftItemsForInventory[index], 'item_details');
+    updateSelectedStockRecord(duplicatestockRecords[index]);
+    changePage(1);
+    //Provider.of<BaseViewModel>(context, listen: false).changingOptions(context, 'item_details');
+    //Provider.of<BaseViewModel>(context, listen: false).updatePickedAircraftItem(context, aircraftItemsForInventory[index], 'item_details');
   }
 
+  changeLoading(bool b){
+    isLoading = b;
+    notifyListeners();
+  }
+
+
+  fetchStocksForAircraft(BuildContext context)async{
+
+    changeLoading(true);
+    try{
+      var result = await aircraftRepository.stockRecordByAircraft(acft!);
+      if(result is List<StockRecord>){
+        stockRecords = result;
+        duplicatestockRecords = stockRecords;
+        notifyListeners();
+      }else{
+        failedSnackbar(context: context, message: 'Unable to fetch stock records');
+      }
+    }catch(e){
+      print(e);
+      failedSnackbar(context: context, message: 'Server error');
+    }
+    changeLoading(false);
+
+  }
 
 
 

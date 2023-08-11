@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import '../../view_models/blank_view_model.dart';
 import '../add_category_view/add_category_view.dart';
 import '../dashboard_2/dashboard_2.dart';
+import '../inventory_view/inventory_view.dart';
 import '../single-item_details/single_item_details.dart';
 import 'base_view_widget.dart';
 
@@ -343,13 +344,13 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           //SizedBox(width: 40,),
 
                           if(mp.baseviewPage=='dashboard')
-                          MyDashBoardView()
+                            MyDashBoardView()
                           else if(mp.baseviewPage=='inventory')
-                            InventoryViewForDesktop()
+                            InventoryView()
                           else if(mp.baseviewPage=='add_category')
                             AddCategoryView()
                           else if(mp.baseviewPage=='add_item')
-                            AddInventoryView()
+                            AddInventoryView(fromAddStock: true,)
 
                           else if(mp.baseviewPage=='product_overview')
                             Product_Overview_View()

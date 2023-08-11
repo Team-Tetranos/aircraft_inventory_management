@@ -18,7 +18,7 @@ class _SingleItemDetailsState extends State<SingleItemDetails> {
   void initState() {
     // TODO: implement initState
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<SingleItemViewModel>(context,listen: false).setupAircraftItem(context);
+      Provider.of<SingleItemViewModel>(context,listen: false).setupStockRecord(context);
     });
     super.initState();
   }
@@ -26,7 +26,11 @@ class _SingleItemDetailsState extends State<SingleItemDetails> {
   Widget build(BuildContext context) {
     return Consumer<SingleItemViewModel>(
       builder: (context, svm, _) {
-        return ResponsiveLayout(desktopBody: Single_Item_Details_Desktop_View(), tabletBody: Single_Item_Details_Tablet_View(), mobileBody: Single_Item_Details_Tablet_View());
+        return ResponsiveLayout(
+            desktopBody: Single_Item_Details_Desktop_View(),
+            tabletBody: Single_Item_Details_Tablet_View(),
+            mobileBody: Single_Item_Details_Tablet_View()
+        );
       }
     );
   }

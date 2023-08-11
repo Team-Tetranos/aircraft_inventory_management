@@ -23,7 +23,7 @@ class HiveManager{
     await Hive.openBox<Category>(hiveConstants.aircraftBoxName);
     await Hive.openBox<StockRecord>(hiveConstants.stockRecordBoxName);
     await Hive.openBox<StockHistory>(hiveConstants.stockHistoryBoxName);
-
+    await Hive.openBox<List<StockHistory>>(hiveConstants.stockListHistoryBox);
     print('hive setup finished');
   }
   Future<Box<String>> getSampleBox()async{
@@ -64,10 +64,18 @@ class HiveManager{
   }
   Future<Box<StockHistory>> getStockHistoryBox()async{
     if(!Hive.isBoxOpen(hiveConstants.stockHistoryBoxName)){
-      await Hive.openBox<StockHistory>(hiveConstants.stockHistoryBoxName);
+      await Hive.openBox<List<StockHistory>>(hiveConstants.stockHistoryBoxName);
     }
     return Hive.box<StockHistory>(hiveConstants.stockHistoryBoxName);
   }
+
+  Future<Box<List<StockHistory>>> getStockListHistoryBox()async{
+    if(!Hive.isBoxOpen(hiveConstants.stockListHistoryBox)){
+      await Hive.openBox<List<StockHistory>>(hiveConstants.stockListHistoryBox);
+    }
+    return Hive.box<List<StockHistory>>(hiveConstants.stockListHistoryBox);
+  }
+
 
   //User operation
 
@@ -121,6 +129,28 @@ class HiveManager{
     }
   }
 
+  Future<void> addStockHistoryDataToSpecificRecord(StockRecord stockRecord,StockHistory stockHistory)async{
+    var stockListHistoryBox = await getStockListHistoryBox();
+    try{
+      var lst = stockListHistoryBox.get(stockRecord.id);
+      if(lst==null||lst.isEmpty){
+        lst = [];
+      }
+      lst.add(stockHistory);
+      await stockListHistoryBox.put(stockRecord.id, lst);
+    }catch(e){
+      print('stock history input exception');
+      print(e);
+    }
+  }
+
+  Future<List<StockHistory>> getStockListHistoryData(StockRecord stockRecord)async{
+    var stockListHistoryData = await getStockListHistoryBox();
+    List<StockHistory> result = [];
+    result = stockListHistoryData.get(stockRecord.id)??[];
+    return result;
+  }
+
   Future<List<StockHistory>> getStockHistoryData()async{
     var stockHistoryBox = await getStockHistoryBox();
     List<StockHistory> result = [];
@@ -133,6 +163,64 @@ class HiveManager{
     List<StockHistory> result = [];
     result = stockHistoryBox.values.where((e) => e.stock_record==stockRecord).toList();
     return result;
+  }
+
+  Future<void> updateUploadedListHistoryItem(StockRecord stockRecord, int i) async{
+    var stockListHistoryBox = await getStockListHistoryBox();
+    try{
+      var lst = stockListHistoryBox.get(stockRecord.id);
+
+      try{
+        lst![i].uploaded=true;
+
+      }catch(e){
+
+      }
+      await stockListHistoryBox.put(stockRecord.id, lst!);
+    }catch(e){
+      print('stock history input exception');
+      print(e);
+    }
+  }
+
+
+
+  Future<void> deleteStockListHistoryItem(StockRecord stockRecord, int i) async{
+    var stockListHistoryBox = await getStockListHistoryBox();
+    try{
+      var lst = stockListHistoryBox.get(stockRecord.id);
+      if(lst==null||lst.isEmpty){
+        lst = [];
+      }
+      try{
+        lst.removeAt(i);
+      }catch(e){
+
+      }
+      await stockListHistoryBox.put(stockRecord.id, lst);
+    }catch(e){
+      print('stock history input exception');
+      print(e);
+    }
+  }
+
+  updateStockHistory(StockRecord stockRecord) async{
+    var stockListHistoryBox = await getStockListHistoryBox();
+    try{
+      var lst = stockListHistoryBox.get(stockRecord.id);
+      var lst2=<StockHistory>[];
+      if(lst==null||lst.isEmpty){
+        lst = [];
+      }
+      try{
+        lst2 = lst.where((e) => !e.uploaded).toList();
+      }catch(e){
+      }
+      await stockListHistoryBox.put(stockRecord.id, lst2);
+    }catch(e){
+      print('stock history input exception');
+      print(e);
+    }
   }
 
 

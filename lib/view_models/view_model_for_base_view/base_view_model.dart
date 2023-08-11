@@ -81,7 +81,6 @@ class BaseViewModel extends ChangeNotifier{
 
   onInit()async{
     await setupUserData();
-
   }
 
   void filterAircraft(BuildContext context, String s) {

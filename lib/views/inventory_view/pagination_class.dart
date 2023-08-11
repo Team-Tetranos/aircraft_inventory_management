@@ -1,11 +1,12 @@
 import 'package:aircraft_inventory_management/models/aircraftitem.dart';
+import 'package:aircraft_inventory_management/models/stock_record.dart';
 import 'package:aircraft_inventory_management/utils/date_object_conversion.dart';
 import 'package:flutter/material.dart';
 
 class myData extends DataTableSource{
 
   BuildContext mycontext;
-  List<Aircraftitem> items;
+  List<StockRecord> items;
   Function(int) onPressed;
 
 
@@ -23,77 +24,35 @@ class myData extends DataTableSource{
           color: Color(0xFFD9D9D9)
       ),),),
       DataCell(VerticalDivider()),
-      DataCell(Text(items[index].partNo.toString(),style: TextStyle(
+      DataCell(Text(items[index].card_no.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),
-      DataCell(Text(items[index].nomenclature.toString(),style: TextStyle(
+      DataCell(Text(items[index].description.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),
-      DataCell(Text(items[index].astronomicalUnit.toString(),style: TextStyle(
+      DataCell(Text(items[index].stock_no.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),
-      DataCell(Text(items[index].cardNo.toString(),style: TextStyle(
+      DataCell(Text(items[index].balance.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),
-      DataCell(Text(items[index].quantity.toString(),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 14,
-          color: Color(0xFF484848)
-      ),),),
-      DataCell(VerticalDivider()),
-      DataCell(Text(items[index].receivedDiOrg.toString(),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 14,
-          color: Color(0xFF484848)
-      ),),),
-      DataCell(VerticalDivider()),
-      DataCell(Text(items[index].manufacturer.toString(),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 14,
-          color: Color(0xFF484848)
-      ),),),
-      DataCell(VerticalDivider()),
-      DataCell(Text(stringToDate(items[index].expire),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 14,
-          color: Color(0xFF484848)
-      ),),),
-      DataCell(VerticalDivider()),
-      DataCell(Text(items[index].expenditure.toString(),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 14,
-          color: Color(0xFF484848)
-      ),),),
-      DataCell(VerticalDivider()),
-      DataCell(Text(items[index].rmk.toString(),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 14,
-          color: Color(0xFF484848)
-      ),),),
-      DataCell(VerticalDivider()),
-      DataCell(Text(stringToDate(items[index].createdAt),style: TextStyle(
+      DataCell(Text(stringToDate(items[index].created_at),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
@@ -114,6 +73,14 @@ class myData extends DataTableSource{
                   fontWeight: FontWeight.w500,
                   fontFamily: "Inter"),),),
           )),
+      DataCell(VerticalDivider()),
+      DataCell(Text('upload Status',style: TextStyle(
+          fontFamily: "Inter",
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          color: Color(0xFF484848)
+      ),),),
+
     ], onSelectChanged: (s){
       if(s!=null && s){
         onPressed(index);

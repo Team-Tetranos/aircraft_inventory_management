@@ -19,14 +19,8 @@ class InventoryViewForDesktop extends StatefulWidget {
 
 class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<MyProviderForInventoryView>(context, listen: false).updateAircraftItemsForInventory(context);
-    });
-    super.initState();
-  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +79,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
 
                             ),
                             child: Center(
-                              child: Text("${mp.aircraftItemsForInventory.length}",
+                              child: Text("${mp.duplicatestockRecords.length}",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 10,
@@ -391,7 +385,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                                 color: Color(0xFFD9D9D9)
                             ),),),
                           DataColumn(label: SizedBox.shrink()),
-                          const DataColumn(label: Text("Part No",style: TextStyle(
+                          DataColumn(label: Text("Card No",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
@@ -405,19 +399,13 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                               color: Color(0xFF797979)
                           ),),),
                           DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("A/U",style: TextStyle(
+                          DataColumn(label: Text("Stock No",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               color: Color(0xFF797979)
                           ),),),
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Card No",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
+
                           DataColumn(label: SizedBox.shrink()),
                           DataColumn(label: Text("Quantity",style: TextStyle(
                               fontFamily: "Inter",
@@ -425,41 +413,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                               fontSize: 14,
                               color: Color(0xFF797979)
                           ),),),
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Received\nDi/Org",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Manufacturer",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Expire",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Expenditure",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("RMK",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
+
                           DataColumn(label: SizedBox.shrink()),
                           DataColumn(label: Text("Created",style: TextStyle(
                               fontFamily: "Inter",
@@ -473,9 +427,18 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               color: Color(0xFF797979)
-                          ),),)
+                          ),),),
+
+                          DataColumn(label: SizedBox.shrink()),
+                          DataColumn(label: Text("Upload Status",style: TextStyle(
+                              fontFamily: "Inter",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              color: Color(0xFF797979)
+                          ),),),
+
                         ],
-                        source: myData(mycontext: context, items: mp.duplicateaircraftItemsForInventory, onPressed: (index){
+                        source: myData(mycontext: context, items: mp.duplicatestockRecords, onPressed: (index){
 
                           mp.onSelectRow(context, index);
 
