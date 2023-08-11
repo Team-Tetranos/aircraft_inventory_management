@@ -4,12 +4,18 @@ import 'package:flutter/material.dart';
 import '../../models/stock_history.dart';
 
 class DataClass extends DataTableSource{
+  Function(int) onPressed;
   List<StockHistory> data;
-  DataClass({required this.data});
+  DataClass({required this.data, required this.onPressed});
   @override
   DataRow? getRow(int index) {
     StockHistory stockHistory = data[index];
     return DataRow(
+      onSelectChanged: (b){
+        if(b!=null&&b){
+          onPressed(index);
+        }
+      },
       cells: [
        // DataCell(VerticalDivider()),
         DataCell(Text("${stockHistory.date}",style: TextStyle(

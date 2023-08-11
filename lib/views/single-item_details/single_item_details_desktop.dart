@@ -230,22 +230,28 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                 mainAxisAlignment: MainAxisAlignment.start,
 
                                 children: [
-                                  Container(
+                                  GestureDetector(
+                                    onTap:(){
+                                      svm.deleteStockRecord(context);
+                                    },
+                                    child: Container(
 
-                                    height: 40,
-                                    width: 77,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                                      border: Border.all(width: 1,color: Color(0xFFD0D5DD))
-                                    ),
-                                    child: Center(
-                                      child: Text("Export",
-                                      style: TextStyle(
-                                        fontFamily: "Inter",
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14,
-                                        color: Color(0xFF5D6679)
-                                      ),),
+                                      height: 40,
+                                      width: 77,
+                                      decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius: BorderRadius.all(Radius.circular(4)),
+                                        border: Border.all(width: 1,color: Color(0xFFD0D5DD))
+                                      ),
+                                      child: Center(
+                                        child: Text("Delete",
+                                        style: TextStyle(
+                                          fontFamily: "Inter",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                          color: Colors.white
+                                        ),),
+                                      ),
                                     ),
                                   ),
                                   SizedBox(width: 12,),
@@ -381,7 +387,9 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                         color: Color(0xFF797979)
                     ),),),
                   ],
-                  source: DataClass(data: svm.stockHistory),
+                  source: DataClass(data: svm.stockHistory, onPressed: (index){
+
+                  }),
                   rowsPerPage: 50,
                   columnSpacing: 60,
 

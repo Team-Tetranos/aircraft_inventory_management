@@ -372,7 +372,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                       ),
                       child: PaginatedDataTable(
 
-
+                        showCheckboxColumn: false,
                         //arrowHeadColor: Colors.blue,
 
                         columns:

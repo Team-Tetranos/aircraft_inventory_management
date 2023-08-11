@@ -566,7 +566,9 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
                                           color: Color(0xFF797979)
                                       ),),),
                                     ],
-                                    source: DataClass(data: []),
+                                    source: DataClass(data: [], onPressed: (index){
+
+                                    }),
                                     rowsPerPage: 50,
                                     columnSpacing: 60,
 

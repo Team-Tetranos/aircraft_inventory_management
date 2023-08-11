@@ -185,5 +185,48 @@ class ApiService extends BaseApiService{
         throw FetchDataExceptions(message: "Error during connection");
     }
   }
+
+  @override
+  Future deleteApiResponse(String url, {bool? token}) async{
+    dynamic responseJson;
+
+    try{
+      dynamic headers = token==null?{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+
+      }:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization':"Bearer ${sharedPreferenceManager.getAccessToken()}"
+      };
+
+      final response = await delete(Uri.parse(url), headers: headers).timeout(const Duration(seconds: 30));
+      //print(response.body);
+      if(response.statusCode==200 || response.statusCode==201){
+        responseJson = Success(code: response.statusCode, data: '', key: '');
+      }else{
+        responseJson = Failure(code: response.statusCode, error: '', key: '');
+      }
+      // responseJson = returnResponse(response);
+    }on SocketException{
+      return Failure(code: 500, error: {
+        'error':'No Internet Connection'
+      }, key: 'No Internet Connection');
+    }
+    on FormatException{
+      return Failure(code: 500, error: {
+        'error':'Format Exception'
+      }, key: 'Format Exception');
+    }
+    catch(e){
+      print(e);
+      return Failure(code: 500, error: {
+        'error':e.toString()
+      }, key: 'Server Error');
+    }
+
+    return responseJson;
+  }
   
 }

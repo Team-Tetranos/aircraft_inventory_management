@@ -172,6 +172,33 @@ class AircraftRepository{
 
   }
 
+
+  Future<Object> updateStockRecord(Map<String, dynamic> data,StockRecord stockRecord, {File? image})async{
+
+    Object result = Failure(code: 400, error: {}, key: '');
+    if(image==null){
+      var response = await apiService.postApiResponse('${endPoints.base_url}${endPoints.stock_record_by_id}${stockRecord.id}/', data, token: true);
+      if(response is Success){
+        StockRecord stockRecord = StockRecord.fromJson(response.data as Map<String, dynamic>);
+        result = stockRecord;
+      }else if(response is Failure){
+
+        result=response;
+      }
+
+    }else{
+      var response = await apiService.postWithFiles('${endPoints.base_url}${endPoints.stock_record_by_id}${stockRecord.id}/', data, {'image':image}, token: true);
+      if(response is Success){
+        StockRecord stockRecord = StockRecord.fromJson(response.data as Map<String, dynamic>);
+        result = stockRecord;
+      }else if(response is Failure){
+        result=response;
+      }
+    }
+    return result;
+
+  }
+
   Future<Object> createBulkHistory(List<StockHistory> stockHistory, {File? image})async{
 
     final data = stockHistory.map((e) => {
@@ -238,6 +265,18 @@ class AircraftRepository{
         result=response;
       }
     }
+    return result;
+
+  }
+
+  Future<Object> deleteStockRecord(StockRecord stockRecord) async{
+
+    Object result = Failure(code: 400, error: {}, key: '');
+
+    var response = await apiService.deleteApiResponse('${endPoints.base_url}${endPoints.stock_record_by_id}${stockRecord.id}/', token: true);
+
+    result = response;
+
     return result;
 
   }

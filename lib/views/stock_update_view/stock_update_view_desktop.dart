@@ -294,24 +294,12 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.grey
-                                    ),
-                                    borderRadius: BorderRadius.circular(5)
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 10,
-                                      horizontal: 20
-                                  ),
-                                  child: Text('Cancel'),
-                                ),
-                              ),
+
                               GestureDetector(
                                 onTap: (){
                                   //ivm.create_stock_record(context);
+
+                                  svm.updateStockRecord(context);
 
                                 },
                                 child: Container(
@@ -324,7 +312,7 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
                                         vertical: 10,
                                         horizontal: 20
                                     ),
-                                    child: Text('Add Item',style: TextStyle(
+                                    child: Text('Update Record',style: TextStyle(
                                         color: Colors.white
                                     ),),
                                   ),
