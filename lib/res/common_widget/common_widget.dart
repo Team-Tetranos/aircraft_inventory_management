@@ -49,7 +49,7 @@ class Common_Container extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      width: MediaQuery.of(context).size.width*width,
+      width: width,
       decoration: BoxDecoration(
         border: Border.all(color: bordercolor==null?Colors.transparent:bordercolor,
             width: border),

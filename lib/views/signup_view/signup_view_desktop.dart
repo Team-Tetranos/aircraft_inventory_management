@@ -9,14 +9,14 @@ import 'package:provider/provider.dart';
 
 import '../../view_models/sign_up_view_model.dart';
 
-class MySignUpViewDesktop extends StatefulWidget {
-  const MySignUpViewDesktop({Key? key}) : super(key: key);
+class SignUpViewDesktop extends StatefulWidget {
+  const SignUpViewDesktop({Key? key}) : super(key: key);
 
   @override
-  State<MySignUpViewDesktop> createState() => _MySignUpViewDesktopState();
+  State<SignUpViewDesktop> createState() => _SignUpViewDesktopState();
 }
 
-class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
+class _SignUpViewDesktopState extends State<SignUpViewDesktop> {
 
 
 
@@ -66,7 +66,8 @@ class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
                                children: [
                                  Container(
                                    height: 351,
-                                   width: MediaQuery.of(context).size.width*.244,
+                                   width: 352,
+                                   //MediaQuery.of(context).size.width*.244,
                                    decoration: BoxDecoration(
                                        image: DecorationImage(
                                            image: AssetImage("assets/image_files/Group 1289 (2).png"),
@@ -74,13 +75,14 @@ class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
                                        )
                                    ),
                                  ),
-                                 SizedBox(width: 201,),
+
 
                                  Padding(
                                    padding: const EdgeInsets.only(top: 61),
                                    child: Container(
                                      height: 880,
-                                     width: MediaQuery.of(context).size.width*.351,
+                                     width: 500,
+                                     //MediaQuery.of(context).size.width*.351,
                                      decoration: BoxDecoration(
                                          color: Color(0xFFD4EAFC),
                                          borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -98,7 +100,8 @@ class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
                                            //SizedBox(height: 27,),
                                            Container(
                                              height: 115,
-                                             width: MediaQuery.of(context).size.width*.0805,
+                                             width: 115.92,
+                                             //MediaQuery.of(context).size.width*.0805,
                                              decoration: BoxDecoration(
                                                  image: DecorationImage(
                                                      image: AssetImage("assets/image_files/Group 1289 (2).png"),
@@ -132,7 +135,7 @@ class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
                                              offset: 3,
                                              height: 80,
                                              color: Colors.white,
-                                             width: .25,
+                                             width: 360,
                                              radius: 20,
                                              mywidget: Padding(
                                                padding: const EdgeInsets.only(left: 19,top:10,bottom: 11),
@@ -195,7 +198,7 @@ class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
                                              offset: 3,
                                              height: 80,
                                              color: Colors.white,
-                                             width: .25,
+                                             width: 360,
                                              radius: 20,
                                              mywidget:Padding(
                                                padding: const EdgeInsets.only(left: 19,top:10,bottom: 11),
@@ -261,7 +264,7 @@ class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
                                              offset: 3,
                                              height: 80,
                                              color: Colors.white,
-                                             width: .25,
+                                             width: 360,
                                              radius: 20,
                                              mywidget:Padding(
                                                padding: const EdgeInsets.only(left: 19,top:10,bottom: 11),
@@ -321,7 +324,8 @@ class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
 
                                            Container(
                                              height: 80,
-                                             width: MediaQuery.of(context).size.width*.25,
+                                             width: 360,
+                                             //MediaQuery.of(context).size.width*.25,
                                              child: Common_Text(
                                                color: Color(0xFF667085),
                                                fontWeight: FontWeight.w400,
@@ -349,7 +353,7 @@ class _MySignUpViewDesktopState extends State<MySignUpViewDesktop> {
                                                  offset: 0,
                                                  height: 44,
                                                  color: Color(0xFF1366D9),
-                                                 width: .25,
+                                                 width: 360,
                                                  radius: 5,
                                                  mywidget: Center(child: Common_Text(
                                                    text: "Sign Up",
