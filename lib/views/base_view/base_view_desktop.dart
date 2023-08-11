@@ -162,7 +162,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                               ],
                                             ),
                                           ),
-                                          SizedBox(width: 44,)
+                                          SizedBox(width: 20,)
                                         ],
                                       ),
                                     ),
