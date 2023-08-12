@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../data/local/hive_manager.dart';
 import '../data/remote/responses/api_response.dart';
@@ -16,6 +17,8 @@ import '../repositories/aircraft_repository.dart';
 import '../utils/snackbars/input_field_error_snackbar.dart';
 import 'package:aircraft_inventory_management/models/category.dart' as ct;
 
+import 'inventory_view_model.dart';
+
 class StockHistoryViewModel extends ChangeNotifier{
 
   HiveManager hiveManager = sl.get<HiveManager>();
@@ -24,6 +27,7 @@ class StockHistoryViewModel extends ChangeNotifier{
   late Box<StockHistory> stockListHistoryBox;
   ct.Category? acft;
   List<StockHistory> stockHistory = [];
+  StockHistory selectedStockHistory = StockHistory();
 
   TextEditingController dateforsecondpageAddInventory = TextEditingController();
   TextEditingController vouchernumberforsecondpageAddInventory = TextEditingController();
@@ -233,6 +237,12 @@ class StockHistoryViewModel extends ChangeNotifier{
     }catch(e){
 
     }
+  }
+
+  void setupSelectedStockHistory(BuildContext context, StockHistory stock) {
+    selectedStockHistory = stock;
+    notifyListeners();
+    Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(4);
   }
 
 }

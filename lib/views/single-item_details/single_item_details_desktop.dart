@@ -51,8 +51,10 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                       child: Row(
 
                         children: [
-                          IconButton(onPressed: (){
+                          IconButton(onPressed: ()async{
                             Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(0);
+                            await Provider.of<MyProviderForInventoryView>(context, listen: false).fetchStocksForAircraft(context);
+
                           }, icon: Icon(Icons.arrow_back)),
 
                           Text("Item Details",
@@ -388,6 +390,8 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                     ),),),
                   ],
                   source: DataClass(data: svm.stockHistory, onPressed: (index){
+
+                    svm.setupSelectedStockHistory(context, svm.stockHistory[index]);
 
                   }),
                   rowsPerPage: 50,

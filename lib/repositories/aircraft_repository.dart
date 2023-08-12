@@ -126,6 +126,20 @@ class AircraftRepository{
     return result;
   }
 
+  Future<Object> getStockRecord(String id) async{
+    Object result = Failure(code: 400, error: {}, key: '');
+    var response = await apiService.getApiResponse('${endPoints.base_url}${endPoints.stock_record_by_id}$id/', token: true);
+
+    if(response is Success){
+
+      result = StockRecord.fromJson(response.data as Map<String, dynamic>);
+
+    }else if(response is Failure){
+      result = response;
+    }
+    return result;
+  }
+
   Future<Object> stockHistoryByRecord(StockRecord stockRecord)async{
     Object result = Failure(code: 400, error: {}, key: '');
     var response = await apiService.getApiResponse(endPoints.base_url+endPoints.get_stock_history_by_record+'${stockRecord.id}/', token: true);
@@ -280,5 +294,28 @@ class AircraftRepository{
     return result;
 
   }
+
+
+  Future<Object> updateStockHistory(Map<String, dynamic> data,StockHistory stockHistory, {File? image})async{
+
+    Object result = Failure(code: 400, error: {}, key: '');
+    if(image==null){
+      var response = await apiService.postApiResponse('${endPoints.base_url}${endPoints.stock_history_by_id}${stockHistory.id}/', data, token: true);
+      if(response is Success){
+        StockHistory stockRecord = StockHistory.fromJson(response.data as Map<String, dynamic>);
+        result = stockRecord;
+      }else if(response is Failure){
+
+        result=response;
+      }
+    }
+    return result;
+
+  }
+
+
+
+
+
 
 }
