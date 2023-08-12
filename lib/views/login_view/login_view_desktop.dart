@@ -3,6 +3,7 @@ import 'package:aircraft_inventory_management/res/common_widget/common_widget.da
 import 'package:aircraft_inventory_management/res/common_widget/loading_widget.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -23,14 +24,7 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
   Widget build(BuildContext context) {
     return Consumer<LoginViewModel>(
       builder: (context, lvm, _) {
-        return lvm.isloading==true?Loading_Animation(height: 800,
-            loadingWidget: Center(
-              child: SpinKitPouringHourGlass(
-                color: Colors.blue,
-                size: 60,
-
-              ),
-            ), text: 'Please wait',):
+        return
           Scaffold(
           //backgroundColor: Colors.white,
           body: SingleChildScrollView(
@@ -317,6 +311,7 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                                         onTap: (){
                                           //Navigator.pushNamed(context, RouteNames.baseview);
                                           lvm.login(context: context);
+
                                         },
                                         child: Common_Container(
                                             bordercolor: null,

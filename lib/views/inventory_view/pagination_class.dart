@@ -16,14 +16,14 @@ class myData extends DataTableSource{
   @override
   DataRow? getRow(int index) {
     return DataRow(cells: [
-      DataCell(Container(
+     /* DataCell(Container(
       height: 27.47,
       width: MediaQuery.of(mycontext).size.width*.018,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(5)),
           color: Color(0xFFD9D9D9)
       ),),),
-      DataCell(VerticalDivider()),
+      DataCell(VerticalDivider()),*/
       DataCell(Text(items[index].card_no.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,

@@ -343,7 +343,7 @@ class _Base_View_tabletState extends State<Base_View_tablet> {
                        AddInventoryView(fromAddStock: true,),
                        // AddCategoryForTablet()
                        //AddInventoryView()
-                        AddCategoryForTablet()
+                       // AddCategoryForTablet()
                         //MyDashBoardView()
 
 

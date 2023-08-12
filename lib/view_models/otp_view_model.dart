@@ -2,6 +2,7 @@
 import 'package:aircraft_inventory_management/repositories/auth_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../data/local/shared_preference_manager.dart';
 import '../data/remote/responses/api_response.dart';
@@ -41,12 +42,16 @@ class OtpViewModel extends ChangeNotifier{
 
 
   signUpSuccess(BuildContext context, Map data)async{
+
     isloading=true;
     notifyListeners();
+    EasyLoading.show(status: "Verifying OTP");
+
     var result = await authRepository.signUp(data['email'], data['password'], otp_code);
     if(result is Failure){
       var error = result.error as Map;
       print(error);
+      EasyLoading.dismiss();
 
       showSimpleErrorDialog(context, error['error']);
       isloading=false;
@@ -54,6 +59,7 @@ class OtpViewModel extends ChangeNotifier{
     }else if (result is Success){
       User user = User.fromJson(result.data as Map<String, dynamic>);
       await sharedPreferenceManager.setAccessToken(user.access!);
+      EasyLoading.dismiss();
 
       Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.baseview, (route) => false);
       isloading=false;
@@ -62,17 +68,19 @@ class OtpViewModel extends ChangeNotifier{
   }
 
   forgotPasswordOtpVerify(BuildContext context, Map data) async{
+    EasyLoading.show(status: "Verifying OTP");
     isloading=true;
     notifyListeners();
     var result = await authRepository.verifyOtp(data['email'], otp_code);
     if(result is Failure){
       var error = result.error as Map;
+      EasyLoading.dismiss();
       print(error);
       showSimpleErrorDialog(context, error['error']);
       isloading=false;
       notifyListeners();
     }else if (result is Success){
-
+      EasyLoading.dismiss();
       Navigator.of(context).pushReplacementNamed(RouteNames.creatnewpasword, arguments: {
         'email':data['email']
       });

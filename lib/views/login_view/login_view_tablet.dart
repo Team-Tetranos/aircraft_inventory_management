@@ -23,15 +23,7 @@ class _MyLogInViewTabletState extends State<MyLogInViewTablet> {
   Widget build(BuildContext context) {
     return Consumer<LoginViewModel>(
         builder: (context, lvm, _) {
-          return lvm.isloading==true?Loading_Animation(height: 800,
-            loadingWidget: Center(
-              child: SpinKitPouringHourGlass(
-                color: Colors.blue,
-                size: 60,
-
-              ),
-            ), text: 'Please wait',):
-          Scaffold(
+          return Scaffold(
             //backgroundColor: Colors.white,
             body: SingleChildScrollView(
 

@@ -30,17 +30,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
       builder: (context,mp,_) {
         return Padding(
           padding: const EdgeInsets.only(left: 40),
-          child: mp.isLoading?Center(
-            child: SpinKitFadingCircle(
-              itemBuilder: (BuildContext context, int index) {
-                return DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: index.isEven ? Colors.red : Colors.green,
-                  ),
-                );
-              },
-            ),
-          ): Column(
+          child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 40,),
@@ -147,8 +137,15 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
               ),
               Container(
                 height: 747,
-                width: MediaQuery.of(context).size.width*.716,
-                color: Colors.white,
+                width: MediaQuery.of(context).size.width*.718,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius:
+                  BorderRadius.only(
+                      topRight: Radius.circular(10),
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10))
+                ),
                 child: Column(
                   children: [
                     SizedBox(height: 28.53,),
@@ -372,79 +369,81 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                       ),
                       child: PaginatedDataTable(
 
-                        showCheckboxColumn: false,
+
                         //arrowHeadColor: Colors.blue,
 
-                        columns:
-                        [
-                          DataColumn(label: Container(
-                            height: 27.47,
-                            width: MediaQuery.of(context).size.width*.018,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(5)),
-                                color: Color(0xFFD9D9D9)
-                            ),),),
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Card No",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Nomenclature",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Stock No",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
+                            columns:
+                            [
+                             /* DataColumn(label: Container(
+                                height: 27.47,
+                                width: MediaQuery.of(context).size.width*.018,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                                    color: Color(0xFFD9D9D9)
+                                ),),),*/
+                             // DataColumn(label: SizedBox.shrink()),
+                              DataColumn(label: Text("Card No",style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Color(0xFF797979)
+                              ),),),
+                              DataColumn(label: SizedBox.shrink()),
+                              DataColumn(label: Text("Nomenclature",style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Color(0xFF797979)
+                              ),),),
+                              DataColumn(label: SizedBox.shrink()),
+                              DataColumn(label: Text("Stock No",style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Color(0xFF797979)
+                              ),),),
 
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Quantity",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
+                              DataColumn(label: SizedBox.shrink()),
+                              DataColumn(label: Text("Quantity",style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Color(0xFF797979)
+                              ),),),
 
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Created",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Status",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
+                              DataColumn(label: SizedBox.shrink()),
+                              DataColumn(label: Text("Created",style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Color(0xFF797979)
+                              ),),),
+                              DataColumn(label: SizedBox.shrink()),
+                              DataColumn(label: Text("Status",style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Color(0xFF797979)
+                              ),),),
 
-                          DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Upload Status",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
+                              DataColumn(label: SizedBox.shrink()),
+                              DataColumn(label: Text("Upload Status",style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Color(0xFF797979)
+                              ),),),
 
-                        ],
-                        source: myData(mycontext: context, items: mp.duplicatestockRecords, onPressed: (index){
+                            ],
+                            source: myData(mycontext: context, items: mp.duplicatestockRecords, onPressed: (index){
 
-                          mp.onSelectRow(context, index);
+                              mp.onSelectRow(context, index);
 
-                        }),
-                        rowsPerPage: 10,
-                        columnSpacing: 60,),
+                            }),
+                            rowsPerPage: 10,
+                            columnSpacing: 25,),
+
+
                     )
                   ],),
 

@@ -8,6 +8,7 @@ import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/utils/routes/routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../../data/local/shared_preference_manager.dart';
 import '../../dependency_injection/di.dart';
@@ -31,7 +32,9 @@ class LoginViewModel with ChangeNotifier{
 
 
     if(!EmailValidator.validate(emailController.text.trim())){
+
       showSimpleErrorDialog(context, 'Invalid Email Format');
+
       return;
     }
     if(passwordController.text.trim().isEmpty){
@@ -40,18 +43,23 @@ class LoginViewModel with ChangeNotifier{
     }
     isloading=true;
     notifyListeners();
+    EasyLoading.show(status: "please wait for a moment");
 
     var result = await authRepository.login(emailController.text.trim(), passwordController.text.trim());
 
     if(result is Failure){
       var error = result.error as Map;
+      EasyLoading.dismiss();
       isloading=false;
       notifyListeners();
+
       showSimpleErrorDialog(context, error['error']);
 
     }else if (result is User){
+      EasyLoading.dismiss();
       isloading=false;
       notifyListeners();
+
       if(result.is_verified==true||result.is_admin==true){
         Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.baseview, (route) => false);
       }else{

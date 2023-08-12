@@ -23,13 +23,7 @@ class _SignUpViewDesktopState extends State<SignUpViewDesktop> {
   @override
   Widget build(BuildContext context) {
     var svm = Provider.of<SignupViewModel>(context);
-    return svm.isloading==true?Center(
-      child: Loading_Animation(height: 800,
-        loadingWidget: SpinKitPouringHourGlass(
-          color: Colors.blue,
-          size: 60,
-        ), text: "Please Wait", ),
-    ):
+    return
       Scaffold(
               backgroundColor: Colors.white,
               body: SingleChildScrollView(

@@ -2,6 +2,7 @@
 import 'package:aircraft_inventory_management/repositories/auth_repository.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../data/remote/responses/api_response.dart';
 import '../dependency_injection/di.dart';
@@ -21,10 +22,12 @@ class ResetPasswordViewModel extends ChangeNotifier{
       showSimpleErrorDialog(context, 'Invalid Email Format');
       return;
     }
+    EasyLoading.show(status: "Sending OTP");
     isloading=true;
     notifyListeners();
     var result = await authRepository.send_otp(emailController.text.trim(), 'forgot_password', 'TRUE');
     if(result is Success){
+      EasyLoading.dismiss();
       Navigator.of(context).pushNamed(RouteNames.otpview,arguments: <String, dynamic>{
         'reason':'forgot_password',
         'email':emailController.text.trim()
@@ -32,6 +35,7 @@ class ResetPasswordViewModel extends ChangeNotifier{
       isloading=false;
       notifyListeners();
     }else if(result is Failure){
+      EasyLoading.dismiss();
       var error = result.error as Map;
       isloading=false;
       notifyListeners();

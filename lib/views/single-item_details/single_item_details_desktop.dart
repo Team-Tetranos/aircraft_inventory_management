@@ -21,333 +21,374 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
   Widget build(BuildContext context) {
     return Consumer<SingleItemViewModel>(
       builder: (context, svm, _) {
-        return SingleChildScrollView(
-          child:svm.isLoading?Center(
-            child: SpinKitFadingCircle(
-              itemBuilder: (BuildContext context, int index) {
-                return DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: index.isEven ? Colors.red : Colors.green,
-                  ),
-                );
-              },
-            ),
-          ) :Container(
+        return  Padding(
+                    padding: const EdgeInsets.only(top: 30,left: 20,bottom: 30),
+                    child: Container(
+                      height: 765,
+                      width: MediaQuery.of(context).size.width*.729,
 
-            //height: 865,
-            width: MediaQuery.of(context).size.width*.775,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 40.0),
-                  child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(10
+                        ))
 
-                    height: 62,
-                    color: Colors.white,
-                    width: MediaQuery.of(context).size.width*.775,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40),
-                      child: Row(
+                      ),
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
 
-                        children: [
-                          IconButton(onPressed: ()async{
-                            Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(0);
-                            await Provider.of<MyProviderForInventoryView>(context, listen: false).fetchStocksForAircraft(context);
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 40),
+                                  child: Column(
 
-                          }, icon: Icon(Icons.arrow_back)),
+                                    //mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top:20),
+                                        child: Row(
 
-                          Text("Item Details",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20,
-                                fontFamily: "Inter",
-                                color: Color(0xFF696969)
-                            ),)
-                        ],
+                                          children: [
+                                            IconButton(onPressed: (){
+                                              Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(0);
+                                            }, icon: Icon(Icons.arrow_back,color: Colors.black,)),
+
+                                            Text("Item Details",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 20,
+                                                  fontFamily: "Inter",
+                                                  color: Colors.black
+                                              ),)
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(height: 47,),
+                                      Text("${svm.stockRecord.description}",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: "Inter",
+                                        color: Color(0xFF383E49)
+                                      ),),
+                                      SizedBox(height: 50,),
+                                      Text("Primery Details",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600,
+                                            fontFamily: "Inter",
+                                            color: Color(0xFF383E49)
+                                        ),),
+                                      SizedBox(height: 18,),
+
+                                      Container(
+                                        width: 500,
+                                        //MediaQuery.of(context).size.width*.2,
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                                                children: [
+                                                  Text("Card No",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+
+
+                                                  Text("${svm.stockRecord.card_no}",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+                                                ],
+                                              ),
+
+
+                                            ),
+                                            SizedBox(height: 32,),
+                                            Container(
+
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text("Stock No",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+
+
+                                                  Text("${svm.stockRecord.stock_no}",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(height: 32,),
+                                            Container(
+
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text("Quantity",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+
+
+                                                  Text("${svm.stockRecord.balance}",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(height: 32,),
+                                            Container(
+
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text("Issued At",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+
+                                                  Text("${stringToDate(svm.stockRecord.date)}",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+                                                ],
+                                              ),
+                                            ),
+
+                                          ],
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 30),
+                                  child: Column(
+
+
+                                    children: [
+                                      SizedBox(height: 52,),
+
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+
+                                        children: [
+                                          Container(
+
+                                            height: 40,
+                                            width: 77,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.all(Radius.circular(4)),
+                                              border: Border.all(width: 1,color: Color(0xFFD0D5DD))
+                                            ),
+                                            child: Center(
+                                              child: Text("Export",
+                                              style: TextStyle(
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                                color: Color(0xFF5D6679)
+                                              ),),
+                                            ),
+                                          ),
+                                          SizedBox(width: 12,),
+                                          GestureDetector(
+                                            onTap: (){
+                                              Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(3);
+
+                                            },
+                                            child: Container(
+
+                                              height: 40,
+                                              width: 77,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                                                  border: Border.all(width: 1,color: Color(0xFFD0D5DD))
+                                              ),
+                                              child:Padding(
+                                                padding: const EdgeInsets.only(left: 10,right: 10),
+                                                child: Row(
+                                                  children: [
+                                                    FaIcon(FontAwesomeIcons.pen,color: Color(0xFF5D6679),size: 13,),
+                                                    SizedBox(width: 8,),
+                                                    Text("Edit",
+                                                        style: TextStyle(
+                                                            fontFamily: "Inter",
+                                                            fontWeight: FontWeight.w500,
+                                                            fontSize: 14,
+                                                            color: Color(0xFF5D6679)
+                                                        ),),
+                                                  ],
+                                                ),
+                                              ),
+
+                                            ),
+                                          ),
+
+                                          SizedBox(width: 12,),
+                                          GestureDetector(
+                                            onTap: (){
+                                              Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(2);
+                                            },
+                                            child: Container(
+                                              height: 40,
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                                                  border: Border.all(width: 1,color: Color(0xFFD0D5DD))
+                                              ),
+                                              child:Padding(
+                                                padding: const EdgeInsets.only(left: 10,right: 10),
+                                                child: Row(
+                                                  children: [
+                                                    FaIcon(FontAwesomeIcons.add,color: Color(0xFF5D6679),size: 13,),
+                                                    SizedBox(width: 8,),
+                                                    Text("Add Stock History",
+                                                      style: TextStyle(
+                                                          fontFamily: "Inter",
+                                                          fontWeight: FontWeight.w500,
+                                                          fontSize: 14,
+                                                          color: Color(0xFF5D6679)
+                                                      ),),
+                                                  ],
+                                                ),
+                                              ),
+
+                                            ),
+                                          )
+
+                                        ],
+                                      ),
+                                      SizedBox(height: 79,),
+                                      Container(
+                                        height: 170,
+                                        width: 170,
+                                        decoration: BoxDecoration(
+                                          border: Border.all(width: 1,color: Color(0xFF9D9D9D)),
+                                          image: DecorationImage(
+                                            image: svm.stockRecord.image==null? AssetImage("assets/image_files/image 6.png"):NetworkImage('${EndPoints().image_base_url}${svm.stockRecord.image}') as ImageProvider,
+
+                                          )
+
+                                        ),
+                                      ),
+                                      SizedBox(height: 62,),
+
+
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            SizedBox(height: 40,),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10,right: 10),
+                              child: Theme(
+                                data: Theme.of(context).copyWith(
+                                  cardTheme: CardTheme(
+                                    color: Colors.white,
+
+                                    elevation: 0, // remove shadow
+                                    margin: const EdgeInsets.all(0), // reset margin
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16), // Change radius
+                                    ),
+                                  ),
+                                ),
+                                child: PaginatedDataTable(
+
+
+                                  columns: [
+                                    // DataColumn(label: SizedBox.shrink()),
+                                    const DataColumn(label: Text("Date",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),  DataColumn(label: SizedBox.shrink()),
+                                    const DataColumn(label: Text("Quantity",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),  DataColumn(label: SizedBox.shrink()),
+                                    const DataColumn(label: Text("Voucher No",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),  DataColumn(label: SizedBox.shrink()),
+                                    const DataColumn(label: Text("Received",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),  DataColumn(label: SizedBox.shrink()),
+                                    const DataColumn(label: Text("expenditure",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),
+                                    DataColumn(label: SizedBox.shrink()),
+                                    const DataColumn(label: Text("Uploaded",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),
+                                  ],
+                                  source: DataClass(data: svm.stockHistory),
+                                  rowsPerPage: 50,
+                                  columnSpacing: 54,
+
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                SizedBox(height: 32,),
-                Padding(
-                  padding: const EdgeInsets.only(left: 40),
-                  child: Container(
-                    height: 765,
-                    width: MediaQuery.of(context).size.width*.729,
-                    color: Colors.white,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
+                  );
 
-                        Padding(
-                          padding: const EdgeInsets.only(left: 40),
-                          child: Column(
-
-                            //mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 47,),
-                              Text("${svm.stockRecord.description}",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Inter",
-                                color: Color(0xFF383E49)
-                              ),),
-                              SizedBox(height: 50,),
-                              Text("Primery Details",
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    fontFamily: "Inter",
-                                    color: Color(0xFF383E49)
-                                ),),
-                              SizedBox(height: 18,),
-
-                              Container(
-                                width: 500,
-                                //MediaQuery.of(context).size.width*.2,
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                                        children: [
-                                          Text("Card No",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Inter",
-                                                color: Color(0xFF383E49)
-                                            ),),
-
-
-                                          Text("${svm.stockRecord.card_no}",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Inter",
-                                                color: Color(0xFF383E49)
-                                            ),),
-                                        ],
-                                      ),
-
-
-                                    ),
-                                    SizedBox(height: 32,),
-                                    Container(
-
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text("Stock No",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Inter",
-                                                color: Color(0xFF383E49)
-                                            ),),
-
-
-                                          Text("${svm.stockRecord.stock_no}",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Inter",
-                                                color: Color(0xFF383E49)
-                                            ),),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 32,),
-                                    Container(
-
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text("Quantity",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Inter",
-                                                color: Color(0xFF383E49)
-                                            ),),
-
-
-                                          Text("${svm.stockRecord.balance}",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Inter",
-                                                color: Color(0xFF383E49)
-                                            ),),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 32,),
-                                    Container(
-
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text("Issued At",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Inter",
-                                                color: Color(0xFF383E49)
-                                            ),),
-
-                                          Text("${stringToDate(svm.stockRecord.date)}",
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: "Inter",
-                                                color: Color(0xFF383E49)
-                                            ),),
-                                        ],
-                                      ),
-                                    ),
-
-                                  ],
-                                ),
-                              ),
-
-                            ],
-                          ),
-                        ),
-
-                        Padding(
-                          padding: const EdgeInsets.only(right: 30),
-                          child: Column(
-
-
-                            children: [
-                              SizedBox(height: 52,),
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-
-                                children: [
-                                  GestureDetector(
-                                    onTap:(){
-                                      svm.deleteStockRecord(context);
-                                    },
-                                    child: Container(
-
-                                      height: 40,
-                                      width: 77,
-                                      decoration: BoxDecoration(
-                                        color: Colors.red,
-                                        borderRadius: BorderRadius.all(Radius.circular(4)),
-                                        border: Border.all(width: 1,color: Color(0xFFD0D5DD))
-                                      ),
-                                      child: Center(
-                                        child: Text("Delete",
-                                        style: TextStyle(
-                                          fontFamily: "Inter",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14,
-                                          color: Colors.white
-                                        ),),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 12,),
-                                  GestureDetector(
-                                    onTap: (){
-                                      Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(3);
-
-                                    },
-                                    child: Container(
-
-                                      height: 40,
-                                      width: 77,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                                          border: Border.all(width: 1,color: Color(0xFFD0D5DD))
-                                      ),
-                                      child:Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 10),
-                                        child: Row(
-                                          children: [
-                                            FaIcon(FontAwesomeIcons.pen,color: Color(0xFF5D6679),size: 13,),
-                                            SizedBox(width: 8,),
-                                            Text("Edit",
-                                                style: TextStyle(
-                                                    fontFamily: "Inter",
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 14,
-                                                    color: Color(0xFF5D6679)
-                                                ),),
-                                          ],
-                                        ),
-                                      ),
-
-                                    ),
-                                  ),
-
-                                  SizedBox(width: 12,),
-                                  GestureDetector(
-                                    onTap: (){
-                                      Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(2);
-                                    },
-                                    child: Container(
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.all(Radius.circular(4)),
-                                          border: Border.all(width: 1,color: Color(0xFFD0D5DD))
-                                      ),
-                                      child:Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 10),
-                                        child: Row(
-                                          children: [
-                                            FaIcon(FontAwesomeIcons.add,color: Color(0xFF5D6679),size: 13,),
-                                            SizedBox(width: 8,),
-                                            Text("Add Stock History",
-                                              style: TextStyle(
-                                                  fontFamily: "Inter",
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: 14,
-                                                  color: Color(0xFF5D6679)
-                                              ),),
-                                          ],
-                                        ),
-                                      ),
-
-                                    ),
-                                  )
-
-                                ],
-                              ),
-                              SizedBox(height: 79,),
-                              Container(
-                                height: 170,
-                                width: 170,
-                                decoration: BoxDecoration(
-                                  border: Border.all(width: 1,color: Color(0xFF9D9D9D)),
-                                  image: DecorationImage(
-                                    image: svm.stockRecord.image==null? AssetImage("assets/image_files/image 6.png"):NetworkImage('${EndPoints().image_base_url}${svm.stockRecord.image}') as ImageProvider,
-
-                                  )
-
-                                ),
-                              ),
-                              SizedBox(height: 62,),
-
-
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-
-                PaginatedDataTable(
+                  /*PaginatedDataTable(
 
                   columns: [
                     // DataColumn(label: SizedBox.shrink()),
@@ -389,21 +430,18 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                         color: Color(0xFF797979)
                     ),),),
                   ],
-                  source: DataClass(data: svm.stockHistory, onPressed: (index){
-
-                    svm.setupSelectedStockHistory(context, svm.stockHistory[index]);
-
-                  }),
+                  source: DataClass(data: svm.stockHistory),
                   rowsPerPage: 50,
                   columnSpacing: 60,
 
-                )
+                  )*/
 
 
-              ],
-            ),
-          ),
-        );
+
+
+
+
+
       }
     );
   }
