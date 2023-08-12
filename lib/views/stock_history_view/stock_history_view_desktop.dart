@@ -374,7 +374,9 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                               color: Color(0xFF797979)
                                           ),),),
                                         ],
-                                        source: DataClass(data: stocks??[]),
+                                        source: DataClass(data: stocks??[], onPressed: (index){
+                                          ivm.setupSelectedStockHistory(context,stocks[index]);
+                                        }, lastPage: true),
                                         rowsPerPage: 50,
                                         columnSpacing: 40,
 

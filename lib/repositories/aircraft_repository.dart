@@ -113,7 +113,7 @@ class AircraftRepository{
     var response = await apiService.getApiResponse(endPoints.base_url+endPoints.get_stock_record_by_aircraft+'${stockRecord.id}/', token: true);
 
     if(response is Success){
-      print(response.data);
+
       List<StockRecord> stocks = [];
       Iterable it = response.data as Iterable;
       for (var element in it) {
@@ -146,7 +146,6 @@ class AircraftRepository{
 
     if(response is Success){
 
-      print(response.data);
       List<StockHistory> stocks = [];
       Iterable it = response.data as Iterable;
       for (var element in it) {
@@ -311,6 +310,13 @@ class AircraftRepository{
     }
     return result;
 
+  }
+
+  Future<Object> deleteStockHistory(StockHistory selectedStockHistory) async{
+    Object result = Failure(code: 400, error: {}, key: '');
+    var response = await apiService.deleteApiResponse('${endPoints.base_url}${endPoints.stock_history_by_id}${selectedStockHistory.id}/',  token: true);
+    result = response;
+    return result;
   }
 
 

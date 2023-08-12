@@ -202,6 +202,7 @@ class StockViewModel extends ChangeNotifier{
         uploaded: false
     );
     await hiveManager.addStockHistoryData(stockHistory);
+    clearStockHistoryFieldData();
 
     try{
 

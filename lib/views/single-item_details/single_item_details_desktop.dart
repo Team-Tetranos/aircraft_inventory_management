@@ -5,6 +5,7 @@ import 'package:aircraft_inventory_management/view_models/single_item_view_model
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../add_inventory_item_view/paginated_table_class.dart';
@@ -54,6 +55,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
 
                                           children: [
                                             IconButton(onPressed: (){
+                                              Provider.of<MyProviderForInventoryView>(context, listen: false).fetchStocksForAircraft(context);
                                               Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(0);
                                             }, icon: Icon(Icons.arrow_back,color: Colors.black,)),
 
@@ -211,22 +213,28 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                         mainAxisAlignment: MainAxisAlignment.start,
 
                                         children: [
-                                          Container(
+                                          GestureDetector(
+                                            onTap:(){
+                                              svm.deleteStockRecord(context);
+                                            },
+                                            child: Container(
 
-                                            height: 40,
-                                            width: 77,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.all(Radius.circular(4)),
-                                              border: Border.all(width: 1,color: Color(0xFFD0D5DD))
-                                            ),
-                                            child: Center(
-                                              child: Text("Export",
-                                              style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF5D6679)
-                                              ),),
+                                              height: 40,
+                                              width: 77,
+                                              decoration: BoxDecoration(
+                                                color: Colors.red,
+                                                borderRadius: BorderRadius.all(Radius.circular(4)),
+                                                border: Border.all(width: 1,color: Color(0xFFD0D5DD))
+                                              ),
+                                              child: Center(
+                                                child: Text("Delete",
+                                                style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 14,
+                                                  color: Colors.white
+                                                ),),
+                                              ),
                                             ),
                                           ),
                                           SizedBox(width: 12,),
@@ -264,34 +272,65 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                           ),
 
                                           SizedBox(width: 12,),
-                                          GestureDetector(
-                                            onTap: (){
-                                              Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(2);
-                                            },
-                                            child: Container(
-                                              height: 40,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(Radius.circular(4)),
-                                                  border: Border.all(width: 1,color: Color(0xFFD0D5DD))
-                                              ),
-                                              child:Padding(
-                                                padding: const EdgeInsets.only(left: 10,right: 10),
-                                                child: Row(
-                                                  children: [
-                                                    FaIcon(FontAwesomeIcons.add,color: Color(0xFF5D6679),size: 13,),
-                                                    SizedBox(width: 8,),
-                                                    Text("Add Stock History",
-                                                      style: TextStyle(
-                                                          fontFamily: "Inter",
-                                                          fontWeight: FontWeight.w500,
-                                                          fontSize: 14,
-                                                          color: Color(0xFF5D6679)
-                                                      ),),
-                                                  ],
-                                                ),
-                                              ),
+                                          ValueListenableBuilder(
+                                            valueListenable: svm.hiveManager.getStockHistoryBox().listenable(),
+                                            builder: (context, box, _) {
+                                              bool uploaded = box.values.where((element) => element.stock_record==svm.stockRecord.id).toList().isEmpty;
+                                              return GestureDetector(
+                                                onTap: (){
 
-                                            ),
+                                                  Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(2);
+                                                },
+                                                child: uploaded? Container(
+                                                  height: 40,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                                                      border: Border.all(width: 1,color: Color(0xFFD0D5DD))
+                                                  ),
+                                                  child:Padding(
+                                                    padding: const EdgeInsets.only(left: 10,right: 10),
+                                                    child: Row(
+                                                      children: [
+                                                        FaIcon(FontAwesomeIcons.add,color: Color(0xFF5D6679),size: 13,),
+                                                        SizedBox(width: 8,),
+                                                        Text("Add Stock History",
+                                                          style: TextStyle(
+                                                              fontFamily: "Inter",
+                                                              fontWeight: FontWeight.w500,
+                                                              fontSize: 14,
+                                                              color: Color(0xFF5D6679)
+                                                          ),),
+                                                      ],
+                                                    ),
+                                                  ),
+
+                                                ):Container(
+                                                  height: 40,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.deepOrange,
+                                                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                                                      border: Border.all(width: 1,color: Color(0xFFD0D5DD))
+                                                  ),
+                                                  child:Padding(
+                                                    padding: const EdgeInsets.only(left: 10,right: 10),
+                                                    child: Row(
+                                                      children: [
+                                                        FaIcon(FontAwesomeIcons.circleExclamation,color: Colors.white,size: 13,),
+                                                        SizedBox(width: 8,),
+                                                        Text("Upload & Add Stock History",
+                                                          style: TextStyle(
+                                                              fontFamily: "Inter",
+                                                              fontWeight: FontWeight.w500,
+                                                              fontSize: 14,
+                                                              color: Colors.white
+                                                          ),),
+                                                      ],
+                                                    ),
+                                                  ),
+
+                                                ),
+                                              );
+                                            }
                                           )
 
                                         ],
@@ -375,7 +414,10 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                         color: Color(0xFF797979)
                                     ),),),
                                   ],
-                                  source: DataClass(data: svm.stockHistory),
+                                  source: DataClass(data: svm.stockHistory, onPressed: (index){
+                                    svm.setupSelectedStockHistory(context, svm.stockHistory[index]);
+                                  }, lastPage: false),
+
                                   rowsPerPage: 50,
                                   columnSpacing: 54,
 

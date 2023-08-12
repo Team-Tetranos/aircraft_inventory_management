@@ -79,7 +79,7 @@ class SingleItemViewModel extends ChangeNotifier{
 
       var result = await aircraftRepository.stockHistoryByRecord(stockRecord);
 
-      print(result.runtimeType);
+
       if(result is List<StockHistory>){
         stockHistory = result;
         notifyListeners();
@@ -167,18 +167,19 @@ class SingleItemViewModel extends ChangeNotifier{
   }
 
   deleteRecord(BuildContext context)async{
-
+    changeLoading(true);
     var response = await aircraftRepository.deleteStockRecord(stockRecord);
 
     if(response is Success){
       await Provider.of<MyProviderForInventoryView>(context, listen: false).fetchStocksForAircraft(context);
       Navigator.of(context).pop();
-      Provider.of<MyProviderForInventoryView>(context, listen: false).previousPage();
+      Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(0);
       successSnackbar(context: context, message: 'Successfully deleted stock record');
 
     }else{
       failedSnackbar(context: context, message: 'Failed to delete record');
     }
+    changeLoading(false);
 
   }
 
@@ -289,6 +290,38 @@ class SingleItemViewModel extends ChangeNotifier{
     }catch(e){
       failedSnackbar(context: context, message: '$e');
     }
+  }
+
+  deleteStockHistory(BuildContext context)async{
+    changeLoading(true);
+    try{
+      var response = await aircraftRepository.deleteStockHistory(selectedStockHistory);
+      if(response is Success){
+        Navigator.of(context).pop();
+
+        successSnackbar(context: context, message: 'Successfully Deleted Stock History');
+        Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(1);
+
+      }else{
+        Navigator.of(context).pop();
+        failedSnackbar(context: context, message: 'Failed Deleting Stock History');
+      }
+    }catch(e){
+      Navigator.of(context).pop();
+      failedSnackbar(context: context, message: 'Connection Error');
+    }
+  }
+
+  void deleteStockHistoryDialog(BuildContext context) {
+    confirmDialog(context, 'Delete stock history', 'Are you sure to delete this stock history', (){
+
+      deleteStockHistory(context);
+    }, (){
+
+      Navigator.of(context).pop();
+
+    }
+    );
   }
 
 

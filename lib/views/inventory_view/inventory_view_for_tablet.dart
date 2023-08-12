@@ -456,7 +456,7 @@ class _InventoryViewForTabletState extends State<InventoryViewForTablet> {
 
                             mp.onSelectRow(context, index);
 
-                          }),
+                          }, stockHistoryBox: mp.hiveManager.getStockHistoryBox()),
                           rowsPerPage: 10,
                           columnSpacing: 60,),
                       )

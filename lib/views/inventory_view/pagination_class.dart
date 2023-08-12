@@ -1,16 +1,22 @@
 import 'package:aircraft_inventory_management/models/aircraftitem.dart';
 import 'package:aircraft_inventory_management/models/stock_record.dart';
 import 'package:aircraft_inventory_management/utils/date_object_conversion.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+import '../../models/stock_history.dart';
 
 class myData extends DataTableSource{
 
   BuildContext mycontext;
   List<StockRecord> items;
   Function(int) onPressed;
+  Box<StockHistory> stockHistoryBox;
 
 
-  myData({required this.mycontext, required this.items, required this.onPressed});
+  myData({required this.mycontext, required this.items, required this.onPressed, required this.stockHistoryBox});
 
 
   @override
@@ -74,12 +80,15 @@ class myData extends DataTableSource{
                   fontFamily: "Inter"),),),
           )),
       DataCell(VerticalDivider()),
-      DataCell(Text('upload Status',style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 14,
-          color: Color(0xFF484848)
-      ),),),
+      
+      DataCell(
+        ValueListenableBuilder(
+          builder: (context, box, _) {
+            bool uploaded = box.values.where((element) => element.stock_record==items[index].id).toList().isEmpty;
+            return uploaded?Icon(Icons.check, color: Colors.green,):Icon(CupertinoIcons.exclamationmark_circle, color: Colors.red,);
+
+          }, valueListenable: stockHistoryBox.listenable(),
+        ),),
 
     ], onSelectChanged: (s){
       if(s!=null && s){

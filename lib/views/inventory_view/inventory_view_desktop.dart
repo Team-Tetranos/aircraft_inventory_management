@@ -201,35 +201,10 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
 
                                 ),
                                 child: TextField(
+                                  controller: mp.cardNoFilteringController,
                                   onChanged: (s){
-                                    //mp.aircraftFiltering('part', s);
-                                  },
-                                  decoration: InputDecoration(
-                                      prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
-                                      contentPadding: EdgeInsets.only(top: 3),
-                                      hintText: "Part No",
-                                      hintStyle: TextStyle(
-                                          color: Color(0xFF858D9D)
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderSide: BorderSide.none
-                                      )
-                                  ),
+                                    mp.stockRecordFiltering();
 
-
-                                ),
-                              ),
-                              Container(
-                                height: 33.81,
-                                width: MediaQuery.of(context).size.width*.06,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                                    color: Color(0xFFEDEDED)
-
-                                ),
-                                child: TextField(
-                                  onChanged: (s){
-                                    //mp.aircraftFiltering('card', s);
                                   },
                                   decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
@@ -255,8 +230,39 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
 
                                 ),
                                 child: TextField(
+                                  controller: mp.stockNoFilteringController,
+                                  onChanged: (s){
+                                    //mp.aircraftFiltering('card', s);
+                                    mp.stockRecordFiltering();
+                                  },
+                                  decoration: InputDecoration(
+                                      prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
+                                      contentPadding: EdgeInsets.only(top: 3),
+                                      hintText: "Stock No",
+                                      hintStyle: TextStyle(
+                                          color: Color(0xFF858D9D)
+                                      ),
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none
+                                      )
+                                  ),
+
+
+                                ),
+                              ),
+                              Container(
+                                height: 33.81,
+                                width: MediaQuery.of(context).size.width*.06,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                                    color: Color(0xFFEDEDED)
+
+                                ),
+                                child: TextField(
+                                  controller: mp.quantityFilteringController,
                                   onChanged: (s){
                                     //mp.aircraftFiltering('quantity', s);
+                                    mp.stockRecordFiltering();
                                   },
                                   decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
@@ -436,10 +442,8 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
 
                             ],
                             source: myData(mycontext: context, items: mp.duplicatestockRecords, onPressed: (index){
-
                               mp.onSelectRow(context, index);
-
-                            }),
+                            }, stockHistoryBox: mp.hiveManager.getStockHistoryBox()),
                             rowsPerPage: 10,
                             columnSpacing: 25,),
 

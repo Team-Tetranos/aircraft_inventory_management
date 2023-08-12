@@ -66,7 +66,6 @@ class HiveManager{
     return Hive.box<StockRecord>(hiveConstants.stockRecordBoxName);
   }
   Box<StockHistory> getStockHistoryBox(){
-
     return Hive.box<StockHistory>(hiveConstants.stockHistoryBoxName);
   }
 

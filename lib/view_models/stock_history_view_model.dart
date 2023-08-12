@@ -87,10 +87,9 @@ class StockHistoryViewModel extends ChangeNotifier{
   }
 
   initiateStockRecord(StockRecord? stockRecord){
-
     updatedStockRecordForNextPag = stockRecord;
+    print(updatedStockRecordForNextPag!.id);
     notifyListeners();
-
   }
 
 
@@ -152,6 +151,7 @@ class StockHistoryViewModel extends ChangeNotifier{
       };
 
 
+
       var result = await aircraftRepository.createStockRecord(data);
 
 
@@ -206,6 +206,7 @@ class StockHistoryViewModel extends ChangeNotifier{
     );
     await hiveManager.addStockHistoryData(stockHistory);
 
+    clearStockHistoryFieldData();
     try{
 
       //clearStockHistoryFieldData();

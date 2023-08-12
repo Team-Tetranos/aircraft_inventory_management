@@ -157,6 +157,25 @@ class MyProviderForInventoryView with ChangeNotifier {
     notifyListeners();
   }
 
+  TextEditingController cardNoFilteringController = TextEditingController();
+  TextEditingController stockNoFilteringController = TextEditingController();
+  TextEditingController quantityFilteringController = TextEditingController();
+
+  void stockRecordFiltering() {
+    try{
+      duplicatestockRecords = stockRecords.where(
+              (element) =>
+                  element.card_no!.toLowerCase().contains(cardNoFilteringController.text.toLowerCase())
+                  && element.stock_no!.toLowerCase().contains(stockNoFilteringController.text.toLowerCase())
+                  && element.balance.toString().toLowerCase().contains(quantityFilteringController.text.toLowerCase())
+      ).toList();
+      notifyListeners();
+    }catch(e){
+
+      print(e);
+    }
+  }
+
 
 
 

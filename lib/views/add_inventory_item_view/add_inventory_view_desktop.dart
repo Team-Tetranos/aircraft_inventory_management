@@ -675,7 +675,8 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                           ],
                                           source: DataClass(data: stocks, onPressed: (index){
 
-                                          }),
+                                          }, lastPage: true),
+
                                           rowsPerPage: 50,
                                           columnSpacing: 60,
 

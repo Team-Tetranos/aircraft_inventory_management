@@ -6,15 +6,21 @@ import '../../models/stock_history.dart';
 class DataClass extends DataTableSource{
   Function(int) onPressed;
   List<StockHistory> data;
-  DataClass({required this.data, required this.onPressed});
+  bool lastPage;
+  DataClass({required this.data, required this.onPressed, required this.lastPage});
   @override
   DataRow? getRow(int index) {
     StockHistory stockHistory = data[index];
     return DataRow(
       onSelectChanged: (b){
-        if(b!=null&&b){
-          onPressed(index);
+        if(lastPage){
+
+        }else{
+          if(b!=null&&b){
+            onPressed(index);
+          }
         }
+
       },
       cells: [
        // DataCell(VerticalDivider()),
@@ -53,7 +59,17 @@ class DataClass extends DataTableSource{
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
-        DataCell(stockHistory.uploaded?Icon(Icons.check, color: Colors.green,):Icon(CupertinoIcons.info_circle_fill, color: Colors.red,)),
+        DataCell(stockHistory.uploaded?Icon(Icons.check, color: Colors.green,):Row(
+          children: [
+            //Icon(CupertinoIcons.info_circle_fill, color: Colors.red,),
+            GestureDetector(
+              onTap:()async{
+               await stockHistory.delete();
+              },
+                child: Icon(CupertinoIcons.delete, color: Colors.red,)
+            ),
+          ],
+        )),
       ]
     );
     throw UnimplementedError();

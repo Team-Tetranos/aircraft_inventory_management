@@ -568,7 +568,7 @@ class _AddInventoryViewForTabletState extends State<AddInventoryViewForTablet> {
                                     ],
                                     source: DataClass(data: [], onPressed: (index){
 
-                                    }),
+                                    }, lastPage: true),
                                     rowsPerPage: 50,
                                     columnSpacing: 60,
 

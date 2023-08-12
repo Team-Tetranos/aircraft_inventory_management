@@ -51,26 +51,56 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: GestureDetector(
-                          onTap: (){
-                            svm.update_stock_history(context);
+                        child: Row(
+                          children: [
 
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: Color(0xff1366D9),
-                                borderRadius: BorderRadius.circular(5)
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10,
-                                  horizontal: 20
+                            GestureDetector(
+                              onTap: (){
+                                svm.deleteStockHistoryDialog(context);
+
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.red,
+                                    borderRadius: BorderRadius.circular(5)
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10,
+                                      horizontal: 20
+                                  ),
+                                  child: Text('Delete',style: TextStyle(
+                                      color: Colors.white,
+                                    fontWeight: FontWeight.bold
+                                  ),),
+                                ),
                               ),
-                              child: Text('Update Item',style: TextStyle(
-                                  color: Colors.white
-                              ),),
                             ),
-                          ),
+
+                            SizedBox(width: 10,),
+
+                            GestureDetector(
+                              onTap: (){
+                                svm.update_stock_history(context);
+
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Color(0xff1366D9),
+                                    borderRadius: BorderRadius.circular(5)
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 10,
+                                      horizontal: 20
+                                  ),
+                                  child: Text('Update Item',style: TextStyle(
+                                      color: Colors.white
+                                  ),),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
