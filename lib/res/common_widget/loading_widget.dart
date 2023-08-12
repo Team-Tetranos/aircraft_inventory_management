@@ -4,13 +4,14 @@ class Loading_Animation extends StatelessWidget {
   Widget loadingWidget;
   double height;
   String text;
+  double width;
 
-   Loading_Animation({Key? key,required this.height,required this.loadingWidget,required this.text}) : super(key: key);
+   Loading_Animation({Key? key,required this.height,required this.loadingWidget,required this.text,required this.width}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.maxFinite,
+      width: width,
       height: height,
       color: Colors.white,
       child: Column(

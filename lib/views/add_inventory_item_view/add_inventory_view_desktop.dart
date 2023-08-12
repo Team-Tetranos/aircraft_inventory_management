@@ -34,7 +34,11 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
               firstWidget:  Container(
                   height: 747,
                 width: MediaQuery.of(context).size.width * .716,
-                color: Colors.white,
+
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(10))
+                ),
                 child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,17 +59,17 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       width: 24,
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.all(Radius.circular(5)),
-                                          border: Border.all(width: 1,color: Color(0xFF696969))
+                                          border: Border.all(width: 1,color: Colors.black)
                                       ),
-                                      child:  Icon(Icons.add,color: Color(0xFF696969),
+                                      child:  Icon(Icons.add,color: Colors.black,
                                       )),
                                   SizedBox(width: 14,),
                                   Text("Add New Stock",
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 20,
+                                       // fontWeight: FontWeight.w500,
+                                        fontSize: 16,
                                         fontFamily: "Inter",
-                                        color: Color(0xFF696969)
+                                        color: Colors.black
                                     ),)
                                 ],
                               ),
@@ -95,6 +99,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                         child: TextField(
                                           controller: ivm.cardnumberforfirstpageAddInventory,
                                           decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.only(left: 6,bottom: 15),
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
@@ -127,7 +132,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                         border: Border.all(color: Colors.grey),
                                       ),
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                        padding: EdgeInsets.symmetric(horizontal: 13.0),
                                         height: 30.0, // Set the desired height for the TextField
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Colors.grey),
@@ -173,6 +178,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                         child: TextField(
                                           controller: ivm.stocknumberforfirstpageAddInventory,
                                           decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.only(left: 6,bottom: 15),
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
@@ -209,6 +215,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                           enabled: false,
                                           controller: ivm.aircraftforfirstpageAddInventory,
                                           decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.only(left: 6,bottom: 15),
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
@@ -244,6 +251,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                         child: TextField(
                                           controller: ivm.nomenclatureforfirstpageAddInventory,
                                           decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.only(left: 6,bottom: 15),
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
@@ -344,7 +352,12 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                   child: Container(
                     // height: 747,
                     width: MediaQuery.of(context).size.width * .716,
-                    color: Colors.white,
+
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 25,top: 20,),
                       child: Column(
@@ -354,9 +367,18 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Add Stock History'),
+                              Container(child: Row(
+                                children: [
+                                  IconButton(onPressed: (){
+                                    ivm.pagecontroller.previousPage(duration: Duration(seconds: 1), curve: Curves.easeInOut);
+                                  }, icon: Icon(Icons.arrow_back_ios_new,color: Colors.black,)),
+                                  Text('Add Stock History',style: TextStyle(
+                                    fontSize: 16
+                                  ),),
+                                ],
+                              )),
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                                padding: const EdgeInsets.only(right: 30),
                                 child: GestureDetector(
                                   onTap: (){
                                     ivm.create_stock_history(context);
@@ -455,6 +477,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                                 child: TextField(
                                                   controller: ivm.quantityforsecondpageAddInventory,
                                                   decoration: InputDecoration(
+                                                    contentPadding: EdgeInsets.only(left: 6,bottom: 15),
                                                     hintText: '',
                                                     border: InputBorder
                                                         .none, // Remove the default TextField border
@@ -499,6 +522,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                                 child: TextField(
                                                   controller: ivm.vouchernumberforsecondpageAddInventory,
                                                   decoration: InputDecoration(
+                                                    contentPadding: EdgeInsets.only(left: 6,bottom: 15),
                                                     hintText: '',
                                                     border: InputBorder
                                                         .none, // Remove the default TextField border
@@ -532,6 +556,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                               child: Center(
                                                 child: DropdownButton<String>(
                                                   value: ivm.selectedHistoryStatus,
+                                                  underline: SizedBox.shrink(),
 
 
                                                   style: TextStyle(

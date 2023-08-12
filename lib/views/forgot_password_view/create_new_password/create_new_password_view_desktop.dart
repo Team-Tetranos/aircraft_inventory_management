@@ -19,20 +19,16 @@ class _CreateNewPasswordViewDesktopState extends State<CreateNewPasswordViewDesk
   Widget build(BuildContext context) {
     return Consumer<CreateNewPasswordViewModel>(
         builder: (context,cnpvm,_) {
-          return cnpvm==true?Loading_Animation(height: 800,
-              loadingWidget: SpinKitPouringHourGlass(
-                color: Colors.blue,
-                size: 60,
-              ), text: "Creating new password"):
+          return
             Scaffold(
             backgroundColor: Colors.white,
             body: Padding(
-              padding: const EdgeInsets.only(left: 204,right: 204),
+              padding: const EdgeInsets.only(left: 100,right: 150),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image(image: AssetImage("assets/image_files/image 8.png")),
+                  Flexible(child: Image(image: AssetImage("assets/image_files/image 8.png"))),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,7 +61,7 @@ class _CreateNewPasswordViewDesktopState extends State<CreateNewPasswordViewDesk
                       Common_Container(bordercolor: null, border: 0,
                           height: 49,
                           color: Color(0xFF1366D9),
-                          width: .27,
+                          width: 389,
                           radius: 20,
                           mywidget:TextField(
                             controller: cnpvm.password,
@@ -127,7 +123,7 @@ class _CreateNewPasswordViewDesktopState extends State<CreateNewPasswordViewDesk
                       Common_Container(bordercolor: null, border: 0,
                           height: 49,
                           color: Color(0xFF1366D9),
-                          width: .27,
+                          width: 389,
                           radius: 20,
                           mywidget:TextField(
                             controller: cnpvm.confirmPassword,
@@ -195,7 +191,7 @@ class _CreateNewPasswordViewDesktopState extends State<CreateNewPasswordViewDesk
                             border: 1,
                             height: 30,
                             color: Color(0xFF1366D9).withOpacity(1),
-                            width: .0513,
+                            width: 73,
                             radius: 5,
                             mywidget: Center(
                               child: Common_Text(fontWeight: FontWeight.w500,

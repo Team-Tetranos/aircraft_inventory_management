@@ -4,6 +4,7 @@ import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../dependency_injection/di.dart';
 import '../utils/dialogs/error_dialog.dart';
@@ -40,12 +41,14 @@ class SignupViewModel extends ChangeNotifier{
       showSimpleErrorDialog(context, 'Confirm password does not match');
       return;
     }
+    EasyLoading.show(status: "Please wait for a moment");
     isloading=true;
     notifyListeners();
 
     var result = await authRepository.send_otp(emailController.text.trim(), 'signup', 'FALSE');
 
     if(result is Success){
+      EasyLoading.dismiss();
 
       Navigator.of(context).pushNamed(RouteNames.otpview,arguments: <String, dynamic>{
         'reason':'sign_up',
@@ -56,6 +59,7 @@ class SignupViewModel extends ChangeNotifier{
       notifyListeners();
 
     }else if(result is Failure){
+      EasyLoading.dismiss();
       var error = result.error as Map;
       isloading=false;
       notifyListeners();

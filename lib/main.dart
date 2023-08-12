@@ -18,6 +18,7 @@ import 'package:aircraft_inventory_management/view_models/stock_view_model.dart'
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/forgot_password_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
@@ -65,6 +66,7 @@ Future<void> main() async{
   //await deleteHiveDatabase();
 
   runApp(MyApp());
+  config();
 }
 
 class MyApp extends StatelessWidget {
@@ -103,11 +105,28 @@ class MyApp extends StatelessWidget {
 
           useMaterial3: true,
         ),
+        builder: EasyLoading.init(),
         initialRoute:  sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,
         onGenerateRoute: Routes.generateRoute,
       ),
     );
   }
 }
+ void config(){
+   EasyLoading.instance
+     ..displayDuration = const Duration(milliseconds: 2000)
+     ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+     ..loadingStyle = EasyLoadingStyle.custom
+     ..indicatorSize = 90
+     ..radius = 10
+     ..maskType = EasyLoadingMaskType.black
+     ..progressColor = Colors.white
+     ..backgroundColor = Colors.white
+     ..indicatorColor = Colors.black
+     ..textColor = Colors.black
+     ..userInteractions = true
+     ..dismissOnTap = false;
+
+ }
 
 

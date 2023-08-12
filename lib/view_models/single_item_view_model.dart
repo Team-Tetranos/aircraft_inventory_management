@@ -9,6 +9,7 @@ import 'package:aircraft_inventory_management/view_models/view_model_for_base_vi
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -45,6 +46,8 @@ class SingleItemViewModel extends ChangeNotifier{
 
 
   fetchStockHistoryForRecord(BuildContext context, StockRecord stockRecord)async{
+    EasyLoading.show(status: "Please wait");
+
     changeLoading(true);
     try{
 
@@ -61,6 +64,7 @@ class SingleItemViewModel extends ChangeNotifier{
     }catch(e){
       failedSnackbar(context: context, message: 'Server Error');
     }
+    EasyLoading.dismiss();
     changeLoading(false);
   }
 

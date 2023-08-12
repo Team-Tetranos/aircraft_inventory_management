@@ -30,17 +30,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
       builder: (context,mp,_) {
         return Padding(
           padding: const EdgeInsets.only(left: 40),
-          child: mp.isLoading?Center(
-            child: SpinKitFadingCircle(
-              itemBuilder: (BuildContext context, int index) {
-                return DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: index.isEven ? Colors.red : Colors.green,
-                  ),
-                );
-              },
-            ),
-          ): Column(
+          child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 40,),
