@@ -631,56 +631,69 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       builder: (context, box, _) {
 
                                         final stocks = box.values.where((element) => element.stock_record==ivm.updatedStockRecordForNextPag!.id).toList();
-                                        return PaginatedDataTable(
+                                        return Theme(
+                                          data: Theme.of(context).copyWith(
+                                            cardTheme: CardTheme(
+                                              color: Colors.white,
 
-                                          columns: [
-                                            // DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("Date",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),  DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("Quantity",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),  DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("Voucher No",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),  DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("Received",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),  DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("expenditure",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),
-                                            DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("Uploaded",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),
-                                          ],
-                                          source: DataClass(data: stocks, onPressed: (index){
+                                              elevation: 0, // remove shadow
+                                              margin: const EdgeInsets.all(0), // reset margin
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(16), // Change radius
+                                              ),
+                                            ),
+                                          ),
+                                          child: PaginatedDataTable(
 
-                                          }, lastPage: true),
+                                            columns: [
+                                              // DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("Date",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),  DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("Quantity",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),  DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("Voucher No",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),  DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("Received",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),  DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("expenditure",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),
+                                              DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("Uploaded",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),
+                                            ],
+                                            source: DataClass(data: stocks, onPressed: (index){
 
-                                          rowsPerPage: 50,
-                                          columnSpacing: 60,
+                                            }, lastPage: true),
+
+                                            rowsPerPage: 50,
+                                            columnSpacing: 50,
 
 
+                                          ),
                                         );
                                       }
                                     ),

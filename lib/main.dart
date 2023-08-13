@@ -2,12 +2,15 @@ import 'package:aircraft_inventory_management/data/local/hive_manager.dart';
 import 'package:aircraft_inventory_management/data/local/shared_preference_manager.dart';
 import 'package:aircraft_inventory_management/res/constants.dart';
 import 'package:aircraft_inventory_management/res/custom_scroll_behavior.dart';
+import 'package:aircraft_inventory_management/utils/loading_animation/loading_animation.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/utils/routes/routes.dart';
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/help_and_support_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/login_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/manage_store_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/reset_password_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/settings_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/sign_up_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/blank_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/inventory_view_model.dart';
@@ -17,6 +20,7 @@ import 'package:aircraft_inventory_management/view_models/stock_history_view_mod
 import 'package:aircraft_inventory_management/view_models/stock_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/forgot_password_view_model.dart';
+import 'package:aircraft_inventory_management/views/help_and_support/help_support_desktop.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hive/hive.dart';
@@ -79,6 +83,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_)=>HelpAndSupportViewModel()),
+        ChangeNotifierProvider(create: (_)=>SettingsViewModel()),
         ChangeNotifierProvider(create: (_)=>BlankViewModel()),
         ChangeNotifierProvider(create: (_)=>MyProviderForInventoryView()),
         ChangeNotifierProvider(create: (_)=>BaseViewModel()),
@@ -106,27 +112,12 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         builder: EasyLoading.init(),
-        initialRoute:  sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,
+        initialRoute:  RouteNames.onboardsecond,//sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,
         onGenerateRoute: Routes.generateRoute,
       ),
     );
   }
 }
- void config(){
-   EasyLoading.instance
-     ..displayDuration = const Duration(milliseconds: 2000)
-     ..indicatorType = EasyLoadingIndicatorType.fadingCircle
-     ..loadingStyle = EasyLoadingStyle.custom
-     ..indicatorSize = 90
-     ..radius = 10
-     ..maskType = EasyLoadingMaskType.black
-     ..progressColor = Colors.white
-     ..backgroundColor = Colors.white
-     ..indicatorColor = Colors.black
-     ..textColor = Colors.black
-     ..userInteractions = true
-     ..dismissOnTap = false;
 
- }
 
 

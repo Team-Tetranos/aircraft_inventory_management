@@ -5,6 +5,7 @@ import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_vie
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/product_overview_view/product_overview.dart';
+import 'package:aircraft_inventory_management/views/settings/profile_settings.dart';
 import 'package:aircraft_inventory_management/views/single-item_details/single_item_details_desktop.dart';
 import 'package:aircraft_inventory_management/views/user_management/user_management.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +15,11 @@ import 'package:provider/provider.dart';
 import '../../view_models/blank_view_model.dart';
 import '../add_category_view/add_category_view.dart';
 import '../dashboard_2/dashboard_2.dart';
+import '../help_and_support/help_support_desktop.dart';
 import '../inventory_view/inventory_view.dart';
+import '../settings/profile_settings_desktop.dart';
 import '../single-item_details/single_item_details.dart';
+import '../user_management_second_page/user_management_second_page_desktop.dart';
 import 'base_view_widget.dart';
 
 class MybaseViewDesktop extends StatefulWidget {
@@ -343,7 +347,9 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
 
                           //SizedBox(width: 40,),
 
-                          if(mp.baseviewPage=='dashboard')
+                         // Profile_Settings_View_Desktop()
+                    UsermanagementSecondPagedesktop()
+                         /* if(mp.baseviewPage=='dashboard')
                             MyDashBoardView()
                           else if(mp.baseviewPage=='inventory')
                             InventoryView()
@@ -359,7 +365,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           else if(mp.baseviewPage=='item_details')
                             SingleItemDetails()
                           else
-                            MyDashBoardView()
+                            MyDashBoardView()*/
                           //Single_Item_Details_Desktop_View()
                         ],
                       )

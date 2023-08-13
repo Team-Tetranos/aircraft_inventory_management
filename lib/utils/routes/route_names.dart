@@ -12,4 +12,6 @@ class RouteNames{
   static const String usermanagement = "use_management";
   static const String dashboardtablet = "dashboard_tablet";
   static const String dashboardview = "dashboard_voiew";
+  static const String onboardview = "onboardview";
+  static const String onboardsecond ="secondonboard";
 }

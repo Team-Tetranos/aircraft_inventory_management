@@ -3,6 +3,8 @@ import 'package:aircraft_inventory_management/views/add_category_view/add_catego
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view_tablet.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view_tablet.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_for_tablet.dart';
+import 'package:aircraft_inventory_management/views/settings/profile_settings.dart';
+import 'package:aircraft_inventory_management/views/settings/profile_settings_tablet.dart';
 import 'package:aircraft_inventory_management/views/single-item_details/single_item_details_tablet.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -340,11 +342,13 @@ class _Base_View_tabletState extends State<Base_View_tablet> {
                           ),
                         ),
                      //Single_Item_Details_Tablet_View()
-                       AddInventoryView(fromAddStock: true,),
+                       //AddInventoryView(fromAddStock: true,),
                        // AddCategoryForTablet()
                        //AddInventoryView()
                        // AddCategoryForTablet()
                         //MyDashBoardView()
+                       // ProfileSettingsTablet()
+                        Profile_Settings_View()
 
 
 

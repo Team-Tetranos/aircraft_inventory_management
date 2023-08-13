@@ -13,6 +13,8 @@ class SingleStockHistoryViewDesktop extends StatefulWidget {
 
 class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDesktop> {
   @override
+
+  @override
   Widget build(BuildContext context) {
     return Consumer<SingleItemViewModel>(
       builder: (context, svm, _) {
@@ -36,6 +38,9 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
 
                           children: [
                             IconButton(onPressed: (){
+                              svm.dateforsecondpageAddInventory.clear();
+                              svm.quantityforsecondpageAddInventory.clear();
+                              svm.vouchernumberforsecondpageAddInventory.clear();
                               Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(1);
                             }, icon: Icon(Icons.arrow_back)),
 
@@ -44,13 +49,13 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                                   fontWeight: FontWeight.w500,
                                   fontSize: 20,
                                   fontFamily: "Inter",
-                                  color: Color(0xFF696969)
+                                  color: Colors.black
                               ),)
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Row(
                           children: [
 
@@ -136,6 +141,7 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                                       width: 250,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.all(Radius.circular(7)),
                                       ),
                                       child: Center(
                                         child: TextField(
@@ -144,6 +150,7 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                                           },
                                           controller: svm.dateforsecondpageAddInventory,
                                           decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.only(left: 6,bottom: 16),
                                             hintText: 'Tap to input date',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
@@ -174,11 +181,13 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                                       width: 250,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.all(Radius.circular(7)),
                                       ),
                                       child: Center(
                                         child: TextField(
                                           controller: svm.quantityforsecondpageAddInventory,
                                           decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.only(left: 6,bottom: 16),
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
@@ -218,11 +227,13 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                                       width: 250,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.all(Radius.circular(7)),
                                       ),
                                       child: Center(
                                         child: TextField(
                                           controller: svm.vouchernumberforsecondpageAddInventory,
                                           decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.only(left: 6,bottom: 16),
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
@@ -252,10 +263,12 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                                       width: 250,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.all(Radius.circular(7)),
                                       ),
                                       child: Center(
                                           child: DropdownButton<String>(
                                             value: svm.selectedHistoryStatus,
+                                            underline: SizedBox.shrink(),
 
 
                                             style: TextStyle(
