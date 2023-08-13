@@ -295,7 +295,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                               width: 77,
                                               decoration: BoxDecoration(
                                                 color: Colors.red,
-                                                borderRadius: BorderRadius.all(Radius.circular(4)),
+                                                borderRadius: BorderRadius.all(Radius.circular(7)),
                                                 border: Border.all(width: 1,color: Color(0xFFD0D5DD))
                                               ),
                                               child: Center(
@@ -321,7 +321,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                               height: 40,
                                               width: 77,
                                               decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.all(Radius.circular(4)),
+                                                  borderRadius: BorderRadius.all(Radius.circular(7)),
                                                   border: Border.all(width: 1,color: Color(0xFFD0D5DD))
                                               ),
                                               child:Padding(
@@ -357,8 +357,9 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                                 child: uploaded? Container(
                                                   height: 40,
                                                   decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.all(Radius.circular(4)),
-                                                      border: Border.all(width: 1,color: Color(0xFFD0D5DD))
+                                                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                                                      border: Border.all(width: 1,color: Color(0xFFD0D5DD)),
+
                                                   ),
                                                   child:Padding(
                                                     padding: const EdgeInsets.only(left: 10,right: 10),
@@ -381,7 +382,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                                   height: 40,
                                                   decoration: BoxDecoration(
                                                     color: Colors.deepOrange,
-                                                      borderRadius: BorderRadius.all(Radius.circular(4)),
+                                                      borderRadius: BorderRadius.all(Radius.circular(7)),
                                                       border: Border.all(width: 1,color: Color(0xFFD0D5DD))
                                                   ),
                                                   child:Padding(
@@ -509,7 +510,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                   }, lastPage: false),
 
                                   rowsPerPage: 50,
-                                  columnSpacing: 54,
+                                  columnSpacing: 50,
 
                                 ),
                               ),
