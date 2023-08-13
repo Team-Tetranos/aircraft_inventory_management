@@ -84,53 +84,6 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                     ),
                   ),
                   SizedBox(width: 10,),
-                  GestureDetector(
-                    onTap: (){
-                      mp.ChangingBooleanValue(1);
-
-                    },
-                    child: Container(
-                      height: 65.51,
-                      width: MediaQuery.of(context).size.width*.143,
-
-                      decoration: BoxDecoration(
-                          color: mp.InventoryItemIndex==1?Colors.white:Color(0xFFD8E4F5),
-                          borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10))
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("Active",
-                            style: TextStyle(
-                                color: Color(0xFF797979),
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: "Inter"
-                            ),),
-                          SizedBox(width: 9,),
-                          Container(
-                            height: 21.13,
-                            width: MediaQuery.of(context).size.width*.0277,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(30)),
-                                color: Color(0xFF1366D9)
-
-                            ),
-                            child: Center(
-                              child: Text("",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: "Inter"
-                                ),),
-                            ),
-                          )
-
-                        ],
-                      ),
-                    ),
-                  ),
 
 
                 ],
@@ -201,6 +154,35 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
 
                                 ),
                                 child: TextField(
+                                  controller: mp.nomenclatureFilteringController,
+                                  onChanged: (s){
+                                    //mp.aircraftFiltering('quantity', s);
+                                    mp.stockRecordFiltering();
+                                  },
+                                  decoration: InputDecoration(
+                                      prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
+                                      contentPadding: EdgeInsets.only(top: 3),
+                                      hintText: "Nomenclature",
+                                      hintStyle: TextStyle(
+                                          color: Color(0xFF858D9D)
+                                      ),
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none
+                                      )
+                                  ),
+
+
+                                ),
+                              ),
+                              Container(
+                                height: 33.81,
+                                width: MediaQuery.of(context).size.width*.06,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                                    color: Color(0xFFEDEDED)
+
+                                ),
+                                child: TextField(
                                   controller: mp.cardNoFilteringController,
                                   onChanged: (s){
                                     mp.stockRecordFiltering();
@@ -238,7 +220,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                                   decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
                                       contentPadding: EdgeInsets.only(top: 3),
-                                      hintText: "Stock No",
+                                      hintText: "Stock/Part No",
                                       hintStyle: TextStyle(
                                           color: Color(0xFF858D9D)
                                       ),
@@ -317,42 +299,9 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
 
                                 ),
                               ),
-                              SizedBox(width: 20,),
-                              Container(
-                                height: 33.81,
-                                width: MediaQuery.of(context).size.width*.029,
-                                decoration: BoxDecoration(
-                                    color: Color(0xFFFFE7E7),
-                                    borderRadius: BorderRadius.all(Radius.circular(5))
-                                ),
-                                child: Center(
-                                  child: Icon(Icons.delete_outline_outlined,color: Color(0xFFE70707),size: 20,),
-                                ),
-                              ),
-                              SizedBox(width: 20,),
-                              Container(
-                                height: 33.81,
-                                width: 75,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                                    color: Color(0xFFE5F0FF)
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("Export",style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "Inter",
-                                        color: Color(0xFF0268F4)
-                                    ),),
-                                    SizedBox(width: 2,),
-                                    Icon(Icons.arrow_drop_down_sharp,
-                                      size: 18,
-                                      color: Color(0xFF1366D9),)
-                                  ],
-                                ),
-                              ),
+
+                              //SizedBox(width: 20,),
+
                              // SizedBox(width: 20,)
                             ],
                           ),
@@ -376,18 +325,18 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                       child: PaginatedDataTable(
 
 
+                        showCheckboxColumn: false,
                         //arrowHeadColor: Colors.blue,
 
                             columns:
                             [
-                             /* DataColumn(label: Container(
-                                height: 27.47,
-                                width: MediaQuery.of(context).size.width*.018,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                                    color: Color(0xFFD9D9D9)
-                                ),),),*/
-                             // DataColumn(label: SizedBox.shrink()),
+                              DataColumn(label: Text("SL No",style: TextStyle(
+                                  fontFamily: "Inter",
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  color: Color(0xFF797979)
+                              ),),),
+                             DataColumn(label: SizedBox.shrink()),
                               DataColumn(label: Text("Card No",style: TextStyle(
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w500,
@@ -402,7 +351,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                                   color: Color(0xFF797979)
                               ),),),
                               DataColumn(label: SizedBox.shrink()),
-                              DataColumn(label: Text("Stock No",style: TextStyle(
+                              DataColumn(label: Text("Stock/Part No",style: TextStyle(
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,
@@ -418,7 +367,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                               ),),),
 
                               DataColumn(label: SizedBox.shrink()),
-                              DataColumn(label: Text("Created",style: TextStyle(
+                              DataColumn(label: Text("Latest Expire",style: TextStyle(
                                   fontFamily: "Inter",
                                   fontWeight: FontWeight.w500,
                                   fontSize: 14,

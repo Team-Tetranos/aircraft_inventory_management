@@ -29,11 +29,18 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                 height: 52,
                 width: MediaQuery.of(context).size.width * .716,
                 color: Colors.white,
-                child: const Padding(
+                child:  Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
                     children: [
-                      Icon(Icons.add_box_outlined),
+
+                      GestureDetector(
+                        onTap: (){
+                          dvm.navigateTosubPage(context, 'dashboard');
+                        },
+                          child: Icon(Icons.arrow_back, color: Colors.black,)
+                      ),
+
                       SizedBox(
                         width: 5,
                       ),
@@ -54,111 +61,115 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                            Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              const Text(
-                                "Aircraft Name",
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Inter',
-                                  fontSize: 16
-                                ),
-                              ),
-
-                              Common_Container(bordercolor: Colors.black, border: 0,
-                                  height: 45,
-                                  color: Colors.white,
-                                  width: 389,
-                                  radius: 5,
-                                  mywidget:TextField(
-                                    controller: dvm.aircraft_name_controller,
-                                    style: TextStyle(
-
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: "Inter"
-                                    ),
-
-                                    decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.only(top: 30, left: 10),
-
-                                        border: OutlineInputBorder(
-                                          borderSide: BorderSide.none,
-                                          borderRadius: BorderRadius.circular(5),
-
-
-                                        )
-                                    ),
-                                  ),
-                                  blurRadius: 5,
-                                  boxshadowopacity: .15,
-                                  offset: 2,
-                                  spreadRadius: 0),
-
-
-
-
-                            ],
-                          ),
-
-                              SizedBox(height: 40,),
+                      IntrinsicWidth(
+                        child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-
-                                  Text(
-                                    "Aircraft ID",
-                                    style: TextStyle(
-                                        color: Colors.red,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Inter',
-                                        fontSize: 16
-                                    ),
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  "Aircraft Name",
+                                  style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Inter',
+                                    fontSize: 16
                                   ),
+                                ),
 
+                                SizedBox(width: 10,),
 
+                                Common_Container(bordercolor: Colors.black, border: 0,
+                                    height: 45,
+                                    color: Colors.white,
+                                    width: 389,
+                                    radius: 5,
+                                    mywidget:TextField(
+                                      controller: dvm.aircraft_name_controller,
+                                      style: TextStyle(
 
-                                  Common_Container(bordercolor: Colors.black, border: 0,
-                                      height: 45,
-                                      color: Colors.white,
-                                      width: 389,
-                                      radius: 5,
-                                      mywidget:TextField(
-                                        controller: dvm.aircraft_id_controller,
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w500,
-                                            fontFamily: "Inter"
-                                        ),
-
-                                        decoration: InputDecoration(
-                                            contentPadding: EdgeInsets.only(top: 30, left: 10),
-
-                                            border: OutlineInputBorder(
-                                              borderSide: BorderSide.none,
-                                              borderRadius: BorderRadius.circular(5),
-
-
-                                            )
-                                        ),
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "Inter"
                                       ),
-                                      blurRadius: 5,
-                                      boxshadowopacity: .15,
-                                      offset: 2,
-                                      spreadRadius: 0),
 
-                                ],
-                              ),
-                            ],
-                          ),
+                                      decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.only(top: 30, left: 10),
+
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide.none,
+                                            borderRadius: BorderRadius.circular(5),
+
+
+                                          )
+                                      ),
+                                    ),
+                                    blurRadius: 5,
+                                    boxshadowopacity: .15,
+                                    offset: 2,
+                                    spreadRadius: 0),
+
+
+
+
+                              ],
+                            ),
+
+                                SizedBox(height: 40,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+
+                                    Text(
+                                      "Aircraft ID",
+                                      style: TextStyle(
+                                          color: Colors.red,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Inter',
+                                          fontSize: 16
+                                      ),
+                                    ),
+
+                                    SizedBox(width: 10,),
+
+                                    Common_Container(bordercolor: Colors.black, border: 0,
+                                        height: 45,
+                                        color: Colors.white,
+                                        width: 389,
+                                        radius: 5,
+                                        mywidget:TextField(
+                                          controller: dvm.aircraft_id_controller,
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500,
+                                              fontFamily: "Inter"
+                                          ),
+
+                                          decoration: InputDecoration(
+                                              contentPadding: EdgeInsets.only(top: 30, left: 10),
+
+                                              border: OutlineInputBorder(
+                                                borderSide: BorderSide.none,
+                                                borderRadius: BorderRadius.circular(5),
+
+
+                                              )
+                                          ),
+                                        ),
+                                        blurRadius: 5,
+                                        boxshadowopacity: .15,
+                                        offset: 2,
+                                        spreadRadius: 0),
+
+                                  ],
+                                ),
+                              ],
+                            ),
+                      ),
                       SizedBox(
                         width: 10,
                       ),
@@ -190,31 +201,47 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                                             Center(child: Image.file(File(dvm.pickedImage!.path)))
                                           else
                                             SizedBox.shrink(),
-                                          Center(
-                                            child: Column(
 
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.symmetric(
-                                                      vertical: 15
-                                                  ),
-                                                  child: Icon(Icons.camera_rounded),
-                                                ),
-                                                Text("Drag Image here"),
-                                                Text("or"),
-
-                                                GestureDetector(
-                                                  onTap: (){
-                                                    dvm.pickImage();
-                                                  },
-                                                  child: Text("Browse Image",style: TextStyle(
-                                                      color: Color(0xff448DF2),
+                                          if(dvm.pickedImage!=null)
+                                            Align(
+                                              alignment: Alignment.bottomCenter,
+                                              child: GestureDetector(
+                                                onTap: (){
+                                                  dvm.pickImage();
+                                                },
+                                                child: Text("Browse Image",style: TextStyle(
+                                                    color: Color(0xff448DF2),
                                                     fontWeight: FontWeight.bold
-                                                  ),),
-                                                ),
-                                              ],
+                                                ),),
+                                              ),
+                                            )
+                                          else
+                                            Center(
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.symmetric(
+                                                        vertical: 15
+                                                    ),
+                                                    child: Icon(Icons.camera_rounded),
+                                                  ),
+
+
+                                                  GestureDetector(
+                                                    onTap: (){
+                                                      dvm.pickImage();
+                                                    },
+                                                    child: Text("Browse Image",style: TextStyle(
+                                                        color: Color(0xff448DF2),
+                                                        fontWeight: FontWeight.bold
+                                                    ),),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
+
                                         ],
                                       ),
                                     ),

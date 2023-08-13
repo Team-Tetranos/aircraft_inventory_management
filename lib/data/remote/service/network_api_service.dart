@@ -104,7 +104,10 @@ class ApiService extends BaseApiService{
 
   @override
   Future postWithFiles(String url, dynamic data, Map<String,File> files, {bool? token}) async {
+
+
     dynamic responseJson;
+
     try {
       dynamic headers = token==null?{
         'Content-Type': 'application/json',
@@ -162,6 +165,7 @@ class ApiService extends BaseApiService{
       }, key: 'Format Exception');
     }
     catch(e){
+      print(e);
       return Failure(code: 500, error: {
         'error':e.toString()
       }, key: 'Server Error');
@@ -177,6 +181,7 @@ class ApiService extends BaseApiService{
         return responseJson;
       case 201:
         dynamic responseJson = jsonDecode(response.body);
+        //print(responseJson);
         return responseJson;
       case 400:
         dynamic responseJson = jsonDecode(response.body);

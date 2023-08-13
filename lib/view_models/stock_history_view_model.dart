@@ -32,6 +32,20 @@ class StockHistoryViewModel extends ChangeNotifier{
   TextEditingController dateforsecondpageAddInventory = TextEditingController();
   TextEditingController vouchernumberforsecondpageAddInventory = TextEditingController();
   TextEditingController quantityforsecondpageAddInventory = TextEditingController();
+  TextEditingController stockHistoryExpireDateforsecondpageAddInventory = TextEditingController();
+
+  pickDateForHistoryForExpire(BuildContext context) async{
+    DateTime? pd = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1990),
+        lastDate: DateTime(2090));
+    if(pd!=null){
+      stockHistoryExpireDateforsecondpageAddInventory.text = DateFormat('yyyy-MM-dd').format(pd);
+      notifyListeners();
+    }
+
+  }
 
   /*updateStockListHistoryBox()async{
     stockListHistoryBox = await hiveManager.getStockListHistoryBox();
@@ -174,6 +188,7 @@ class StockHistoryViewModel extends ChangeNotifier{
     dateforsecondpageAddInventory.clear();
     quantityforsecondpageAddInventory.clear();
     selectedHistoryStatus = historyStatus[0];
+    stockHistoryExpireDateforsecondpageAddInventory.clear();
     notifyListeners();
   }
 
@@ -191,6 +206,10 @@ class StockHistoryViewModel extends ChangeNotifier{
       inputFieldErrorSnackbar(context: context, message: 'Quantity');
       return;
     }
+    if(selectedHistoryStatus==historyStatus[0]&&stockHistoryExpireDateforsecondpageAddInventory.text.isEmpty){
+      inputFieldErrorSnackbar(context: context, message: 'Expiry Date');
+      return;
+    }
 
     User? user = await hiveManager.getUserData();
 
@@ -201,6 +220,7 @@ class StockHistoryViewModel extends ChangeNotifier{
         voucher_no: vouchernumberforsecondpageAddInventory.text.trim(),
         quantity: int.parse(quantityforsecondpageAddInventory.text.trim()),
         image: null,
+        expire: selectedHistoryStatus==historyStatus[0]?stockHistoryExpireDateforsecondpageAddInventory.text.trim():null,
         received: selectedHistoryStatus==historyStatus[0],
         uploaded: false
     );

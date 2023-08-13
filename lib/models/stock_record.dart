@@ -29,6 +29,14 @@ class StockRecord {
   String? created_at;
   @HiveField(10)
   String? updated_at;
+  @HiveField(11)
+  String? location;
+  @HiveField(12)
+  String? demand_schedule;
+  @HiveField(13)
+  String? unit;
+  @HiveField(14)
+  String? latest_expiry;
 
   StockRecord({this.id,
     this.created_by,
@@ -40,7 +48,7 @@ class StockRecord {
     this.balance,
     this.image,
     this.created_at,
-    this.updated_at});
+    this.updated_at, this.location, this.demand_schedule, this.latest_expiry});
 
   factory StockRecord.fromJson(Map<String, dynamic> json) => _$StockRecordFromJson(json);
   Map<String, dynamic> toJson() => _$StockRecordToJson(this);

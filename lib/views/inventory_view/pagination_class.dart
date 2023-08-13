@@ -22,14 +22,13 @@ class myData extends DataTableSource{
   @override
   DataRow? getRow(int index) {
     return DataRow(cells: [
-     /* DataCell(Container(
-      height: 27.47,
-      width: MediaQuery.of(mycontext).size.width*.018,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(5)),
-          color: Color(0xFFD9D9D9)
+      DataCell(Text((index+1).toString(),style: TextStyle(
+          fontFamily: "Inter",
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          color: Color(0xFF484848)
       ),),),
-      DataCell(VerticalDivider()),*/
+      DataCell(VerticalDivider()),
       DataCell(Text(items[index].card_no.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
@@ -58,7 +57,7 @@ class myData extends DataTableSource{
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),
-      DataCell(Text(stringToDate(items[index].created_at),style: TextStyle(
+      DataCell(Text(stringToDate(items[index].latest_expiry),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
           fontSize: 14,
@@ -71,12 +70,12 @@ class myData extends DataTableSource{
             width: MediaQuery.of(mycontext).size.width*.0506,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-                color: Color(0xFFC6D8F1)
+                color: items[index].balance! <10?Colors.red:items[index].balance! <20?Colors.redAccent:Colors.green
             ),
-            child: Center(child: Text('status'.toString(),
-              style: TextStyle(color: Color(0xFF066FFF,),
+            child: Center(child: Text(items[index].balance! <10?'Low':items[index].balance! <20?'Moderate':'sufficient',
+              style: TextStyle(color: Colors.white,
                   fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.w900,
                   fontFamily: "Inter"),),),
           )),
       DataCell(VerticalDivider()),

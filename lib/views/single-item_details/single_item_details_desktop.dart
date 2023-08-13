@@ -174,6 +174,30 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
+                                                  Text("Unit",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+
+
+                                                  Text("${svm.stockRecord.unit}",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(height: 32,),
+                                            Container(
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
                                                   Text("Issued At",
                                                     style: TextStyle(
                                                         fontSize: 14,
@@ -183,6 +207,54 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                                     ),),
 
                                                   Text("${stringToDate(svm.stockRecord.date)}",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+                                                ],
+                                              ),
+                                            ),
+
+                                            SizedBox(height: 32,),
+                                            Container(
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text("Location",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+
+                                                  Text(svm.stockRecord.location??'',
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+                                                ],
+                                              ),
+                                            ),
+
+                                            SizedBox(height: 32,),
+                                            Container(
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text("Demand Schedule",
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontFamily: "Inter",
+                                                        color: Color(0xFF383E49)
+                                                    ),),
+
+                                                  Text(svm.stockRecord.demand_schedule==null?'':stringToDate(svm.stockRecord.demand_schedule),
                                                     style: TextStyle(
                                                         fontSize: 14,
                                                         fontWeight: FontWeight.w500,
@@ -240,6 +312,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                           SizedBox(width: 12,),
                                           GestureDetector(
                                             onTap: (){
+
                                               Provider.of<MyProviderForInventoryView>(context, listen: false).changePage(3);
 
                                             },
@@ -373,9 +446,17 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                 ),
                                 child: PaginatedDataTable(
 
+                                  showCheckboxColumn: false,
+
 
                                   columns: [
                                     // DataColumn(label: SizedBox.shrink()),
+                                    const DataColumn(label: Text("SL No",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),  DataColumn(label: SizedBox.shrink()),
                                     const DataColumn(label: Text("Date",style: TextStyle(
                                         fontFamily: "Inter",
                                         fontWeight: FontWeight.w500,
@@ -406,6 +487,15 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                         fontSize: 14,
                                         color: Color(0xFF797979)
                                     ),),),
+
+                                    DataColumn(label: SizedBox.shrink()),
+                                    const DataColumn(label: Text("expiry date",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),
+
                                     DataColumn(label: SizedBox.shrink()),
                                     const DataColumn(label: Text("Uploaded",style: TextStyle(
                                         fontFamily: "Inter",

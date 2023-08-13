@@ -4,6 +4,8 @@ import 'package:aircraft_inventory_management/data/remote/responses/api_response
 import 'package:aircraft_inventory_management/models/aircraftitem.dart';
 import 'package:aircraft_inventory_management/models/category.dart';
 import 'package:aircraft_inventory_management/models/stock_record.dart';
+import 'package:aircraft_inventory_management/models/stock_record_report.dart';
+import 'package:aircraft_inventory_management/utils/convertMap.dart';
 
 import '../data/remote/service/base_api_service.dart';
 import '../data/remote/service/network_api_service.dart';
@@ -173,6 +175,8 @@ class AircraftRepository{
       }
 
     }else{
+
+      data = convertMap(data);
       var response = await apiService.postWithFiles(endPoints.base_url+endPoints.create_stock_record, data, {'image':image}, token: true);
       if(response is Success){
         StockRecord stockRecord = StockRecord.fromJson(response.data as Map<String, dynamic>);
@@ -200,6 +204,7 @@ class AircraftRepository{
       }
 
     }else{
+      data = convertMap(data);
       var response = await apiService.postWithFiles('${endPoints.base_url}${endPoints.stock_record_by_id}${stockRecord.id}/', data, {'image':image}, token: true);
       if(response is Success){
         StockRecord stockRecord = StockRecord.fromJson(response.data as Map<String, dynamic>);
@@ -214,7 +219,15 @@ class AircraftRepository{
 
   Future<Object> createBulkHistory(List<StockHistory> stockHistory, {File? image})async{
 
-    final data = stockHistory.map((e) => {
+    final data =  stockHistory.map((e) => e.received==true? {
+      'created_by':e.created_by,
+      'date':e.date,
+      'stock_record':e.stock_record,
+      'voucher_no':e.voucher_no,
+      'quantity':e.quantity,
+      'received':e.received,
+      'expire':e.expire
+    }:{
       'created_by':e.created_by,
       'date':e.date,
       'stock_record':e.stock_record,
@@ -249,7 +262,15 @@ class AircraftRepository{
 
 
   Future<Object> createStockHistory(StockHistory e, {File? image})async{
-    final data = {
+    final data = e.received==true?{
+      'created_by':e.created_by,
+      'date':e.date,
+      'stock_record':e.stock_record,
+      'voucher_no':e.voucher_no,
+      'quantity':e.quantity,
+      'received':e.received,
+      'expire':e.expire
+    }:{
       'created_by':e.created_by,
       'date':e.date,
       'stock_record':e.stock_record,
@@ -319,6 +340,27 @@ class AircraftRepository{
     return result;
   }
 
+
+
+  Future<Object> getStockRecordReport() async{
+    Object result = Failure(code: 400, error: {}, key: '');
+    var response = await apiService.getApiResponse('${endPoints.base_url}${endPoints.stock_record_report}', token: true);
+
+    if(response is Success){
+
+      List<StockRecordReport> stocks = [];
+      Iterable it = response.data as Iterable;
+      for (var element in it) {
+        stocks.add(StockRecordReport.fromJson(element));
+      }
+
+      result = stocks;
+
+    }else if(response is Failure){
+      result = response;
+    }
+    return result;
+  }
 
 
 

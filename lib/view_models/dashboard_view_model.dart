@@ -28,28 +28,29 @@ class DashboardViewModel extends ChangeNotifier{
   navigateTosubPage(BuildContext context, String page){
     Provider.of<BaseViewModel>(context, listen: false).changingOptions(context,page);
   }
-  File? pickedImage;
+
   List<Category> initialAircraft =[];
   List<Category> aircrafts = [];
   List<Aircraftitem> aircraftItems = [];
 
+  File? pickedImage;
   pickImage()async{
     var image = await imagePicker.pickImage(source: ImageSource.gallery);
     updatePickedImage(image);
     print(image!.path);
   }
-
-  updateDragEntered(bool b){
-    dragEntered = b;
-    notifyListeners();
-  }
-
   updatePickedImage(XFile? first) {
     if(first!=null){
       pickedImage =File(first.path);
       notifyListeners();
     }
   }
+  updateDragEntered(bool b){
+    dragEntered = b;
+    notifyListeners();
+  }
+
+
 
   addCategory(BuildContext context)async{
 
@@ -60,6 +61,11 @@ class DashboardViewModel extends ChangeNotifier{
 
     if(aircraft_id_controller.text.isEmpty){
       showSimpleErrorDialog(context, 'Aircraft id must be provided');
+      return;
+    }
+
+    if(pickedImage==null){
+      showSimpleErrorDialog(context, 'Image must be provided');
       return;
     }
 

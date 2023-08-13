@@ -284,6 +284,49 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                     ],
                   ),
 
+                  SizedBox(height: 10,),
+
+                  if(svm.selectedHistoryStatus==svm.historyStatus[0])
+                    Row(
+
+                    children: [
+                      Text(
+                        "Expiry Date",
+                        style: TextStyle(color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16,
+                            fontFamily: "Inter"),
+                      ),
+
+                      SizedBox(width: 10,),
+
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Container(
+                          // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          height: 30.0,
+                          width: 250,// Set the desired height for the TextField
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.grey),
+                          ),
+                          child: Center(
+                            child: TextField(
+                              onTap: (){
+                                svm.pickDateForHistoryForExpire(context);
+                              },
+                              controller: svm.stockHistoryExpireDateforsecondpageAddInventory,
+                              decoration: InputDecoration(
+                                hintText: 'Tap to input date',
+                                border: InputBorder
+                                    .none, // Remove the default TextField border
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                    ],),
+
 
 
                 ],),

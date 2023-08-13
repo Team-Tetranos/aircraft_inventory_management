@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:aircraft_inventory_management/data/local/hive_manager.dart';
 import 'package:aircraft_inventory_management/models/aircraftitem.dart';
 import 'package:aircraft_inventory_management/models/stock_history.dart';
@@ -12,6 +14,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -30,11 +33,56 @@ class SingleItemViewModel extends ChangeNotifier{
   AircraftRepository aircraftRepository = sl.get();
   HiveManager hiveManager = sl.get();
 
+  ImagePicker imagePicker = ImagePicker();
   TextEditingController cardnumberforfirstpageAddInventory =TextEditingController();
   TextEditingController dateforfirstpageAddInventory = TextEditingController();
   TextEditingController stocknumberforfirstpageAddInventory = TextEditingController();
   TextEditingController aircraftforfirstpageAddInventory=TextEditingController();
   TextEditingController nomenclatureforfirstpageAddInventory = TextEditingController();
+  TextEditingController locationforfirstpageAddInventory = TextEditingController();
+  TextEditingController demandScheduleforfirstpageAddInventory = TextEditingController();
+
+  String? selectedUnit = 'Pcs';
+  List<String> units = [
+    'Pcs',
+    'Kg'
+  ];
+  updateSelectedUnit(String history){
+    selectedUnit = history;
+    notifyListeners();
+  }
+
+  File? pickedImage;
+
+  pickImage()async{
+    var image = await imagePicker.pickImage(source: ImageSource.gallery);
+    updatePickedImage(image);
+    print(image!.path);
+  }
+  updatePickedImage(XFile? first) {
+    if(first!=null){
+      pickedImage =File(first.path);
+      notifyListeners();
+    }
+  }
+
+  void deleteImage() {
+    pickedImage = null;
+    notifyListeners();
+  }
+
+  pickDateForDateSchedule(BuildContext context) async{
+    DateTime? pd = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1990),
+        lastDate: DateTime(2090));
+    if(pd!=null){
+      demandScheduleforfirstpageAddInventory.text = DateFormat('yyyy-MM-dd').format(pd);
+      notifyListeners();
+    }
+
+  }
 
   changeLoading(bool b){
     isLoading = b;
@@ -115,6 +163,8 @@ class SingleItemViewModel extends ChangeNotifier{
     dateforfirstpageAddInventory.text = stockRecord.date!;
     stocknumberforfirstpageAddInventory.text = stockRecord.stock_no!;
     nomenclatureforfirstpageAddInventory.text = stockRecord.description!;
+    locationforfirstpageAddInventory.text = stockRecord.location!;
+    demandScheduleforfirstpageAddInventory.text = stockRecord.demand_schedule!;
   }
 
   updateStockRecord(BuildContext context)async{
@@ -142,10 +192,13 @@ class SingleItemViewModel extends ChangeNotifier{
         'date':dateforfirstpageAddInventory.text.trim(),
         'stock_no':stocknumberforfirstpageAddInventory.text.trim(),
         'description':nomenclatureforfirstpageAddInventory.text.trim(),
+        'location':locationforfirstpageAddInventory.text.trim(),
+        'unit':selectedUnit,
+        'demand_schedule':demandScheduleforfirstpageAddInventory.text.isEmpty?null:demandScheduleforfirstpageAddInventory.text.trim()
       };
 
 
-      var result = await aircraftRepository.updateStockRecord(data, stockRecord);
+      var result = await aircraftRepository.updateStockRecord(data, stockRecord, image: pickedImage);
 
 
       if(result is StockRecord){
@@ -216,6 +269,7 @@ class SingleItemViewModel extends ChangeNotifier{
     vouchernumberforsecondpageAddInventory.text = selectedStockHistory.voucher_no!;
     quantityforsecondpageAddInventory.text = selectedStockHistory.quantity.toString();
     selectedHistoryStatus = selectedStockHistory.received==true?historyStatus[0]:historyStatus[1];
+    stockHistoryExpireDateforsecondpageAddInventory.text = selectedStockHistory.expire??'';
     notifyListeners();
 
   }
@@ -234,9 +288,23 @@ class SingleItemViewModel extends ChangeNotifier{
 
   }
 
+  pickDateForHistoryForExpire(BuildContext context) async{
+    DateTime? pd = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1990),
+        lastDate: DateTime(2090));
+    if(pd!=null){
+      stockHistoryExpireDateforsecondpageAddInventory.text = DateFormat('yyyy-MM-dd').format(pd);
+      notifyListeners();
+    }
+
+  }
+
   TextEditingController dateforsecondpageAddInventory = TextEditingController();
   TextEditingController vouchernumberforsecondpageAddInventory = TextEditingController();
   TextEditingController quantityforsecondpageAddInventory = TextEditingController();
+  TextEditingController stockHistoryExpireDateforsecondpageAddInventory = TextEditingController();
 
   List<String> historyStatus = [
     'Received',
@@ -263,11 +331,21 @@ class SingleItemViewModel extends ChangeNotifier{
       inputFieldErrorSnackbar(context: context, message: 'Quantity');
       return;
     }
+    if(selectedHistoryStatus==historyStatus[0]&&stockHistoryExpireDateforsecondpageAddInventory.text.isEmpty){
+      inputFieldErrorSnackbar(context: context, message: 'Expire Date');
+      return;
+    }
 
 
     try{
       //User? user = await hiveManager.getUserData();
-      Map<String, dynamic> data = {
+      Map<String, dynamic> data = selectedHistoryStatus==historyStatus[0]? {
+        'date':dateforsecondpageAddInventory.text.trim(),
+        'voucher_no':vouchernumberforsecondpageAddInventory.text.trim(),
+        'quantity':quantityforsecondpageAddInventory.text.trim(),
+        'received':selectedHistoryStatus==historyStatus[0]?true:false,
+        'expire':stockHistoryExpireDateforsecondpageAddInventory.text.trim()
+      }:{
         'date':dateforsecondpageAddInventory.text.trim(),
         'voucher_no':vouchernumberforsecondpageAddInventory.text.trim(),
         'quantity':quantityforsecondpageAddInventory.text.trim(),

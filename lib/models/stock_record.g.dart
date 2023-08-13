@@ -28,13 +28,16 @@ class StockRecordAdapter extends TypeAdapter<StockRecord> {
       image: fields[8] as String?,
       created_at: fields[9] as String?,
       updated_at: fields[10] as String?,
-    );
+      location: fields[11] as String?,
+      demand_schedule: fields[12] as String?,
+      latest_expiry: fields[14] as String?,
+    )..unit = fields[13] as String?;
   }
 
   @override
   void write(BinaryWriter writer, StockRecord obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(15)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -56,7 +59,15 @@ class StockRecordAdapter extends TypeAdapter<StockRecord> {
       ..writeByte(9)
       ..write(obj.created_at)
       ..writeByte(10)
-      ..write(obj.updated_at);
+      ..write(obj.updated_at)
+      ..writeByte(11)
+      ..write(obj.location)
+      ..writeByte(12)
+      ..write(obj.demand_schedule)
+      ..writeByte(13)
+      ..write(obj.unit)
+      ..writeByte(14)
+      ..write(obj.latest_expiry);
   }
 
   @override
@@ -90,7 +101,10 @@ StockRecord _$StockRecordFromJson(Map<String, dynamic> json) => StockRecord(
       image: json['image'] as String?,
       created_at: json['created_at'] as String?,
       updated_at: json['updated_at'] as String?,
-    );
+      location: json['location'] as String?,
+      demand_schedule: json['demand_schedule'] as String?,
+      latest_expiry: json['latest_expiry'] as String?,
+    )..unit = json['unit'] as String?;
 
 Map<String, dynamic> _$StockRecordToJson(StockRecord instance) =>
     <String, dynamic>{
@@ -105,4 +119,8 @@ Map<String, dynamic> _$StockRecordToJson(StockRecord instance) =>
       'image': instance.image,
       'created_at': instance.created_at,
       'updated_at': instance.updated_at,
+      'location': instance.location,
+      'demand_schedule': instance.demand_schedule,
+      'unit': instance.unit,
+      'latest_expiry': instance.latest_expiry,
     };

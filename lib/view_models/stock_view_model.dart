@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:aircraft_inventory_management/models/stock_history.dart';
 import 'package:aircraft_inventory_management/res/constants.dart';
 import 'package:aircraft_inventory_management/utils/snackbars/failure_snackbar.dart';
@@ -5,6 +7,7 @@ import 'package:aircraft_inventory_management/utils/snackbars/success_snackbar.d
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 import '../data/local/hive_manager.dart';
@@ -21,6 +24,8 @@ class StockViewModel extends ChangeNotifier{
   //these variables are for AddInventory second page
   HiveManager hiveManager = sl.get<HiveManager>();
   HiveConstants hiveConstants = sl.get<HiveConstants>();
+  ImagePicker imagePicker = ImagePicker();
+
   AircraftRepository aircraftRepository = sl.get<AircraftRepository>();
   late Box<StockHistory> stockListHistoryBox;
   ct.Category? acft;
@@ -29,15 +34,43 @@ class StockViewModel extends ChangeNotifier{
   TextEditingController dateforsecondpageAddInventory = TextEditingController();
   TextEditingController vouchernumberforsecondpageAddInventory = TextEditingController();
   TextEditingController quantityforsecondpageAddInventory = TextEditingController();
+  TextEditingController stockHistoryExpireDateforsecondpageAddInventory = TextEditingController();
 
+  pickDateForHistoryForExpire(BuildContext context) async{
+    DateTime? pd = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1990),
+        lastDate: DateTime(2090));
+    if(pd!=null){
+      stockHistoryExpireDateforsecondpageAddInventory.text = DateFormat('yyyy-MM-dd').format(pd);
+      notifyListeners();
+    }
+
+  }
   /*updateStockListHistoryBox()async{
     stockListHistoryBox = await hiveManager.getStockListHistoryBox();
 
     notifyListeners();
   }*/
 
+  File? pickedImage;
+  pickImage()async{
+    var image = await imagePicker.pickImage(source: ImageSource.gallery);
+    updatePickedImage(image);
+    print(image!.path);
+  }
+  updatePickedImage(XFile? first) {
+    if(first!=null){
+      pickedImage =File(first.path);
+      notifyListeners();
+    }
+  }
+
   onInit(BuildContext context, ct.Category ct)async{
     //await updateStockListHistoryBox();
+    clearStockRecordFieldData();
+    clearStockHistoryFieldData();
     getStockHistoryBox();
     initiateAircraftItem(ct);
     initiateStockRecord(null);
@@ -62,8 +95,20 @@ class StockViewModel extends ChangeNotifier{
 
   String? selectedHistoryStatus = 'Received';
 
+
+
   updateSelectedHistoryStatus(String history){
     selectedHistoryStatus = history;
+    notifyListeners();
+  }
+
+  String? selectedUnit = 'Pcs';
+  List<String> units = [
+    'Pcs',
+    'Kg'
+  ];
+  updateSelectedUnit(String history){
+    selectedUnit = history;
     notifyListeners();
   }
 
@@ -74,6 +119,10 @@ class StockViewModel extends ChangeNotifier{
   TextEditingController stocknumberforfirstpageAddInventory = TextEditingController();
   TextEditingController aircraftforfirstpageAddInventory=TextEditingController();
   TextEditingController nomenclatureforfirstpageAddInventory = TextEditingController();
+  TextEditingController locationforfirstpageAddInventory = TextEditingController();
+  TextEditingController demandScheduleforfirstpageAddInventory = TextEditingController();
+
+
 
   final pagecontroller = PageController();
 
@@ -103,6 +152,18 @@ class StockViewModel extends ChangeNotifier{
       dateforfirstpageAddInventory.text = DateFormat('yyyy-MM-dd').format(pd);
       notifyListeners();
     }
+  }
+
+  pickDateForDateSchedule(BuildContext context) async{
+    DateTime? pd = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1990),
+        lastDate: DateTime(2090));
+    if(pd!=null){
+      demandScheduleforfirstpageAddInventory.text = DateFormat('yyyy-MM-dd').format(pd);
+      notifyListeners();
+    }
 
   }
 
@@ -118,6 +179,8 @@ class StockViewModel extends ChangeNotifier{
     }
 
   }
+
+
 
   create_stock_record(BuildContext context)async{
     if(cardnumberforfirstpageAddInventory.text.isEmpty){
@@ -145,15 +208,17 @@ class StockViewModel extends ChangeNotifier{
         'stock_no':stocknumberforfirstpageAddInventory.text.trim(),
         'aircraft':acft!.id!,
         'description':nomenclatureforfirstpageAddInventory.text.trim(),
-        'created_by':user!.id
+        'created_by':user!.id,
+        'unit':selectedUnit,
+        'location':locationforfirstpageAddInventory.text.isEmpty?null:locationforfirstpageAddInventory.text.trim(),
+        'demand_schedule':demandScheduleforfirstpageAddInventory.text.isEmpty?null:demandScheduleforfirstpageAddInventory.text.trim()
       };
 
-
-      var result = await aircraftRepository.createStockRecord(data);
-
+      var result = await aircraftRepository.createStockRecord(data, image: pickedImage);
 
       if(result is StockRecord){
         initiateStockRecord(result);
+        clearStockRecordFieldData();
         successSnackbar(context: context, message: 'Successfully created stock record');
         updateStockHistory([]);
         pagecontroller.nextPage( duration: Duration(seconds: 1), curve:Curves.easeInOut);
@@ -171,6 +236,7 @@ class StockViewModel extends ChangeNotifier{
     dateforsecondpageAddInventory.clear();
     quantityforsecondpageAddInventory.clear();
     selectedHistoryStatus = historyStatus[0];
+    stockHistoryExpireDateforsecondpageAddInventory.clear();
     notifyListeners();
   }
 
@@ -189,6 +255,11 @@ class StockViewModel extends ChangeNotifier{
       return;
     }
 
+    if(selectedHistoryStatus==historyStatus[0]&&stockHistoryExpireDateforsecondpageAddInventory.text.isEmpty){
+      inputFieldErrorSnackbar(context: context, message: 'Expiry Date');
+      return;
+    }
+
     User? user = await hiveManager.getUserData();
 
     StockHistory stockHistory = StockHistory(
@@ -198,6 +269,7 @@ class StockViewModel extends ChangeNotifier{
         voucher_no: vouchernumberforsecondpageAddInventory.text.trim(),
         quantity: int.parse(quantityforsecondpageAddInventory.text.trim()),
         image: null,
+        expire: selectedHistoryStatus==historyStatus[0]?stockHistoryExpireDateforsecondpageAddInventory.text.trim():null,
         received: selectedHistoryStatus==historyStatus[0],
         uploaded: false
     );
@@ -234,6 +306,22 @@ class StockViewModel extends ChangeNotifier{
     }catch(e){
 
     }
+  }
+
+  void deleteImage() {
+    pickedImage = null;
+    notifyListeners();
+  }
+
+  void clearStockRecordFieldData() {
+    cardnumberforfirstpageAddInventory.clear();
+    dateforfirstpageAddInventory.clear();
+    stocknumberforfirstpageAddInventory.clear();
+    nomenclatureforfirstpageAddInventory.clear();
+    locationforfirstpageAddInventory.clear();
+    demandScheduleforfirstpageAddInventory.clear();
+    pickedImage = null;
+    notifyListeners();
   }
 
 

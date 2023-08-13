@@ -106,6 +106,7 @@ class MyProviderForInventoryView with ChangeNotifier {
       DateTime last = picked.end;
       String firstDate = dateToString(first);
       String lastDate = dateToString(last);
+      duplicatestockRecords = stockRecords.where((element) => stringToDate(element.latest_expiry).compareTo(firstDate)>=0 && stringToDate(element.latest_expiry).compareTo(lastDate)<=0).toList();
       //duplicateaircraftItemsForInventory = aircraftItemsForInventory.where((element) => stringToDate(element.expire).compareTo(firstDate)>=0 && stringToDate(element.expire).compareTo(lastDate)<=0).toList();
       notifyListeners();
     }
@@ -113,6 +114,7 @@ class MyProviderForInventoryView with ChangeNotifier {
 
   clearDateRange(){
     pickedRange=null;
+    duplicatestockRecords = stockRecords;
     //duplicateaircraftItemsForInventory = aircraftItemsForInventory;
     notifyListeners();
   }
@@ -160,13 +162,14 @@ class MyProviderForInventoryView with ChangeNotifier {
   TextEditingController cardNoFilteringController = TextEditingController();
   TextEditingController stockNoFilteringController = TextEditingController();
   TextEditingController quantityFilteringController = TextEditingController();
-
+  TextEditingController nomenclatureFilteringController = TextEditingController();
   void stockRecordFiltering() {
     try{
       duplicatestockRecords = stockRecords.where(
               (element) =>
                   element.card_no!.toLowerCase().contains(cardNoFilteringController.text.toLowerCase())
                   && element.stock_no!.toLowerCase().contains(stockNoFilteringController.text.toLowerCase())
+                      && element.description!.toLowerCase().contains(nomenclatureFilteringController.text.toLowerCase())
                   && element.balance.toString().toLowerCase().contains(quantityFilteringController.text.toLowerCase())
       ).toList();
       notifyListeners();

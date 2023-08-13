@@ -7,6 +7,7 @@ import 'package:aircraft_inventory_management/utils/routes/routes.dart';
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/login_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/manage_store_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/report_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/reset_password_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/sign_up_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/blank_view_model.dart';
@@ -22,7 +23,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:desktop_window/desktop_window.dart';
 import 'dependency_injection/di.dart';
 
 Future<void> deleteHiveDatabase() async {
@@ -40,6 +41,18 @@ Future<void> deleteHiveDatabase() async {
   } catch (e) {
     print('Error deleting Hive database: $e');
   }
+}
+
+Future testWindowFunctions() async {
+  Size size = await DesktopWindow.getWindowSize();
+  print(size);
+
+
+  await DesktopWindow.setMinWindowSize(Size(double.infinity,double.infinity));
+  await DesktopWindow.setMaxWindowSize(Size(double.infinity,double.infinity));
+
+  await DesktopWindow.setFullScreen(true);
+
 }
 
 
@@ -61,11 +74,14 @@ Future<void> deleteHiveBoxes() async {
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
+
   await setupDependency();
+  //await testWindowFunctions();
   //await deleteHiveBoxes();
   //await deleteHiveDatabase();
 
   runApp(MyApp());
+
   config();
 }
 
@@ -92,7 +108,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_)=>ManageStoreViewModel()),
         ChangeNotifierProvider(create: (_)=>StockViewModel()),
         ChangeNotifierProvider(create: (_)=>StockHistoryViewModel()),
-
+        ChangeNotifierProvider(create: (_)=>ReportViewModel()),
       ],
       child: MaterialApp(
         scrollBehavior: MyCustomScrollBehavior(),

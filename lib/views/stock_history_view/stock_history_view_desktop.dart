@@ -276,6 +276,55 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                       ],
                     ),
 
+                    ivm.selectedHistoryStatus==ivm.historyStatus[0]?Container(
+                        width: 350,
+
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Expiry Date",
+                                  style: TextStyle(color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      fontFamily: "Inter"),
+                                ),
+
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Container(
+                                    // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                    height: 30.0,
+                                    width: 250,// Set the desired height for the TextField
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey),
+                                    ),
+                                    child: Center(
+                                      child: TextField(
+                                        onTap: (){
+                                          ivm.pickDateForHistoryForExpire(context);
+                                        },
+                                        controller: ivm.stockHistoryExpireDateforsecondpageAddInventory,
+                                        decoration: InputDecoration(
+                                          hintText: 'Tap to input date',
+                                          border: InputBorder
+                                              .none, // Remove the default TextField border
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                              ],),
+
+                          ],
+                        )
+                    ):SizedBox.shrink(),
+
+
                     SizedBox(height: 30,),
 
                     Container(
@@ -334,8 +383,15 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                         ),
                                       ),
                                       child: PaginatedDataTable(
+                                        showCheckboxColumn: false,
                                         columns: [
                                           // DataColumn(label: SizedBox.shrink()),
+                                          const DataColumn(label: Text("SL No",style: TextStyle(
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 14,
+                                              color: Color(0xFF797979)
+                                          ),),),  DataColumn(label: SizedBox.shrink()),
                                           const DataColumn(label: Text("Date",style: TextStyle(
                                               fontFamily: "Inter",
                                               fontWeight: FontWeight.w500,
@@ -361,6 +417,13 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                               color: Color(0xFF797979)
                                           ),),),  DataColumn(label: SizedBox.shrink()),
                                           const DataColumn(label: Text("expenditure",style: TextStyle(
+                                              fontFamily: "Inter",
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 14,
+                                              color: Color(0xFF797979)
+                                          ),),),
+                                          DataColumn(label: SizedBox.shrink()),
+                                          const DataColumn(label: Text("expiry date",style: TextStyle(
                                               fontFamily: "Inter",
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14,

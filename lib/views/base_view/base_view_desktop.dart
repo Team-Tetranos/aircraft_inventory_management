@@ -1,9 +1,11 @@
+import 'package:aircraft_inventory_management/models/stock_record_report.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view_desktop_2.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/parts_report/parts_report.dart';
 import 'package:aircraft_inventory_management/views/product_overview_view/product_overview.dart';
 import 'package:aircraft_inventory_management/views/single-item_details/single_item_details_desktop.dart';
 import 'package:aircraft_inventory_management/views/user_management/user_management.dart';
@@ -100,33 +102,31 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
 
-                                          Container(
-                                            height: 36,
-                                            width: MediaQuery.of(context).size.width*.0277,
-                                            decoration: const BoxDecoration(
-                                                color: Color(0xFF569DFF),
-                                                borderRadius: BorderRadius.all(Radius.circular(5))
+
+                                          PopupMenuButton(
+
+
+                                              itemBuilder: (context){
+                                                return [];
+                                              },
+                                            child: Container(
+                                              height: 36,
+                                              width: MediaQuery.of(context).size.width*.0277,
+                                              decoration: const BoxDecoration(
+                                                  color: Color(0xFF569DFF),
+                                                  borderRadius: BorderRadius.all(Radius.circular(5))
+                                              ),
+                                              child: Center(
+                                                child: FaIcon(FontAwesomeIcons.bell,
+                                                  color: Colors.white,
+                                                  size: 20,),
+                                              ),
                                             ),
-                                            child: Center(
-                                              child: Icon(Icons.message_outlined,
-                                                color: Colors.white,
-                                                size: 20,),
-                                            ),
+
+                                              tooltip: 'Show Notification',
                                           ),
-                                          SizedBox(width: 40,),
-                                          Container(
-                                            height: 36,
-                                            width: MediaQuery.of(context).size.width*.0277,
-                                            decoration: const BoxDecoration(
-                                                color: Color(0xFF569DFF),
-                                                borderRadius: BorderRadius.all(Radius.circular(5))
-                                            ),
-                                            child: Center(
-                                              child: FaIcon(FontAwesomeIcons.bell,
-                                                color: Colors.white,
-                                                size: 20,),
-                                            ),
-                                          ),
+
+
                                           SizedBox(width: 40,),
                                           Container(
                                             height: 44,
@@ -259,15 +259,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
 
 
 
-                                      GestureDetector(
-                                          onTap: (){
-                                            mp.changingOptions(context,'product_overview');
-                                          },
-                                          child: MyBaseViewContainer(text: "Parts Overview",
-                                              containercolor: mp.baseviewPage=="product_overview"?Colors.white:Colors.transparent,
-                                              icon: Icons.event_note_sharp,
-                                              textcolor: mp.baseviewPage=='product_overview'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
-                                              iconcolor: mp.baseviewPage=='product_overview'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
+
 
 
                                       SizedBox(height: 40,),
@@ -291,7 +283,19 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                   ],
                                 ):SizedBox.shrink(),
 
+                                GestureDetector(
+                                    onTap: (){
+                                      mp.changingOptions(context,'product_overview');
+                                    },
+                                    child: MyBaseViewContainer(text: "Report",
+                                        containercolor: mp.baseviewPage=="product_overview"?Colors.white:Colors.transparent,
+                                        icon: Icons.event_note_sharp,
+                                        textcolor: mp.baseviewPage=='product_overview'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                        iconcolor: mp.baseviewPage=='product_overview'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
+
+
+                                SizedBox(height: 40,),
 
                                 /*GestureDetector(
                                     onTap: (){
@@ -353,7 +357,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                             AddInventoryView(fromAddStock: true,)
 
                           else if(mp.baseviewPage=='product_overview')
-                            Product_Overview_View()
+                            PartsReportView()
                           else if(mp.baseviewPage=='manage_store')
                             UserManagementView()
                           else if(mp.baseviewPage=='item_details')

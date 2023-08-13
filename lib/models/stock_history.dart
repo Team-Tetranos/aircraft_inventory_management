@@ -32,6 +32,8 @@ class StockHistory extends HiveObject{
   String? updated_at;
   @HiveField(10)
   bool uploaded;
+  @HiveField(11)
+  String?expire;
 
   StockHistory({this.id,
     this.created_by,
@@ -42,7 +44,7 @@ class StockHistory extends HiveObject{
     this.image,
     this.received,
     this.created_at,
-    this.updated_at, this.uploaded=true});
+    this.updated_at, this.uploaded=true, this.expire});
 
   factory StockHistory.fromJson(Map<String, dynamic> json) => _$StockHistoryFromJson(json);
   Map<String, dynamic> toJson() => _$StockHistoryToJson(this);

@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:aircraft_inventory_management/models/category.dart';
 import 'package:aircraft_inventory_management/models/stock_history.dart';
 import 'package:aircraft_inventory_management/view_models/inventory_view_model.dart';
@@ -46,7 +48,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                       Padding(
                         padding: const EdgeInsets.only(left: 10,top: 40),
                         child: Container(
-                          height: 350,
+                          //height: 350,
 
                           width: 435,
                           //color: Colors.blue,
@@ -158,7 +160,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Stock No",
+                                    "Stock/Part No",
                                     style: TextStyle(color: Colors.black,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16,
@@ -189,6 +191,49 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                   ),
 
                                 ],),
+                              SizedBox(height: 20,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text('Unit',
+                                    style: TextStyle(color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
+                                        fontFamily: "Inter"),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: Container(
+                                      // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                      height: 30.0,
+                                      width: 250,// Set the desired height for the TextField
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                      ),
+                                      child: Center(
+                                          child: DropdownButton<String>(
+                                            value: ivm.selectedUnit,
+                                            underline: SizedBox.shrink(),
+
+
+                                            style: TextStyle(
+                                                color: Colors.black
+                                            ),
+                                            onChanged: (String?  value){
+                                              ivm.updateSelectedUnit(value!);
+                                            },
+                                            items: ivm.units.map((e) => DropdownMenuItem<String>(
+                                                value: e,
+                                                child: Text(e)
+                                            )).toList(),
+                                          )
+                                      ),
+                                    ),
+                                  ),
+
+                                ],),
+
                               SizedBox(height: 20,),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -262,6 +307,87 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                   ),
 
                                 ],),
+
+                              SizedBox(height: 20,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Location",
+                                    style: TextStyle(color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
+                                        fontFamily: "Inter"),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: Container(
+                                      // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                      height: 30.0,
+                                      width: 300,// Set the desired height for the TextField
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                      ),
+                                      child: Center(
+                                        child: TextField(
+                                          controller: ivm.locationforfirstpageAddInventory,
+                                          decoration: InputDecoration(
+                                            contentPadding: EdgeInsets.only(left: 6,bottom: 15),
+                                            hintText: '',
+                                            border: InputBorder
+                                                .none, // Remove the default TextField border
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                ],),
+
+                              SizedBox(height: 20,),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Demand\nSchedule",
+                                    style: TextStyle(color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
+                                        fontFamily: "Inter"),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5),
+                                    child: Container(
+                                      // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                      height: 30.0,
+                                      width: 300,// Set the desired height for the TextField
+                                      decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                      ),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(horizontal: 13.0),
+                                        height: 30.0, // Set the desired height for the TextField
+                                        decoration: BoxDecoration(
+                                          border: Border.all(color: Colors.grey),
+                                        ),
+                                        child: TextField(
+                                          controller: ivm.demandScheduleforfirstpageAddInventory,
+                                          onTap: (){
+                                            ivm.pickDateForDateSchedule(context);
+                                          },
+                                          decoration: InputDecoration(
+                                            hintText: 'Tap to pick date',
+                                            border: InputBorder
+                                                .none, // Remove the default TextField border
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+
+                                ],),
                             ],
                           ),
                         ),
@@ -280,22 +406,92 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                   ),
                                   shape: BoxShape.rectangle
                               ),
-                              child: Column(
+                              child: Stack(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 15
+                                  if(ivm.pickedImage!=null)
+                                    Center(child: Image.file(File(ivm.pickedImage!.path)))
+                                  else
+                                    SizedBox.shrink(),
+
+                                  if(ivm.pickedImage!=null)
+                                    Center(child: Image.file(File(ivm.pickedImage!.path)))
+                                  else
+                                    SizedBox.shrink(),
+
+
+                                  if (ivm.pickedImage==null)
+                                    Center(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 15
+                                            ),
+                                            child: Icon(Icons.camera_rounded),
+                                          ),
+
+                                        ],
+                                      ),
                                     ),
-                                    child: Icon(Icons.camera_rounded),
-                                  ),
-                                  Text("Drag Image here"),
-                                  Text("or"),
-                                  Text("Browse Image",style: TextStyle(
-                                      color: Color(0xff448DF2)
-                                  ),),
+
                                 ],
-                              ),
+                              )
                             ),
+                            SizedBox(height: 50,),
+                            Row(
+                              children: [
+                                if(ivm.pickedImage!=null)
+                                  GestureDetector(
+                                    onTap: (){
+                                      ivm.deleteImage();
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          borderRadius: BorderRadius.circular(5)
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10,
+                                            horizontal: 20
+                                        ),
+                                        child: Text('Remove Image',style: TextStyle(
+                                            color: Colors.white
+                                        ),),
+                                      ),
+                                    ),
+                                  ),
+
+                                SizedBox(width: 10,),
+                                GestureDetector(
+                                  onTap: (){
+                                    ivm.pickImage();
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Color(0xff1366D9),
+                                        borderRadius: BorderRadius.circular(5)
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10,
+                                          horizontal: 20
+                                      ),
+                                      child: Text(ivm.pickedImage==null?"Browse Image":"Update Image",style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    ),
+                                  ),
+
+
+
+                                ),
+                              ],
+                            ),
+
                             SizedBox(height: 50,),
                             Container(
                               height: 100,
@@ -578,6 +774,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                     ],
                                   )
                               ),
+                              SizedBox(width: 60,),
 
                               //SizedBox(width: 60,),
 
@@ -585,8 +782,55 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                             ],
                           ),
 
-                          SizedBox(height: 30,),
 
+                          ivm.selectedHistoryStatus==ivm.historyStatus[0]?Container(
+                              width: 350,
+
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 20,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Expiry Date",
+                                        style: TextStyle(color: Colors.black,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 16,
+                                            fontFamily: "Inter"),
+                                      ),
+
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 5),
+                                        child: Container(
+                                          // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                          height: 30.0,
+                                          width: 250,// Set the desired height for the TextField
+                                          decoration: BoxDecoration(
+                                            border: Border.all(color: Colors.grey),
+                                          ),
+                                          child: Center(
+                                            child: TextField(
+                                              onTap: (){
+                                                ivm.pickDateForHistoryForExpire(context);
+                                              },
+                                              controller: ivm.stockHistoryExpireDateforsecondpageAddInventory,
+                                              decoration: InputDecoration(
+                                                hintText: 'Tap to input date',
+                                                border: InputBorder
+                                                    .none, // Remove the default TextField border
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                    ],),
+
+                                ],
+                              )
+                          ):SizedBox.shrink(),
+                          SizedBox(height: 30,),
                           Container(
                             width: 760,
 
@@ -635,6 +879,12 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
 
                                           columns: [
                                             // DataColumn(label: SizedBox.shrink()),
+                                            const DataColumn(label: Text("SL No",style: TextStyle(
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                                color: Color(0xFF797979)
+                                            ),),),  DataColumn(label: SizedBox.shrink()),
                                             const DataColumn(label: Text("Date",style: TextStyle(
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w500,
@@ -660,6 +910,13 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                                 color: Color(0xFF797979)
                                             ),),),  DataColumn(label: SizedBox.shrink()),
                                             const DataColumn(label: Text("expenditure",style: TextStyle(
+                                                fontFamily: "Inter",
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 14,
+                                                color: Color(0xFF797979)
+                                            ),),),
+                                            DataColumn(label: SizedBox.shrink()),
+                                            const DataColumn(label: Text("expiry date",style: TextStyle(
                                                 fontFamily: "Inter",
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 14,

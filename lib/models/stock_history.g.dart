@@ -28,13 +28,14 @@ class StockHistoryAdapter extends TypeAdapter<StockHistory> {
       created_at: fields[8] as String?,
       updated_at: fields[9] as String?,
       uploaded: fields[10] as bool,
+      expire: fields[11] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, StockHistory obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -56,7 +57,9 @@ class StockHistoryAdapter extends TypeAdapter<StockHistory> {
       ..writeByte(9)
       ..write(obj.updated_at)
       ..writeByte(10)
-      ..write(obj.uploaded);
+      ..write(obj.uploaded)
+      ..writeByte(11)
+      ..write(obj.expire);
   }
 
   @override
@@ -86,6 +89,7 @@ StockHistory _$StockHistoryFromJson(Map<String, dynamic> json) => StockHistory(
       created_at: json['created_at'] as String?,
       updated_at: json['updated_at'] as String?,
       uploaded: json['uploaded'] as bool? ?? true,
+      expire: json['expire'] as String?,
     );
 
 Map<String, dynamic> _$StockHistoryToJson(StockHistory instance) =>
@@ -101,4 +105,5 @@ Map<String, dynamic> _$StockHistoryToJson(StockHistory instance) =>
       'created_at': instance.created_at,
       'updated_at': instance.updated_at,
       'uploaded': instance.uploaded,
+      'expire': instance.expire,
     };
