@@ -128,7 +128,8 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         builder: EasyLoading.init(),
-        initialRoute:  RouteNames.onboardsecond,//sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,
+
+        initialRoute: sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,
         onGenerateRoute: Routes.generateRoute,
       ),
     );

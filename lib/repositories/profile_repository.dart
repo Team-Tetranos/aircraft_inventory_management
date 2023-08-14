@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:aircraft_inventory_management/utils/convertMap.dart';
 import 'package:flutter/material.dart';
 
 import '../data/local/hive_manager.dart';
@@ -36,6 +39,20 @@ class ProfileRepository{
   Future<Object> updateProfile(User profile) async{
     print(profile.toJson());
     var response = await apiService.postApiResponse('${endPoints.base_url}${endPoints.profile_detail}${profile.id}/',profile.toJson(), token: true);
+    if(response is Failure){
+
+    }else if (response is Success){
+      User user = User.fromJson(response.data as Map<String, dynamic>);
+      response = user;
+    }
+
+    return response;
+  }
+
+  Future<Object> updateProfileInfo(User profile, Map<String, dynamic> data ,{File? image}) async{
+    print(profile.toJson());
+    Map<String, File> dt = image==null?{}:{'profile_image':image};
+    var response = await apiService.postWithFiles('${endPoints.base_url}${endPoints.update_profile}',convertMap(data),dt, token: true);
     if(response is Failure){
 
     }else if (response is Success){

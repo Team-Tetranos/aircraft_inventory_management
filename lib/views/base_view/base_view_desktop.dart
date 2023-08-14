@@ -352,8 +352,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           //SizedBox(width: 40,),
 
                          // Profile_Settings_View_Desktop()
-                    UsermanagementSecondPagedesktop()
-                         /* if(mp.baseviewPage=='dashboard')
+                    //UsermanagementSecondPagedesktop()
+                          if(mp.baseviewPage=='dashboard')
                             MyDashBoardView()
                           else if(mp.baseviewPage=='inventory')
                             InventoryView()
@@ -361,15 +361,18 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                             AddCategoryView()
                           else if(mp.baseviewPage=='add_item')
                             AddInventoryView(fromAddStock: true,)
-
                           else if(mp.baseviewPage=='product_overview')
                             PartsReportView()
                           else if(mp.baseviewPage=='manage_store')
                             UserManagementView()
                           else if(mp.baseviewPage=='item_details')
                             SingleItemDetails()
+                          else if(mp.baseviewPage=='settings')
+                            Profile_Settings_View()
+                          else if(mp.baseviewPage=='help')
+                            HelpAndSupportViewForDesktop()
                           else
-                            MyDashBoardView()*/
+                            MyDashBoardView()
                           //Single_Item_Details_Desktop_View()
                         ],
                       )

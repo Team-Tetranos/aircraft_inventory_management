@@ -42,6 +42,8 @@ class BaseViewModel extends ChangeNotifier{
   }
 
   Future logout(BuildContext context)async{
+    baseviewPage = 'dashboard';
+    notifyListeners();
     await authRepository.logout(context);
   }
 
