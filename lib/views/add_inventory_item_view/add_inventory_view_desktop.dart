@@ -9,6 +9,7 @@ import 'package:aircraft_inventory_management/view_models/view_model_for_base_vi
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/page_view.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/paginated_table_class.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -96,16 +97,21 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       width: 300,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.all(Radius.circular(5))
                                       ),
                                       child: Center(
                                         child: TextField(
                                           controller: ivm.cardnumberforfirstpageAddInventory,
                                           decoration: InputDecoration(
-                                            contentPadding: EdgeInsets.only(left: 6,bottom: 15),
+                                            contentPadding: EdgeInsets.only(left: 6,bottom: 16),
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
+                                            enabledBorder: OutlineInputBorder(
+                                             borderSide: BorderSide.none
+                                            )
                                           ),
+
                                         ),
                                       ),
                                     ),
@@ -132,6 +138,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       width: 300,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(Radius.circular(5))
                                       ),
                                       child: Container(
                                         padding: EdgeInsets.symmetric(horizontal: 13.0),
@@ -140,15 +147,19 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                           border: Border.all(color: Colors.grey),
                                         ),
                                         child: TextField(
+
                                           controller: ivm.dateforfirstpageAddInventory,
                                           onTap: (){
                                             ivm.pickDate(context);
                                           },
                                           decoration: InputDecoration(
                                             hintText: 'Tap to pick date',
+
                                             border: InputBorder
-                                                .none, // Remove the default TextField border
+                                                .none, // Remove the default TextField borderen
+
                                           ),
+
                                         ),
                                       ),
                                     ),
@@ -175,6 +186,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       width: 300,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.all(Radius.circular(5))
                                       ),
                                       child: Center(
                                         child: TextField(
@@ -184,6 +196,9 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide.none
+                                            )
                                           ),
                                         ),
                                       ),
@@ -210,6 +225,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       width: 250,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.all(Radius.circular(5))
                                       ),
                                       child: Center(
                                           child: DropdownButton<String>(
@@ -254,6 +270,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       width: 300,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(Radius.circular(5))
                                       ),
                                       child: Center(
                                         child: TextField(
@@ -264,6 +281,9 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide.none
+                                            )
                                           ),
                                         ),
                                       ),
@@ -291,6 +311,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       width: 300,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(Radius.circular(5))
                                       ),
                                       child: Center(
                                         child: TextField(
@@ -300,6 +321,9 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide:BorderSide.none
+                                            )
                                           ),
                                         ),
                                       ),
@@ -328,6 +352,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       width: 300,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(Radius.circular(5))
                                       ),
                                       child: Center(
                                         child: TextField(
@@ -337,6 +362,9 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                             hintText: '',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide.none
+                                            )
                                           ),
                                         ),
                                       ),
@@ -365,6 +393,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       width: 300,// Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.all(Radius.circular(5))
                                       ),
                                       child: Container(
                                         padding: EdgeInsets.symmetric(horizontal: 13.0),
@@ -381,6 +410,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                             hintText: 'Tap to pick date',
                                             border: InputBorder
                                                 .none, // Remove the default TextField border
+
                                           ),
                                         ),
                                       ),
@@ -521,7 +551,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                     },
                                     child: Container(
                                       decoration: BoxDecoration(
-                                          color: Color(0xff1366D9),
+                                          color: Color(0xFF1e4837),
                                           borderRadius: BorderRadius.circular(5)
                                       ),
                                       child: Padding(
@@ -530,7 +560,8 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                             horizontal: 20
                                         ),
                                         child: Text('Add Item',style: TextStyle(
-                                            color: Colors.white
+                                            color: Colors.white,
+                                          fontWeight: FontWeight.bold
                                         ),),
                                       ),
                                     ),
@@ -582,7 +613,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color: Color(0xff1366D9),
+                                        color: Color(0xFF1e4837),
                                         borderRadius: BorderRadius.circular(5)
                                     ),
                                     child: Padding(
@@ -591,7 +622,8 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                           horizontal: 20
                                       ),
                                       child: Text('Upload Item',style: TextStyle(
-                                          color: Colors.white
+                                          color: Colors.white,
+                                        fontWeight: FontWeight.bold
                                       ),),
                                     ),
                                   ),
@@ -630,6 +662,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                               width: 250,// Set the desired height for the TextField
                                               decoration: BoxDecoration(
                                                 border: Border.all(color: Colors.grey),
+                                                borderRadius: BorderRadius.all(Radius.circular(5))
                                               ),
                                               child: Center(
                                                 child: TextField(
@@ -638,6 +671,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                                   },
                                                   controller: ivm.dateforsecondpageAddInventory,
                                                   decoration: InputDecoration(
+                                                    contentPadding: EdgeInsets.only(left: 5,bottom: 16),
                                                     hintText: 'Tap to input date',
                                                     border: InputBorder
                                                         .none, // Remove the default TextField border
@@ -668,15 +702,23 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                               width: 250,// Set the desired height for the TextField
                                               decoration: BoxDecoration(
                                                 border: Border.all(color: Colors.grey),
+                                                  borderRadius: BorderRadius.all(Radius.circular(5))
+
                                               ),
                                               child: Center(
                                                 child: TextField(
+                                                  inputFormatters: <TextInputFormatter>[
+                                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                                  ],
+
                                                   controller: ivm.quantityforsecondpageAddInventory,
                                                   decoration: InputDecoration(
-                                                    contentPadding: EdgeInsets.only(left: 6,bottom: 15),
+
+                                                    contentPadding: EdgeInsets.only(left: 5,bottom: 16),
                                                     hintText: '',
                                                     border: InputBorder
                                                         .none, // Remove the default TextField border
+
                                                   ),
                                                 ),
                                               ),
@@ -713,12 +755,14 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                               width: 250,// Set the desired height for the TextField
                                               decoration: BoxDecoration(
                                                 border: Border.all(color: Colors.grey),
+                                                  borderRadius: BorderRadius.all(Radius.circular(5))
+
                                               ),
                                               child: Center(
                                                 child: TextField(
                                                   controller: ivm.vouchernumberforsecondpageAddInventory,
                                                   decoration: InputDecoration(
-                                                    contentPadding: EdgeInsets.only(left: 6,bottom: 15),
+                                                    contentPadding: EdgeInsets.only(left: 5,bottom: 16),
                                                     hintText: '',
                                                     border: InputBorder
                                                         .none, // Remove the default TextField border
@@ -748,6 +792,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                               width: 250,// Set the desired height for the TextField
                                               decoration: BoxDecoration(
                                                 border: Border.all(color: Colors.grey),
+                                                borderRadius: BorderRadius.all(Radius.circular(5))
                                               ),
                                               child: Center(
                                                 child: DropdownButton<String>(
@@ -808,14 +853,17 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                           width: 250,// Set the desired height for the TextField
                                           decoration: BoxDecoration(
                                             border: Border.all(color: Colors.grey),
+                                            borderRadius: BorderRadius.all(Radius.circular(5))
                                           ),
                                           child: Center(
                                             child: TextField(
+
                                               onTap: (){
                                                 ivm.pickDateForHistoryForExpire(context);
                                               },
                                               controller: ivm.stockHistoryExpireDateforsecondpageAddInventory,
                                               decoration: InputDecoration(
+                                                contentPadding: EdgeInsets.only(left: 5,bottom: 16),
                                                 hintText: 'Tap to input date',
                                                 border: InputBorder
                                                     .none, // Remove the default TextField border
@@ -875,69 +923,80 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                       builder: (context, box, _) {
 
                                         final stocks = box.values.where((element) => element.stock_record==ivm.updatedStockRecordForNextPag!.id).toList();
-                                        return PaginatedDataTable(
+                                        return Theme(
+                                          data: Theme.of(context).copyWith(
+                                            cardTheme: CardTheme(
+                                              elevation: 0, // remove shadow
+                                              margin: const EdgeInsets.all(0), // reset margin
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(16), // Change radius
+                                              ),
+                                            ),
+                                          ),
+                                          child: PaginatedDataTable(
 
-                                          columns: [
-                                            // DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("SL No",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),  DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("Date",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),  DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("Quantity",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),  DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("Voucher No",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),  DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("Received",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),  DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("expenditure",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),
-                                            DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("expiry date",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),
-                                            DataColumn(label: SizedBox.shrink()),
-                                            const DataColumn(label: Text("Uploaded",style: TextStyle(
-                                                fontFamily: "Inter",
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 14,
-                                                color: Color(0xFF797979)
-                                            ),),),
-                                          ],
-                                          source: DataClass(data: stocks, onPressed: (index){
+                                            columns: [
+                                              // DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("SL No",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),  DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("Date",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),  DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("Quantity",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),  DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("Voucher No",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),  DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("Received",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),  DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("expenditure",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),
+                                              DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("expiry date",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),
+                                              DataColumn(label: SizedBox.shrink()),
+                                              const DataColumn(label: Text("Uploaded",style: TextStyle(
+                                                  fontFamily: "Inter",
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: 14,
+                                                  color: Color(0xFF797979)
+                                              ),),),
+                                            ],
+                                            source: DataClass(data: stocks, onPressed: (index){
 
-                                          }, lastPage: true),
+                                            }, lastPage: true),
 
-                                          rowsPerPage: 50,
-                                          columnSpacing: 60,
+                                            rowsPerPage: 50,
+                                            columnSpacing: 18,
 
 
+                                          ),
                                         );
                                       }
                                     ),

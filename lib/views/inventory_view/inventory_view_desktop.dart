@@ -3,6 +3,7 @@ import 'package:aircraft_inventory_management/utils/date_object_conversion.dart'
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/pagination_class.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
@@ -244,7 +245,11 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                                     //mp.aircraftFiltering('quantity', s);
                                     mp.stockRecordFiltering();
                                   },
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                  ],
                                   decoration: InputDecoration(
+
                                       prefixIcon: Icon(Icons.search,color: Color(0xFF858D9D),),
                                       contentPadding: EdgeInsets.only(top: 3),
                                       hintText: "Quantity",
@@ -392,7 +397,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                               mp.onSelectRow(context, index);
                             }, stockHistoryBox: mp.hiveManager.getStockHistoryBox()),
                             rowsPerPage: 10,
-                            columnSpacing: 25,),
+                            columnSpacing: 20,),
 
 
                     )

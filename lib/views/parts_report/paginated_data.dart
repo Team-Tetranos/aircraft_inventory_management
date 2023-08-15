@@ -22,77 +22,87 @@ class ReportTable extends DataTableSource{
           DataCell(Text((index+1).toString(),style: TextStyle(
               fontFamily: "Inter",
               fontWeight: FontWeight.w500,
-              fontSize: 14,
+              fontSize: 12,
               color: Color(0xFF484848)
           ),),),
           DataCell(VerticalDivider()),
           DataCell(Text("${report.stock_no}",style: TextStyle(
               fontFamily: "Inter",
               fontWeight: FontWeight.w500,
-              fontSize: 14,
+              fontSize: 12,
               color: Color(0xFF484848)
           ),),),
           DataCell(VerticalDivider()),
           DataCell(Text("${report.description}",style: TextStyle(
               fontFamily: "Inter",
               fontWeight: FontWeight.w500,
-              fontSize: 14,
+              fontSize: 12,
               color: Color(0xFF484848)
           ),),),
           DataCell(VerticalDivider()),
           DataCell(Text("${report.unit}",style: TextStyle(
               fontFamily: "Inter",
               fontWeight: FontWeight.w500,
-              fontSize: 14,
+              fontSize: 12,
               color: Color(0xFF484848)
           ),),),
           DataCell(VerticalDivider()),
           DataCell(Text("${report.card_no}",style: TextStyle(
               fontFamily: "Inter",
               fontWeight: FontWeight.w500,
-              fontSize: 14,
+              fontSize: 12,
               color: Color(0xFF484848)
           ),),),
           DataCell(VerticalDivider()),
           DataCell(Text(report.balance.toString(),style: TextStyle(
               fontFamily: "Inter",
               fontWeight: FontWeight.w900,
-              fontSize: 14,
+              fontSize: 12,
               color: Color(0xFF484848)
           ),),),
           DataCell(VerticalDivider()),
-          DataCell(Text(convertStockHistoryToString(report.stock_histories, true),style: TextStyle(
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-              color: Color(0xFF484848)
-          ),),),
+          DataCell(Tooltip(
+            message: "${convertStockHistoryToString(report.stock_histories, true)}",
+            child: Text(convertStockHistoryToString(report.stock_histories, true),style: TextStyle(
+                fontFamily: "Inter",
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+                color: Color(0xFF484848)
+            ),),
+          ),),
           DataCell(VerticalDivider()),
-          DataCell(Text(convertStockHistoryToStringExpiry(report.stock_histories),style: TextStyle(
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-              color: Color(0xFF484848)
-          ),),),
+          DataCell(Tooltip(
+            message: "${convertStockHistoryToStringExpiry(report.stock_histories)}",
+            child: Text(convertStockHistoryToStringExpiry(report.stock_histories),style: TextStyle(
+                fontFamily: "Inter",
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+                color: Color(0xFF484848)
+            ),),
+          ),),
           DataCell(VerticalDivider()),
           DataCell(Text(totalExpenditureQuantity(report.stock_histories),style: TextStyle(
               fontFamily: "Inter",
               fontWeight: FontWeight.w500,
-              fontSize: 14,
+              fontSize: 12,
               color: Color(0xFF484848)
           ),),),
           DataCell(VerticalDivider()),
-          DataCell(Text(convertStockHistoryToString(report.stock_histories, false),style: TextStyle(
-              fontFamily: "Inter",
-              fontWeight: FontWeight.w500,
-              fontSize: 14,
-              color: Color(0xFF484848)
-          ),),),
+          DataCell(
+            Tooltip(
+              message: "${convertStockHistoryToString(report.stock_histories, false)}",
+              child: Text(convertStockHistoryToString(report.stock_histories, false),style: TextStyle(
+                fontFamily: "Inter",
+                fontWeight: FontWeight.w500,
+                fontSize: 12,
+                color: Color(0xFF484848)
+          ),),
+            ),),
           DataCell(VerticalDivider()),
           DataCell(Text('',style: TextStyle(
               fontFamily: "Inter",
               fontWeight: FontWeight.w500,
-              fontSize: 14,
+              fontSize: 12,
               color: Color(0xFF484848)
           ),),),
         ]

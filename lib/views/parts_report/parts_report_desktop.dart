@@ -121,21 +121,21 @@ class _PartsReportViewDesktopState extends State<PartsReportViewDesktop> {
                           DataColumn(label: Text("SL No",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF797979)
                           ),),),
                           DataColumn(label: SizedBox.shrink()),
                           DataColumn(label: Text("Part No",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF797979)
                           ),),),
                           DataColumn(label: SizedBox.shrink()),
                           DataColumn(label: Text("Nomenclature",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF797979)
                           ),),),
 
@@ -143,7 +143,7 @@ class _PartsReportViewDesktopState extends State<PartsReportViewDesktop> {
                           DataColumn(label: Text("A/U",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF797979)
                           ),),),
 
@@ -151,14 +151,14 @@ class _PartsReportViewDesktopState extends State<PartsReportViewDesktop> {
                           DataColumn(label: Text("Card No",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF797979)
                           ),),),
                           DataColumn(label: SizedBox.shrink()),
                           DataColumn(label: Text("Quantity",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF797979)
                           ),),),
 
@@ -166,14 +166,14 @@ class _PartsReportViewDesktopState extends State<PartsReportViewDesktop> {
                           DataColumn(label: Text("Received Dt",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF797979)
                           ),),),
                           DataColumn(label: SizedBox.shrink()),
                           DataColumn(label: Text("Expiry Dt",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF797979)
                           ),),),
 
@@ -181,29 +181,30 @@ class _PartsReportViewDesktopState extends State<PartsReportViewDesktop> {
                           DataColumn(label: Text("Expenditure Qty",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF797979)
                           ),),),
 
                           DataColumn(label: SizedBox.shrink()),
-                          DataColumn(label: Text("Expenditure Dt",style: TextStyle(
-                              fontFamily: "Inter",
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Color(0xFF797979)
-                          ),),),
+                          DataColumn(label:  Text("Expenditure Dt",style: TextStyle(
+                                fontFamily: "Inter",
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                                color: Color(0xFF797979)
+                            ),),
+                          ),
                           DataColumn(label: SizedBox.shrink()),
                           DataColumn(label: Text("RMK",style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Color(0xFF797979)
                           ),),),
                         ],
 
                         rowsPerPage: 10,
                         showCheckboxColumn: false,
-                        columnSpacing: 25, source: ReportTable(reports: rvm.duplicatereports),),
+                        columnSpacing: 8, source: ReportTable(reports: rvm.duplicatereports),),
 
                     )
                   ],),
