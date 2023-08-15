@@ -25,42 +25,42 @@ class myData extends DataTableSource{
       DataCell(Text((index+1).toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
-          fontSize: 14,
+          fontSize: 12,
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),
       DataCell(Text(items[index].card_no.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
-          fontSize: 14,
+          fontSize: 12,
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),
       DataCell(Text(items[index].description.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
-          fontSize: 14,
+          fontSize: 12,
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),
       DataCell(Text(items[index].stock_no.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
-          fontSize: 14,
+          fontSize: 12,
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),
       DataCell(Text(items[index].balance.toString(),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
-          fontSize: 14,
+          fontSize: 12,
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),
       DataCell(Text(stringToDate(items[index].latest_expiry),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
-          fontSize: 14,
+          fontSize: 12,
           color: Color(0xFF484848)
       ),),),
       DataCell(VerticalDivider()),

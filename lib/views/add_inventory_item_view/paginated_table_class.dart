@@ -29,49 +29,49 @@ class DataClass extends DataTableSource{
         DataCell(Text((index+1).toString(),style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
-            fontSize: 14,
+            fontSize: 12,
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
         DataCell(Text("${stockHistory.date}",style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
-            fontSize: 14,
+            fontSize: 12,
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
         DataCell(Text("${stockHistory.quantity}",style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
-            fontSize: 14,
+            fontSize: 12,
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
         DataCell(Text("${stockHistory.voucher_no}",style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
-            fontSize: 14,
+            fontSize: 12,
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
         DataCell(Text(stockHistory.received!?'Yes':'No',style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w900,
-            fontSize: 14,
+            fontSize: 12,
             color: stockHistory.received!?Colors.red:Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
         DataCell(Text(!stockHistory.received!?'Yes':'No',style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
-            fontSize: 14,
+            fontSize: 12,
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),
         DataCell(Text(stockHistory.expire==null?'':stringToDate(stockHistory.expire.toString()),style: TextStyle(
             fontFamily: "Inter",
             fontWeight: FontWeight.w500,
-            fontSize: 14,
+            fontSize: 12,
             color: Color(0xFF484848)
         ),),),
         DataCell(VerticalDivider()),

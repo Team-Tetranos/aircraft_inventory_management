@@ -299,7 +299,7 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                                             },
                                             child: Container(
                                               decoration: BoxDecoration(
-                                                  color: Color(0xff1366D9),
+                                                  color: Color(0xFF1e4837),
                                                   borderRadius: BorderRadius.circular(5)
                                               ),
                                               child: Padding(
@@ -308,7 +308,8 @@ class _AddCategoryViewDesktopState extends State<AddCategoryViewDesktop> {
                                                     horizontal: 20
                                                 ),
                                                 child: Text('Add Item',style: TextStyle(
-                                                    color: Colors.white
+                                                    color: Colors.white,
+                                                  fontWeight: FontWeight.bold
                                                 ),),
                                               ),
                                             ),
