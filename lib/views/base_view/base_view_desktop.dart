@@ -385,8 +385,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
 
                          // Profile_Settings_View_Desktop()
                     //UsermanagementSecondPagedesktop()
-                          HelpAndSupportViewForDesktop()
-                          /*if(mp.baseviewPage=='dashboard')
+                        //  HelpAndSupportViewForDesktop()
+                          if(mp.baseviewPage=='dashboard')
                             MyDashBoardView()
                           else if(mp.baseviewPage=='inventory')
                             InventoryView()
@@ -405,7 +405,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                           else if(mp.baseviewPage=='help')
                             HelpAndSupportViewForDesktop()
                           else
-                            MyDashBoardView()*/
+                            MyDashBoardView()
                           //Single_Item_Details_Desktop_View()
                         ],
                       )
