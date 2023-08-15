@@ -14,6 +14,7 @@ import '../models/category.dart' as air;
 import '../models/user.dart';
 
 class ManageStoreViewModel extends ChangeNotifier{
+  ScrollController scrollcontroller=ScrollController();
   bool isLoading = false;
 
 

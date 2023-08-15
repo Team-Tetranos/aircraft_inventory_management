@@ -385,6 +385,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
 
                          // Profile_Settings_View_Desktop()
                     //UsermanagementSecondPagedesktop()
+                        //  HelpAndSupportViewForDesktop()
+                          if(mp.baseviewPage=='dashboard')
                           //HelpAndSupportViewForDesktop()
                           if(mp.baseviewPage=='dashboard')
                             MyDashBoardView()

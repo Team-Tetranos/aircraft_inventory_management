@@ -383,6 +383,4 @@ class AircraftRepository{
     return result;
   }
 
-
-
 }

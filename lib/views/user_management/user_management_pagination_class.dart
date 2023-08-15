@@ -35,7 +35,7 @@ class User_management_Data extends DataTableSource{
             Text(profiles[index].email.toString(),style: TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.w500,
-                fontSize: 14,
+                fontSize: 12,
                 color: Color(0xFF797979)
             ),),
 
@@ -80,7 +80,7 @@ class User_management_Data extends DataTableSource{
                           child: Text(profiles[index].is_admin.toString(),style: TextStyle(
                               fontFamily: "Inter",
                               fontWeight: FontWeight.w500,
-                              fontSize: 14,
+                              fontSize: 12,
                               color: Colors.white
                           ),)
                       ),
@@ -128,7 +128,7 @@ class User_management_Data extends DataTableSource{
                       child: Text(profiles[index].is_verified==true?'Verified':'Pending',style: TextStyle(
                           fontFamily: "Inter",
                           fontWeight: FontWeight.w500,
-                          fontSize: 14,
+                          fontSize: 12,
                           color: Colors.black
                       ),)
                   ),
@@ -144,7 +144,7 @@ class User_management_Data extends DataTableSource{
       DataCell(Text(profiles[index].permitted_aircrafts!.map((e) => e.name).toList().toString().replaceAll('[', '').replaceAll(']', ''),style: TextStyle(
           fontFamily: "Inter",
           fontWeight: FontWeight.w500,
-          fontSize: 14,
+          fontSize: 12,
           color: Color(0xFF797979)
       ),),),
 

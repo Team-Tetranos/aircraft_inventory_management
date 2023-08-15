@@ -1,5 +1,6 @@
 import 'package:aircraft_inventory_management/view_models/stock_history_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -77,7 +78,7 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                               padding: const EdgeInsets.only(right: 20),
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: Color(0xff1366D9),
+                                    color: Color(0xFF1e4837),
                                     borderRadius: BorderRadius.circular(5)
                                 ),
                                 child: Padding(
@@ -86,7 +87,8 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                       horizontal: 20
                                   ),
                                   child: Text('Upload Item',style: TextStyle(
-                                      color: Colors.white
+                                      color: Colors.white,
+                                    fontWeight: FontWeight.bold
                                   ),),
                                 ),
                               ),
@@ -126,6 +128,7 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                         width: 250,// Set the desired height for the TextField
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(Radius.circular(7))
                                         ),
                                         child: Center(
                                           child: TextField(
@@ -134,6 +137,7 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                             },
                                             controller: ivm.dateforsecondpageAddInventory,
                                             decoration: InputDecoration(
+                                              contentPadding: EdgeInsets.only(left: 6,bottom: 16),
                                               hintText: 'Tap to input date',
                                               border: InputBorder
                                                   .none, // Remove the default TextField border
@@ -164,9 +168,13 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                         width: 250,// Set the desired height for the TextField
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Colors.grey),
+                                            borderRadius: BorderRadius.all(Radius.circular(7))
                                         ),
                                         child: Center(
                                           child: TextField(
+                                            inputFormatters: <TextInputFormatter>[
+                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                            ],
                                             controller: ivm.quantityforsecondpageAddInventory,
                                             decoration: InputDecoration(
                                               contentPadding: EdgeInsets.only(left: 6,bottom: 16),
@@ -209,6 +217,7 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                         width: 250,// Set the desired height for the TextField
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(Radius.circular(7))
                                         ),
                                         child: Center(
                                           child: TextField(
@@ -244,10 +253,12 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                         width: 250,// Set the desired height for the TextField
                                         decoration: BoxDecoration(
                                           border: Border.all(color: Colors.grey),
+                                          borderRadius: BorderRadius.all(Radius.circular(7))
                                         ),
                                         child: Center(
                                             child: DropdownButton<String>(
                                               value: ivm.selectedHistoryStatus,
+                                              underline: SizedBox.shrink(),
 
 
                                               style: TextStyle(
@@ -301,6 +312,7 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                     width: 250,// Set the desired height for the TextField
                                     decoration: BoxDecoration(
                                       border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.all(Radius.circular(7))
                                     ),
                                     child: Center(
                                       child: TextField(
@@ -312,6 +324,7 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                           hintText: 'Tap to input date',
                                           border: InputBorder
                                               .none, // Remove the default TextField border
+                                          contentPadding: EdgeInsets.only(left: 6,bottom: 16)
                                         ),
                                       ),
                                     ),
@@ -441,7 +454,7 @@ class _StockHistoryViewDesktopState extends State<StockHistoryViewDesktop> {
                                           ivm.setupSelectedStockHistory(context,stocks[index]);
                                         }, lastPage: true),
                                         rowsPerPage: 50,
-                                        columnSpacing: 40,
+                                        columnSpacing: 20,
 
 
                                       ),

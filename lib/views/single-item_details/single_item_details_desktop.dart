@@ -88,8 +88,8 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                       SizedBox(height: 18,),
 
                                       Container(
-                                        width: 500,
-                                        //MediaQuery.of(context).size.width*.2,
+                                        width: 350,
+
                                         child: Column(
                                           children: [
                                             Container(
@@ -510,7 +510,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                   }, lastPage: false),
 
                                   rowsPerPage: 50,
-                                  columnSpacing: 50,
+                                  columnSpacing: 30,
 
                                 ),
                               ),

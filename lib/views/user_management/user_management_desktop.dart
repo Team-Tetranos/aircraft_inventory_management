@@ -97,7 +97,7 @@ class _UserManagementViewDesktopState extends State<UserManagementViewDesktop> {
                                           ),
                                         ),
                                         SizedBox(width: 20,),
-                                        Container(
+                                       /* Container(
                                           height: 33.81,
                                           width: MediaQuery.of(context).size.width*.0569,
                                           decoration: BoxDecoration(
@@ -124,7 +124,7 @@ class _UserManagementViewDesktopState extends State<UserManagementViewDesktop> {
                                               )
                                             ],
                                           ),
-                                        ),
+                                        ),*/
                                         SizedBox(width: 33,)
                                       ],
                                     ),
@@ -136,56 +136,75 @@ class _UserManagementViewDesktopState extends State<UserManagementViewDesktop> {
                             SizedBox(height: 31.7,),
 
 
-                            PaginatedDataTable(
-                              //arrowHeadColor: Colors.blue,
+                            Theme(
+                              data: Theme.of(context).copyWith(
+                                cardTheme: CardTheme(
+                                  color: Colors.white,
 
-                              columns:
-                              [
-                                /*DataColumn(label: Container(
-                                  height: 27.47,
-                                  width: MediaQuery.of(context).size.width*.018,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                                      color: Color(0xFFD9D9D9)
-                                  ),),),*/
+                                  elevation: 0, // remove shadow
+                                  margin: const EdgeInsets.all(0), // reset margin
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16), // Change radius
+                                  ),
+                                ),
+                              ),
+                              child: Scrollbar(
+                                controller: msvm.scrollcontroller,
+                                thickness: 10,
 
-                                DataColumn(label: Text("Identity",style: TextStyle(
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: Color(0xFF797979)
-                                ),),),
+                                child: PaginatedDataTable(
+                                  //arrowHeadColor: Colors.blue,
+                                 controller: msvm.scrollcontroller,
 
-                                DataColumn(label: Text("User Role ",style: TextStyle(
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: Color(0xFF797979)
-                                ),),),
-                                DataColumn(label: Text("Verification Status",style: TextStyle(
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: Color(0xFF797979)
-                                ),),),
-                                DataColumn(label: Text("Permitted Aircrafts",style: TextStyle(
-                                    fontFamily: "Inter",
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: Color(0xFF797979)
-                                ),),),
+                                  columns:
+                                  [
+                                    /*DataColumn(label: Container(
+                                      height: 27.47,
+                                      width: MediaQuery.of(context).size.width*.018,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(Radius.circular(5)),
+                                          color: Color(0xFFD9D9D9)
+                                      ),),),*/
+
+                                    DataColumn(label: Text("Identity",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),
+
+                                    DataColumn(label: Text("User Role ",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),
+                                    DataColumn(label: Text("Verification Status",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),
+                                    DataColumn(label: Text("Permitted Aircrafts",style: TextStyle(
+                                        fontFamily: "Inter",
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        color: Color(0xFF797979)
+                                    ),),),
 
 
 
-                              ]
+                                  ]
 
-                              , source: User_management_Data(mycontext: context, profiles: msvm.profiles, onPressed: (index){
+                                  , source: User_management_Data(mycontext: context, profiles: msvm.profiles, onPressed: (index){
 
-                              msvm.onSelectUser(index);
+                                  msvm.onSelectUser(index);
 
-                            }),
-                              rowsPerPage: 10,
-                              columnSpacing: 200,)
+                                }),
+                                  rowsPerPage: 10,
+                                  columnSpacing: 20,),
+                              ),
+                            )
                           ],),
 
                       ),
