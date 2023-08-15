@@ -129,7 +129,7 @@ class MyApp extends StatelessWidget {
         ),
         builder: EasyLoading.init(),
 
-        initialRoute: sharedPreferenceManager.getAccessToken()==null?RouteNames.login:RouteNames.baseview,
+        initialRoute: '/',
         onGenerateRoute: Routes.generateRoute,
       ),
     );

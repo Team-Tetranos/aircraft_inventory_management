@@ -61,6 +61,7 @@ class AuthRepository{
   Future logout(BuildContext context)async{
     confirmDialog(context, 'Logout', 'Are you sure you want to logout?', ()async{
       await sharedPreferenceManager.removeAccessToken();
+      await hiveManager.deleteUserData();
       Navigator.of(context).pop();
 
       Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.login, (route) => false);

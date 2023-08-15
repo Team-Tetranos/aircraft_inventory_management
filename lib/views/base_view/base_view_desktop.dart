@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:aircraft_inventory_management/models/stock_record_report.dart';
+import 'package:aircraft_inventory_management/utils/notification_string_create.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
@@ -10,10 +13,12 @@ import 'package:aircraft_inventory_management/views/product_overview_view/produc
 import 'package:aircraft_inventory_management/views/settings/profile_settings.dart';
 import 'package:aircraft_inventory_management/views/single-item_details/single_item_details_desktop.dart';
 import 'package:aircraft_inventory_management/views/user_management/user_management.dart';
+import 'package:animated_icon/animated_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../../models/stock_record.dart';
 import '../../view_models/blank_view_model.dart';
 import '../add_category_view/add_category_view.dart';
 import '../dashboard_2/dashboard_2.dart';
@@ -109,11 +114,38 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
 
                                           PopupMenuButton(
 
-
                                               itemBuilder: (context){
-                                                return [];
+                                                return [
+                                                  ...List.generate(mp.notifications.length, (index) {
+
+                                                    StockRecord notificaiton = mp.notifications[index];
+                                                    return PopupMenuItem(
+                                                      onTap: (){
+                                                        mp.processNotificationTap(context, notificaiton);
+                                                      },
+                                                        child: Text(notificationString(notificaiton), style: TextStyle(
+                                                          fontWeight: FontWeight.bold,
+
+                                                        ),));
+                                                  })
+
+                                                ];
                                               },
-                                            child: Container(
+                                            child:Container(
+                                              height: 36,
+                                              width: MediaQuery.of(context).size.width*.0277,
+                                              decoration: const BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius: BorderRadius.all(Radius.circular(5))
+                                              ),
+                                              child: Center(
+                                                child: FaIcon(FontAwesomeIcons.bell,
+                                                  color: mp.notifications.length>0?Colors.red: Colors.white,
+                                                  size: 20,),
+                                              ),
+                                            ),
+
+                                            /*Container(
                                               height: 36,
                                               width: MediaQuery.of(context).size.width*.0277,
                                               decoration: const BoxDecoration(
@@ -125,7 +157,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                                   color: Colors.white,
                                                   size: 20,),
                                               ),
-                                            ),
+                                            ),*/
 
                                               tooltip: 'Show Notification',
                                           ),

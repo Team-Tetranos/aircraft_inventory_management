@@ -32,6 +32,13 @@ class MyProviderForInventoryView with ChangeNotifier {
   List<StockRecord> duplicatestockRecords = [];
   StockRecord selectedStockRecord = StockRecord();
 
+  bool oneTimePass = false;
+
+
+  updateOnTimePass(bool b){
+    oneTimePass = b;
+    notifyListeners();
+  }
 
   updateSelectedStockRecord(StockRecord stockRecord){
     selectedStockRecord = stockRecord;
@@ -176,6 +183,13 @@ class MyProviderForInventoryView with ChangeNotifier {
     }catch(e){
 
       print(e);
+    }
+  }
+
+  void checkForNotificationTap(BuildContext context) {
+    if(oneTimePass){
+      changePage(1);
+      updateOnTimePass(false);
     }
   }
 

@@ -24,6 +24,8 @@ class Routes{
     var args = routeSettings.arguments;
 
     switch(routeSettings.name){
+      case RouteNames.splash:
+        return MaterialPageRoute(builder: (_)=> OnboardingView());
       case RouteNames.blank:
         return MaterialPageRoute(builder: (_)=> BlankPage());
       case RouteNames.onboardsecond:

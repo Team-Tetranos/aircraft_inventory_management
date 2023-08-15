@@ -27,6 +27,7 @@ class _InventoryViewState extends State<InventoryView> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<MyProviderForInventoryView>(context, listen: false).updateAircraftItemsForInventory(context);
       Provider.of<MyProviderForInventoryView>(context, listen: false).fetchStocksForAircraft(context);
+      Provider.of<MyProviderForInventoryView>(context, listen: false).checkForNotificationTap(context);
     });
     super.initState();
   }

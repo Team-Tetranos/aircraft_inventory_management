@@ -20,8 +20,6 @@ class InventoryViewForDesktop extends StatefulWidget {
 class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
 
 
-
-
   @override
   Widget build(BuildContext context) {
     //final DataTableSource _data=myData(mycontext: context);

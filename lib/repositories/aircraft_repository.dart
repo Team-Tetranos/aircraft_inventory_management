@@ -363,6 +363,25 @@ class AircraftRepository{
   }
 
 
+  Future<Object> getStockNotification() async{
+    Object result = Failure(code: 400, error: {}, key: '');
+    var response = await apiService.getApiResponse('${endPoints.base_url}${endPoints.stock_record_notification}', token: true);
+
+    if(response is Success){
+
+      List<StockRecord> stocks = [];
+      Iterable it = response.data as Iterable;
+      for (var element in it) {
+        stocks.add(StockRecord.fromJson(element));
+      }
+
+      result = stocks;
+
+    }else if(response is Failure){
+      result = response;
+    }
+    return result;
+  }
 
 
 

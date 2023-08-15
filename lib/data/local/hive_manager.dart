@@ -90,6 +90,17 @@ class HiveManager{
     }
   }
 
+  Future<void> deleteUserData()async{
+    var userBox = await getUserBox();
+    try{
+      await userBox.delete(hiveConstants.myProfileKey);
+      print('user data is inserted');
+    }catch(e){
+      print('user data input exception');
+      print(e);
+    }
+  }
+
   Future<User?> getUserData()async{
     var userBox = await getUserBox();
     return userBox.get(hiveConstants.myProfileKey);

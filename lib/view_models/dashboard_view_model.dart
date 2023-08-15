@@ -9,10 +9,12 @@ import 'package:aircraft_inventory_management/utils/dialogs/error_dialog.dart';
 import 'package:aircraft_inventory_management/utils/dialogs/success_dialog.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../dependency_injection/di.dart';
+import '../models/stock_record.dart';
 import '../models/user.dart';
 
 class DashboardViewModel extends ChangeNotifier{
@@ -86,6 +88,8 @@ class DashboardViewModel extends ChangeNotifier{
 
   fetchAllAircrafts()async{
 
+    EasyLoading.show();
+
     initialAircraft = [];
     aircrafts = [];
     notifyListeners();
@@ -101,6 +105,8 @@ class DashboardViewModel extends ChangeNotifier{
     }else{
       print('Error occured');
     }
+
+    EasyLoading.dismiss();
 
   }
 
@@ -141,6 +147,28 @@ class DashboardViewModel extends ChangeNotifier{
   onInit(BuildContext context)async{
     setupUserData(context);
     await fetchAllAircrafts();
+    await fetchNotifications(context);
+  }
+
+
+
+
+  fetchNotifications(BuildContext context)async{
+
+    EasyLoading.show();
+    try{
+      var result = await aircraftRepository.getStockNotification();
+      if(result is List<StockRecord>){
+        Provider.of<BaseViewModel>(context, listen: false).updateNotifications(result);
+
+        notifyListeners();
+      }
+    }catch(e){
+
+    }
+
+    EasyLoading.dismiss();
+
   }
 
 
