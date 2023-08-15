@@ -34,9 +34,10 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
                     Padding(
                       padding: const EdgeInsets.only(left: 30,top: 40),
                       child: Container(
-                        height: 350,
+                        height: 550,
 
                         width: 435,
+
 
                         child: Column(
                           children: [
@@ -213,6 +214,7 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
                                   width: 250,// Set the desired height for the TextField
                                   decoration: BoxDecoration(
                                     border: Border.all(color: Colors.grey),
+                                    borderRadius: BorderRadius.all(Radius.circular(7))
                                   ),
                                   child: Center(
                                       child: DropdownButton<String>(
@@ -516,7 +518,7 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
 
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color: Color(0xff1366D9),
+                                        color: Color(0xFF1e4837),
                                         borderRadius: BorderRadius.circular(5)
                                     ),
                                     child: Padding(
@@ -525,7 +527,8 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
                                           horizontal: 20
                                       ),
                                       child: Text('Update Record',style: TextStyle(
-                                          color: Colors.white
+                                          color: Colors.white,
+                                        fontWeight: FontWeight.bold
                                       ),),
                                     ),
                                   ),

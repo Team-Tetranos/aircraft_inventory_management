@@ -4,6 +4,7 @@ import '../data/remote/service/network_api_service.dart';
 import '../dependency_injection/di.dart';
 import '../res/endpoints.dart';
 
+/*
 class HelpAndSupportRepository{
   BaseApiService apiService = sl.get<ApiService>();
   EndPoints endPoints = sl.get<EndPoints>();
@@ -13,4 +14,4 @@ class HelpAndSupportRepository{
 
 
   }
-}
+}*/
