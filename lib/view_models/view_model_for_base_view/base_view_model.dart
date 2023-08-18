@@ -54,9 +54,10 @@ class BaseViewModel extends ChangeNotifier{
   }
 
   Future logout(BuildContext context)async{
-    baseviewPage = 'dashboard';
-    notifyListeners();
     await authRepository.logout(context);
+
+    //notifyListeners();
+
   }
 
   closeAppDialog(BuildContext context){
@@ -81,6 +82,8 @@ class BaseViewModel extends ChangeNotifier{
   }
 
   setupUserData()async{
+    baseviewPage = 'dashboard';
+    notifyListeners();
     try{
       var usr = await hiveManager.getUserData();
       user = usr!;
@@ -123,8 +126,6 @@ class BaseViewModel extends ChangeNotifier{
     }catch(e){
       print(e);
     }
-
-
 
   }
 

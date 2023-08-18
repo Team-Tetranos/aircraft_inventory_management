@@ -1,5 +1,7 @@
+import 'package:aircraft_inventory_management/models/helpandsupportmodel.dart';
 import 'package:aircraft_inventory_management/view_models/help_and_support_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
 
 class HelpAndSupportViewForDesktop extends StatefulWidget {
@@ -10,6 +12,17 @@ class HelpAndSupportViewForDesktop extends StatefulWidget {
 }
 
 class _helpAndSupportViewState extends State<HelpAndSupportViewForDesktop> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
+
+      Provider.of<HelpAndSupportViewModel>(context, listen: false).fetchhelps();
+
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +41,29 @@ class _helpAndSupportViewState extends State<HelpAndSupportViewForDesktop> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(Icons.question_mark,color: Color(0xFF696969),size: 22,),
-                          SizedBox(width: 14,),
-                          Text("Help & Support",
+                          Row(
+                            children: [
+                              Icon(Icons.question_mark,color: Color(0xFF696969),size: 22,),
+                              SizedBox(width: 14,),
+                              Text("Help & Support",
+                                style: TextStyle(
+                                    color: Color(0xFF696969),
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: "Inter"
+                                ),),
+                            ],
+                          ),
+
+                          Text("Helpline : +8801XXXXXXXX",
                             style: TextStyle(
                                 color: Color(0xFF696969),
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
                                 fontFamily: "Inter"
-                            ),)
+                            ),),
                         ],
                       ),
                     )
@@ -157,21 +183,23 @@ class _helpAndSupportViewState extends State<HelpAndSupportViewForDesktop> {
                       height:800,
                       width: MediaQuery.of(context).size.width*.7,
                       child: ListView.builder(
-                          itemCount: 4,
+                          itemCount: hsvm.helps.length,
                           itemBuilder: (contex,index){
+                            HelpAndSupportModel help = hsvm.helps[index];
                             return Card(
                               color: Color(0xFF052169),
                               child: ExpansionTile(
                                 iconColor: Colors.white,
                                 collapsedIconColor: Colors.white,
-                                title: Text("pane ${index}",style: TextStyle(
+                                title: Text("${help.title}",style: TextStyle(
                                   color: Colors.white
                               ),),
                                 children: [
                                   Container(
-                                    height: 200,
+                                    //height: 200,
                                     width: MediaQuery.of(context).size.width*.7,
                                     color: Colors.white,
+                                    child: Html(data: help.description),
                                   )
                                 ],
 

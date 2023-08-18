@@ -47,7 +47,7 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                 child: Stack(
                   children: [
                     Container(
-                      height: 960,
+
                       width: MediaQuery.of(context).size.width*1,
 
                         color: Colors.white.withOpacity(.69)
@@ -79,7 +79,7 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                             Padding(
                               padding: const EdgeInsets.only(top: 60,bottom: 50),
                               child: Container(
-                                height: 750,
+                                //height: 750,
                                 width: 463.68,
                                 //MediaQuery.of(context).size.width*.322,
 
@@ -378,7 +378,14 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                                                 fontfamily: "Inter"),
                                           )
                                         ],
-                                      )
+                                      ),
+
+
+                                      Text('Roottop', style: TextStyle(
+                                        fontWeight: FontWeight.bold
+                                      ),),
+
+                                      SizedBox(height: 27,),
 
 
 
