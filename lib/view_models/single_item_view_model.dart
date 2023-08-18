@@ -42,10 +42,13 @@ class SingleItemViewModel extends ChangeNotifier{
   TextEditingController locationforfirstpageAddInventory = TextEditingController();
   TextEditingController demandScheduleforfirstpageAddInventory = TextEditingController();
 
-  String? selectedUnit = 'Pcs';
+  String? selectedUnit = 'No.';
   List<String> units = [
+    'No.',
     'Pcs',
-    'Kg'
+    'Kg',
+    'Meter',
+    'Litre'
   ];
   updateSelectedUnit(String history){
     selectedUnit = history;

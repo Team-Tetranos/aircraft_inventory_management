@@ -352,7 +352,7 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
                             ],),
 
                           SizedBox(height: 20,),
-                          Row(
+                         /* Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
@@ -393,7 +393,7 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
                                 ),
                               ),
 
-                            ],),
+                            ],),*/
                         ],
                       ),
                     ),

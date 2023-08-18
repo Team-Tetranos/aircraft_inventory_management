@@ -91,7 +91,7 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: Color(0xff1366D9),
+                                    color: Color(0xFF1e4837),
                                     borderRadius: BorderRadius.circular(5)
                                 ),
                                 child: Padding(
@@ -100,7 +100,8 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                                       horizontal: 20
                                   ),
                                   child: Text('Update Item',style: TextStyle(
-                                      color: Colors.white
+                                      color: Colors.white,
+                                    fontWeight: FontWeight.bold
                                   ),),
                                 ),
                               ),
@@ -321,6 +322,7 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                           width: 250,// Set the desired height for the TextField
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.all(Radius.circular(7))
                           ),
                           child: Center(
                             child: TextField(
@@ -329,6 +331,8 @@ class _SingleStockHistoryViewDesktopState extends State<SingleStockHistoryViewDe
                               },
                               controller: svm.stockHistoryExpireDateforsecondpageAddInventory,
                               decoration: InputDecoration(
+                                contentPadding: EdgeInsets.only(left: 6,bottom: 16),
+
                                 hintText: 'Tap to input date',
                                 border: InputBorder
                                     .none, // Remove the default TextField border

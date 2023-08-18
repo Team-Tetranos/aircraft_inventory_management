@@ -171,7 +171,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Stock/Part No",
+                                    "Stock/Parts No",
                                     style: TextStyle(color: Colors.black,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 16,
@@ -374,7 +374,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                 ],),
 
                               SizedBox(height: 20,),
-                              Row(
+                              /*Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
@@ -417,7 +417,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                     ),
                                   ),
 
-                                ],),
+                                ],),*/
                             ],
                           ),
                         ),

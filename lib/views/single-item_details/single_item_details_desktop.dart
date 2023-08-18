@@ -242,7 +242,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                             ),
 
                                             SizedBox(height: 32,),
-                                            Container(
+                                            /*Container(
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
@@ -263,7 +263,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                                     ),),
                                                 ],
                                               ),
-                                            ),
+                                            ),*/
 
                                           ],
                                         ),
@@ -510,7 +510,7 @@ class _Single_Item_Details_Desktop_ViewState extends State<Single_Item_Details_D
                                   }, lastPage: false),
 
                                   rowsPerPage: 50,
-                                  columnSpacing: 30,
+                                  columnSpacing: 25,
 
                                 ),
                               ),

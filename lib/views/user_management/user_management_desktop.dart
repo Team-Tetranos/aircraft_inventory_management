@@ -85,7 +85,7 @@ class _UserManagementViewDesktopState extends State<UserManagementViewDesktop> {
                                           ),
                                         ),
                                         SizedBox(width: 20,),
-                                        Container(
+                                        /*Container(
                                           height: 33.81,
                                           width: MediaQuery.of(context).size.width*.029,
                                           decoration: BoxDecoration(
@@ -95,7 +95,7 @@ class _UserManagementViewDesktopState extends State<UserManagementViewDesktop> {
                                           child: Center(
                                             child: Icon(Icons.delete_outline_outlined,color: Color(0xFFE70707),size: 20,),
                                           ),
-                                        ),
+                                        ),*/
                                         SizedBox(width: 20,),
                                        /* Container(
                                           height: 33.81,

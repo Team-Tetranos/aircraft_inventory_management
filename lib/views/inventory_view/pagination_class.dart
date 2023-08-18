@@ -22,47 +22,64 @@ class myData extends DataTableSource{
   @override
   DataRow? getRow(int index) {
     return DataRow(cells: [
-      DataCell(Text((index+1).toString(),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 12,
-          color: Color(0xFF484848)
-      ),),),
+      DataCell(Center(
+        child: Text((index+1).toString(),style: TextStyle(
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Color(0xFF484848)
+        ),),
+      ),),
       DataCell(VerticalDivider()),
-      DataCell(Text(items[index].card_no.toString(),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 12,
-          color: Color(0xFF484848)
-      ),),),
+      DataCell(Center(
+        child: Text(items[index].card_no.toString(),style: TextStyle(
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Color(0xFF484848)
+        ),),
+      ),),
       DataCell(VerticalDivider()),
-      DataCell(Text(items[index].description.toString(),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 12,
-          color: Color(0xFF484848)
-      ),),),
+      DataCell(Center(
+        child: Text(items[index].description.toString(),style: TextStyle(
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Color(0xFF484848)
+        ),),
+      ),),
       DataCell(VerticalDivider()),
-      DataCell(Text(items[index].stock_no.toString(),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 12,
-          color: Color(0xFF484848)
-      ),),),
+      DataCell(Center(
+        child: Text(items[index].stock_no.toString(),style: TextStyle(
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Color(0xFF484848)
+        ),),
+      ),),
       DataCell(VerticalDivider()),
-      DataCell(Text(items[index].balance.toString(),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 12,
-          color: Color(0xFF484848)
-      ),),),
+      DataCell(Center(
+        child: items[index].balance==0?Text("NIL",style: TextStyle(
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Color(0xFF484848)
+        ),):Text(items[index].balance.toString(),style: TextStyle(
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Color(0xFF484848)
+        ),),
+      ),),
       DataCell(VerticalDivider()),
-      DataCell(Text(stringToDate(items[index].latest_expiry),style: TextStyle(
-          fontFamily: "Inter",
-          fontWeight: FontWeight.w500,
-          fontSize: 12,
-          color: Color(0xFF484848)
-      ),),),
+      DataCell(Center(
+        child: Text(stringToDate(items[index].latest_expiry),style: TextStyle(
+            fontFamily: "Inter",
+            fontWeight: FontWeight.w500,
+            fontSize: 12,
+            color: Color(0xFF484848)
+        ),),
+      ),),
       DataCell(VerticalDivider()),
       DataCell(
           Container(
@@ -70,7 +87,7 @@ class myData extends DataTableSource{
             width: MediaQuery.of(mycontext).size.width*.0506,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-                color: items[index].balance! <2?Colors.red:items[index].balance! <8?Colors.redAccent:Colors.green
+                color: items[index].balance! <2?Colors.red:items[index].balance! <8?Colors.yellowAccent:Colors.green
             ),
             child: Center(child: Text(items[index].balance! <2?'Low':items[index].balance! <8?'Moderate':'sufficient',
               style: TextStyle(color: Colors.white,
@@ -84,7 +101,7 @@ class myData extends DataTableSource{
         ValueListenableBuilder(
           builder: (context, box, _) {
             bool uploaded = box.values.where((element) => element.stock_record==items[index].id).toList().isEmpty;
-            return uploaded?Icon(Icons.check, color: Colors.green,):Icon(CupertinoIcons.exclamationmark_circle, color: Colors.red,);
+            return uploaded?Center(child: Icon(Icons.check, color: Colors.green,)):Center(child: Icon(CupertinoIcons.exclamationmark_circle, color: Colors.red,));
 
           }, valueListenable: stockHistoryBox.listenable(),
         ),),

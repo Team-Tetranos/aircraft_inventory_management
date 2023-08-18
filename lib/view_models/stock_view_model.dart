@@ -102,10 +102,14 @@ class StockViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
-  String? selectedUnit = 'Pcs';
+  String? selectedUnit = 'No.';
   List<String> units = [
+    'No.',
     'Pcs',
-    'Kg'
+    'Kg',
+    'Box',
+    'Litre'
+
   ];
   updateSelectedUnit(String history){
     selectedUnit = history;

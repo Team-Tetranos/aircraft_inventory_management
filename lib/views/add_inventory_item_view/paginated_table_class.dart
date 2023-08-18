@@ -26,65 +26,80 @@ class DataClass extends DataTableSource{
       },
       cells: [
        // DataCell(VerticalDivider()),
-        DataCell(Text((index+1).toString(),style: TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
-            color: Color(0xFF484848)
-        ),),),
+        DataCell(Center(
+          child: Text((index+1).toString(),style: TextStyle(
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w500,
+              fontSize: 12,
+              color: Color(0xFF484848)
+          ),),
+        ),),
         DataCell(VerticalDivider()),
-        DataCell(Text("${stockHistory.date}",style: TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
-            color: Color(0xFF484848)
-        ),),),
+        DataCell(Center(
+          child: Text("${stockHistory.date}",style: TextStyle(
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w500,
+              fontSize: 12,
+              color: Color(0xFF484848)
+          ),),
+        ),),
         DataCell(VerticalDivider()),
-        DataCell(Text("${stockHistory.quantity}",style: TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
-            color: Color(0xFF484848)
-        ),),),
+        DataCell(Center(
+          child: Text("${stockHistory.quantity}",style: TextStyle(
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w500,
+              fontSize: 12,
+              color: Color(0xFF484848)
+          ),),
+        ),),
         DataCell(VerticalDivider()),
-        DataCell(Text("${stockHistory.voucher_no}",style: TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
-            color: Color(0xFF484848)
-        ),),),
+        DataCell(Center(
+          child: Text("${stockHistory.voucher_no}",style: TextStyle(
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w500,
+              fontSize: 12,
+              color: Color(0xFF484848)
+          ),),
+        ),),
         DataCell(VerticalDivider()),
-        DataCell(Text(stockHistory.received!?'Yes':'No',style: TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w900,
-            fontSize: 12,
-            color: stockHistory.received!?Colors.red:Color(0xFF484848)
-        ),),),
+        DataCell(Center(
+          child: Text(stockHistory.received!?'Yes':'No',style: TextStyle(
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w900,
+              fontSize: 12,
+              color: stockHistory.received!?Colors.red:Color(0xFF484848)
+          ),),
+        ),),
         DataCell(VerticalDivider()),
-        DataCell(Text(!stockHistory.received!?'Yes':'No',style: TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
-            color: Color(0xFF484848)
-        ),),),
+        DataCell(Center(
+          child: Text(!stockHistory.received!?'Yes':'No',style: TextStyle(
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w500,
+              fontSize: 12,
+              color: Color(0xFF484848)
+          ),),
+        ),),
         DataCell(VerticalDivider()),
-        DataCell(Text(stockHistory.expire==null?'':stringToDate(stockHistory.expire.toString()),style: TextStyle(
-            fontFamily: "Inter",
-            fontWeight: FontWeight.w500,
-            fontSize: 12,
-            color: Color(0xFF484848)
-        ),),),
+        DataCell(Center(
+          child: Text(stockHistory.expire==null?'':stringToDate(stockHistory.expire.toString()),style: TextStyle(
+              fontFamily: "Inter",
+              fontWeight: FontWeight.w500,
+              fontSize: 12,
+              color: Color(0xFF484848)
+          ),),
+        ),),
         DataCell(VerticalDivider()),
-        DataCell(stockHistory.uploaded?Icon(Icons.check, color: Colors.green,):Row(
-          children: [
-            //Icon(CupertinoIcons.info_circle_fill, color: Colors.red,),
+        DataCell(stockHistory.uploaded?Center(child: Icon(Icons.check, color: Colors.green,)):Center(
+          child:
+              //Icon(CupertinoIcons.info_circle_fill, color: Colors.red,),
             GestureDetector(
-              onTap:()async{
-               await stockHistory.delete();
-              },
-                child: Icon(CupertinoIcons.delete, color: Colors.red,)
-            ),
-          ],
+                  onTap:()async{
+                   await stockHistory.delete();
+                  },
+                    child: Icon(CupertinoIcons.delete, color: Colors.red,)
+                ),
+
+
         )),
       ]
     );
