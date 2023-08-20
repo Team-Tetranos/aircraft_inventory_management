@@ -60,7 +60,7 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                               width: 10,
                               decoration: const BoxDecoration(
                                 image: DecorationImage(
-                                  image: AssetImage("assets/image_files/Bangladesh Army Aviation.png"),
+                                  image: AssetImage("assets/image_files/logo-1.png"),
                                   //fit: BoxFit.cover
                                 )
                               ),
