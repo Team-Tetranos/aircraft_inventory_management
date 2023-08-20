@@ -155,6 +155,7 @@ class _UserManagementViewDesktopState extends State<UserManagementViewDesktop> {
                                 child: PaginatedDataTable(
                                   //arrowHeadColor: Colors.blue,
                                  controller: msvm.scrollcontroller,
+                                  showCheckboxColumn: false,
 
                                   columns:
                                   [

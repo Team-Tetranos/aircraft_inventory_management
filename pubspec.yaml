@@ -141,9 +141,9 @@ msix_config:
   publisher_display_name: Tetranos
   identity_name: tetra
   msix_version: 1.0.0.0
-  logo_path: C:\sif\Development\studio projects\advanced\tetranos\aircraft_inventory_management\assets\image_files\Bangladesh Army Aviation.png
+  logo_path: C:\Users\ASUS\StudioProjects\aircraft_inventory_management_two\assets\image_files\logo-1.png
   capabilities: internetClient, picturesLibrary, removableStorage, privateNetworkClientServer
-  certificate_path: C:\sif\keysWindows\aircraft\AIRCRAFT.pfx
+  certificate_path: C:\certificates\AIRCRAFT.pfx
   certificate_password: 123456
   app_installer: #<-- app installer configuration
-    publish_folder_path: C:\sif\exect
+    publish_folder_path: C:\build_release
