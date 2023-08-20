@@ -20,7 +20,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () async{
+    Future.delayed(const Duration(seconds: 2), () async{
       User? user = await hiveManager.getUserData();
       if(user==null||user.email==null){
         Navigator.pushReplacementNamed(context, RouteNames.login);
@@ -34,7 +34,8 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      backgroundColor: Colors.white,
+      /*body: Container(
         color: Color(0xFF003C2C),
         child: Center(
           child: Container(
@@ -48,7 +49,7 @@ class _OnboardingViewState extends State<OnboardingView> {
             ),
           ),
         )
-      ),
+      ),*/
     );
   }
 }

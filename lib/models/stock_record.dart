@@ -48,7 +48,7 @@ class StockRecord {
     this.balance,
     this.image,
     this.created_at,
-    this.updated_at, this.location, this.demand_schedule, this.latest_expiry});
+    this.updated_at, this.location, this.demand_schedule, this.latest_expiry, this.unit});
 
   factory StockRecord.fromJson(Map<String, dynamic> json) => _$StockRecordFromJson(json);
   Map<String, dynamic> toJson() => _$StockRecordToJson(this);

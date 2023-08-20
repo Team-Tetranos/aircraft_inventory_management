@@ -5,7 +5,8 @@ import '../../models/stock_record_report.dart';
 
 class ReportTable extends DataTableSource{
   List<StockRecordReport> reports;
-  ReportTable({required this.reports});
+  ReportTable({required this.reports, required this.onPressed});
+  Function(int) onPressed;
   @override
   DataRow? getRow(int index) {
     StockRecordReport report = reports[index];
@@ -13,7 +14,11 @@ class ReportTable extends DataTableSource{
 
 
 
-        onSelectChanged: (b){
+        onSelectChanged: (s){
+
+          if(s!=null && s){
+            onPressed(index);
+          }
 
 
         },
