@@ -17,206 +17,223 @@ class _PartsReportViewDesktopState extends State<PartsReportViewDesktop> {
   Widget build(BuildContext context) {
     return Consumer<ReportViewModel>(
       builder: (context, rvm, _) {
-        return Padding(
-          padding: const EdgeInsets.only(left: 40, top: 40),
-          child:  SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+        return  Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
 
-                SizedBox(height: 40,),
-                Row(
+            children: [
+              Container(
+                color: Colors.white,
+                height: 65,
+                width: MediaQuery.of(context).size.width*.74,
+                child: Align(
+                  alignment: Alignment.centerLeft,
 
-                  children: [
-                    GestureDetector(
-                      onTap: (){
-                        //mp.ChangingBooleanValue(0);
-                      },
-                      child: Container(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40),
+                      child: Text("Report",
+                      style: TextStyle(
+                        color: Color(0xFF797979),
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Inter"
+                      ),),
+                    )),
 
-                        padding: EdgeInsets.symmetric(horizontal: 20),
+              ),
 
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10))
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text("Aircraft",
-                              style: TextStyle(
-                                  color: Color(0xFF797979),
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: "Inter"
-                              ),),
-                            SizedBox(width: 9,),
-                            Container(
-
-
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-
-                                  //color: Color(0xFF1366D9)
-
-                              ),
-                              child: Center(
-                                child: DropdownButton(
-                                  value: rvm.selectedAircraft,
-                                    items: rvm.aircrafts.map(
-                                            (e) => DropdownMenuItem(
-                                              value: e,
-                                                child: Text('${e.name??'ALL'}'))
-                                    ).toList(),
-                                    onChanged: (e){
-                                    rvm.updateSelectedAircraft(e!);
-                                    }
-                                )
-                              ),
-                            )
-
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 10,),
-
-
-                  ],
-                ),
-
-                Container(
-                  //height: 747,
-                  width: MediaQuery.of(context).size.width*.718,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius:
-                      BorderRadius.only(
-                          topRight: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10))
-                  ),
-                  child: Column(
+             Padding(
+               padding: EdgeInsets.only(left: 40),
+               child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 28.53,),
+                      SizedBox(height: 40,),
+                        GestureDetector(
+                          onTap: (){
+                            //mp.ChangingBooleanValue(0);
+                          },
+                          child: Container(
 
-                      Theme(
-                        data: Theme.of(context).copyWith(
-                          cardTheme: CardTheme(
-                            elevation: 0, // remove shadow
-                            margin: const EdgeInsets.all(0), // reset margin
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16), // Change radius
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10))
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Aircraft",
+                                  style: TextStyle(
+                                      color: Color(0xFF797979),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: "Inter"
+                                  ),),
+                                SizedBox(width: 9,),
+                                Container(
+
+
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+
+                                    //color: Color(0xFF1366D9)
+
+                                  ),
+                                  child: Center(
+                                      child: DropdownButton(
+                                          value: rvm.selectedAircraft,
+                                          items: rvm.aircrafts.map(
+                                                  (e) => DropdownMenuItem(
+                                                  value: e,
+                                                  child: Text('${e.name??'ALL'}'))
+                                          ).toList(),
+                                          onChanged: (e){
+                                            rvm.updateSelectedAircraft(e!);
+                                          }
+                                      )
+                                  ),
+                                )
+
+                              ],
                             ),
                           ),
                         ),
-                        child: PaginatedDataTable(
 
 
 
-                          //arrowHeadColor: Colors.blue,
+                      Container(
+                        height: 747,
+                        width: MediaQuery.of(context).size.width*.718,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                            BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                bottomLeft: Radius.circular(10),
+                                bottomRight: Radius.circular(10))
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(height: 28.53,),
 
-                          columns:
-                          [
+                            Theme(
+                              data: Theme.of(context).copyWith(
+                                cardTheme: CardTheme(
+                                  elevation: 0, // remove shadow
+                                  margin: const EdgeInsets.all(0), // reset margin
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(16), // Change radius
+                                  ),
+                                ),
+                              ),
+                              child: PaginatedDataTable(
 
-                            DataColumn(label: Text("SL No",style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Color(0xFF797979)
-                            ),),),
-                            DataColumn(label: SizedBox.shrink()),
-                            DataColumn(label: Text("Part No",style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Color(0xFF797979)
-                            ),),),
-                            DataColumn(label: SizedBox.shrink()),
-                            DataColumn(label: Text("Nomenclature",style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Color(0xFF797979)
-                            ),),),
 
-                            DataColumn(label: SizedBox.shrink()),
-                            DataColumn(label: Text("A/U",style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Color(0xFF797979)
-                            ),),),
 
-                            DataColumn(label: SizedBox.shrink()),
-                            DataColumn(label: Text("Card No",style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Color(0xFF797979)
-                            ),),),
-                            DataColumn(label: SizedBox.shrink()),
-                            DataColumn(label: Text("Quantity",style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Color(0xFF797979)
-                            ),),),
+                                //arrowHeadColor: Colors.blue,
 
-                            DataColumn(label: SizedBox.shrink()),
-                            DataColumn(label: Text("Received Dt",style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Color(0xFF797979)
-                            ),),),
-                            DataColumn(label: SizedBox.shrink()),
-                            DataColumn(label: Text("Expiry Dt",style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Color(0xFF797979)
-                            ),),),
+                                columns:
+                                [
 
-                            DataColumn(label: SizedBox.shrink()),
-                            DataColumn(label: Text("Expenditure Qty",style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Color(0xFF797979)
-                            ),),),
+                                  DataColumn(label: Text("SL No",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),),
+                                  DataColumn(label: SizedBox.shrink()),
+                                  DataColumn(label: Text("Part No",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),),
+                                  DataColumn(label: SizedBox.shrink()),
+                                  DataColumn(label: Text("Nomenclature",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),),
 
-                            DataColumn(label: SizedBox.shrink()),
-                            DataColumn(label:  Text("Expenditure Dt",style: TextStyle(
-                                  fontFamily: "Inter",
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                  color: Color(0xFF797979)
-                              ),),
-                            ),
-                            DataColumn(label: SizedBox.shrink()),
-                            DataColumn(label: Text("RMK",style: TextStyle(
-                                fontFamily: "Inter",
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
-                                color: Color(0xFF797979)
-                            ),),),
-                          ],
+                                  DataColumn(label: SizedBox.shrink()),
+                                  DataColumn(label: Text("A/U",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),),
 
-                          rowsPerPage: 100,
-                          showCheckboxColumn: false,
-                          columnSpacing: 8, source: ReportTable(reports: rvm.duplicatereports, onPressed: (index){
-                          rvm.onSelectRow(context, index);
-                        }),),
+                                  DataColumn(label: SizedBox.shrink()),
+                                  DataColumn(label: Text("Card No",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),),
+                                  DataColumn(label: SizedBox.shrink()),
+                                  DataColumn(label: Text("Quantity",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),),
 
-                      )
-                    ],),
+                                  DataColumn(label: SizedBox.shrink()),
+                                  DataColumn(label: Text("Received Dt",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),),
+                                  DataColumn(label: SizedBox.shrink()),
+                                  DataColumn(label: Text("Expiry Dt",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),),
 
-                ),
-              ],
-            ),
-          ),
-        );
+                                  DataColumn(label: SizedBox.shrink()),
+                                  DataColumn(label: Text("Expenditure Qty",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),),
+
+                                  DataColumn(label: SizedBox.shrink()),
+                                  DataColumn(label:  Text("Expenditure Dt",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),
+                                  ),
+                                  DataColumn(label: SizedBox.shrink()),
+                                  DataColumn(label: Text("RMK",style: TextStyle(
+                                      fontFamily: "Inter",
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                      color: Color(0xFF797979)
+                                  ),),),
+                                ],
+
+                                rowsPerPage: 10,
+                                showCheckboxColumn: false,
+                                columnSpacing: 8, source: ReportTable(reports: rvm.duplicatereports),),
+
+                            )
+                          ],),
+
+                      ),
+                    ],
+                  ),
+             ),
+
+            ],
+          );
+
       }
     );
   }

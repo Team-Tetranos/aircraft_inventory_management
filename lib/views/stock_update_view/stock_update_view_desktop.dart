@@ -131,7 +131,7 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
                                         borderRadius: BorderRadius.all(Radius.circular(7))
                                     ),
                                     child: Container(
-                                      padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                      //padding: EdgeInsets.symmetric(horizontal: 16.0),
                                       height: 30.0, // Set the desired height for the TextField
                                       decoration: BoxDecoration(
                                         border: Border.all(color: Colors.grey),
@@ -146,6 +146,7 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
                                         },
 
                                         decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.only(left: 6,bottom: 15),
                                           hintText: 'Tap to pick date',
                                           border: InputBorder
                                               .none, // Remove the default TextField border
@@ -334,6 +335,7 @@ class _StockUpdateViewDesktopState extends State<StockUpdateViewDesktop> {
                                   width: 300,// Set the desired height for the TextField
                                   decoration: BoxDecoration(
                                     border: Border.all(color: Colors.grey),
+                                    borderRadius: BorderRadius.all(Radius.circular(7))
                                   ),
                                   child: Center(
                                     child: TextField(

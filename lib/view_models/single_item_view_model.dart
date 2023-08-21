@@ -48,7 +48,9 @@ class SingleItemViewModel extends ChangeNotifier{
     'Pcs',
     'Kg',
     'Meter',
-    'Litre'
+    'Litre',
+    'Set',
+    'EA'
   ];
   updateSelectedUnit(String history){
     selectedUnit = history;

@@ -20,6 +20,17 @@ class _ResetPasswordViewDesktopState extends State<ResetPasswordViewDesktop> {
       builder: (context, rpvm, _) {
         return
           Scaffold(
+            appBar: AppBar(
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: GestureDetector(
+                  onTap: (){
+                    Navigator.pop(context);
+                  },
+                    child: Icon(Icons.arrow_back,size: 30,color: Colors.black,)),
+              ),
+
+            ),
           backgroundColor: Colors.white,
           body: Padding(
             padding: const EdgeInsets.only(left: 100,right: 150),
@@ -52,7 +63,7 @@ class _ResetPasswordViewDesktopState extends State<ResetPasswordViewDesktop> {
                       style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
-                          fontFamily: "Ineter",
+                          fontFamily: "Inter",
                           color: Color(0xFF302F2F)
                       ),),
                     SizedBox(height: 16,),

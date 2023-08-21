@@ -18,6 +18,7 @@ class _PageViewWidgetState extends State<PageViewWidget> {
     return Consumer<StockViewModel>(
       builder: (context,mpv,_) {
         return PageView(
+          physics: NeverScrollableScrollPhysics(),
         controller: mpv.pagecontroller,
 
           children: [

@@ -34,6 +34,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
             height:810,
             width: MediaQuery.of(context).size.width * .716,
             child: PageViewWidget(
+
               firstWidget:  Container(
                   height: 747,
                 width: MediaQuery.of(context).size.width * .716,

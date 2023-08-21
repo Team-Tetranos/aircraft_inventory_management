@@ -64,7 +64,7 @@ class _SignUpViewDesktopState extends State<SignUpViewDesktop> {
                                    //MediaQuery.of(context).size.width*.244,
                                    decoration: BoxDecoration(
                                        image: DecorationImage(
-                                           image: AssetImage("assets/image_files/Group 1289 (2).png"),
+                                           image: AssetImage("assets/image_files/logo-1.png"),
                                            fit: BoxFit.cover
                                        )
                                    ),
@@ -98,7 +98,7 @@ class _SignUpViewDesktopState extends State<SignUpViewDesktop> {
                                              //MediaQuery.of(context).size.width*.0805,
                                              decoration: BoxDecoration(
                                                  image: DecorationImage(
-                                                     image: AssetImage("assets/image_files/Group 1289 (2).png"),
+                                                     image: AssetImage("assets/image_files/logo-1.png"),
                                                      fit: BoxFit.cover
                                                  )
                                              ),

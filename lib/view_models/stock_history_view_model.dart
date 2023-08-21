@@ -4,6 +4,7 @@ import 'package:aircraft_inventory_management/utils/snackbars/failure_snackbar.d
 import 'package:aircraft_inventory_management/utils/snackbars/success_snackbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -238,6 +239,7 @@ class StockHistoryViewModel extends ChangeNotifier{
   }
 
   void create_stock_history(BuildContext context) async{
+    EasyLoading.show(status: "Please Wait");
     try{
 
       List<StockHistory> stocks = hiveManager.getStockHistoryData(updatedStockRecordForNextPag!);
@@ -258,6 +260,7 @@ class StockHistoryViewModel extends ChangeNotifier{
     }catch(e){
 
     }
+    EasyLoading.dismiss();
   }
 
   void setupSelectedStockHistory(BuildContext context, StockHistory stock) {
