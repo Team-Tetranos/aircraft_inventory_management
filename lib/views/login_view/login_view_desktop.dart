@@ -68,7 +68,7 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                               // MediaQuery.of(context).size.width*.244,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      image: AssetImage("assets/image_files/Group 1289 (2).png"),
+                                      image: AssetImage("assets/image_files/logo-1.png"),
                                       fit: BoxFit.cover
                                   )
                               ),
@@ -110,7 +110,7 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                                         //MediaQuery.of(context).size.width*.0805,
                                         decoration: BoxDecoration(
                                             image: DecorationImage(
-                                                image: AssetImage("assets/image_files/Group 1289 (2).png"),
+                                                image: AssetImage("assets/image_files/logo-1.png"),
                                                 fit: BoxFit.cover
                                             )
                                         ),
@@ -262,33 +262,9 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                                       Padding(
                                           padding: const EdgeInsets.only(left: 60,right: 60),
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment: MainAxisAlignment.start,
                                             children: [
-                                              Container(
 
-                                                child: Row(
-                                                  children: [
-                                                    Common_Container(
-                                                        bordercolor: Colors.black,
-                                                        border: 1,
-                                                        blurRadius: 0,
-                                                        spreadRadius: 0,
-                                                        boxshadowopacity: 0,
-                                                        offset: 0,
-                                                        height: 16,
-                                                        color: Colors.white,
-                                                        width: 14.688,
-                                                        radius: 4,
-                                                        mywidget: null),
-                                                    SizedBox(width: 8,),
-                                                    Common_Text(fontWeight: FontWeight.w500,
-                                                        text: "Remember at Free",
-                                                        color: Color(0xFF302F2F),
-                                                        fontsize: 14,
-                                                        fontfamily: "Inter")
-                                                  ],
-                                                ),
-                                              ),
 
                                            GestureDetector(
                                                     onTap: (){

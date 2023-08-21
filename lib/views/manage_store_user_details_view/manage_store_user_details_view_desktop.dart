@@ -20,10 +20,11 @@ class _ManageStoreUserDetailsDesktopState extends State<ManageStoreUserDetailsDe
     return Consumer<ManageStoreViewModel>(
       builder: (context, msvm, _) {
         return Padding(
-          padding: const EdgeInsets.only(top: 20.0),
+          padding: const EdgeInsets.only(top: 20.0,left: 20),
           child: Container(
             height: 865,
             width: MediaQuery.of(context).size.width*.775,
+
 
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +33,11 @@ class _ManageStoreUserDetailsDesktopState extends State<ManageStoreUserDetailsDe
                 Container(
                   height: 770,
                   width: MediaQuery.of(context).size.width*.745,
-                  color: Colors.white,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                  ),
+
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -43,7 +48,7 @@ class _ManageStoreUserDetailsDesktopState extends State<ManageStoreUserDetailsDe
                           SizedBox(width: 43,),
 
 
-                          Row(
+                            Row(
                             children: [
                               IconButton(onPressed: (){
                                 msvm.previousPage();
@@ -60,7 +65,7 @@ class _ManageStoreUserDetailsDesktopState extends State<ManageStoreUserDetailsDe
                             ],
                           ),
 
-                          Expanded(
+                          /*Expanded(
                             child: Container(
 
                               child: Row(
@@ -86,7 +91,7 @@ class _ManageStoreUserDetailsDesktopState extends State<ManageStoreUserDetailsDe
                                 ],
                               ),
                             ),
-                          )
+                          )*/
 
                         ],
                       ),
@@ -123,11 +128,14 @@ class _ManageStoreUserDetailsDesktopState extends State<ManageStoreUserDetailsDe
                       ),
 
                       SizedBox(height: 30,),
-                      ElevatedButton(onPressed: (){
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: ElevatedButton(onPressed: (){
 
-                        msvm.updateProfile(context);
+                          msvm.updateProfile(context);
 
-                      }, child: Text("Update Permitted Aircraft")
+                        }, child: Text("Update Permitted Aircraft")
+                        ),
                       ),
                       SizedBox(height: 30,),
 

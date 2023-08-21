@@ -47,6 +47,23 @@ class User_management_Data extends DataTableSource{
           height: 25,
           child: Row(
             children: [
+              profiles[index].is_admin==true?Container(
+                height: 23,
+                width: MediaQuery.of(mycontext).size.width*.0416,
+                decoration: BoxDecoration(
+                    color: Color(0xFF1366D9),
+                    borderRadius: BorderRadius.all(Radius.circular(10))
+                ),
+                child: Center(
+                    child: Text('Admin',style: TextStyle(
+                        fontFamily: "Inter",
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
+                        color: Colors.white
+                    ),)
+                ),
+
+              ):
               Container(
                 height: 23,
                 width: MediaQuery.of(mycontext).size.width*.0416,
@@ -64,7 +81,7 @@ class User_management_Data extends DataTableSource{
                 ),
                 
               ),
-              Visibility(
+              /*Visibility(
                 visible: profiles[index].is_admin??false,
                 child: Row(
                   children: [
@@ -88,7 +105,7 @@ class User_management_Data extends DataTableSource{
                     ),
                   ],
                 ),
-              ),
+              ),*/
 
               /*SizedBox(width: 20,),
               Container(
@@ -113,33 +130,31 @@ class User_management_Data extends DataTableSource{
         )
       ),
       DataCell(
-          Container(
-            height: 25,
-            child: Row(
-              children: [
-                Container(
-                  height: 23,
-                  width: MediaQuery.of(mycontext).size.width*.0416,
-                  decoration: BoxDecoration(
-                      color: profiles[index].is_verified==true?Colors.green:Colors.redAccent,
-                      borderRadius: BorderRadius.all(Radius.circular(10))
-                  ),
-                  child: Center(
-                      child: Text(profiles[index].is_verified==true?'Verified':'Pending',style: TextStyle(
-                          fontFamily: "Inter",
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                          color: Colors.black
-                      ),)
-                  ),
 
+                Center(
+                  child: Container(
+                    height: 23,
+                    width: MediaQuery.of(mycontext).size.width*.0416,
+                    decoration: BoxDecoration(
+                        color: profiles[index].is_verified==true?Colors.green:Colors.redAccent,
+                        borderRadius: BorderRadius.all(Radius.circular(10))
+                    ),
+                    child: Center(
+                        child: Text(profiles[index].is_verified==true?'Verified':'Pending',style: TextStyle(
+                            fontFamily: "Inter",
+                            fontWeight: FontWeight.w500,
+                            fontSize: 12,
+                            color: Colors.black
+                        ),)
+                    ),
+
+                  ),
                 ),
 
 
 
-              ],
-            ),
-          )
+
+
       ),
       DataCell(Text(profiles[index].permitted_aircrafts!.map((e) => e.name).toList().toString().replaceAll('[', '').replaceAll(']', ''),style: TextStyle(
           fontFamily: "Inter",

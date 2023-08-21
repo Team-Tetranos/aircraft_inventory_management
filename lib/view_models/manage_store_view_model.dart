@@ -7,6 +7,7 @@ import 'package:aircraft_inventory_management/utils/dialogs/success_dialog.dart'
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 
 import '../dependency_injection/di.dart';
@@ -109,8 +110,10 @@ class ManageStoreViewModel extends ChangeNotifier{
   }
 
   updateProfile(BuildContext context)async{
+    EasyLoading.show(status: "Please Wait");
     profiles[selectedUserIndex].permitted_aircrafts = refinedListCategory();
     var response = await profileRepository.updateProfile(profiles[selectedUserIndex]);
+    EasyLoading.dismiss();
     if(response is User){
       pageController.previousPage(duration: Duration(seconds: 1), curve: Curves.linear);
       showSuccessDialog(context, 'Profile Updated');

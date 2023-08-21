@@ -6,6 +6,7 @@ import 'package:aircraft_inventory_management/utils/snackbars/failure_snackbar.d
 import 'package:aircraft_inventory_management/utils/snackbars/success_snackbar.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -108,7 +109,10 @@ class StockViewModel extends ChangeNotifier{
     'Pcs',
     'Kg',
     'Box',
-    'Litre'
+    'Litre',
+    'Meter',
+    'Set',
+    'EA'
 
   ];
   updateSelectedUnit(String history){
@@ -291,6 +295,7 @@ class StockViewModel extends ChangeNotifier{
   }
 
   void create_stock_history(BuildContext context) async{
+    EasyLoading.show(status: "Please Wait");
     try{
       List<StockHistory> stocks = hiveManager.getStockHistoryData(updatedStockRecordForNextPag!);
 
@@ -310,6 +315,7 @@ class StockViewModel extends ChangeNotifier{
     }catch(e){
 
     }
+    EasyLoading.dismiss();
   }
 
   void deleteImage() {

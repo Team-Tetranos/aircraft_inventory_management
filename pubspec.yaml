@@ -100,6 +100,7 @@ flutter:
     - assets/image_files/image 9.png
     - assets/image_files/Group 1289 (3).png
     - assets/image_files/Frame 35 1.png
+    - assets/image_files/logo-1.png
 
   fonts:
     - family: Inter
