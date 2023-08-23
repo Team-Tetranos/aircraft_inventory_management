@@ -52,6 +52,7 @@ class _PartsReportViewDesktopState extends State<PartsReportViewDesktop> {
                             //mp.ChangingBooleanValue(0);
                           },
                           child: Container(
+                            width: MediaQuery.of(context).size.width*.718,
 
                             padding: EdgeInsets.symmetric(horizontal: 20),
 
@@ -60,40 +61,75 @@ class _PartsReportViewDesktopState extends State<PartsReportViewDesktop> {
                                 borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10))
                             ),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                               children: [
-                                Text("Aircraft",
-                                  style: TextStyle(
-                                      color: Color(0xFF797979),
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                      fontFamily: "Inter"
-                                  ),),
-                                SizedBox(width: 9,),
-                                Container(
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Aircraft",
+                                      style: TextStyle(
+                                          color: Color(0xFF797979),
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: "Inter"
+                                      ),),
+                                    SizedBox(width: 9,),
+                                    Container(
 
 
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
 
-                                    //color: Color(0xFF1366D9)
+                                        //color: Color(0xFF1366D9)
 
-                                  ),
-                                  child: Center(
-                                      child: DropdownButton(
-                                          value: rvm.selectedAircraft,
-                                          items: rvm.aircrafts.map(
-                                                  (e) => DropdownMenuItem(
-                                                  value: e,
-                                                  child: Text('${e.name??'ALL'}'))
-                                          ).toList(),
-                                          onChanged: (e){
-                                            rvm.updateSelectedAircraft(e!);
-                                          }
-                                      )
+                                      ),
+                                      child: Center(
+                                          child: DropdownButton(
+                                              value: rvm.selectedAircraft,
+                                              items: rvm.aircrafts.map(
+                                                      (e) => DropdownMenuItem(
+                                                      value: e,
+                                                      child: Text('${e.name??'ALL'}'))
+                                              ).toList(),
+                                              onChanged: (e){
+                                                rvm.updateSelectedAircraft(e!);
+                                              }
+                                          )
+                                      ),
+                                    )
+
+                                  ],
+                                ),
+
+                                SizedBox(width: 30,),
+
+
+
+                                GestureDetector(
+                                  onTap: (){
+
+                                    rvm.generateReportDialog(context);
+                                    //ivm.create_stock_history(context);
+
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.deepPurple,
+                                        borderRadius: BorderRadius.circular(5)
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10,
+                                          horizontal: 20
+                                      ),
+                                      child: Text('Export Report',style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold
+                                      ),),
+                                    ),
                                   ),
                                 )
-
                               ],
                             ),
                           ),
@@ -221,7 +257,7 @@ class _PartsReportViewDesktopState extends State<PartsReportViewDesktop> {
 
                                 rowsPerPage: 10,
                                 showCheckboxColumn: false,
-                                columnSpacing: 8, source: ReportTable(reports: rvm.duplicatereports),),
+                                columnSpacing: 8, source: ReportTable(reports: rvm.duplicatereports, onPressed: (int ) {  }),),
 
                             )
                           ],),

@@ -20,9 +20,7 @@ class _UserManagementViewState extends State<UserManagementView> {
   @override
   void initState() {
     // TODO: implement initState
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Provider.of<ManageStoreViewModel>(context, listen: false).onInit();
-    });
+
     super.initState();
   }
   @override

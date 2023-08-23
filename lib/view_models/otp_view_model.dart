@@ -61,7 +61,7 @@ class OtpViewModel extends ChangeNotifier{
       await sharedPreferenceManager.setAccessToken(user.access!);
       EasyLoading.dismiss();
 
-      Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.baseview, (route) => false);
+      Navigator.of(context).pushNamedAndRemoveUntil(RouteNames.login, (route) => false);
       isloading=false;
       notifyListeners();
     }

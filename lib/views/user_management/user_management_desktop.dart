@@ -12,6 +12,15 @@ class UserManagementViewDesktop extends StatefulWidget {
 }
 
 class _UserManagementViewDesktopState extends State<UserManagementViewDesktop> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<ManageStoreViewModel>(context, listen: false).onInit();
+    });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
 

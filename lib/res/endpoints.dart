@@ -1,7 +1,7 @@
 class EndPoints{
     //final String base_url = 'http://127.0.0.1:8000/api/';
-    final String base_url = 'https://tetranos.com/api/';
-    final String image_base_url = 'https://tetranos.com';
+    final String base_url = 'https://armyaviationmaintenanceworkshop.com/api/';
+    final String image_base_url = 'https://armyaviationmaintenanceworkshop.com';
     //final String image_base_url = 'http://127.0.0.1:8000';
 
     final String login = 'user/login/';

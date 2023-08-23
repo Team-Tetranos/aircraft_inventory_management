@@ -935,6 +935,7 @@ class _AddInventoryViewForDesktopState extends State<AddInventoryViewForDesktop>
                                             ),
                                           ),
                                           child: PaginatedDataTable(
+                                            showCheckboxColumn: false,
 
                                             columns: [
                                               // DataColumn(label: SizedBox.shrink()),

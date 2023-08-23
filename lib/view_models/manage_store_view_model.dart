@@ -46,9 +46,11 @@ class ManageStoreViewModel extends ChangeNotifier{
 
 
   fetchUserProfiles()async{
+    EasyLoading.show();
     profiles = [];
     var response = await profileRepository.allProfile();
 
+    EasyLoading.dismiss();
     if(response is List<User>){
       profiles = response;
       notifyListeners();
@@ -58,6 +60,7 @@ class ManageStoreViewModel extends ChangeNotifier{
   }
 
   setupAircrafts()async{
+    EasyLoading.show();
     try{
       var response = await aircraftRepository.allAircrafts();
       if(response is List<air.Category>){
@@ -68,6 +71,7 @@ class ManageStoreViewModel extends ChangeNotifier{
     }catch(e){
       print(e);
     }
+    EasyLoading.dismiss();
   }
 
 

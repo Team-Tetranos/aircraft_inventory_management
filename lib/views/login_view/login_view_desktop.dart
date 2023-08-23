@@ -64,11 +64,11 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                           children: [
                             Container(
                               height: 351,
-                              width: 351.36,
+                              width: 400.36,
                               // MediaQuery.of(context).size.width*.244,
                               decoration: BoxDecoration(
                                   image: DecorationImage(
-                                      image: AssetImage("assets/image_files/logo-1.png"),
+                                      image: AssetImage("assets/image_files/logo-up.png"),
                                       fit: BoxFit.cover
                                   )
                               ),
@@ -105,12 +105,12 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                                     children: [
                                       SizedBox(height: 27,),
                                       Container(
-                                        height: 115.04,
-                                        width: 115.92,
+                                        height: 120.04,
+                                        width: 140.92,
                                         //MediaQuery.of(context).size.width*.0805,
                                         decoration: BoxDecoration(
                                             image: DecorationImage(
-                                                image: AssetImage("assets/image_files/logo-1.png"),
+                                                image: AssetImage("assets/image_files/logo-up.png"),
                                                 fit: BoxFit.cover
                                             )
                                         ),
@@ -357,7 +357,7 @@ class _MyLogInViewDesktopState extends State<MyLogInViewDesktop> {
                                       ),
 
 
-                                      Text('Roottop', style: TextStyle(
+                                      Text('Developed by Roottop', style: TextStyle(
                                         fontWeight: FontWeight.bold
                                       ),),
 

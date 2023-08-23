@@ -60,11 +60,11 @@ class _SignUpViewDesktopState extends State<SignUpViewDesktop> {
                                children: [
                                  Container(
                                    height: 351,
-                                   width: 352,
-                                   //MediaQuery.of(context).size.width*.244,
+                                   width: 400.36,
+                                   // MediaQuery.of(context).size.width*.244,
                                    decoration: BoxDecoration(
                                        image: DecorationImage(
-                                           image: AssetImage("assets/image_files/logo-1.png"),
+                                           image: AssetImage("assets/image_files/logo-up.png"),
                                            fit: BoxFit.cover
                                        )
                                    ),
@@ -74,7 +74,7 @@ class _SignUpViewDesktopState extends State<SignUpViewDesktop> {
                                  Padding(
                                    padding: const EdgeInsets.only(top: 61),
                                    child: Container(
-                                     height: 880,
+                                     //height: 880,
                                      width: 500,
                                      //MediaQuery.of(context).size.width*.351,
                                      decoration: BoxDecoration(
@@ -93,12 +93,12 @@ class _SignUpViewDesktopState extends State<SignUpViewDesktop> {
                                          children: [
                                            //SizedBox(height: 27,),
                                            Container(
-                                             height: 115,
-                                             width: 115.92,
+                                             height: 120.04,
+                                             width: 140.92,
                                              //MediaQuery.of(context).size.width*.0805,
                                              decoration: BoxDecoration(
                                                  image: DecorationImage(
-                                                     image: AssetImage("assets/image_files/logo-1.png"),
+                                                     image: AssetImage("assets/image_files/logo-up.png"),
                                                      fit: BoxFit.cover
                                                  )
                                              ),

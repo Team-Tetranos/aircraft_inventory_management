@@ -191,6 +191,7 @@ class StockViewModel extends ChangeNotifier{
 
 
   create_stock_record(BuildContext context)async{
+
     if(cardnumberforfirstpageAddInventory.text.isEmpty){
       inputFieldErrorSnackbar(context: context, message: 'Card Number');
       return;
@@ -207,6 +208,8 @@ class StockViewModel extends ChangeNotifier{
       inputFieldErrorSnackbar(context: context, message: 'Nomenclature');
       return;
     }
+
+    EasyLoading.show();
 
     try{
       User? user = await hiveManager.getUserData();
@@ -231,12 +234,13 @@ class StockViewModel extends ChangeNotifier{
         updateStockHistory([]);
         pagecontroller.nextPage( duration: Duration(seconds: 1), curve:Curves.easeInOut);
       }else if(result is Failure){
-        failedSnackbar(context: context, message: 'Failed to create stock record');
+        failedSnackbar(context: context, message: '${result.error}');
       }
 
     }catch(e){
       failedSnackbar(context: context, message: '$e');
     }
+    EasyLoading.dismiss();
   }
 
   clearStockHistoryFieldData(){
