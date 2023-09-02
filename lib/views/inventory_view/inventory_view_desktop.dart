@@ -1,5 +1,6 @@
 
 import 'package:aircraft_inventory_management/utils/date_object_conversion.dart';
+import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/pagination_class.dart';
 import 'package:flutter/material.dart';
@@ -34,19 +35,36 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
               color: Colors.white,
               height: 65,
               width:MediaQuery.of(context).size.width*1,
-              child: Align(
-                  alignment: Alignment.centerLeft,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Align(
+                      alignment: Alignment.centerLeft,
 
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 40),
-                    child: Text("Inventory",
-                      style: TextStyle(
-                          color: Color(0xFF797979),
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Inter"
-                      ),),
-                  )),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 40),
+                        child: Text("Inventory",
+                          style: TextStyle(
+                              color: Color(0xFF797979),
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Inter"
+                          ),),
+                      )),
+                 Padding(
+                   padding: const EdgeInsets.only(right: 40),
+                   child: ElevatedButton(
+                        style: ButtonStyle(
+
+                        ),
+                          onPressed: (){
+                          Navigator.pushNamed(context, RouteNames.database);
+                          },
+                          child: Text("Add Database")),
+                 ),
+
+                ],
+              ),
 
             ),
             Padding(

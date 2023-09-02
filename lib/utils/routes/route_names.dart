@@ -15,4 +15,11 @@ class RouteNames{
   static const String dashboardview = "dashboard_voiew";
   static const String onboardview = "onboardview";
   static const String onboardsecond ="secondonboard";
+  static const String database ="database";
+  static const String datachartDP= "DataChartDP";
+  static const String datachartLP="datachartLP";
+  static const String adddatachartDP="adddatachartDP";
+  static const String adddatachartLP = "adddatachartLP";
+  static const String updateDP="updateDP";
+  static const String updateLP="updateLP";
 }

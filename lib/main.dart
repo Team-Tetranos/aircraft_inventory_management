@@ -5,6 +5,8 @@ import 'package:aircraft_inventory_management/res/custom_scroll_behavior.dart';
 import 'package:aircraft_inventory_management/utils/loading_animation/loading_animation.dart';
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
 import 'package:aircraft_inventory_management/utils/routes/routes.dart';
+import 'package:aircraft_inventory_management/view_models/add_data_chart/add_datachart_DP_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/add_data_chart/add_datachart_LP_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/help_and_support_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/login_view_model.dart';
@@ -19,6 +21,8 @@ import 'package:aircraft_inventory_management/view_models/otp_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/single_item_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/stock_history_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/stock_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/update_datachart/update_datachart_DP_view_model.dart';
+import 'package:aircraft_inventory_management/view_models/update_datachart/update_datachart_LP_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/view_model_for_base_view/base_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/forgot_password_view_model.dart';
 import 'package:aircraft_inventory_management/views/help_and_support/help_support_desktop.dart';
@@ -99,6 +103,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(create: (_)=>Update_LP()),
+        ChangeNotifierProvider(create: (_)=>Update_DP()),
+        ChangeNotifierProvider(create: (_)=>Add_LP_View_Model()),
+        ChangeNotifierProvider(create: (_)=>Add_DP_View_Model()),
         ChangeNotifierProvider(create: (_)=>HelpAndSupportViewModel()),
         ChangeNotifierProvider(create: (_)=>SettingsViewModel()),
         ChangeNotifierProvider(create: (_)=>BlankViewModel()),
