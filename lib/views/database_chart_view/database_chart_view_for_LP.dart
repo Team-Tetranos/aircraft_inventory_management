@@ -133,6 +133,7 @@ class _DataBase_Chart_View_For_LPState extends State<DataBase_Chart_View_For_LP>
                         ),
                       ),
                       child: PaginatedDataTable(
+                        showCheckboxColumn: false,
 
 
 

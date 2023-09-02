@@ -132,6 +132,7 @@ class _DataBase_Chart_View_For_DPState extends State<DataBase_Chart_View_For_DP>
                             ),
                           ),
                           child: PaginatedDataTable(
+                            showCheckboxColumn: false,
 
 
 
