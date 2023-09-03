@@ -9,7 +9,6 @@ import 'package:aircraft_inventory_management/view_models/add_data_chart/add_dat
 import 'package:aircraft_inventory_management/view_models/add_data_chart/add_datachart_LP_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/dashboard_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/datachart_details_view_model/datachart_details_DP_view_model.dart';
-import 'package:aircraft_inventory_management/view_models/datachart_details_view_model/datachart_details_LP_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/help_and_support_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/login_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/manage_store_view_model.dart';
@@ -105,12 +104,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_)=>Datachart_Detalis_LP()),
+
         ChangeNotifierProvider(create: (_)=>Datachart_Detalis_DP()),
         ChangeNotifierProvider(create: (_)=>Update_LP()),
         ChangeNotifierProvider(create: (_)=>Update_DP()),
         ChangeNotifierProvider(create: (_)=>Add_LP_View_Model()),
-        ChangeNotifierProvider(create: (_)=>Add_DP_View_Model()),
+        ChangeNotifierProvider(create: (_)=>DemandDatabaseViewModel()),
         ChangeNotifierProvider(create: (_)=>HelpAndSupportViewModel()),
         ChangeNotifierProvider(create: (_)=>SettingsViewModel()),
         ChangeNotifierProvider(create: (_)=>BlankViewModel()),

@@ -10,7 +10,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../utils/routes/route_names.dart';
-import '../../view_models/datachart_details_view_model/datachart_details_LP_view_model.dart';
 import '../add_inventory_item_view/paginated_table_class.dart';
 
 class DataChart_details_LP_View extends StatefulWidget {
@@ -23,7 +22,7 @@ class DataChart_details_LP_View extends StatefulWidget {
 class _DataChart_details_LP_ViewState extends State<DataChart_details_LP_View> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<Datachart_Detalis_LP>(
+    return Consumer<Datachart_Detalis_DP>(
         builder: (context, dcl, _) {
           return  Padding(
             padding: const EdgeInsets.only(top: 30,left: 20,bottom: 30),

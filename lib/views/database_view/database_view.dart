@@ -20,7 +20,7 @@ class _DataBaseViewState extends State<DataBaseView> {
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
         try{
           Category ct = Provider.of<BaseViewModel>(context, listen: false).pickedAircraft!;
-          await Provider.of<Add_DP_View_Model>(context, listen: false).onInit(context, ct);
+          await Provider.of<DemandDatabaseViewModel>(context, listen: false).onInit(context, ct);
 
         }catch(e){
           print(e);
@@ -31,7 +31,7 @@ class _DataBaseViewState extends State<DataBaseView> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Add_DP_View_Model>(
+    return Consumer<DemandDatabaseViewModel>(
       builder: (context,advm,_) {
         return Scaffold(
           backgroundColor: Color(0xFFD9D9D9),

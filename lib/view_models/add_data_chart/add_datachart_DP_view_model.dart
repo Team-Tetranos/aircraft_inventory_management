@@ -18,7 +18,7 @@ import 'package:aircraft_inventory_management/models/category.dart' as ct;
 
 import '../../utils/snackbars/success_snackbar.dart';
 
-class Add_DP_View_Model extends ChangeNotifier{
+class DemandDatabaseViewModel extends ChangeNotifier{
   TextEditingController demandnumberDP=TextEditingController();
   TextEditingController demanddateDP=TextEditingController();
   TextEditingController nomenclatureDP =TextEditingController();
@@ -73,27 +73,36 @@ class Add_DP_View_Model extends ChangeNotifier{
     notifyListeners();
   }
   add_data_record(BuildContext context)async{
-   print(acft?.id.toString());
 
+    print('came here');
     if(demandnumberDP.text.isEmpty){
+      print('check1');
       inputFieldErrorSnackbar(context: context, message: 'Demand Number');
       return;
     }
+
      if(demandquantityDP.text.isEmpty){
+       print('check2');
       inputFieldErrorSnackbar(context: context, message: 'Demand Quantity');
       return;
     }
      if(receivedDP.text.isEmpty){
+       print('check3');
       inputFieldErrorSnackbar(context: context, message: 'Received Number');
       return;
     }
       if(nomenclatureDP.text.isEmpty){
+        print('check4');
       inputFieldErrorSnackbar(context: context, message: 'Nomenclature');
       return;
-    } if(rmkDP.text.isEmpty){
+    }
+      if(rmkDP.text.isEmpty){
+        print('check5');
       inputFieldErrorSnackbar(context: context, message: 'RMK');
       return;
-    }if(demanddateDP.text.isEmpty){
+    }
+      if(demanddateDP.text.isEmpty){
+        print('check6');
       inputFieldErrorSnackbar(context: context, message: 'date');
       return;
     }
