@@ -20,7 +20,7 @@ class Table_DataBase_For_LP extends DataTableSource{
         cells: [
           // DataCell(VerticalDivider()),
           DataCell(Center(
-            child: Text("1",style: TextStyle(
+            child: Text("${index+1}",style: TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.w500,
                 fontSize: 12,

@@ -202,7 +202,7 @@ class _DataBase_Chart_View_For_LPState extends State<DataBase_Chart_View_For_LP>
 
                         ],
                         source: Table_DataBase_For_LP(onpressed: (index){
-                          Navigator.pushNamed(context, RouteNames.updateLP);
+                          Navigator.pushNamed(context, RouteNames.detailsLP);
                         }),
                         rowsPerPage: 50,
                         columnSpacing: 42,),

@@ -34,4 +34,5 @@ class EndPoints{
     final String stock_record_report = 'stock-record/stock-record-report/';
     final String stock_history_by_id = 'stock-history/stock-history-by-id/';
     final String help_and_support = 'help/help-desk/';
+    final String post_database ='demand/create-demand/';
 }

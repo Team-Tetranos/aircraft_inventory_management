@@ -201,7 +201,7 @@ class _DataBase_Chart_View_For_DPState extends State<DataBase_Chart_View_For_DP>
 
                             ],
                             source: Table_DataBase_For_DP(onpressed: (index){
-                              Navigator.pushNamed(context, RouteNames.updateDP);
+                              Navigator.pushNamed(context, RouteNames.detailsDP);
                             }),
                             rowsPerPage: 50,
                             columnSpacing: 42,),

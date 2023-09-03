@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
 
+import '../../models/category.dart';
+import '../../view_models/stock_view_model.dart';
+import '../../view_models/view_model_for_base_view/base_view_model.dart';
+
 class Add_DataChart_DP extends StatefulWidget {
   const Add_DataChart_DP({Key? key}) : super(key: key);
 
@@ -11,6 +15,12 @@ class Add_DataChart_DP extends StatefulWidget {
 }
 
 class _Add_DataChart_DPState extends State<Add_DataChart_DP> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<Add_DP_View_Model>(
@@ -182,6 +192,7 @@ class _Add_DataChart_DPState extends State<Add_DataChart_DP> {
                                     ),
                                     child: Center(
                                       child: TextField(
+                                        controller: advm.nomenclatureDP,
 
                                         decoration: InputDecoration(
                                             contentPadding: EdgeInsets.only(left: 6,bottom: 15),
@@ -229,6 +240,7 @@ class _Add_DataChart_DPState extends State<Add_DataChart_DP> {
                                               color: Colors.black
                                           ),
                                           onChanged: (String?  value){
+                                            advm.selectedUnitForDP(value!);
 
                                           },
                                           items: advm.DPunits.map((e) => DropdownMenuItem<String>(
@@ -267,7 +279,7 @@ class _Add_DataChart_DPState extends State<Add_DataChart_DP> {
                                     child: Center(
                                       child: TextField(
                                         controller: advm.demandquantityDP,
-                                        enabled: false,
+
                                         decoration: InputDecoration(
                                             contentPadding: EdgeInsets.only(left: 6,bottom: 15),
                                             hintText: '',
@@ -453,6 +465,8 @@ class _Add_DataChart_DPState extends State<Add_DataChart_DP> {
                               ),
                               GestureDetector(
                                 onTap: (){
+                                advm.add_data_record(context);
+                                  print("lol");
 
 
                                 },

@@ -1,5 +1,6 @@
 
 import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
+import 'package:aircraft_inventory_management/view_models/datachart_details_view_model/datachart_details_DP_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/update_datachart/update_datachart_DP_view_model.dart';
 import 'package:aircraft_inventory_management/view_models/update_datachart/update_datachart_LP_view_model.dart';
 import 'package:aircraft_inventory_management/views/add_datachart/add_datachart_DP.dart';
@@ -8,6 +9,8 @@ import 'package:aircraft_inventory_management/views/base_view/base_view.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
 import 'package:aircraft_inventory_management/views/database_chart_view/database_chart_view_for_DP.dart';
 import 'package:aircraft_inventory_management/views/database_view/database_view.dart';
+import 'package:aircraft_inventory_management/views/datachart_details/datachart_details_DP_view.dart';
+import 'package:aircraft_inventory_management/views/datachart_details/datachart_details_LP_view.dart';
 
 import 'package:aircraft_inventory_management/views/forgot_password_view/create_new_password/creat_new_password_view.dart';
 import 'package:aircraft_inventory_management/views/onboarding_screen/onboarding_screen.dart';
@@ -35,6 +38,11 @@ class Routes{
     switch(routeSettings.name){
       case RouteNames.updateDP:
         return MaterialPageRoute(builder: (_)=>Update_DataChart_DP());
+      case RouteNames.detailsDP:
+        return MaterialPageRoute(builder: (_)=>DataChart_Details_DP_view());
+      case RouteNames.detailsLP:
+        return MaterialPageRoute(builder: (_)=>DataChart_details_LP_View());
+
       case RouteNames.updateLP:
         return MaterialPageRoute(builder: (_)=>Update_DataChart_LP());
       case RouteNames.adddatachartLP:

@@ -22,4 +22,6 @@ class RouteNames{
   static const String adddatachartLP = "adddatachartLP";
   static const String updateDP="updateDP";
   static const String updateLP="updateLP";
+  static const String detailsDP="detailsDP";
+  static const String detailsLP="detailsLP";
 }

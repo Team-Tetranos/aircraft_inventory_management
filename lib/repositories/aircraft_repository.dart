@@ -190,6 +190,7 @@ class AircraftRepository{
   }
 
 
+
   Future<Object> updateStockRecord(Map<String, dynamic> data,StockRecord stockRecord, {File? image})async{
 
     Object result = Failure(code: 400, error: {}, key: '');
