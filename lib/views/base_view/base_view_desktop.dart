@@ -7,6 +7,7 @@ import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view.dart';
 import 'package:aircraft_inventory_management/views/dashboard_view/dashboard_view_desktop_2.dart';
 import 'package:aircraft_inventory_management/views/add_inventory_item_view/add_inventory_view_desktop.dart';
+import 'package:aircraft_inventory_management/views/demand_database_view/database_view.dart';
 import 'package:aircraft_inventory_management/views/inventory_view/inventory_view_desktop.dart';
 import 'package:aircraft_inventory_management/views/parts_report/parts_report.dart';
 import 'package:aircraft_inventory_management/views/product_overview_view/product_overview.dart';
@@ -270,6 +271,18 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                                               icon: Icons.add_shopping_cart_outlined,
                                               textcolor: mp.baseviewPage=='inventory'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
                                               iconcolor: mp.baseviewPage=='inventory'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
+                                      SizedBox(height: 40,),
+                                      GestureDetector(
+                                          onTap: (){
+                                            mp.changingOptions(context,'demand_database');
+
+
+                                          },
+                                          child: MyBaseViewContainer(text: "Demand DataBase",
+                                              containercolor: mp.baseviewPage=="demand_database"?Color(0xFFECECEC):Colors.transparent,
+                                              icon: Icons.add_shopping_cart_outlined,
+                                              textcolor: mp.baseviewPage=='demand_database'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72),
+                                              iconcolor: mp.baseviewPage=='demand_database'?Color(0xFF0B6CF3):Color(0xFFFFFFFF).withOpacity(0.72))),
 
 
                                       SizedBox(height: 40,),
@@ -405,6 +418,8 @@ class _MybaseViewDesktopState extends State<MybaseViewDesktop> {
                             Profile_Settings_View()
                           else if(mp.baseviewPage=='help')
                             HelpAndSupportViewForDesktop()
+                                          else if(mp.baseviewPage=='demand_database')
+                                            DataBaseView()
                           else
                             MyDashBoardView()
                           //Single_Item_Details_Desktop_View()

@@ -1,21 +1,36 @@
+import 'package:aircraft_inventory_management/models/DemandModel.dart';
 import 'package:aircraft_inventory_management/utils/convertStockHistoryToString.dart';
+import 'package:aircraft_inventory_management/utils/routes/route_names.dart';
+import 'package:aircraft_inventory_management/view_models/demand_database_view_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/stock_record_report.dart';
+import 'datachart_details_view.dart';
 
-class Table_DataBase_For_DP extends DataTableSource{
-  Function onpressed;
+class TableDataBase extends DataTableSource{
+ // Function onpressed;
+  BuildContext context;
 
-  Table_DataBase_For_DP({required this.onpressed});
+
+  List<DemandModel> items;
+
+
+
+ TableDataBase({required this.items,required this.context});
 
 
   @override
   DataRow? getRow(int index) {
 
 
+
     return DataRow(
       onSelectChanged: (b){
-        onpressed(index);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) =>  DataChartDetailsview( dataid: items[index].id,)),
+        );
+
       },
 
 
@@ -32,7 +47,7 @@ class Table_DataBase_For_DP extends DataTableSource{
           ),),
           DataCell(VerticalDivider()),
           DataCell(Center(
-            child: Text("Demand number",style: TextStyle(
+            child: Text(items[index].demandNo.toString(),style: TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.w500,
                 fontSize: 12,
@@ -41,7 +56,7 @@ class Table_DataBase_For_DP extends DataTableSource{
           ),),
           DataCell(VerticalDivider()),
           DataCell(Center(
-            child: Text("Demand date",style: TextStyle(
+            child: Text(items[index].date.toString(),style: TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.w500,
                 fontSize: 12,
@@ -50,7 +65,7 @@ class Table_DataBase_For_DP extends DataTableSource{
           ),),
           DataCell(VerticalDivider()),
           DataCell(Center(
-            child: Text("Nomenclature",style: TextStyle(
+            child: Text(items[index].description.toString(),style: TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.w500,
                 fontSize: 12,
@@ -59,7 +74,7 @@ class Table_DataBase_For_DP extends DataTableSource{
           ),),
           DataCell(VerticalDivider()),
           DataCell(Center(
-            child: Text("A/U",style: TextStyle(
+            child: Text(items[index].unit.toString(),style: TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.w500,
                 fontSize: 12,
@@ -68,7 +83,7 @@ class Table_DataBase_For_DP extends DataTableSource{
           ),),
           DataCell(VerticalDivider()),
           DataCell(Center(
-            child: Text("Demand Quantity",style: TextStyle(
+            child: Text(items[index].demandQuantity.toString(),style: TextStyle(
                 fontFamily: "Inter",
                 fontWeight: FontWeight.w500,
                 fontSize: 12,
@@ -77,7 +92,7 @@ class Table_DataBase_For_DP extends DataTableSource{
           ),),
           DataCell(VerticalDivider()),
           DataCell(Center(
-              child: Text("Received",style: TextStyle(
+              child: Text(items[index].received.toString(),style: TextStyle(
                   fontFamily: "Inter",
                   fontWeight: FontWeight.w900,
                   fontSize: 12,
@@ -86,7 +101,7 @@ class Table_DataBase_For_DP extends DataTableSource{
           ),),
           DataCell(VerticalDivider()),
           DataCell( Center(
-              child: Text("RMK",style: TextStyle(
+              child: Text(items[index].description.toString(),style: TextStyle(
                   fontFamily: "Inter",
                   fontWeight: FontWeight.w500,
                   fontSize: 12,
@@ -105,7 +120,7 @@ class Table_DataBase_For_DP extends DataTableSource{
 
   @override
   // TODO: implement rowCount
-  int get rowCount => 50;
+  int get rowCount => items.length;
 
   @override
   // TODO: implement selectedRowCount

@@ -16,12 +16,9 @@ class RouteNames{
   static const String onboardview = "onboardview";
   static const String onboardsecond ="secondonboard";
   static const String database ="database";
-  static const String datachartDP= "DataChartDP";
-  static const String datachartLP="datachartLP";
-  static const String adddatachartDP="adddatachartDP";
-  static const String adddatachartLP = "adddatachartLP";
-  static const String updateDP="updateDP";
-  static const String updateLP="updateLP";
-  static const String detailsDP="detailsDP";
-  static const String detailsLP="detailsLP";
+  static const String datachart= "datachart";
+  static const String adddatachart="adddatachart";
+  static const String updatedatabase="updatedatabase";
+  static const String databasedetails="databasedetails";
+
 }

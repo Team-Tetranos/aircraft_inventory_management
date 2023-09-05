@@ -1,22 +1,26 @@
-import 'package:aircraft_inventory_management/view_models/add_data_chart/add_datachart_DP_view_model.dart';
-import 'package:aircraft_inventory_management/view_models/update_datachart/update_datachart_DP_view_model.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
 
-class Update_DataChart_DP extends StatefulWidget {
-  const Update_DataChart_DP({Key? key}) : super(key: key);
+import '../../utils/routes/route_names.dart';
+import '../../view_models/demand_database_view_model.dart';
+
+class AddDataChartView extends StatefulWidget {
+  const AddDataChartView({Key? key}) : super(key: key);
 
   @override
-  State<Update_DataChart_DP> createState() => _Update_DataChart_DPState();
+  State<AddDataChartView> createState() => _AddDataChartViewState();
 }
 
-class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
+class _AddDataChartViewState extends State<AddDataChartView> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<Update_DP>(
-        builder: (context,upvm,_) {
-          return Container(
+    return Consumer<DemandDatabaseViewModel>(
+      builder: (context,dvm,_) {
+        return Scaffold(
+          body: Container(
               height: 747,
               width: MediaQuery.of(context).size.width * .716,
 
@@ -43,6 +47,8 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                   GestureDetector(
 
 
+
+
                                     child: Container(
                                         height: 26,
                                         width: 24,
@@ -53,11 +59,13 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                         child:  Icon(Icons.arrow_back,color: Colors.black,
                                         )),
                                     onTap: (){
-                                      Navigator.pop(context);
+
+                                     Navigator.popAndPushNamed(context, RouteNames.datachart);
                                     },
                                   ),
                                   SizedBox(width: 14,),
-                                  Text("Update Record",
+
+                                  Text("Add New Record",
                                     style: TextStyle(
                                       // fontWeight: FontWeight.w500,
                                         fontSize: 16,
@@ -91,7 +99,10 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                       ),
                                       child: Center(
                                         child: TextField(
-                                          controller: upvm.updatedemandnumberDP,
+                                          controller: dvm.addnumber,
+                                         inputFormatters: <TextInputFormatter>[
+                                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          ],
 
                                           decoration: InputDecoration(
                                               contentPadding: EdgeInsets.only(left: 6,bottom: 16),
@@ -138,11 +149,11 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                           border: Border.all(color: Colors.grey),
                                         ),
                                         child: TextField(
-                                          controller: upvm.updatedemanddateDP,
+                                          controller: dvm.adddate,
 
 
                                           onTap: (){
-                                            upvm.pickDate(context);
+                                            dvm.pickDate(context);
 
                                           },
                                           decoration: InputDecoration(
@@ -183,6 +194,7 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                       ),
                                       child: Center(
                                         child: TextField(
+                                          controller: dvm.addnomenclature,
 
                                           decoration: InputDecoration(
                                               contentPadding: EdgeInsets.only(left: 6,bottom: 15),
@@ -222,7 +234,7 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                       ),
                                       child: Center(
                                           child: DropdownButton<String>(
-                                            value:upvm.selectedUnit,
+                                            value: dvm.selectedUnit,
                                             underline: SizedBox.shrink(),
 
 
@@ -230,9 +242,10 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                                 color: Colors.black
                                             ),
                                             onChanged: (String?  value){
+                                              dvm.selectedUnitForDP(value!);
 
                                             },
-                                            items: upvm.DPunits.map((e) => DropdownMenuItem<String>(
+                                            items: dvm.DPunits.map((e) => DropdownMenuItem<String>(
                                                 value: e,
                                                 child: Text(e)
                                             )).toList(),
@@ -267,9 +280,13 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                       ),
                                       child: Center(
                                         child: TextField(
-                                          controller: upvm.updatedemandquantityDP,
-                                          enabled: false,
+                                          controller: dvm.addquantity,
+                                          inputFormatters: <TextInputFormatter>[
+                                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          ],
+
                                           decoration: InputDecoration(
+
                                               contentPadding: EdgeInsets.only(left: 6,bottom: 15),
                                               hintText: '',
                                               border: InputBorder
@@ -308,7 +325,10 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                       ),
                                       child: Center(
                                         child: TextField(
-                                          controller: upvm.updatereceivedDP,
+                                          controller: dvm.addreceived=TextEditingController(text: "0"),
+                                          inputFormatters: <TextInputFormatter>[
+                                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          ],
 
                                           decoration: InputDecoration(
                                               contentPadding: EdgeInsets.only(left: 6,bottom: 15),
@@ -350,7 +370,7 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                       ),
                                       child: Center(
                                         child: TextField(
-                                          controller: upvm.updatermkDP,
+                                          controller: dvm.addrmk,
 
                                           decoration: InputDecoration(
                                               contentPadding: EdgeInsets.only(left: 6,bottom: 15),
@@ -370,49 +390,49 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
 
                               SizedBox(height: 20,),
                               /*Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Demand\nSchedule",
-                                          style: TextStyle(color: Colors.black,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 16,
-                                              fontFamily: "Inter"),
-                                        ),
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Demand\nSchedule",
+                                            style: TextStyle(color: Colors.black,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 16,
+                                                fontFamily: "Inter"),
+                                          ),
 
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 5),
-                                          child: Container(
-                                            // padding: EdgeInsets.symmetric(horizontal: 16.0),
-                                            height: 30.0,
-                                            width: 300,// Set the desired height for the TextField
-                                            decoration: BoxDecoration(
-                                              border: Border.all(color: Colors.grey),
-                                              borderRadius: BorderRadius.all(Radius.circular(5))
-                                            ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5),
                                             child: Container(
-                                              padding: EdgeInsets.symmetric(horizontal: 13.0),
-                                              height: 30.0, // Set the desired height for the TextField
+                                              // padding: EdgeInsets.symmetric(horizontal: 16.0),
+                                              height: 30.0,
+                                              width: 300,// Set the desired height for the TextField
                                               decoration: BoxDecoration(
                                                 border: Border.all(color: Colors.grey),
+                                                borderRadius: BorderRadius.all(Radius.circular(5))
                                               ),
-                                              child: TextField(
-                                                controller: ivm.demandScheduleforfirstpageAddInventory,
-                                                onTap: (){
-                                                  ivm.pickDateForDateSchedule(context);
-                                                },
-                                                decoration: InputDecoration(
-                                                  hintText: 'Tap to pick date',
-                                                  border: InputBorder
-                                                      .none, // Remove the default TextField border
+                                              child: Container(
+                                                padding: EdgeInsets.symmetric(horizontal: 13.0),
+                                                height: 30.0, // Set the desired height for the TextField
+                                                decoration: BoxDecoration(
+                                                  border: Border.all(color: Colors.grey),
+                                                ),
+                                                child: TextField(
+                                                  controller: ivm.demandScheduleforfirstpageAddInventory,
+                                                  onTap: (){
+                                                    ivm.pickDateForDateSchedule(context);
+                                                  },
+                                                  decoration: InputDecoration(
+                                                    hintText: 'Tap to pick date',
+                                                    border: InputBorder
+                                                        .none, // Remove the default TextField border
 
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
 
-                                      ],),*/
+                                        ],),*/
                             ],
                           ),
                         ),
@@ -454,6 +474,8 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                 ),
                                 GestureDetector(
                                   onTap: (){
+                                    dvm.add_data_record(context);
+                                    dvm.addfieldclear();
 
 
                                   },
@@ -467,7 +489,7 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                                           vertical: 10,
                                           horizontal: 20
                                       ),
-                                      child: Text('Update',style: TextStyle(
+                                      child: Text('Add Item',style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold
                                       ),),
@@ -482,8 +504,9 @@ class _Update_DataChart_DPState extends State<Update_DataChart_DP> {
                     )
                   ]
               )
-          );
-        }
+          ),
+        );
+      }
     );
   }
 }

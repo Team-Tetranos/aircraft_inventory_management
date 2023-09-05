@@ -35,4 +35,6 @@ class EndPoints{
     final String stock_history_by_id = 'stock-history/stock-history-by-id/';
     final String help_and_support = 'help/help-desk/';
     final String post_database ='demand/create-demand/';
+    final String get_all_data ='demand/all-demands/';
+    final String get_data_by_ID = 'demand/demand-by-id/';
 }
