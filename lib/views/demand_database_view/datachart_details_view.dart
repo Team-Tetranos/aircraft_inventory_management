@@ -261,7 +261,7 @@ class _DataChartDetailsviewState extends State<DataChartDetailsview> {
                                                       color: Color(0xFF383E49)
                                                   ),),
 
-                                                Text(dvm.demandmodel.description.toString(),
+                                                Text(dvm.demandmodel.rmk??'',
                                                   style: TextStyle(
                                                       fontSize: 14,
                                                       fontWeight: FontWeight.w500,

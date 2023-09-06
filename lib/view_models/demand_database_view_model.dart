@@ -62,10 +62,10 @@ class DemandDatabaseViewModel extends ChangeNotifier{
     notifyListeners();
   }
   Oninit(){
-    updatenumber.text=demandmodel.demandNo!;
-    updatedate.text=demandmodel.date!;
-    updatermk.text=demandmodel.description!;
-    updatenomenclature.text=demandmodel.description!;
+    updatenumber.text=demandmodel.demandNo??'';
+    updatedate.text=demandmodel.date??'';
+    updatermk.text=demandmodel.rmk??'';
+    updatenomenclature.text=demandmodel.description??'';
     updatequantity.text=demandmodel.demandQuantity.toString();
     updatereceived.text=demandmodel.received.toString();
     notifyListeners();
@@ -253,9 +253,10 @@ class DemandDatabaseViewModel extends ChangeNotifier{
           'description':addnomenclature.text.trim(),
           'created_by':user!.id.toString(),
           'unit':selectedUnit,
-          'demand_quantity':quantity,
-          'received':received,
+          'demand_quantity':quantity.toString(),
+          'received':received.toString(),
           'demand_type': demandtype,
+          'rmk':addrmk.text.trim()
         };
         notifyListeners();
 
@@ -265,6 +266,7 @@ class DemandDatabaseViewModel extends ChangeNotifier{
         if(result is DemandModel){
 
           successSnackbar(context: context, message: 'Successfully created demand database');
+          addfieldclear();
 
         }else if(result is Failure){
           failedSnackbar(context: context, message: '${result.error}');
@@ -320,6 +322,8 @@ class DemandDatabaseViewModel extends ChangeNotifier{
     try{
       var result = await databaserepo.getDemanddata();
       if(result is List<DemandModel>){
+
+        result = result.where((element) => element.aircraft!.id==acft!.id).toList();
 
         for(int i=0;i<result.length;i++){
           if(result[i].demandType=="DP"){
@@ -408,7 +412,7 @@ class DemandDatabaseViewModel extends ChangeNotifier{
         'unit':selectedUpdateUnit,
         'demand_quantity':updatequantity.text.trim(),
         'received':updatereceived.text.trim(),
-
+        'rmk':updatermk.text.trim()
 
            };
 
@@ -428,6 +432,24 @@ class DemandDatabaseViewModel extends ChangeNotifier{
     }
     EasyLoading.dismiss();
 
+  }
+
+  void processUpdateDemandQuantity(String s) {
+    if(s.isEmpty){
+      s="0";
+    }
+    try{
+
+      int fd = int.parse(s);
+
+      int total = (demandmodel.demandQuantity??0)+(demandmodel.received??0);
+      int nw = total-fd;
+      updatequantity.text = nw.toString();
+      notifyListeners();
+
+    }catch(e){
+
+    }
   }
 
 

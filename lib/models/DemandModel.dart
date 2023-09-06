@@ -27,10 +27,11 @@ class DemandModel {
       String? date, 
       String? description, 
       String? unit, 
-      num? demandQuantity, 
-      num? received, 
+      int? demandQuantity,
+      int? received,
       String? demandType, 
-      String? image, 
+      String? image,
+      String? rmk,
       String? createdAt, 
       String? updatedAt,}){
     _id = id;
@@ -44,6 +45,7 @@ class DemandModel {
     _received = received;
     _demandType = demandType;
     _image = image;
+    _rmk = rmk;
     _createdAt = createdAt;
     _updatedAt = updatedAt;
 }
@@ -60,6 +62,7 @@ class DemandModel {
     _received = json['received'];
     _demandType = json['demand_type'];
     _image = json['image'];
+    _rmk = json['rmk'];
     _createdAt = json['created_at'];
     _updatedAt = json['updated_at'];
   }
@@ -70,10 +73,11 @@ class DemandModel {
   String? _date;
   String? _description;
   String? _unit;
-  num? _demandQuantity;
-  num? _received;
+  int? _demandQuantity;
+  int? _received;
   String? _demandType;
   String? _image;
+  String? _rmk;
   String? _createdAt;
   String? _updatedAt;
 DemandModel copyWith({  String? id,
@@ -83,10 +87,11 @@ DemandModel copyWith({  String? id,
   String? date,
   String? description,
   String? unit,
-  num? demandQuantity,
-  num? received,
+  int? demandQuantity,
+  int? received,
   String? demandType,
   String? image,
+  String?rmk,
   String? createdAt,
   String? updatedAt,
 }) => DemandModel(  id: id ?? _id,
@@ -100,6 +105,7 @@ DemandModel copyWith({  String? id,
   received: received ?? _received,
   demandType: demandType ?? _demandType,
   image: image ?? _image,
+  rmk: rmk??_rmk,
   createdAt: createdAt ?? _createdAt,
   updatedAt: updatedAt ?? _updatedAt,
 );
@@ -110,10 +116,11 @@ DemandModel copyWith({  String? id,
   String? get date => _date;
   String? get description => _description;
   String? get unit => _unit;
-  num? get demandQuantity => _demandQuantity;
-  num? get received => _received;
+  int? get demandQuantity => _demandQuantity;
+  int? get received => _received;
   String? get demandType => _demandType;
   String? get image => _image;
+  String? get rmk => _rmk;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
 
@@ -134,6 +141,7 @@ DemandModel copyWith({  String? id,
     map['received'] = _received;
     map['demand_type'] = _demandType;
     map['image'] = _image;
+    map['rmk'] = _rmk;
     map['created_at'] = _createdAt;
     map['updated_at'] = _updatedAt;
     return map;

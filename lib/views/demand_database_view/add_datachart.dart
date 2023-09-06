@@ -475,7 +475,7 @@ class _AddDataChartViewState extends State<AddDataChartView> {
                                 GestureDetector(
                                   onTap: (){
                                     dvm.add_data_record(context);
-                                    dvm.addfieldclear();
+                                    //dvm.addfieldclear();
 
 
                                   },

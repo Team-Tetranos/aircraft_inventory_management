@@ -18,7 +18,11 @@ class UpdateDataChartView extends StatefulWidget {
 class _UpdateDataChartViewState extends State<UpdateDataChartView> {
   @override
   void initState() {
-    Provider.of<DemandDatabaseViewModel>(context,listen: false).Oninit();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<DemandDatabaseViewModel>(context,listen: false).Oninit();
+
+    });
 
     super.initState();
   }
@@ -136,7 +140,7 @@ class _UpdateDataChartViewState extends State<UpdateDataChartView> {
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
-                                        " Demand Date",
+                                        "Demand Date",
                                         style: TextStyle(color: Colors.black,
                                             fontWeight: FontWeight.w500,
                                             fontSize: 16,
@@ -336,6 +340,10 @@ class _UpdateDataChartViewState extends State<UpdateDataChartView> {
                                           ),
                                           child: Center(
                                             child: TextField(
+                                              onChanged: (s){
+                                                dvm.processUpdateDemandQuantity(s);
+
+                                              },
                                               controller: dvm.updatereceived,
                                               inputFormatters: <TextInputFormatter>[
                                                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -486,7 +494,7 @@ class _UpdateDataChartViewState extends State<UpdateDataChartView> {
                                     GestureDetector(
                                       onTap: (){
                                         dvm.updateDataByID(context, dvm.demandmodel.id.toString());
-                                        dvm.updateclear();
+                                        //dvm.updateclear();
 
 
                                       },

@@ -101,7 +101,7 @@ class TableDataBase extends DataTableSource{
           ),),
           DataCell(VerticalDivider()),
           DataCell( Center(
-              child: Text(items[index].description.toString(),style: TextStyle(
+              child: Text(items[index].rmk??'',style: TextStyle(
                   fontFamily: "Inter",
                   fontWeight: FontWeight.w500,
                   fontSize: 12,
