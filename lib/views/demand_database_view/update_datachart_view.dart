@@ -115,9 +115,7 @@ class _UpdateDataChartViewState extends State<UpdateDataChartView> {
                                           child: Center(
                                             child: TextField(
                                               controller: dvm.updatenumber,
-                                              inputFormatters: <TextInputFormatter>[
-                                                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                                              ],
+
 
                                               decoration: InputDecoration(
                                                   contentPadding: EdgeInsets.only(left: 6,bottom: 16),

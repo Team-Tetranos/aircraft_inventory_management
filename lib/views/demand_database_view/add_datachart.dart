@@ -100,9 +100,7 @@ class _AddDataChartViewState extends State<AddDataChartView> {
                                       child: Center(
                                         child: TextField(
                                           controller: dvm.addnumber,
-                                         inputFormatters: <TextInputFormatter>[
-                                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                                          ],
+
 
                                           decoration: InputDecoration(
                                               contentPadding: EdgeInsets.only(left: 6,bottom: 16),
@@ -454,7 +452,7 @@ class _AddDataChartViewState extends State<AddDataChartView> {
                               children: [
                                 GestureDetector(
                                   onTap: (){
-                                    Navigator.pop(context);
+                                    Navigator.popAndPushNamed(context, RouteNames.datachart);
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(

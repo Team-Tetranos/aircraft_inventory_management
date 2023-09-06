@@ -51,17 +51,7 @@ class _InventoryViewForDesktopState extends State<InventoryViewForDesktop> {
                               fontFamily: "Inter"
                           ),),
                       )),
-                 Padding(
-                   padding: const EdgeInsets.only(right: 40),
-                   child: ElevatedButton(
-                        style: ButtonStyle(
 
-                        ),
-                          onPressed: (){
-                          Navigator.pushNamed(context, RouteNames.database);
-                          },
-                          child: Text("Add Database")),
-                 ),
 
                 ],
               ),

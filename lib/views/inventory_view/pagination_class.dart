@@ -87,7 +87,7 @@ class myData extends DataTableSource{
             width: MediaQuery.of(mycontext).size.width*.0506,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(30)),
-                color: items[index].balance! <2?Colors.red:items[index].balance! <8?Colors.yellowAccent:Colors.green
+                color: items[index].balance! <2?Colors.red:items[index].balance! <8?Colors.deepPurple:Colors.green
             ),
             child: Center(child: Text(items[index].balance! <2?'Low':items[index].balance! <8?'Moderate':'sufficient',
               style: TextStyle(color: Colors.white,
