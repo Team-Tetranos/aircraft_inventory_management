@@ -471,9 +471,13 @@ class _UpdateDataChartViewState extends State<UpdateDataChartView> {
                                   children: [
                                     GestureDetector(
                                       onTap: (){
-                                        Navigator.pop(context);
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(builder: (context) =>  DataChartDetailsview( dataid: dvm.demandmodel.id.toString(),)),
+                                        );
                                       },
                                       child: Container(
+
                                         decoration: BoxDecoration(
                                             border: Border.all(
                                                 color: Colors.grey

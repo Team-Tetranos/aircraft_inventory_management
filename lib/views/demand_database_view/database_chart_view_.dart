@@ -18,7 +18,10 @@ class DataBaseChartView extends StatefulWidget {
 class _DataBaseChartViewState extends State<DataBaseChartView> {
   @override
   void initState() {
-    Provider.of<DemandDatabaseViewModel>(context, listen: false).fetch_all_data(context);
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp){
+      Provider.of<DemandDatabaseViewModel>(context, listen: false).fetch_all_data(context);
+    });
     super.initState();
   }
   @override

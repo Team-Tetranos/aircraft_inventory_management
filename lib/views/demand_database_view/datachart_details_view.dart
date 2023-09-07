@@ -113,7 +113,7 @@ class _DataChartDetailsviewState extends State<DataChartDetailsview> {
                                                   ),),
 
 
-                                                Text(dvm.demandmodel.demandNo.toString(),
+                                                Text(dvm.demandmodel.demandNo==null?'':dvm.demandmodel.demandNo.toString(),
                                                   style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight: FontWeight.w500,
@@ -141,7 +141,7 @@ class _DataChartDetailsviewState extends State<DataChartDetailsview> {
                                                   ),),
 
 
-                                                Text(dvm.demandmodel.date.toString(),
+                                                Text(dvm.demandmodel.date==null?'':dvm.demandmodel.date.toString(),
                                                   style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight: FontWeight.w500,
@@ -166,7 +166,7 @@ class _DataChartDetailsviewState extends State<DataChartDetailsview> {
                                                   ),),
 
 
-                                                Text(dvm.demandmodel.description.toString(),
+                                                Text(dvm.demandmodel.description==null?'':dvm.demandmodel.description.toString(),
                                                   style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight: FontWeight.w500,
@@ -191,7 +191,7 @@ class _DataChartDetailsviewState extends State<DataChartDetailsview> {
                                                   ),),
 
 
-                                                Text(dvm.demandmodel.unit.toString(),
+                                                Text(dvm.demandmodel.unit==null?'':dvm.demandmodel.unit.toString(),
                                                   style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight: FontWeight.w500,
@@ -214,7 +214,7 @@ class _DataChartDetailsviewState extends State<DataChartDetailsview> {
                                                       color: Color(0xFF383E49)
                                                   ),),
 
-                                                Text(dvm.demandmodel.demandQuantity.toString(),
+                                                Text(dvm.demandmodel.demandQuantity==null?'':dvm.demandmodel.demandQuantity.toString(),
                                                   style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight: FontWeight.w500,
@@ -238,7 +238,7 @@ class _DataChartDetailsviewState extends State<DataChartDetailsview> {
                                                       color: Color(0xFF383E49)
                                                   ),),
 
-                                                Text(dvm.demandmodel.received.toString(),
+                                                Text(dvm.demandmodel.received==null?'':dvm.demandmodel.received.toString(),
                                                   style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight: FontWeight.w500,
@@ -318,8 +318,8 @@ class _DataChartDetailsviewState extends State<DataChartDetailsview> {
                                         GestureDetector(
                                           onTap:(){
                                             dvm.deleteDataRecord(context, dvm.demandmodel.id.toString());
-                                            //Navigator.popAndPushNamed(context, RouteNames.datachart);
-                                          //  Navigator.pushReplacementNamed(context, RouteNames.datachart);
+                                           /*// Navigator.popAndPushNamed(context, RouteNames.datachart);
+                                            Navigator.pushReplacementNamed(context, RouteNames.datachart);*/
 
                                             print("delete");
 
